@@ -1,0 +1,74 @@
+Labels 
+    1. Employee 
+        1. Manager
+        2. Leader 
+        3. Developer
+        4. Tester
+        5. DBA 
+    2. Product
+        1. Tool
+        2. Application
+    3. Department
+    4. Approval Type
+    5. Skills
+Relation
+    1. Tool ->  Request by -> Employee, Access -> Employee, managed_by -> Employee, comes_under -> Department
+    2. Employee -> CollaboratesOn -> Employee, works in -> Product, skilled in -> skill, reports_to -> manager
+    3. Department -> managed_by -> Employee
+
+Properties 
+
+Employee
+    -> Name 
+    -> Mail Address
+    -> Domain 
+    -> UserId 
+    -> Password
+    -> Phone Number
+    -> Position
+    -> Employee ID 
+
+Tool & Application
+    -> Name
+    -> Approval Type
+    -> ID
+
+Department
+    -> ID
+    -> Name
+
+Approval Type
+    -> ID
+    -> FlowOfTool
+
+Skills
+    -> ID
+    -> Skill name
+
+Request by
+    -> Requested Date 
+    -> Type of Access
+    -> lvl1Approval
+    -> lvl2Approval
+
+Access
+    -> Type Of Access
+    -> lvl 1 Approved By
+    -> lvl 2 Approved By
+
+Managed By 
+    -> Period
+
+CollaboratesOn
+    -> Task Description
+
+works in
+    -> Role
+    -> period
+
+skilled in
+    -> Experience Years
+    -> Rating
+
+Condition
+    -> Once request by get completed, delete that relation and make access relation to be enabled.

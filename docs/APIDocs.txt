@@ -1,0 +1,23 @@
+login 
+
+Admin Access Endpoint
+CRUD Employee, Department, Skills
+
+Security Team
+CRUD Approval Type
+
+Leader
+CRUD product
+
+Employee relation
+ Employee:Manager : CollaboratesOn -> Employee, works in -> Product, skilled in -> skill 
+ Employee:Leader : reports_to
+
+Department
+Employee:AdminRole: managed_by -> Employee
+
+Tool
+Employee:any : Request_by -> Employee
+Employee:AdminRole: managed_by -> Employee,comes_under -> Department
+
+
