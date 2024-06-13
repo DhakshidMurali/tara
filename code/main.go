@@ -4,13 +4,14 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"reflect"
 
 	"github.com/neo4j/neo4j-go-driver/v5/neo4j"
 )
 
-type output struct {
-	Properties string `json:"properties"`
+type nodeProp struct {
+	Name string `json:"name"`
+	// class string `json:"class"`
+	// labels []string `json:"labels"`
 }
 
 func main() {
@@ -28,69 +29,37 @@ func main() {
 	}
 	result, _ := neo4j.ExecuteQuery(ctx, driver,
 		`
-		match (n1:PERSON{name:'Arjun'})
-
-return n1{
-    properties:n1{.*}
-}
+  match (arjun:PERSON{Id:'2'})
+  RETURN arjun
+  {
+      name: arjun.name
+  }
 		`,
+
 		map[string]any{}, neo4j.EagerResultTransformer,
 		neo4j.ExecuteQueryWithDatabase("neo4j"))
-	// Loop through results and do something with them
-	fmt.Println(result.Records)
-	for _, record := range result.Records {
-		// if len(result.Data) > 0 {
-		// 	// Here are your phones.
-		// 	for _, d := range result.Data {
-		// 		fmt.Println(d.Row)
-		// 	}
-		// }
-		// fmt.Println(len(record.AsMap()))
-		// fmt.Println(record.Get("n"))
-		fmt.Println(record.Keys)
-		// fmt.Println(record.Values)
-		// fmt.Println(record.AsMap())
-		mapRecord, _ := record.Get("n1")
-		jsonData, err := json.Marshal(mapRecord)
-		if err != nil {
-			fmt.Println("Error:", err)
-			return
-		}
-		var result interface{}
-		err = json.Unmarshal(jsonData, &result)
-		if err != nil {
-			fmt.Println("Error:", err)
-			return
-		}
-		personMap, ok := result.(map[string]interface{})
+		for _, record := range result.Records {
+		fmt.Println(record.Get("arjun"))
+		mapRecord, _ := record.Get("arjun")
+		recordMap, ok := mapRecord.(map[string]interface{})
 		if !ok {
-			fmt.Println("Error: Couldn't convert to map[string]interface{}")
+			fmt.Println("Error unmarshalling JSON:", err)
 			return
 		}
-		fmt.Println(personMap)
-		prop, nameOk := personMap["properties"].(map[string]interface{})
-		if !nameOk {
-			fmt.Println("Error: Couldn't extract name and age")
+		jsonData, err := json.Marshal(recordMap)
+		if err != nil {
+			fmt.Println("Error:", err)
 			return
 		}
-		fmt.Println(prop)
-		fmt.Println(prop["name"])
-		if !nameOk {
-			fmt.Println("Error: Couldn't extract name and age")
+		var data nodeProp
+		err = json.Unmarshal(jsonData, &data)
+		if err != nil {
+			fmt.Println("Error unmarshalling JSON:", err)
 			return
 		}
-		// fmt.Println(name)
-		// var person output
-		// jsonData := []byte(mapRecord)
-		// err := json.Unmarshal(jsonData, &person)
-		// fmt.Println(reflect.TypeOf(mapRecord).Elem())
-		// fmt.Println(reflect.TypeOf(record).Key())
+		fmt.Printf("%+v\n", data)
+		fmt.Println(data.Name)
 	}
-
-	// Summary information
-	fmt.Printf("The query `%v` returned %v records in %+v.\n",
-		result.Summary.Query().Text(), len(result.Records),
-		result.Summary.ResultAvailableAfter())
 	defer driver.Close(ctx)
 
 }

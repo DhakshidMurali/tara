@@ -15,7 +15,7 @@ Relation
     1. Tool ->  Request by -> Employee, Access -> Employee, managed_by -> Employee, comes_under -> Department
     2. Employee -> CollaboratesOn -> Employee, works in -> Product, skilled in -> skill, reports_to -> manager
     3. Department -> managed_by -> Employee
-
+    
 Properties 
 
 Employee
