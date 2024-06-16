@@ -11,11 +11,14 @@ Labels
     3. Department
     4. Approval Type
     5. Skills
+    6. Community
+    7. Communication
 Relation
     1. Tool ->  Request by -> Employee, Access -> Employee, managed_by -> Employee, comes_under -> Department
     2. Employee -> CollaboratesOn -> Employee, works in -> Product, skilled in -> skill, reports_to -> manager
     3. Department -> managed_by -> Employee
-    
+    4. Community -> member -> Employee, requestBy -> Employee
+    5. Communication -> posted in -> community,  posted_by -> Employee
 Properties 
 
 Employee
@@ -27,7 +30,8 @@ Employee
     -> Phone Number
     -> Position
     -> Employee ID 
-
+    -> Location
+    
 Tool & Application
     -> Name
     -> Approval Type
@@ -40,6 +44,18 @@ Department
 Approval Type
     -> ID
     -> FlowOfTool
+
+Community
+    -> createdBy
+    -> Name
+    -> Description
+    -> ID
+    -> Public/private
+
+Communication
+    -> Type of Communication
+    -> Content
+    -> ID
 
 Skills
     -> ID
@@ -69,6 +85,12 @@ works in
 skilled in
     -> Experience Years
     -> Rating
+
+posted_in
+    -> Timestamp
+
+posted_by 
+    -> Timestamp
 
 Condition
     -> Once request by get completed, delete that relation and make access relation to be enabled.

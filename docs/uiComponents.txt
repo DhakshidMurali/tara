@@ -1,0 +1,15 @@
+Menu
+    1. Profile Edit - Top right side
+    2. View Org hierarchy - sidepanel
+    3. Search Tool - sidepanel
+    4. Submitted request - sidepanel
+    5. Search people- top search bar
+    6. Team details - tools maintained - users - dashboard
+    7. Community - sidepanel
+    
+Manager
+    8. Pending Approval for Tool - sidepanel
+
+Admin
+    7. update department, tools manage by, comes comes_under - sidepanel
+    8. Create employee, product details - sidepanel
