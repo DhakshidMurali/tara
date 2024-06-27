@@ -1,0 +1,17 @@
+POST http://localhost:8080/create/relation/communicationPostedInCommunity
+content-type: application/json
+
+{
+    "Communication":{
+        "Type":"B",
+        "Content":"New post as of jun27"
+    },
+    "PostedIn":{
+        "PostedInDate":"A"
+    },
+    "Community":{
+        "Name":"B",
+        "Description":"C",
+        "AccessType":"D"
+    }
+}

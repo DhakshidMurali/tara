@@ -1,0 +1,13 @@
+POST http://localhost:8080/create/relation/toolComesUnderDepartment
+content-type: application/json
+
+{
+    "Tool":{
+        "Name":"B",
+        "ApprovalType":"Manager"
+    },
+    "AccessType":"Lvl 1",
+    "Department":{
+        "DepartmentName":"ISO"
+    },
+}

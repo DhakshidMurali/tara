@@ -1,0 +1,22 @@
+POST http://localhost:8080/create/relation/toolRequestByEmployee
+content-type: application/json
+
+{
+    "Tool":{
+        "Name":"B",
+        "ApprovalType":"Manager"
+    },
+    "RequestedDate":"2202-11-1",
+    "AccessType":"Developer",
+    "Lvl1Approval":"Required",
+    "Lvl2Approval":"Required",
+    "Employee":{
+        "Name":"B",
+        "MailAddress":"@gmail.com",
+        "Domain":"TO",
+        "Password":"12345678",
+        "PhoneNumber":"12345678",
+        "Role":"Developer",
+        "Location":"Pune"
+    }
+}

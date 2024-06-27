@@ -1,0 +1,22 @@
+POST http://localhost:8080/create/relation/communityCreatedByEmployee
+content-type: application/json
+
+{
+     "Community":{
+        "Name":"B",
+        "Description":"C",
+        "AccessType":"D"
+    },
+    "CreatedBy":{
+        "CommunityCreatedDate":"A"
+    },
+    "Employee":{
+        "Name":"B",
+        "MailAddress":"@gmail.com",
+        "Domain":"TO",
+        "Password":"12345678",
+        "PhoneNumber":"12345678",
+        "Role":"Developer",
+        "Location":"Pune"
+    }
+}

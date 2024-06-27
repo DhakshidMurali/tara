@@ -1,0 +1,26 @@
+POST http://localhost:8080/create/relation/employeeCollaboratedWithEmployee
+content-type: application/json
+
+{
+    "EmployeeN1":{
+        "Name":"B",
+        "MailAddress":"@gmail.com",
+        "Domain":"TO",
+        "Password":"12345678",
+        "PhoneNumber":"12345678",
+        "Role":"Developer",
+        "Location":"Pune"
+    },
+    "CollaboratedWith":{
+        "TaskDescription":"A"
+    },
+    "EmployeeN2":{
+        "Name":"B",
+        "MailAddress":"@gmail.com",
+        "Domain":"TO",
+        "Password":"12345678",
+        "PhoneNumber":"12345678",
+        "Role":"Developer",
+        "Location":"Pune"
+    }
+}
