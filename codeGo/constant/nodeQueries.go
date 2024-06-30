@@ -13,6 +13,29 @@ const (
 	END AS isCreated
 	`
 
+	UPDATE_NODE = `
+	MATCH (n1:%n)
+	WHERE elementId(n1)=$NodeId
+	SET n1+=$v
+	RETURN n1
+	`
+
+	RETRIEVE_DATA_NODE1=`
+	MATCH (n1:%n1)-(r:%r)->(n2:%n2)
+	WHERE n1.%condition=$value
+	RETURN %return
+	`
+	RETRIEVE_DATA_NODE2=`
+	MATCH (n1:%n1)-(r:%r)->(n2:%n2)
+	WHERE n2.%condition=$value
+	RETURN %return
+	`
+	RETRIEVE_DATA_RELATION=`
+	MATCH (n1:%n1)-(r:%r)->(n2:%n2)
+	WHERE r.%condition=$value
+	RETURN %return
+	`
+
 	EmployeeN1 = `
 	Employee{
 		Name:$EmployeeName,

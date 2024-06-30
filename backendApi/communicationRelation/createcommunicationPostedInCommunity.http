@@ -10,7 +10,6 @@ content-type: application/json
         "PostedInDate":"A"
     },
     "Community":{
-        "Name":"B",
         "Description":"C",
         "AccessType":"D"
     }

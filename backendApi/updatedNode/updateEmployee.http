@@ -1,0 +1,16 @@
+POST http://localhost:8080/update/node/employee
+content-type: application/json
+
+{
+    "Key":"4:41b0534a-8bbd-4d1b-80ed-d6c4f9f9f1a2:5",
+    "Node":{
+        "Name":"Blcie",
+        "MailAddress":"@gmail.com",
+        "Domain":"TO",
+        "Password":"12345678",
+        "PhoneNumber":"12345678",
+        "Role":"Developer",
+        "Location":"Pune"
+    }
+     
+}

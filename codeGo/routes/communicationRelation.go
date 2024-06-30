@@ -1,6 +1,7 @@
 package routes
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/DhakshidMurali/tara/db"
@@ -41,8 +42,9 @@ func createCommunicationPostedByEmployee(context *gin.Context) {
 	}
 	query := communicationPostedByEmployee.MakeQuery()
 	params := communicationPostedByEmployee.MakeParams()
+	fmt.Println(query)
+	fmt.Println(params)
 	result := db.Execute(query, params)
-
 	isCreated := result.Records[0].Values[0].(bool)
 	if isCreated {
 		context.JSON(http.StatusOK, gin.H{
@@ -54,4 +56,17 @@ func createCommunicationPostedByEmployee(context *gin.Context) {
 			"message": "Data already Exist in Database",
 		})
 	}
+}
+
+
+func listCommunication(context *gin.Context){
+	var communicationPostedInCommunity model.CommunicationPostedInCommunity
+	err :=context.ShouldBindJSON(&communicationPostedInCommunity)
+
+	if err!=nil{
+		panic(err)
+	}
+
+	
+
 }
