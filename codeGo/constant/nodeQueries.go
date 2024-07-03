@@ -20,19 +20,14 @@ const (
 	RETURN n1
 	`
 
-	RETRIEVE_DATA_NODE1=`
+	RETRIEVE_DATA_NODES=`
 	MATCH (n1:%n1)-(r:%r)->(n2:%n2)
-	WHERE n1.%condition=$value
 	RETURN %return
 	`
-	RETRIEVE_DATA_NODE2=`
-	MATCH (n1:%n1)-(r:%r)->(n2:%n2)
-	WHERE n2.%condition=$value
-	RETURN %return
-	`
-	RETRIEVE_DATA_RELATION=`
-	MATCH (n1:%n1)-(r:%r)->(n2:%n2)
-	WHERE r.%condition=$value
+
+	RETRIEVE_DATA_NODE_WHERE=`
+	MATCH (n1:%n1)-[r:%r]->(n2:%n2)
+	WHERE %condition
 	RETURN %return
 	`
 

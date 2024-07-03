@@ -10,18 +10,25 @@ type DepartmentManagedByEmployee struct {
 	Employee   Employee
 }
 
-func (v DepartmentManagedByEmployee) MakeQuery() string {
-	query := constant.CREATE_NODE_TO_NODE_RELATION
-	mapData := map[string]string{
-		"%n1": constant.Department,
-		"%r":  constant.ManagedBy,
-		"%n2": constant.EmployeeN1,
+func (v DepartmentManagedByEmployee) MakeQuery(typeOfQuery string) string {
+	switch typeOfQuery {
+	case "CREATE":
+		query := constant.CREATE_NODE_TO_NODE_RELATION
+		mapData := map[string]string{
+			"%n1": constant.Department,
+			"%r":  constant.ManagedBy,
+			"%n2": constant.EmployeeN1,
+		}
+		query = util.ReplaceQuery(query, mapData)
+		return query
+	default:
+		return ""
 	}
-	query = util.ReplaceQuery(query, mapData)
-	return query
 }
 
-func (v DepartmentManagedByEmployee) MakeParams() map[string]any {
+func (v DepartmentManagedByEmployee) MakeParams(typeOfQuery string) map[string]any {
+	switch typeOfQuery {
+	case "CREATE":
 	return map[string]any{
 		"DepartmentName":       v.Department.DepartmentName,
 		"EmployeeName":         v.Employee.Name,
@@ -32,4 +39,7 @@ func (v DepartmentManagedByEmployee) MakeParams() map[string]any {
 		"EmployeeEmployeeRole": v.Employee.Role,
 		"EmployeeLocation":     v.Employee.Location,
 	}
+default:
+	return map[string]any{}
+}
 }

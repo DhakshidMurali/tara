@@ -4,12 +4,13 @@ content-type: application/json
 {
     "Communication":{
         "Type":"B",
-        "Content":"New post as of jun27"
+        "Content":"New post as of jun28"
     },
     "PostedIn":{
         "PostedInDate":"A"
     },
     "Community":{
+        "Name":"A",
         "Description":"C",
         "AccessType":"D"
     }

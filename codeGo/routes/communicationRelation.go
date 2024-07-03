@@ -1,13 +1,17 @@
 package routes
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 
 	"github.com/DhakshidMurali/tara/db"
 	"github.com/DhakshidMurali/tara/model"
+	"github.com/DhakshidMurali/tara/util"
 	"github.com/gin-gonic/gin"
 )
+
+var communication = []model.Communication{}
 
 func createCommunicationPostedInCommunity(context *gin.Context) {
 	var communicationPostedInCommunity model.CommunicationPostedInCommunity
@@ -16,8 +20,8 @@ func createCommunicationPostedInCommunity(context *gin.Context) {
 	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"Description": "Received data can't be parsed"})
 	}
-	query := communicationPostedInCommunity.MakeQuery()
-	params := communicationPostedInCommunity.MakeParams()
+	query := communicationPostedInCommunity.MakeQuery("CREATE")
+	params := communicationPostedInCommunity.MakeParams("CREATE")
 	result := db.Execute(query, params)
 
 	isCreated := result.Records[0].Values[0].(bool)
@@ -40,10 +44,8 @@ func createCommunicationPostedByEmployee(context *gin.Context) {
 	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"Description": "Received data can't be parsed"})
 	}
-	query := communicationPostedByEmployee.MakeQuery()
-	params := communicationPostedByEmployee.MakeParams()
-	fmt.Println(query)
-	fmt.Println(params)
+	query := communicationPostedByEmployee.MakeQuery("CREATE")
+	params := communicationPostedByEmployee.MakeParams("CREATE")
 	result := db.Execute(query, params)
 	isCreated := result.Records[0].Values[0].(bool)
 	if isCreated {
@@ -58,15 +60,56 @@ func createCommunicationPostedByEmployee(context *gin.Context) {
 	}
 }
 
-
-func listCommunication(context *gin.Context){
+func listCommunicationPostedInCommunity(context *gin.Context) {
 	var communicationPostedInCommunity model.CommunicationPostedInCommunity
-	err :=context.ShouldBindJSON(&communicationPostedInCommunity)
+	var data model.Communication
+	err := context.ShouldBindJSON(&communicationPostedInCommunity)
 
-	if err!=nil{
+	if err != nil {
 		panic(err)
 	}
 
-	
+	query := communicationPostedInCommunity.MakeQuery("LIST_COMMUNICATION_BY_COMMUNITY")
+	params := communicationPostedInCommunity.MakeParams("LIST_COMMUNICATION_BY_COMMUNITY")
+	result := db.Execute(query, params)
 
+	for _, record := range result.Records {
+		mapRecord, _ := record.Get("n1")
+		byteData := util.MarshalData(mapRecord)
+		err = json.Unmarshal(byteData, &data)
+		if err != nil {
+			fmt.Println("Error Unmarshalling Json")
+			panic(err)
+		}
+		communication = append(communication, data)
+	}
+	context.JSON(http.StatusOK, communication)
+	communication = nil
+}
+
+func listCommunicationPostedByEmployee(context *gin.Context) {
+	var communicationPostedByEmployee model.CommunicationPostedByEmployee
+	var data model.Communication
+	err := context.ShouldBindJSON(&communicationPostedByEmployee)
+
+	if err != nil {
+		panic(err)
+	}
+
+	query := communicationPostedByEmployee.MakeQuery("LIST_COMMUNICATION_BY_EMPLOYEE")
+	params := communicationPostedByEmployee.MakeParams("LIST_COMMUNICATION_BY_EMPLOYEE")
+	result := db.Execute(query, params)
+
+	for _, record := range result.Records {
+		mapRecord, _ := record.Get("n1")
+		byteData := util.MarshalData(mapRecord)
+		err = json.Unmarshal(byteData, &data)
+		if err != nil {
+			fmt.Println("Error Unmarshalling Json")
+			panic(err)
+		}
+		communication = append(communication, data)
+	}
+	context.JSON(http.StatusOK, communication)
+	communication = nil
 }

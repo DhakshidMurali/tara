@@ -32,9 +32,9 @@ func APIRoutes(server *gin.Engine) {
 	authRoutes.POST("/update/node/communication", updateCommunication)
 	authRoutes.POST("/update/node/skills", updateSkills)
 
-	// Retrieve 
-	authRoutes.POST("/get/list/communication", updateEmployee)
-	authRoutes.POST("/get/detail/communication", updateEmployee)
+	// Retrieve
+	authRoutes.POST("/get/list/community/communication", listCommunicationPostedInCommunity)
+	authRoutes.POST("/get/list/employee/communication", listCommunicationPostedByEmployee)
 	authRoutes.POST("/get/list/community", updateEmployee)
 	authRoutes.POST("/get/detail/community", updateEmployee)
 	authRoutes.POST("/get/list/department", updateEmployee)

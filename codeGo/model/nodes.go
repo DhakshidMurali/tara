@@ -1,8 +1,6 @@
 package model
 
 import (
-	"fmt"
-
 	"github.com/DhakshidMurali/tara/constant"
 	"github.com/DhakshidMurali/tara/util"
 )
@@ -65,63 +63,91 @@ func (v Node) MakeQuery() string {
 	return query
 }
 
-func (v Employee) MakeParams(key string) map[string]any {
-	fmt.Println("Name: ")
-	fmt.Print(v.Name)
-	params := make(map[string]string)
-	util.AddToParams(v.Name, "Name", params)
-	util.AddToParams(v.MailAddress, "MailAddress", params)
-	util.AddToParams(v.Domain, "Domain", params)
-	util.AddToParams(v.Password, "Password", params)
-	util.AddToParams(v.PhoneNumber, "PhoneNumber", params)
-	util.AddToParams(v.Role, "Role", params)
-	util.AddToParams(v.Location, "Location", params)
-	return map[string]any{
-		"NodeId": key,
-		"v":      params,
+func (v Employee) MakeParams(key string, typeOfQuery string) map[string]any {
+	switch typeOfQuery {
+	case "UPDATE":
+		params := make(map[string]string)
+		util.AddToParams(v.Name, "Name", params)
+		util.AddToParams(v.MailAddress, "MailAddress", params)
+		util.AddToParams(v.Domain, "Domain", params)
+		util.AddToParams(v.Password, "Password", params)
+		util.AddToParams(v.PhoneNumber, "PhoneNumber", params)
+		util.AddToParams(v.Role, "Role", params)
+		util.AddToParams(v.Location, "Location", params)
+		return map[string]any{
+			"NodeId": key,
+			"v":      params,
+		}
+	default:
+		return map[string]any{}
 	}
 }
-func (v Tool) MakeParams(key string) map[string]any {
-	params := make(map[string]string)
-	util.AddToParams(v.Name, "Name", params)
-	util.AddToParams(v.ApprovalType, "ApprovalType", params)
-	return map[string]any{
-		"NodeId": key,
-		"v":      params,
+func (v Tool) MakeParams(key string, typeOfQuery string) map[string]any {
+	switch typeOfQuery {
+	case "UPDATE":
+		params := make(map[string]string)
+		util.AddToParams(v.Name, "Name", params)
+		util.AddToParams(v.ApprovalType, "ApprovalType", params)
+		return map[string]any{
+			"NodeId": key,
+			"v":      params,
+		}
+	default:
+		return map[string]any{}
 	}
 }
-func (v Department) MakeParams(key string) map[string]any {
-	params := make(map[string]string)
-	util.AddToParams(v.DepartmentName, "DepartmentName", params)
-	return map[string]any{
-		"NodeId": key,
-		"v":      params,
+func (v Department) MakeParams(key string, typeOfQuery string) map[string]any {
+	switch typeOfQuery {
+	case "UPDATE":
+		params := make(map[string]string)
+		util.AddToParams(v.DepartmentName, "DepartmentName", params)
+		return map[string]any{
+			"NodeId": key,
+			"v":      params,
+		}
+	default:
+		return map[string]any{}
 	}
 }
-func (v Community) MakeParams(key string) map[string]any {
-	params := make(map[string]string)
-	util.AddToParams(v.Name, "Name", params)
-	util.AddToParams(v.Description, "Description", params)
-	util.AddToParams(v.AccessType, "AccessType", params)
-	return map[string]any{
-		"NodeId": key,
-		"v":      params,
+func (v Community) MakeParams(key string, typeOfQuery string) map[string]any {
+	switch typeOfQuery {
+	case "UPDATE":
+		params := make(map[string]string)
+		util.AddToParams(v.Name, "Name", params)
+		util.AddToParams(v.Description, "Description", params)
+		util.AddToParams(v.AccessType, "AccessType", params)
+		return map[string]any{
+			"NodeId": key,
+			"v":      params,
+		}
+	default:
+		return map[string]any{}
 	}
 }
-func (v Communication) MakeParams(key string) map[string]any {
-	params := make(map[string]string)
-	util.AddToParams(v.Type, "Type", params)
-	util.AddToParams(v.Content, "Content", params)
-	return map[string]any{
-		"NodeId": key,
-		"v":      params,
+func (v Communication) MakeParams(key string, typeOfQuery string) map[string]any {
+	switch typeOfQuery {
+	case "UPDATE":
+		params := make(map[string]string)
+		util.AddToParams(v.Type, "Type", params)
+		util.AddToParams(v.Content, "Content", params)
+		return map[string]any{
+			"NodeId": key,
+			"v":      params,
+		}
+	default:
+		return map[string]any{}
 	}
 }
-func (v Skills) MakeParams(key string) map[string]any {
-	params := make(map[string]string)
-	util.AddToParams(v.SkillName, "SkillName", params)
-	return map[string]any{
-		"NodeId": key,
-		"v":      params,
+func (v Skills) MakeParams(key string, typeOfQuery string) map[string]any {
+	switch typeOfQuery {
+	case "UPDATE":
+		params := make(map[string]string)
+		util.AddToParams(v.SkillName, "SkillName", params)
+		return map[string]any{
+			"NodeId": key,
+			"v":      params,
+		}
+	default:
+		return map[string]any{}
 	}
 }

@@ -15,8 +15,8 @@ func createDepartmentManagedByEmployee(context *gin.Context){
 	if err!=nil{
 		context.JSON(http.StatusBadRequest, gin.H{"Description": "Received data can't be parsed"})
 	}
-	query := departmentManagedByEmployee.MakeQuery()
-	params := departmentManagedByEmployee.MakeParams()
+	query := departmentManagedByEmployee.MakeQuery("CREATE")
+	params := departmentManagedByEmployee.MakeParams("CREATE")
 	result := db.Execute(query, params)
 
 	isCreated := result.Records[0].Values[0].(bool)

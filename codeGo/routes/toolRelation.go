@@ -15,8 +15,8 @@ func createToolRequestByEmployee(context *gin.Context) {
 	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"Description": "Received data can't be parsed"})
 	}
-	query := toolRequestByEmployee.MakeQuery()
-	params := toolRequestByEmployee.MakeParams()
+	query := toolRequestByEmployee.MakeQuery("CREATE")
+	params := toolRequestByEmployee.MakeParams("CREATE")
 	result := db.Execute(query, params)
 
 	isCreated := result.Records[0].Values[0].(bool)
@@ -38,8 +38,8 @@ func createToolAccessToEmployee(context *gin.Context) {
 	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"Description": "Received data can't be parsed"})
 	}
-	query := toolAccessToEmployee.MakeQuery()
-	params := toolAccessToEmployee.MakeParams()
+	query := toolAccessToEmployee.MakeQuery("CREATE")
+	params := toolAccessToEmployee.MakeParams("CREATE")
 	result := db.Execute(query, params)
 
 	isCreated := result.Records[0].Values[0].(bool)
@@ -61,8 +61,8 @@ func createToolManagedByEmployee(context *gin.Context) {
 	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"Description": "Received data can't be parsed"})
 	}
-	query := toolManagedByEmployee.MakeQuery()
-	params := toolManagedByEmployee.MakeParams()
+	query := toolManagedByEmployee.MakeQuery("CREATE")
+	params := toolManagedByEmployee.MakeParams("CREATE")
 	result := db.Execute(query, params)
 
 	isCreated := result.Records[0].Values[0].(bool)
@@ -84,8 +84,8 @@ func createToolComesUnderDepartment(context *gin.Context) {
 	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"Description": "Received data can't be parsed"})
 	}
-	query := toolComesUnderDepartment.MakeQuery()
-	params := toolComesUnderDepartment.MakeParams()
+	query := toolComesUnderDepartment.MakeQuery("CREATE")
+	params := toolComesUnderDepartment.MakeParams("CREATE")
 	result := db.Execute(query, params)
 
 	isCreated := result.Records[0].Values[0].(bool)

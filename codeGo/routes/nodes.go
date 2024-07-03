@@ -34,7 +34,7 @@ func updateEmployee(context *gin.Context) {
 		NodeName: "Hello",
 	}.MakeQuery()
 
-	params := employee.MakeParams(node.Key)
+	params := employee.MakeParams(node.Key,"UPDATE")
 
 	fmt.Println(query)
 	fmt.Println(params)
@@ -66,7 +66,7 @@ func updateTool(context *gin.Context) {
 		NodeName: "Tool",
 	}.MakeQuery()
 
-	params := tool.MakeParams(node.Key)
+	params := tool.MakeParams(node.Key,"UPDATE")
 
 	db.Execute(query, params)
 }
@@ -95,7 +95,7 @@ func updateDepartment(context *gin.Context) {
 		NodeName: "Department",
 	}.MakeQuery()
 
-	params := department.MakeParams(node.Key)
+	params := department.MakeParams(node.Key,"UPDATE")
 
 	db.Execute(query, params)
 
@@ -125,7 +125,7 @@ func updateCommunity(context *gin.Context) {
 		NodeName: "Community",
 	}.MakeQuery()
 
-	params := community.MakeParams(node.Key)
+	params := community.MakeParams(node.Key,"UPDATE")
 
 	db.Execute(query, params)
 
@@ -155,7 +155,7 @@ func updateCommunication(context *gin.Context) {
 		NodeName: "Communication",
 	}.MakeQuery()
 
-	params := communication.MakeParams(node.Key)
+	params := communication.MakeParams(node.Key,"UPDATE")
 
 	db.Execute(query, params)
 
@@ -184,7 +184,7 @@ func updateSkills(context *gin.Context) {
 		NodeName: "Skills",
 	}.MakeQuery()
 
-	params := skills.MakeParams(node.Key)
+	params := skills.MakeParams(node.Key,"UPDATE")
 
 	db.Execute(query, params)
 

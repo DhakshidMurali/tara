@@ -15,8 +15,8 @@ func createEmployeeCollaboratedWithEmployee(context *gin.Context) {
 	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"Description": "Received data can't be parsed"})
 	}
-	query := employeeCollaboratedWithEmployee.MakeQuery()
-	params := employeeCollaboratedWithEmployee.MakeParams()
+	query := employeeCollaboratedWithEmployee.MakeQuery("CREATE")
+	params := employeeCollaboratedWithEmployee.MakeParams("CREATE")
 	result := db.Execute(query, params)
 
 	isCreated := result.Records[0].Values[0].(bool)
@@ -39,8 +39,8 @@ func createEmployeeWorksInTools(context *gin.Context) {
 	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"Description": "Received data can't be parsed"})
 	}
-	query := employeeWorksInTools.MakeQuery()
-	params := employeeWorksInTools.MakeParams()
+	query := employeeWorksInTools.MakeQuery("CREATE")
+	params := employeeWorksInTools.MakeParams("CREATE")
 	result := db.Execute(query, params)
 
 	isCreated := result.Records[0].Values[0].(bool)
@@ -63,8 +63,8 @@ func createEmployeeSkilledInSkills(context *gin.Context) {
 	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"Description": "Received data can't be parsed"})
 	}
-	query := employeeSkilledInSkills.MakeQuery()
-	params := employeeSkilledInSkills.MakeParams()
+	query := employeeSkilledInSkills.MakeQuery("CREATE")
+	params := employeeSkilledInSkills.MakeParams("CREATE")
 	result := db.Execute(query, params)
 
 	isCreated := result.Records[0].Values[0].(bool)
@@ -87,8 +87,8 @@ func createEmployeeReportToEmployee(context *gin.Context) {
 	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"Description": "Received data can't be parsed"})
 	}
-	query := employeeReportToEmployee.MakeQuery()
-	params := employeeReportToEmployee.MakeParams()
+	query := employeeReportToEmployee.MakeQuery("CREATE")
+	params := employeeReportToEmployee.MakeParams("CREATE")
 	result := db.Execute(query, params)
 
 	isCreated := result.Records[0].Values[0].(bool)
