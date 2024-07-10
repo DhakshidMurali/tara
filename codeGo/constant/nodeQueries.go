@@ -20,6 +20,10 @@ const (
 	RETURN n1
 	`
 
+	RETRIEVE_DATA_NODES_ALL=`
+	MATCH (n1:%n1)
+	RETURN %return
+	`
 	RETRIEVE_DATA_NODES=`
 	MATCH (n1:%n1)-(r:%r)->(n2:%n2)
 	RETURN %return

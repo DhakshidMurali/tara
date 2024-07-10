@@ -40,7 +40,7 @@ func (v CommunicationPostedInCommunity) MakeQuery(typeOfQuery string) string {
 			"%n1":        "Communication",
 			"%r":         "PostedIn",
 			"%n2":        "Community",
-			"%condition": "elementId(n2)=$nodeId",
+			"%condition": "elementId(n2)=$NodeId",
 			"%return":    returnData,
 		}
 		query = util.ReplaceQuery(query, mapData)
@@ -65,7 +65,7 @@ func (v CommunicationPostedInCommunity) MakeParams(typeOfQuery string) map[strin
 		}
 	case "LIST_COMMUNICATION_BY_COMMUNITY":
 		return map[string]any{
-			"nodeId": v.Community.Key,
+			"NodeId": v.Community.Key,
 		}
 	default:
 		return map[string]any{}
@@ -95,7 +95,7 @@ func (v CommunicationPostedByEmployee) MakeQuery(typeOfQuery string) string {
 			"%n1":        "Communication",
 			"%r":         "PostedBy",
 			"%n2":        "Employee",
-			"%condition": "elementId(n2)=$nodeId",
+			"%condition": "elementId(n2)=$NodeId",
 			"%return":    returnData,
 		}
 		query = util.ReplaceQuery(query, mapData)
@@ -122,7 +122,7 @@ func (v CommunicationPostedByEmployee) MakeParams(typeOfQuery string) map[string
 		}
 	case "LIST_COMMUNICATION_BY_EMPLOYEE":
 		return map[string]any{
-			"nodeId": v.Employee.Key,
+			"NodeId": v.Employee.Key,
 		}
 	default:
 		return map[string]any{}

@@ -35,9 +35,15 @@ func APIRoutes(server *gin.Engine) {
 	// Retrieve
 	authRoutes.POST("/get/list/community/communication", listCommunicationPostedInCommunity)
 	authRoutes.POST("/get/list/employee/communication", listCommunicationPostedByEmployee)
+	authRoutes.POST("/get/list/employee/community", listCommunityCreatedByEmployee)
+	authRoutes.POST("/get/list/community/employee", listCommunityMemberEmployee)
+	authRoutes.POST("/get/list/community", listAllCommunity)
+
 	authRoutes.POST("/get/list/community", updateEmployee)
 	authRoutes.POST("/get/detail/community", updateEmployee)
 	authRoutes.POST("/get/list/department", updateEmployee)
 	authRoutes.POST("/get/detail/department", updateEmployee)
+
+	authRoutes.POST("/get/list/employee", listAllEmployee)
 
 }

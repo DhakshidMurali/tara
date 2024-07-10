@@ -11,7 +11,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-var community = []model.Community{}
 
 func createCommunityMemberEmployee(context *gin.Context) {
 	var communityMemberEmployee model.CommunityMemberEmployee
@@ -61,6 +60,28 @@ func createCommunityCreatedByEmployee(context *gin.Context) {
 	}
 }
 
+func listAllCommunity(context *gin.Context) {
+	var community model.Community
+	var data model.Community
+
+	query := community.MakeQuery("LIST_COMMUNITY")
+	params := map[string]any{}
+	result := db.Execute(query, params)
+
+	for _, record := range result.Records {
+		mapRecord, _ := record.Get("n1")
+		byteData := util.MarshalData(mapRecord)
+		err := json.Unmarshal(byteData, &data)
+		if err != nil {
+			fmt.Println("Error Unmarshalling Json")
+			panic(err)
+		}
+		communityList = append(communityList, data)
+	}
+	context.JSON(http.StatusOK, community)
+	communityList = nil
+}
+
 func listCommunityCreatedByEmployee(context *gin.Context) {
 	var communityCreatedByEmployee model.CommunityCreatedByEmployee
 	var data model.Community
@@ -70,8 +91,8 @@ func listCommunityCreatedByEmployee(context *gin.Context) {
 		panic(err)
 	}
 
-	query := communityCreatedByEmployee.MakeQuery("LIST_COMMUNICATION_BY_EMPLOYEE")
-	params := communityCreatedByEmployee.MakeParams("LIST_COMMUNICATION_BY_EMPLOYEE")
+	query := communityCreatedByEmployee.MakeQuery("LIST_COMMUNITY_BY_EMPLOYEE")
+	params := communityCreatedByEmployee.MakeParams("LIST_COMMUNITY_BY_EMPLOYEE")
 	result := db.Execute(query, params)
 
 	for _, record := range result.Records {
@@ -82,8 +103,35 @@ func listCommunityCreatedByEmployee(context *gin.Context) {
 			fmt.Println("Error Unmarshalling Json")
 			panic(err)
 		}
-		community = append(community, data)
+		communityList = append(communityList, data)
 	}
-	context.JSON(http.StatusOK, communication)
-	communication = nil
+	context.JSON(http.StatusOK, communityList)
+	communityList = nil
+}
+
+func listCommunityMemberEmployee(context *gin.Context) {
+	var communityMemberEmployee model.CommunityMemberEmployee
+	var data model.Employee
+	err := context.ShouldBindJSON(&communityMemberEmployee)
+
+	if err != nil {
+		panic(err)
+	}
+
+	query := communityMemberEmployee.MakeQuery("LIST_COMMUNITY_MEMBER_EMPLOYEE")
+	params := communityMemberEmployee.MakeParams("LIST_COMMUNITY_MEMBER_EMPLOYEE")
+	result := db.Execute(query, params)
+
+	for _, record := range result.Records {
+		mapRecord, _ := record.Get("n1")
+		byteData := util.MarshalData(mapRecord)
+		err = json.Unmarshal(byteData, &data)
+		if err != nil {
+			fmt.Println("Error Unmarshalling Json")
+			panic(err)
+		}
+		employeeList = append(employeeList, data)
+	}
+	context.JSON(http.StatusOK, employeeList)
+	employeeList = nil
 }

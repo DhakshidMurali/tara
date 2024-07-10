@@ -11,8 +11,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-var communication = []model.Communication{}
-
 func createCommunicationPostedInCommunity(context *gin.Context) {
 	var communicationPostedInCommunity model.CommunicationPostedInCommunity
 	err := context.ShouldBindJSON(&communicationPostedInCommunity)
@@ -81,10 +79,10 @@ func listCommunicationPostedInCommunity(context *gin.Context) {
 			fmt.Println("Error Unmarshalling Json")
 			panic(err)
 		}
-		communication = append(communication, data)
+		communicationList = append(communicationList, data)
 	}
-	context.JSON(http.StatusOK, communication)
-	communication = nil
+	context.JSON(http.StatusOK, communicationList)
+	communicationList = nil
 }
 
 func listCommunicationPostedByEmployee(context *gin.Context) {
@@ -108,8 +106,8 @@ func listCommunicationPostedByEmployee(context *gin.Context) {
 			fmt.Println("Error Unmarshalling Json")
 			panic(err)
 		}
-		communication = append(communication, data)
+		communicationList = append(communicationList, data)
 	}
-	context.JSON(http.StatusOK, communication)
-	communication = nil
+	context.JSON(http.StatusOK, communicationList)
+	communicationList = nil
 }
