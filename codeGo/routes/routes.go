@@ -46,4 +46,7 @@ func APIRoutes(server *gin.Engine) {
 
 	authRoutes.POST("/get/list/employee", listAllEmployee)
 
+	// tool
+	authRoutes.POST("/get/list/toolRequestByEmployee/:node", listToolRequestByEmployee)
+
 }

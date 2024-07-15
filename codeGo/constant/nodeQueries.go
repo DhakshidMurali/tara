@@ -20,16 +20,16 @@ const (
 	RETURN n1
 	`
 
-	RETRIEVE_DATA_NODES_ALL=`
+	RETRIEVE_DATA_NODES_ALL = `
 	MATCH (n1:%n1)
 	RETURN %return
 	`
-	RETRIEVE_DATA_NODES=`
+	RETRIEVE_DATA_NODES = `
 	MATCH (n1:%n1)-(r:%r)->(n2:%n2)
 	RETURN %return
 	`
 
-	RETRIEVE_DATA_NODE_WHERE=`
+	RETRIEVE_DATA_NODE_WHERE = `
 	MATCH (n1:%n1)-[r:%r]->(n2:%n2)
 	WHERE %condition
 	RETURN %return
@@ -151,4 +151,27 @@ const (
 	ComesUnder = `ComesUnder{}`
 
 	ReportTo = `ReportTo{}`
+
+	ReturnData_Employee = `%node{
+		Name:%node.Name,
+		MailAddress:%node.Description,
+		Domain:%node.AccessType,
+		Password:%node.Password,
+		PhoneNumber:%node.PhoneNumber,
+		Role:%node.Role,
+		Location:%node.Location,
+		Key:elementId(%node)
+		}
+	`
+
+	RETURNDATA_COMMUNICATION=`%node{
+		Type:%node.Type,
+		Content:%node.Content,
+		Key:elementId(%node)
+	}`
+
+	RETURNDATA_COMMUNITY=`%node{
+
+	
+	}`
 )

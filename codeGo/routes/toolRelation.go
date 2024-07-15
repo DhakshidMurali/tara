@@ -6,6 +6,7 @@ import (
 	"github.com/DhakshidMurali/tara/db"
 	"github.com/DhakshidMurali/tara/model"
 	"github.com/gin-gonic/gin"
+	"github.com/neo4j/neo4j-go-driver/v5/neo4j"
 )
 
 func createToolRequestByEmployee(context *gin.Context) {
@@ -18,6 +19,39 @@ func createToolRequestByEmployee(context *gin.Context) {
 	query := toolRequestByEmployee.MakeQuery("CREATE")
 	params := toolRequestByEmployee.MakeParams("CREATE")
 	result := db.Execute(query, params)
+
+	isCreated := result.Records[0].Values[0].(bool)
+	if isCreated {
+		context.JSON(http.StatusOK, gin.H{
+			"message": "Data Created in Database",
+		})
+	}
+	if !isCreated {
+		context.JSON(http.StatusOK, gin.H{
+			"message": "Data already Exist in Database",
+		})
+	}
+}
+func listToolRequestByEmployee(context *gin.Context) {
+	var toolRequestByEmployee model.ToolRequestByEmployee
+	err := context.ShouldBindJSON(&toolRequestByEmployee)
+
+	if err != nil {
+		context.JSON(http.StatusBadRequest, gin.H{"Description": "Received data can't be parsed"})
+	}
+
+	retrieveNode := context.Param("node")
+	var result *neo4j.EagerResult
+	if retrieveNode == "Tool" {
+		query := toolRequestByEmployee.MakeQuery("LIST_TOOL_REQUESTED_BY_EMPLOYEE")
+		params := toolRequestByEmployee.MakeParams("LIST_TOOL_REQUESTED_BY_EMPLOYEE")
+		result = db.Execute(query, params)
+	}
+	if retrieveNode == "Employee" {
+		query := toolRequestByEmployee.MakeQuery("LIST_EMPLOYEES_REQUESTED_TO_TOOL")
+		params := toolRequestByEmployee.MakeParams("LIST_EMPLOYEES_REQUESTED_TO_TOOL")
+		result = db.Execute(query, params)
+	}
 
 	isCreated := result.Records[0].Values[0].(bool)
 	if isCreated {

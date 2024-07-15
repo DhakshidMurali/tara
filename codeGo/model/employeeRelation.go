@@ -342,6 +342,10 @@ func (v EmployeeReportToEmployee) MakeParams(typeOfQuery string) map[string]any 
 		return map[string]any{
 			"NodeId": v.Employee.Key,
 		}
+	case "LIST_EMPLOYEE_REPORTEE":
+		return map[string]any{
+			"NodeId": v.Manager.Key,
+		}
 	default:
 		return map[string]any{}
 	}

@@ -28,14 +28,58 @@ type ToolComesUnderDepartment struct {
 }
 
 func (v ToolRequestByEmployee) MakeQuery(typeOfQuery string) string {
-	query := constant.CREATE_NODE_TO_NODE_RELATION
-	mapData := map[string]string{
-		"%n1": constant.Tool,
-		"%r":  constant.RequestBy,
-		"%n2": constant.EmployeeN1,
+	switch typeOfQuery {
+	case "CREATE":
+		query := constant.CREATE_NODE_TO_NODE_RELATION
+		mapData := map[string]string{
+			"%n1": constant.Tool,
+			"%r":  constant.RequestBy,
+			"%n2": constant.EmployeeN1,
+		}
+		query = util.ReplaceQuery(query, mapData)
+		return query
+	case "LIST_TOOL_REQUESTED_BY_EMPLOYEE":
+		query := constant.RETRIEVE_DATA_NODE_WHERE
+		returnData := `{
+			Name:n1.Name,
+			ApprovalType:n1.ApprovalType,
+			Key:elementId(n1)
+			}
+		`
+		mapData := map[string]string{
+			"%n1":        "Tool",
+			"%r":         "RequestBy",
+			"%n2":        "Employee",
+			"%condition": "elementId(n2)=$NodeId",
+			"%return":    returnData,
+		}
+		query = util.ReplaceQuery(query, mapData)
+		return query
+	case "LIST_EMPLOYEES_REQUESTED_TO_TOOL":
+		query := constant.RETRIEVE_DATA_NODE_WHERE
+		returnData := `{
+			Name:n2.Name,
+			MailAddress:n2.Description,
+			Domain:n2.AccessType,
+			Password:n2.Password,
+			PhoneNumber:n2.PhoneNumber,
+			Role:n2.Role,
+			Location:n2.Location,
+			Key:elementId(n2)
+			}
+		`
+		mapData := map[string]string{
+			"%n1":        "Tool",
+			"%r":         "RequestBy",
+			"%n2":        "Employee",
+			"%condition": "elementId(n1)=$NodeId",
+			"%return":    returnData,
+		}
+		query = util.ReplaceQuery(query, mapData)
+		return query
+	default:
+		return ""
 	}
-	query = util.ReplaceQuery(query, mapData)
-	return query
 }
 
 func (v ToolRequestByEmployee) MakeParams(typeOfQuery string) map[string]any {
