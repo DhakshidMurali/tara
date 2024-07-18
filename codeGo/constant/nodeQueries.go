@@ -35,7 +35,7 @@ const (
 	RETURN %return
 	`
 
-	EmployeeN1 = `
+	EMPLOYEEEN1 = `
 	Employee{
 		Name:$EmployeeName,
         MailAddress:$EmployeeMailAddress,
@@ -47,7 +47,7 @@ const (
 	}
 	`
 
-	EmployeeN2 = `
+	EMPLOYEEEN2 = `
 	Employee{
 		Name:$EmployeeNameN2,
         MailAddress:$EmployeeMailAddressN2,
@@ -58,19 +58,19 @@ const (
         Location:$EmployeeLocationN2
 	}
 	`
-	Tool = `
+	TOOL = `
 	Tool{
 		Name:$ToolName,
 		ApprovalType:$ToolApprovalType
 	}
 	`
-	Department = `
+	DEPARTMENT = `
 	Department{
 		DepartmentName:$DepartmentName
 	}
 	`
 
-	Community = `
+	COMMUNITY = `
 	Community{
 		Name:$CommunityName,
 		Description:$CommunityDescription,
@@ -78,25 +78,25 @@ const (
 	}
 	`
 
-	Communication = `
+	COMMUNICATION = `
 	Communication{
 		Type:$CommunicationType,
 		Content:$CommunicationContent
 	}
 	`
 
-	Skills = `
+	SKILLS = `
 	Skills{
 		Skills:$SkillsSkills
 	}
 	`
 
-	PostedIn = `
+	POSTEDIN = `
 	PostedIn{
 		PostedInDate:$PostedInPostedInDate
 	}
 	`
-	PostedBy = `
+	POSTEDBY = `
 	PostedBy{
 		PostedByDate:$PostedByPostedByDate
 	}
@@ -152,10 +152,10 @@ const (
 
 	ReportTo = `ReportTo{}`
 
-	ReturnData_Employee = `%node{
+	RETURNDATA_EMPLOYEE = `%node{
 		Name:%node.Name,
-		MailAddress:%node.Description,
-		Domain:%node.AccessType,
+		MailAddress:%node.MailAddress,
+		Domain:%node.Domain,
 		Password:%node.Password,
 		PhoneNumber:%node.PhoneNumber,
 		Role:%node.Role,
@@ -163,15 +163,31 @@ const (
 		Key:elementId(%node)
 		}
 	`
+	RETURNDATA_TOOL = `%node{
+		Name:%node.Name,
+		ApprovalType:%node.ApprovalType,
+		Key:elementId(%node)
+	}`
 
-	RETURNDATA_COMMUNICATION=`%node{
+	RETURNDATA_DEPARTMENT = `%node{
+		DepartmentName:%node.DepartmentName,
+		Key:elementId(%node)
+	}`
+
+	RETURNDATA_COMMUNICATION = `%node{
 		Type:%node.Type,
 		Content:%node.Content,
 		Key:elementId(%node)
 	}`
 
-	RETURNDATA_COMMUNITY=`%node{
-
-	
+	RETURNDATA_COMMUNITY = `%node{
+		Name:%node.Name,
+		Description:%node.Description,
+		AccessType:%node.AccessType,
+		Key:elementId(%node)
+	}`
+	RETURNDATA_SKILLS = `%node{
+		SkillName:%node.SkillName,
+		Key:elementId(%node)
 	}`
 )

@@ -22,25 +22,21 @@ func (v CommunicationPostedInCommunity) MakeQuery(typeOfQuery string) string {
 	case "CREATE":
 		query := constant.CREATE_NODE_TO_NODE_RELATION
 		mapData := map[string]string{
-			"%n1": constant.Communication,
-			"%r":  constant.PostedIn,
-			"%n2": constant.Community,
+			"%n1": constant.COMMUNICATION,
+			"%r":  constant.POSTEDIN,
+			"%n2": constant.COMMUNITY,
 		}
 		query = util.ReplaceQuery(query, mapData)
 		return query
 	case "LIST_COMMUNICATION_BY_COMMUNITY":
-		returnData := `n1{
-			Type:n1.Type,
-			Content:n1.Content,
-			Key:elementId(n1)
-			}
-		`
+		returnData := constant.RETURNDATA_COMMUNICATION
 		query := constant.RETRIEVE_DATA_NODE_WHERE
 		mapData := map[string]string{
 			"%n1":        "Communication",
 			"%r":         "PostedIn",
 			"%n2":        "Community",
 			"%condition": "elementId(n2)=$NodeId",
+			"%node":      "n1",
 			"%return":    returnData,
 		}
 		query = util.ReplaceQuery(query, mapData)
@@ -77,25 +73,21 @@ func (v CommunicationPostedByEmployee) MakeQuery(typeOfQuery string) string {
 	case "CREATE":
 		query := constant.CREATE_NODE_TO_NODE_RELATION
 		mapData := map[string]string{
-			"%n1": constant.Communication,
-			"%r":  constant.PostedBy,
-			"%n2": constant.EmployeeN1,
+			"%n1": constant.COMMUNICATION,
+			"%r":  constant.POSTEDBY,
+			"%n2": constant.EMPLOYEEEN1,
 		}
 		query = util.ReplaceQuery(query, mapData)
 		return query
 	case "LIST_COMMUNICATION_BY_EMPLOYEE":
-		returnData := `n1{
-			Type:n1.Type,
-			Content:n1.Content,
-			Key:elementId(n1)
-			}
-		`
+		returnData := constant.RETURNDATA_COMMUNICATION
 		query := constant.RETRIEVE_DATA_NODE_WHERE
 		mapData := map[string]string{
 			"%n1":        "Communication",
 			"%r":         "PostedBy",
 			"%n2":        "Employee",
 			"%condition": "elementId(n2)=$NodeId",
+			"%node":      "n1",
 			"%return":    returnData,
 		}
 		query = util.ReplaceQuery(query, mapData)

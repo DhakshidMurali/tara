@@ -22,30 +22,21 @@ func (v CommunityMemberEmployee) MakeQuery(typeOfQuery string) string {
 	case "CREATE":
 		query := constant.CREATE_NODE_TO_NODE_RELATION
 		mapData := map[string]string{
-			"%n1": constant.Community,
+			"%n1": constant.COMMUNITY,
 			"%r":  constant.Member,
-			"%n2": constant.EmployeeN1,
+			"%n2": constant.EMPLOYEEEN1,
 		}
 		query = util.ReplaceQuery(query, mapData)
 		return query
-	case "LIST_COMMUNITY_MEMBER_EMPLOYEE":
-		returnData := `n1{
-			Name:n1.Name,
-			MailAddress:n1.Description,
-			Domain:n1.AccessType,
-			Password:n1.Password,
-			PhoneNumber:n1.PhoneNumber,
-			Role:n1.Role,
-			Location:n1.Location,
-			Key:elementId(n1)
-			}
-		`
+	case "LIST_EMPLOYEE_IN_COMMUNITY":
+		returnData := constant.RETURNDATA_EMPLOYEE
 		query := constant.RETRIEVE_DATA_NODE_WHERE
 		mapData := map[string]string{
 			"%n1":        "Community",
 			"%r":         "Member",
 			"%n2":        "Employee",
 			"%condition": "elementId(n1)=$NodeId",
+			"%node":      "n2",
 			"%return":    returnData,
 		}
 		query = util.ReplaceQuery(query, mapData)
@@ -86,26 +77,21 @@ func (v CommunityCreatedByEmployee) MakeQuery(typeOfQuery string) string {
 	case "CREATE":
 		query := constant.CREATE_NODE_TO_NODE_RELATION
 		mapData := map[string]string{
-			"%n1": constant.Community,
+			"%n1": constant.COMMUNITY,
 			"%r":  constant.CreatedBy,
-			"%n2": constant.EmployeeN1,
+			"%n2": constant.EMPLOYEEEN1,
 		}
 		query = util.ReplaceQuery(query, mapData)
 		return query
 	case "LIST_COMMUNITY_BY_EMPLOYEE":
-		returnData := `n1{
-			Name:n1.Name,
-			Description:n1.Description,
-			AccessType:n1.AccessType,
-			Key:elementId(n1)
-			}
-		`
+		returnData := constant.RETURNDATA_COMMUNITY
 		query := constant.RETRIEVE_DATA_NODE_WHERE
 		mapData := map[string]string{
 			"%n1":        "Community",
 			"%r":         "CreatedBy",
 			"%n2":        "Employee",
 			"%condition": "elementId(n2)=$NodeId",
+			"%node":      "n1",
 			"%return":    returnData,
 		}
 		query = util.ReplaceQuery(query, mapData)

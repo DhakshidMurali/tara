@@ -33,30 +33,21 @@ func (v EmployeeCollaboratedWithEmployee) MakeQuery(typeOfQuery string) string {
 	case "CREATE":
 		query := constant.CREATE_NODE_TO_NODE_RELATION
 		mapData := map[string]string{
-			"%n1": constant.EmployeeN1,
+			"%n1": constant.EMPLOYEEEN1,
 			"%r":  constant.CollaboratedWith,
-			"%n2": constant.EmployeeN2,
+			"%n2": constant.EMPLOYEEEN2,
 		}
 		query = util.ReplaceQuery(query, mapData)
 		return query
 	case "LIST_EMPLOYEE_COLLABORATED_WITH":
 		query := constant.RETRIEVE_DATA_NODE_WHERE
-		returnData := `{
-			Name:n1.Name,
-			MailAddress:n1.Description,
-			Domain:n1.AccessType,
-			Password:n1.Password,
-			PhoneNumber:n1.PhoneNumber,
-			Role:n1.Role,
-			Location:n1.Location,
-			Key:elementId(n1)
-			}
-		`
+		returnData := constant.RETURNDATA_EMPLOYEE
 		mapData := map[string]string{
 			"%n1":        "Employee",
 			"%r":         "CollaboratedWith",
 			"%n2":        "Employee",
 			"%condition": "elementId(n1)=$NodeId",
+			"%node":      "n2",
 			"%return":    returnData,
 		}
 		query = util.ReplaceQuery(query, mapData)
@@ -100,47 +91,34 @@ func (v EmployeeWorksInTools) MakeQuery(typeOfQuery string) string {
 	case "CREATE":
 		query := constant.CREATE_NODE_TO_NODE_RELATION
 		mapData := map[string]string{
-			"%n1": constant.EmployeeN1,
+			"%n1": constant.EMPLOYEEEN1,
 			"%r":  constant.WorksIn,
-			"%n2": constant.Tool,
+			"%n2": constant.TOOL,
 		}
 		query = util.ReplaceQuery(query, mapData)
 		return query
 	case "LIST_TOOLS_EMPLOYEE_WORKS_IN":
 		query := constant.RETRIEVE_DATA_NODE_WHERE
-		returnData := `{
-			Name:n1.Name,
-			ApprovalType:n1.ApprovalType,
-			Key:elementId(n1)
-			}
-		`
+		returnData := constant.RETURNDATA_TOOL
 		mapData := map[string]string{
 			"%n1":        "Employee",
 			"%r":         "WorksIn",
 			"%n2":        "Tool",
-			"%condition": "elementId(n2)=$NodeId",
+			"%condition": "elementId(n1)=$NodeId",
+			"%node":      "n2",
 			"%return":    returnData,
 		}
 		query = util.ReplaceQuery(query, mapData)
 		return query
 	case "LIST_EMPLOYEES_WORKING_IN_TOOL":
 		query := constant.RETRIEVE_DATA_NODE_WHERE
-		returnData := `{
-			Name:n1.Name,
-			MailAddress:n1.Description,
-			Domain:n1.AccessType,
-			Password:n1.Password,
-			PhoneNumber:n1.PhoneNumber,
-			Role:n1.Role,
-			Location:n1.Location,
-			Key:elementId(n1)
-			}
-		`
+		returnData := constant.RETURNDATA_EMPLOYEE
 		mapData := map[string]string{
 			"%n1":        "Employee",
 			"%r":         "WorksIn",
 			"%n2":        "Tool",
 			"%condition": "elementId(n2)=$NodeId",
+			"%node":      "n1",
 			"%return":    returnData,
 		}
 		query = util.ReplaceQuery(query, mapData)
@@ -183,46 +161,34 @@ func (v EmployeeSkilledInSkills) MakeQuery(typeOfQuery string) string {
 	case "CREATE":
 		query := constant.CREATE_NODE_TO_NODE_RELATION
 		mapData := map[string]string{
-			"%n1": constant.EmployeeN1,
+			"%n1": constant.EMPLOYEEEN1,
 			"%r":  constant.SkilledIn,
-			"%n2": constant.Skills,
+			"%n2": constant.SKILLS,
 		}
 		query = util.ReplaceQuery(query, mapData)
 		return query
 	case "LIST_EMPLOYEE_SKILL_IN":
 		query := constant.RETRIEVE_DATA_NODE_WHERE
-		returnData := `{
-			Name:n1.Name,
-			MailAddress:n1.Description,
-			Domain:n1.AccessType,
-			Password:n1.Password,
-			PhoneNumber:n1.PhoneNumber,
-			Role:n1.Role,
-			Location:n1.Location,
-			Key:elementId(n1)
-			}
-		`
+		returnData := constant.RETURNDATA_EMPLOYEE
 		mapData := map[string]string{
 			"%n1":        "Employee",
 			"%r":         "SkilledIn",
 			"%n2":        "Skills",
 			"%condition": "elementId(n2)=$NodeId",
+			"%node":      "n1",
 			"%return":    returnData,
 		}
 		query = util.ReplaceQuery(query, mapData)
 		return query
 	case "LIST_SKILLS_SKILLED_BY_EMPLOYEE":
 		query := constant.RETRIEVE_DATA_NODE_WHERE
-		returnData := `{
-			SkillName:n1.SkillName,
-			Key:elementId(n2)
-			}
-		`
+		returnData := constant.RETURNDATA_SKILLS
 		mapData := map[string]string{
 			"%n1":        "Employee",
 			"%r":         "SkilledIn",
 			"%n2":        "Skills",
 			"%condition": "elementId(n1)=$NodeId",
+			"%node":      "n2",
 			"%return":    returnData,
 		}
 		query = util.ReplaceQuery(query, mapData)
@@ -264,52 +230,34 @@ func (v EmployeeReportToEmployee) MakeQuery(typeOfQuery string) string {
 	case "CREATE":
 		query := constant.CREATE_NODE_TO_NODE_RELATION
 		mapData := map[string]string{
-			"%n1": constant.EmployeeN1,
+			"%n1": constant.EMPLOYEEEN1,
 			"%r":  constant.ReportTo,
-			"%n2": constant.EmployeeN2,
+			"%n2": constant.EMPLOYEEEN2,
 		}
 		query = util.ReplaceQuery(query, mapData)
 		return query
 	case "LIST_EMPLOYEE_REPORTS_TO_EMPLOYEE":
 		query := constant.RETRIEVE_DATA_NODE_WHERE
-		returnData := `{
-			Name:n2.Name,
-			MailAddress:n2.Description,
-			Domain:n2.AccessType,
-			Password:n2.Password,
-			PhoneNumber:n2.PhoneNumber,
-			Role:n2.Role,
-			Location:n2.Location,
-			Key:elementId(n2)
-			}
-		`
+		returnData := constant.RETURNDATA_EMPLOYEE
 		mapData := map[string]string{
 			"%n1":        "Employee",
 			"%r":         "ReportTo",
 			"%n2":        "Employee",
 			"%condition": "elementId(n1)=$NodeId",
+			"%node":      "n2",
 			"%return":    returnData,
 		}
 		query = util.ReplaceQuery(query, mapData)
 		return query
 	case "LIST_EMPLOYEE_REPORTEE":
 		query := constant.RETRIEVE_DATA_NODE_WHERE
-		returnData := `{
-			Name:n1.Name,
-			MailAddress:n1.Description,
-			Domain:n1.AccessType,
-			Password:n1.Password,
-			PhoneNumber:n1.PhoneNumber,
-			Role:n1.Role,
-			Location:n1.Location,
-			Key:elementId(n1)
-			}
-		`
+		returnData := constant.RETURNDATA_EMPLOYEE
 		mapData := map[string]string{
 			"%n1":        "Employee",
 			"%r":         "ReportTo",
 			"%n2":        "Employee",
 			"%condition": "elementId(n2)=$NodeId",
+			"%node":      "n1",
 			"%return":    returnData,
 		}
 		query = util.ReplaceQuery(query, mapData)

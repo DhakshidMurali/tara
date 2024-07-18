@@ -15,24 +15,21 @@ func (v DepartmentManagedByEmployee) MakeQuery(typeOfQuery string) string {
 	case "CREATE":
 		query := constant.CREATE_NODE_TO_NODE_RELATION
 		mapData := map[string]string{
-			"%n1": constant.Department,
+			"%n1": constant.DEPARTMENT,
 			"%r":  constant.ManagedBy,
-			"%n2": constant.EmployeeN1,
+			"%n2": constant.EMPLOYEEEN1,
 		}
 		query = util.ReplaceQuery(query, mapData)
 		return query
 	case "LIST_DEPARTMENT":
 		query := constant.RETRIEVE_DATA_NODE_WHERE
-		returnData := `n1{
-			DepartmentName:n1.DepartmentName,
-			Key:elementId(n1)
-		}
-		`
+		returnData := constant.RETURNDATA_DEPARTMENT
 		mapData := map[string]string{
 			"%n1":        "Department",
 			"%r":         "ManagedBy",
 			"%n2":        "Employee",
 			"%condition": "elementId(n2)=$NodeId",
+			"%node":      "n1",
 			"%return":    returnData,
 		}
 		query = util.ReplaceQuery(query, mapData)
