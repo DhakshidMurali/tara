@@ -107,6 +107,21 @@ func (v Employee) MakeParams(key string, typeOfQuery string) map[string]any {
 		return map[string]any{}
 	}
 }
+func (v Tool) MakeQuery(typeOfQuery string) string {
+	switch typeOfQuery {
+	case "LIST_TOOL":
+		returnData := constant.RETURNDATA_TOOL
+		query := constant.RETRIEVE_DATA_NODES_ALL
+		mapData := map[string]string{
+			"%n1":     "Tool",
+			"%return": returnData,
+		}
+		query = util.ReplaceQuery(query, mapData)
+		return query
+	default:
+		return ""
+	}
+}
 func (v Tool) MakeParams(key string, typeOfQuery string) map[string]any {
 	switch typeOfQuery {
 	case "UPDATE":
@@ -124,17 +139,10 @@ func (v Tool) MakeParams(key string, typeOfQuery string) map[string]any {
 func (v Department) MakeQuery(typeOfQuery string) string {
 	switch typeOfQuery {
 	case "LIST_DEPARTMENT":
-		returnData := `n1{
-			DepartmentName:n1.DepartmentName,
-			ManagedBy:n2.Name,
-			Key:elementId(n1)
-			}
-		`
-		query := constant.RETRIEVE_DATA_NODES
+		returnData := constant.RETURNDATA_DEPARTMENT
+		query := constant.RETRIEVE_DATA_NODES_ALL
 		mapData := map[string]string{
 			"%n1":     "Department",
-			"%r":      "ManagedBy",
-			"%n2":     "Employee",
 			"%return": returnData,
 		}
 		query = util.ReplaceQuery(query, mapData)
@@ -175,16 +183,11 @@ func (v Community) MakeParams(key string, typeOfQuery string) map[string]any {
 func (v Community) MakeQuery(typeOfQuery string) string {
 	switch typeOfQuery {
 	case "LIST_COMMUNITY":
-		returnData := `n1{
-			Name:n1.Name,
-			Description:n1.Description,
-			AccessType:n1.AccessType,
-			Key:elementId(n1)
-			}
-		`
+		returnData := constant.RETURNDATA_COMMUNITY
 		query := constant.RETRIEVE_DATA_NODES_ALL
 		mapData := map[string]string{
 			"%n1":     "Community",
+			"%node":   "n1",
 			"%return": returnData,
 		}
 		query = util.ReplaceQuery(query, mapData)

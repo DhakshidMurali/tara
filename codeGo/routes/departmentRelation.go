@@ -36,34 +36,14 @@ func createDepartmentManagedByEmployee(context *gin.Context) {
 	}
 }
 
-func listAllDepartment(context *gin.Context) {
-	var department model.Department
-	var data model.Department
 
-	query := department.MakeQuery("LIST_DEPARTMENT")
-	params := map[string]any{}
-	result := db.Execute(query, params)
-
-	for _, record := range result.Records {
-		mapRecord, _ := record.Get("n1")
-		byteData := util.MarshalData(mapRecord)
-		err := json.Unmarshal(byteData, &data)
-		if err != nil {
-			fmt.Println("Error Unmarshalling Json")
-			panic(err)
-		}
-		departmentList = append(departmentList, data)
-	}
-	context.JSON(http.StatusOK, departmentList)
-	departmentList = nil
-}
 
 func listDepartmentManagedByEmployee(context *gin.Context) {
 	var departmentManagedByEmployee model.DepartmentManagedByEmployee
 	var data model.Department
 
-	query := departmentManagedByEmployee.MakeQuery("LIST_DEPARTMENT")
-	params := departmentManagedByEmployee.MakeParams("LIST_DEPARTMENT")
+	query := departmentManagedByEmployee.MakeQuery("LIST_EMPLOYEE_MANAGES_DEPARTMENT")
+	params := departmentManagedByEmployee.MakeParams("LIST_EMPLOYEE_MANAGES_DEPARTMENT")
 	result := db.Execute(query, params)
 
 	for _, record := range result.Records {

@@ -102,37 +102,37 @@ const (
 	}
 	`
 
-	CollaboratedWith = `'
+	COLLABORATEDWITH = `'
 	CollaboratedWith{
 		TaskDescription:$CollaboratedWithTaskDescription
 	}
 	`
 
-	WorksIn = `
+	WORKSIN = `
 	WorksIn{
 		Role:$WorksInWorksInRole
 	}
 	`
 
-	SkilledIn = `
+	SKILLEDIN = `
 	SkilledIn{
 		Experience:$SkilledInExperience
 	}
 	`
 
-	CreatedBy = `
+	CREATEDBY = `
 	CreatedBy{
 		CommunityCreatedDate:$CreatedByCommunityCreatedDate
 	}
 	`
 
-	Member = `
+	MEMBER = `
 	Member{
 		AddedToCommunityDate:$MemberAddedToCommunityDate
 	}
 	`
 
-	RequestBy = `
+	REQUESTBY = `
 	RequestBy{
 		RequestedDate:$RequestByRequestedDate,
 		AccessType:$RequestByRequestByAccessType,
@@ -141,16 +141,16 @@ const (
 	}
 	`
 
-	AccessTo = `
+	ACCESSTO = `
 	AccessTo{
 		AccessType:$RequestByAccessType
 	}`
 
-	ManagedBy = `ManagedBy{}`
+	MANAGEDBY = `ManagedBy{}`
 
-	ComesUnder = `ComesUnder{}`
+	COMESUNDER = `ComesUnder{}`
 
-	ReportTo = `ReportTo{}`
+	REPORTTO = `ReportTo{}`
 
 	RETURNDATA_EMPLOYEE = `%node{
 		Name:%node.Name,

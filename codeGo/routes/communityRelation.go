@@ -11,7 +11,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-
 func createCommunityMemberEmployee(context *gin.Context) {
 	var communityMemberEmployee model.CommunityMemberEmployee
 	err := context.ShouldBindJSON(&communityMemberEmployee)
@@ -60,27 +59,7 @@ func createCommunityCreatedByEmployee(context *gin.Context) {
 	}
 }
 
-func listAllCommunity(context *gin.Context) {
-	var community model.Community
-	var data model.Community
 
-	query := community.MakeQuery("LIST_COMMUNITY")
-	params := map[string]any{}
-	result := db.Execute(query, params)
-
-	for _, record := range result.Records {
-		mapRecord, _ := record.Get("n1")
-		byteData := util.MarshalData(mapRecord)
-		err := json.Unmarshal(byteData, &data)
-		if err != nil {
-			fmt.Println("Error Unmarshalling Json")
-			panic(err)
-		}
-		communityList = append(communityList, data)
-	}
-	context.JSON(http.StatusOK, community)
-	communityList = nil
-}
 
 func listCommunityCreatedByEmployee(context *gin.Context) {
 	var communityCreatedByEmployee model.CommunityCreatedByEmployee
@@ -91,8 +70,8 @@ func listCommunityCreatedByEmployee(context *gin.Context) {
 		panic(err)
 	}
 
-	query := communityCreatedByEmployee.MakeQuery("LIST_COMMUNITY_BY_EMPLOYEE")
-	params := communityCreatedByEmployee.MakeParams("LIST_COMMUNITY_BY_EMPLOYEE")
+	query := communityCreatedByEmployee.MakeQuery("LIST_COMMUNITY_CREATED_BY_EMPLOYEE")
+	params := communityCreatedByEmployee.MakeParams("LIST_COMMUNITY_CREATED_BY_EMPLOYEE")
 	result := db.Execute(query, params)
 
 	for _, record := range result.Records {
@@ -118,12 +97,12 @@ func listCommunityMemberEmployee(context *gin.Context) {
 		panic(err)
 	}
 
-	query := communityMemberEmployee.MakeQuery("LIST_COMMUNITY_MEMBER_EMPLOYEE")
-	params := communityMemberEmployee.MakeParams("LIST_COMMUNITY_MEMBER_EMPLOYEE")
+	query := communityMemberEmployee.MakeQuery("LIST_EMPLOYEES_MEMBER_OF_COMMUNITY")
+	params := communityMemberEmployee.MakeParams("LIST_EMPLOYEES_MEMBER_OF_COMMUNITY")
 	result := db.Execute(query, params)
 
 	for _, record := range result.Records {
-		mapRecord, _ := record.Get("n1")
+		mapRecord, _ := record.Get("n2")
 		byteData := util.MarshalData(mapRecord)
 		err = json.Unmarshal(byteData, &data)
 		if err != nil {

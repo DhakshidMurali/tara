@@ -6,7 +6,9 @@ func APIRoutes(server *gin.Engine) {
 
 	authRoutes := server.Group("/")
 
-	// Create Relation
+	/*
+	* Create Relation
+	 */
 	authRoutes.POST("/create/relation/toolRequestByEmployee", createToolRequestByEmployee)
 	authRoutes.POST("/create/relation/toolAccessToEmployee", createToolAccessToEmployee)
 	authRoutes.POST("/create/relation/toolManagedByEmployee", createToolManagedByEmployee)
@@ -24,7 +26,9 @@ func APIRoutes(server *gin.Engine) {
 	authRoutes.POST("/create/relation/communicationPostedInCommunity", createCommunicationPostedInCommunity)
 	authRoutes.POST("/create/relation/communiationPostedByEmployee", createCommunicationPostedByEmployee)
 
-	// Update Node
+	/*
+	* Update Node
+	 */
 	authRoutes.POST("/update/node/employee", updateEmployee)
 	authRoutes.POST("/update/node/tool", updateTool)
 	authRoutes.POST("/update/node/department", updateDepartment)
@@ -32,21 +36,40 @@ func APIRoutes(server *gin.Engine) {
 	authRoutes.POST("/update/node/communication", updateCommunication)
 	authRoutes.POST("/update/node/skills", updateSkills)
 
-	// Retrieve
-	authRoutes.POST("/get/list/community/communication", listCommunicationPostedInCommunity)
-	authRoutes.POST("/get/list/employee/communication", listCommunicationPostedByEmployee)
-	authRoutes.POST("/get/list/employee/community", listCommunityCreatedByEmployee)
-	authRoutes.POST("/get/list/community/employee", listCommunityMemberEmployee)
-	authRoutes.POST("/get/list/community", listAllCommunity)
+	/*
+	* Retrieve data for Communication
+	 */
+	authRoutes.POST("/get/list/communicationPostedInCommunity", listCommunicationPostedInCommunity)
+	authRoutes.POST("/get/list/communicationPostedByEmployee", listCommunicationPostedByEmployee)
 
-	authRoutes.POST("/get/list/community", updateEmployee)
-	authRoutes.POST("/get/detail/community", updateEmployee)
-	authRoutes.POST("/get/list/department", updateEmployee)
-	authRoutes.POST("/get/detail/department", updateEmployee)
+	/*
+	* Retrieve data for Community
+	 */
+	authRoutes.POST("/get/list/communityCreatedByEployee", listCommunityCreatedByEmployee)
+	authRoutes.POST("/get/list/communityMemberEmployee", listCommunityMemberEmployee)
+	authRoutes.POST("/get/list/community", listCommunity)
 
-	authRoutes.POST("/get/list/employee", listAllEmployee)
+	/*
+	* Retrieve data for Department
+	 */
+	authRoutes.POST("/get/list/department", listDepartment)
+	authRoutes.POST("/get/list/departmentManagedByEmployee", listDepartmentManagedByEmployee)
 
-	// tool
+	/*
+	* Retrieve data for Employee
+	 */
+	authRoutes.POST("/get/list/employeeCollaboratedWithEmployee", listEmployeeCollaboratedWithEmployee)
+	authRoutes.POST("/get/list/employeeWorksInTools/:node", listEmployeeWorksInTools)
+	authRoutes.POST("/get/list/employeeSkilledInSkills/:node", listEmployeeSkilledInSkills)
+	authRoutes.POST("/get/list/employeeReportToEmployee/:node", listEmployeeReportToEmployee)
+
+	/*
+	* Retrieve data for Tool
+	 */
+	authRoutes.POST("/get/list/tool", listTool)
 	authRoutes.POST("/get/list/toolRequestByEmployee/:node", listToolRequestByEmployee)
+	authRoutes.POST("/get/list/toolAccessToEmployee/:node", listToolAccessToEmployee)
+	authRoutes.POST("/get/list/toolManagedByEmployee/:node", listToolManagedByEmployee)
+	authRoutes.POST("/get/list/toolComesUnderDepartment/:node", listToolComesUnderDepartment)
 
 }

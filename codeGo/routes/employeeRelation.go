@@ -9,6 +9,7 @@ import (
 	"github.com/DhakshidMurali/tara/model"
 	"github.com/DhakshidMurali/tara/util"
 	"github.com/gin-gonic/gin"
+	"github.com/neo4j/neo4j-go-driver/v5/neo4j"
 )
 
 func createEmployeeCollaboratedWithEmployee(context *gin.Context) {
@@ -107,28 +108,6 @@ func createEmployeeReportToEmployee(context *gin.Context) {
 	}
 }
 
-func listAllEmployee(context *gin.Context) {
-	var employee model.Employee
-	var data model.Employee
-
-	query := employee.MakeQuery("LIST_EMPLOYEE")
-	params := map[string]any{}
-	result := db.Execute(query, params)
-
-	for _, record := range result.Records {
-		mapRecord, _ := record.Get("n1")
-		byteData := util.MarshalData(mapRecord)
-		err := json.Unmarshal(byteData, &data)
-		if err != nil {
-			fmt.Println("Error Unmarshalling Json")
-			panic(err)
-		}
-		employeeList = append(employeeList, data)
-	}
-	context.JSON(http.StatusOK, employeeList)
-	employeeList = nil
-}
-
 func listEmployeeCollaboratedWithEmployee(context *gin.Context) {
 	var employeeCollaboratedWithEmployee model.EmployeeCollaboratedWithEmployee
 	var data model.Employee
@@ -142,7 +121,7 @@ func listEmployeeCollaboratedWithEmployee(context *gin.Context) {
 	result := db.Execute(query, params)
 
 	for _, record := range result.Records {
-		mapRecord, _ := record.Get("n1")
+		mapRecord, _ := record.Get("n2")
 		byteData := util.MarshalData(mapRecord)
 		err := json.Unmarshal(byteData, &data)
 		if err != nil {
@@ -156,128 +135,148 @@ func listEmployeeCollaboratedWithEmployee(context *gin.Context) {
 }
 func listEmployeeWorksInTools(context *gin.Context) {
 	var employeeWorksInTools model.EmployeeWorksInTools
-	var data model.Employee
+	var employeeData model.Employee
+	var toolData model.Tool
+	err := context.ShouldBindJSON((&employeeWorksInTools))
 
-	query := employeeWorksInTools.MakeQuery("LIST_EMPLOYEES_WORKING_IN_TOOL")
-	params := employeeWorksInTools.MakeParams("LIST_EMPLOYEES_WORKING_IN_TOOL")
-	result := db.Execute(query, params)
-
-	for _, record := range result.Records {
-		mapRecord, _ := record.Get("n1")
-		byteData := util.MarshalData(mapRecord)
-		err := json.Unmarshal(byteData, &data)
-		if err != nil {
-			fmt.Println("Error Unmarshalling Json")
-			panic(err)
-		}
-		employeeList = append(employeeList, data)
+	if err != nil {
+		context.JSON(http.StatusBadRequest, gin.H{"Description": "Received data can't be parsed"})
 	}
-	context.JSON(http.StatusOK, employeeList)
-	employeeList = nil
+	retrieveNode := context.Param("node")
+	var result *neo4j.EagerResult
+
+	if retrieveNode == "Employee" {
+		query := employeeWorksInTools.MakeQuery("LIST_EMPLOYEES_WORKS_IN_TOOL")
+		params := employeeWorksInTools.MakeParams("LIST_EMPLOYEES_WORKS_IN_TOOL")
+		result = db.Execute(query, params)
+
+		for _, record := range result.Records {
+			mapRecord, _ := record.Get("n1")
+			byteData := util.MarshalData(mapRecord)
+			err := json.Unmarshal(byteData, &employeeData)
+			if err != nil {
+				fmt.Println("Error Unmarshalling Json")
+				panic(err)
+			}
+			employeeList = append(employeeList, employeeData)
+		}
+		context.JSON(http.StatusOK, employeeList)
+		employeeList = nil
+	}
+	if retrieveNode == "Tool" {
+		query := employeeWorksInTools.MakeQuery("LIST_TOOLS_EMPLOYEE_WORKS_IN")
+		params := employeeWorksInTools.MakeParams("LIST_TOOLS_EMPLOYEE_WORKS_IN")
+		result = db.Execute(query, params)
+
+		for _, record := range result.Records {
+			mapRecord, _ := record.Get("n2")
+			byteData := util.MarshalData(mapRecord)
+			err := json.Unmarshal(byteData, &toolData)
+			if err != nil {
+				fmt.Println("Error Unmarshalling Json")
+				panic(err)
+			}
+			toolList = append(toolList, toolData)
+		}
+		context.JSON(http.StatusOK, toolList)
+		toolList = nil
+	}
 }
 
-func listToolsByEmployeeWorksIN(context *gin.Context) {
-	var employeeWorksInTools model.EmployeeWorksInTools
-	var data model.Tool
-
-	query := employeeWorksInTools.MakeQuery("LIST_TOOLS_EMPLOYEE_WORKS_IN")
-	params := employeeWorksInTools.MakeParams("LIST_TOOLS_EMPLOYEE_WORKS_IN")
-	result := db.Execute(query, params)
-
-	for _, record := range result.Records {
-		mapRecord, _ := record.Get("n1")
-		byteData := util.MarshalData(mapRecord)
-		err := json.Unmarshal(byteData, &data)
-		if err != nil {
-			fmt.Println("Error Unmarshalling Json")
-			panic(err)
-		}
-		toolList = append(toolList, data)
-	}
-	context.JSON(http.StatusOK, toolList)
-	toolList = nil
-}
 func listEmployeeSkilledInSkills(context *gin.Context) {
 	var employeeSkilledInSkills model.EmployeeSkilledInSkills
-	var data model.Employee
+	var employeeData model.Employee
+	var skillsData model.Skills
+	err := context.ShouldBindJSON((&employeeSkilledInSkills))
 
-	query := employeeSkilledInSkills.MakeQuery("LIST_EMPLOYEE_SKILL_IN")
-	params := employeeSkilledInSkills.MakeParams("LIST_EMPLOYEE_SKILL_IN")
-	result := db.Execute(query, params)
-
-	for _, record := range result.Records {
-		mapRecord, _ := record.Get("n1")
-		byteData := util.MarshalData(mapRecord)
-		err := json.Unmarshal(byteData, &data)
-		if err != nil {
-			fmt.Println("Error Unmarshalling Json")
-			panic(err)
-		}
-		employeeList = append(employeeList, data)
+	if err != nil {
+		context.JSON(http.StatusBadRequest, gin.H{"Description": "Received data can't be parsed"})
 	}
-	context.JSON(http.StatusOK, employeeList)
-	employeeList = nil
-}
-func listSkillsSkilledByEmployee(context *gin.Context) {
-	var employeeSkilledInSkills model.EmployeeSkilledInSkills
-	var data model.Skills
+	retrieveNode := context.Param("node")
+	var result *neo4j.EagerResult
+	if retrieveNode == "Employee" {
+		query := employeeSkilledInSkills.MakeQuery("LIST_EMPLOYEE_SKILLED_IN")
+		params := employeeSkilledInSkills.MakeParams("LIST_EMPLOYEE_SKILLED_IN")
+		result = db.Execute(query, params)
 
-	query := employeeSkilledInSkills.MakeQuery("LIST_SKILLS_SKILLED_BY_EMPLOYEE")
-	params := employeeSkilledInSkills.MakeParams("LIST_SKILLS_SKILLED_BY_EMPLOYEE")
-	result := db.Execute(query, params)
-
-	for _, record := range result.Records {
-		mapRecord, _ := record.Get("n1")
-		byteData := util.MarshalData(mapRecord)
-		err := json.Unmarshal(byteData, &data)
-		if err != nil {
-			fmt.Println("Error Unmarshalling Json")
-			panic(err)
+		for _, record := range result.Records {
+			mapRecord, _ := record.Get("n1")
+			byteData := util.MarshalData(mapRecord)
+			err := json.Unmarshal(byteData, &employeeData)
+			if err != nil {
+				fmt.Println("Error Unmarshalling Json")
+				panic(err)
+			}
+			employeeList = append(employeeList, employeeData)
 		}
-		skillsList = append(skillsList, data)
+		context.JSON(http.StatusOK, employeeList)
+		employeeList = nil
 	}
-	context.JSON(http.StatusOK, skillsList)
-	skillsList = nil
+	if retrieveNode == "Skills" {
+		query := employeeSkilledInSkills.MakeQuery("LIST_SKILLS_SKILLED_BY_EMPLOYEE")
+		params := employeeSkilledInSkills.MakeParams("LIST_SKILLS_SKILLED_BY_EMPLOYEE")
+		result = db.Execute(query, params)
+
+		for _, record := range result.Records {
+			mapRecord, _ := record.Get("n2")
+			byteData := util.MarshalData(mapRecord)
+			err := json.Unmarshal(byteData, &skillsData)
+			if err != nil {
+				fmt.Println("Error Unmarshalling Json")
+				panic(err)
+			}
+			skillsList = append(skillsList, skillsData)
+		}
+		context.JSON(http.StatusOK, skillsList)
+		skillsList = nil
+	}
 }
+
 func listEmployeeReportToEmployee(context *gin.Context) {
 	var employeeReportToEmployee model.EmployeeReportToEmployee
 	var data model.Employee
+	err := context.ShouldBindJSON(&employeeReportToEmployee)
 
-	query := employeeReportToEmployee.MakeQuery("LIST_EMPLOYEE_REPORTS_TO_EMPLOYEE")
-	params := employeeReportToEmployee.MakeParams("LIST_EMPLOYEE_REPORTS_TO_EMPLOYEE")
-	result := db.Execute(query, params)
-
-	for _, record := range result.Records {
-		mapRecord, _ := record.Get("n1")
-		byteData := util.MarshalData(mapRecord)
-		err := json.Unmarshal(byteData, &data)
-		if err != nil {
-			fmt.Println("Error Unmarshalling Json")
-			panic(err)
-		}
-		employeeList = append(employeeList, data)
+	if err != nil {
+		context.JSON(http.StatusBadRequest, gin.H{"Description": "Received data can't be parsed"})
 	}
-	context.JSON(http.StatusOK, employeeList)
-	employeeList = nil
-}
-func listEmployeeReportee(context *gin.Context) {
-	var employeeReportToEmployee model.EmployeeReportToEmployee
-	var data model.Employee
+	retrieveNode := context.Param("node")
+	var result *neo4j.EagerResult
 
-	query := employeeReportToEmployee.MakeQuery("LIST_EMPLOYEE_REPORTEE")
-	params := employeeReportToEmployee.MakeParams("LIST_EMPLOYEE_REPORTEE")
-	result := db.Execute(query, params)
+	if retrieveNode == "MANAGER" {
+		query := employeeReportToEmployee.MakeQuery("LIST_MANAGER_HIERARCHY_OF_EMPLOYEE")
+		params := employeeReportToEmployee.MakeParams("LIST_MANAGER_HIERARCHY_OF_EMPLOYEE")
+		result = db.Execute(query, params)
 
-	for _, record := range result.Records {
-		mapRecord, _ := record.Get("n1")
-		byteData := util.MarshalData(mapRecord)
-		err := json.Unmarshal(byteData, &data)
-		if err != nil {
-			fmt.Println("Error Unmarshalling Json")
-			panic(err)
+		for _, record := range result.Records {
+			mapRecord, _ := record.Get("n2")
+			byteData := util.MarshalData(mapRecord)
+			err := json.Unmarshal(byteData, &data)
+			if err != nil {
+				fmt.Println("Error Unmarshalling Json")
+				panic(err)
+			}
+			employeeList = append(employeeList, data)
 		}
-		employeeList = append(employeeList, data)
+		context.JSON(http.StatusOK, employeeList)
+		employeeList = nil
 	}
-	context.JSON(http.StatusOK, employeeList)
-	employeeList = nil
+	if retrieveNode == "EMPLOYEE" {
+		query := employeeReportToEmployee.MakeQuery("LIST_EMPLOYEE_REPORTEE_OF_MANAGER")
+		params := employeeReportToEmployee.MakeParams("LIST_EMPLOYEE_REPORTEE_OF_MANAGER")
+		result = db.Execute(query, params)
+
+		for _, record := range result.Records {
+			mapRecord, _ := record.Get("n1")
+			byteData := util.MarshalData(mapRecord)
+			err := json.Unmarshal(byteData, &data)
+			if err != nil {
+				fmt.Println("Error Unmarshalling Json")
+				panic(err)
+			}
+			employeeList = append(employeeList, data)
+		}
+		context.JSON(http.StatusOK, employeeList)
+		employeeList = nil
+	}
 }

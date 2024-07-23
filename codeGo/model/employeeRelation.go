@@ -34,7 +34,7 @@ func (v EmployeeCollaboratedWithEmployee) MakeQuery(typeOfQuery string) string {
 		query := constant.CREATE_NODE_TO_NODE_RELATION
 		mapData := map[string]string{
 			"%n1": constant.EMPLOYEEEN1,
-			"%r":  constant.CollaboratedWith,
+			"%r":  constant.COLLABORATEDWITH,
 			"%n2": constant.EMPLOYEEEN2,
 		}
 		query = util.ReplaceQuery(query, mapData)
@@ -92,7 +92,7 @@ func (v EmployeeWorksInTools) MakeQuery(typeOfQuery string) string {
 		query := constant.CREATE_NODE_TO_NODE_RELATION
 		mapData := map[string]string{
 			"%n1": constant.EMPLOYEEEN1,
-			"%r":  constant.WorksIn,
+			"%r":  constant.WORKSIN,
 			"%n2": constant.TOOL,
 		}
 		query = util.ReplaceQuery(query, mapData)
@@ -110,7 +110,7 @@ func (v EmployeeWorksInTools) MakeQuery(typeOfQuery string) string {
 		}
 		query = util.ReplaceQuery(query, mapData)
 		return query
-	case "LIST_EMPLOYEES_WORKING_IN_TOOL":
+	case "LIST_EMPLOYEES_WORKS_IN_TOOL":
 		query := constant.RETRIEVE_DATA_NODE_WHERE
 		returnData := constant.RETURNDATA_EMPLOYEE
 		mapData := map[string]string{
@@ -147,7 +147,7 @@ func (v EmployeeWorksInTools) MakeParams(typeOfQuery string) map[string]any {
 		return map[string]any{
 			"NodeId": v.Employee.Key,
 		}
-	case "LIST_EMPLOYEES_WORKING_IN_TOOL":
+	case "LIST_EMPLOYEES_WORKS_IN_TOOL":
 		return map[string]any{
 			"NodeId": v.Tool.Key,
 		}
@@ -162,7 +162,7 @@ func (v EmployeeSkilledInSkills) MakeQuery(typeOfQuery string) string {
 		query := constant.CREATE_NODE_TO_NODE_RELATION
 		mapData := map[string]string{
 			"%n1": constant.EMPLOYEEEN1,
-			"%r":  constant.SkilledIn,
+			"%r":  constant.SKILLEDIN,
 			"%n2": constant.SKILLS,
 		}
 		query = util.ReplaceQuery(query, mapData)
@@ -231,12 +231,12 @@ func (v EmployeeReportToEmployee) MakeQuery(typeOfQuery string) string {
 		query := constant.CREATE_NODE_TO_NODE_RELATION
 		mapData := map[string]string{
 			"%n1": constant.EMPLOYEEEN1,
-			"%r":  constant.ReportTo,
+			"%r":  constant.REPORTTO,
 			"%n2": constant.EMPLOYEEEN2,
 		}
 		query = util.ReplaceQuery(query, mapData)
 		return query
-	case "LIST_EMPLOYEE_REPORTS_TO_EMPLOYEE":
+	case "LIST_MANAGER_HIERARCHY_OF_EMPLOYEE":
 		query := constant.RETRIEVE_DATA_NODE_WHERE
 		returnData := constant.RETURNDATA_EMPLOYEE
 		mapData := map[string]string{
@@ -249,7 +249,7 @@ func (v EmployeeReportToEmployee) MakeQuery(typeOfQuery string) string {
 		}
 		query = util.ReplaceQuery(query, mapData)
 		return query
-	case "LIST_EMPLOYEE_REPORTEE":
+	case "LIST_EMPLOYEE_REPORTEE_OF_MANAGER":
 		query := constant.RETRIEVE_DATA_NODE_WHERE
 		returnData := constant.RETURNDATA_EMPLOYEE
 		mapData := map[string]string{
@@ -286,11 +286,11 @@ func (v EmployeeReportToEmployee) MakeParams(typeOfQuery string) map[string]any 
 			"EmployeeEmployeeRoleN2": v.Manager.Role,
 			"EmployeeLocationN2":     v.Manager.Location,
 		}
-	case "LIST_EMPLOYEE_REPORTS_TO_EMPLOYEE":
+	case "LIST_MANAGER_HIERARCHY_OF_EMPLOYEE":
 		return map[string]any{
 			"NodeId": v.Employee.Key,
 		}
-	case "LIST_EMPLOYEE_REPORTEE":
+	case "LIST_EMPLOYEE_REPORTEE_OF_MANAGER":
 		return map[string]any{
 			"NodeId": v.Manager.Key,
 		}

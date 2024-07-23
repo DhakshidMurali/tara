@@ -28,7 +28,7 @@ func (v CommunicationPostedInCommunity) MakeQuery(typeOfQuery string) string {
 		}
 		query = util.ReplaceQuery(query, mapData)
 		return query
-	case "LIST_COMMUNICATION_BY_COMMUNITY":
+	case "LIST_COMMUNICATION_POSTED_IN_COMMUNITY":
 		returnData := constant.RETURNDATA_COMMUNICATION
 		query := constant.RETRIEVE_DATA_NODE_WHERE
 		mapData := map[string]string{
@@ -59,7 +59,7 @@ func (v CommunicationPostedInCommunity) MakeParams(typeOfQuery string) map[strin
 			"CommunityDescription": v.Community.Description,
 			"CommunityAccessType":  v.Community.AccessType,
 		}
-	case "LIST_COMMUNICATION_BY_COMMUNITY":
+	case "LIST_COMMUNICATION_POSTED_IN_COMMUNITY":
 		return map[string]any{
 			"NodeId": v.Community.Key,
 		}
@@ -79,7 +79,7 @@ func (v CommunicationPostedByEmployee) MakeQuery(typeOfQuery string) string {
 		}
 		query = util.ReplaceQuery(query, mapData)
 		return query
-	case "LIST_COMMUNICATION_BY_EMPLOYEE":
+	case "LIST_COMMUNICATION_POSTED_BY_EMPLOYEE":
 		returnData := constant.RETURNDATA_COMMUNICATION
 		query := constant.RETRIEVE_DATA_NODE_WHERE
 		mapData := map[string]string{
@@ -112,7 +112,7 @@ func (v CommunicationPostedByEmployee) MakeParams(typeOfQuery string) map[string
 			"EmployeeEmployeeRole": v.Employee.Role,
 			"EmployeeLocation":     v.Employee.Location,
 		}
-	case "LIST_COMMUNICATION_BY_EMPLOYEE":
+	case "LIST_COMMUNICATION_POSTED_BY_EMPLOYEE":
 		return map[string]any{
 			"NodeId": v.Employee.Key,
 		}

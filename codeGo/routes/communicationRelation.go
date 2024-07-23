@@ -67,8 +67,8 @@ func listCommunicationPostedInCommunity(context *gin.Context) {
 		panic(err)
 	}
 
-	query := communicationPostedInCommunity.MakeQuery("LIST_COMMUNICATION_BY_COMMUNITY")
-	params := communicationPostedInCommunity.MakeParams("LIST_COMMUNICATION_BY_COMMUNITY")
+	query := communicationPostedInCommunity.MakeQuery("LIST_COMMUNICATION_POSTED_IN_COMMUNITY")
+	params := communicationPostedInCommunity.MakeParams("LIST_COMMUNICATION_POSTED_IN_COMMUNITY")
 	result := db.Execute(query, params)
 
 	for _, record := range result.Records {
@@ -94,8 +94,8 @@ func listCommunicationPostedByEmployee(context *gin.Context) {
 		panic(err)
 	}
 
-	query := communicationPostedByEmployee.MakeQuery("LIST_COMMUNICATION_BY_EMPLOYEE")
-	params := communicationPostedByEmployee.MakeParams("LIST_COMMUNICATION_BY_EMPLOYEE")
+	query := communicationPostedByEmployee.MakeQuery("LIST_COMMUNICATION_POSTED_BY_EMPLOYEE")
+	params := communicationPostedByEmployee.MakeParams("LIST_COMMUNICATION_POSTED_BY_EMPLOYEE")
 	result := db.Execute(query, params)
 
 	for _, record := range result.Records {
