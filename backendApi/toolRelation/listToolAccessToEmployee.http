@@ -1,0 +1,29 @@
+# POST http://localhost:8080/get/list/toolAccessToEmployee/TOOL
+POST http://localhost:8080/get/list/toolAccessToEmployee/EMPLOYEE
+content-type: application/json
+
+# {
+#     "Tool":{
+#         "
+#     },
+#     "AccessTo":{
+       
+#     },
+#     "Employee":{
+#         "Key":"4:41b0534a-8bbd-4d1b-80ed-d6c4f9f9f1a2:13"
+#     }
+# }
+
+{
+    "Tool":{
+        "Key":"4:41b0534a-8bbd-4d1b-80ed-d6c4f9f9f1a2:26"
+    },
+    "AccessTo":{
+       
+    },
+    "Employee":{
+        
+    }
+}
+
+# verified

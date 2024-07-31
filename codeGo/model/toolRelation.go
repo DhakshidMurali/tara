@@ -122,7 +122,7 @@ func (v ToolAccessToEmployee) MakeQuery(typeOfQuery string) string {
 			"%node":      "n1",
 			"%return":    returnData,
 		}
-		query = util.ReplaceQuery(query, mapData)
+		query = util.DoubleReplaceQuery(query, mapData)
 		return query
 	case "LIST_EMPLOYEES_ACCESS_TO_TOOL":
 		query := constant.RETRIEVE_DATA_NODE_WHERE
@@ -135,7 +135,7 @@ func (v ToolAccessToEmployee) MakeQuery(typeOfQuery string) string {
 			"%node":      "n2",
 			"%return":    returnData,
 		}
-		query = util.ReplaceQuery(query, mapData)
+		query = util.DoubleReplaceQuery(query, mapData)
 		return query
 	default:
 		return ""
@@ -157,11 +157,11 @@ func (v ToolAccessToEmployee) MakeParams(typeOfQuery string) map[string]any {
 			"EmployeeEmployeeRole": v.Employee.Role,
 			"EmployeeLocation":     v.Employee.Location,
 		}
-	case "LIST_TOOL_REQUESTED_BY_EMPLOYEE":
+	case "LIST_TOOLS_ACCESS_BY_EMPLOYEE":
 		return map[string]any{
 			"NodeId": v.Employee.Key,
 		}
-	case "LIST_EMPLOYEES_REQUESTED_TO_TOOL":
+	case "LIST_EMPLOYEES_ACCESS_TO_TOOL":
 		return map[string]any{
 			"NodeId": v.Tool.Key,
 		}

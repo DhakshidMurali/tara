@@ -114,9 +114,10 @@ func (v Tool) MakeQuery(typeOfQuery string) string {
 		query := constant.RETRIEVE_DATA_NODES_ALL
 		mapData := map[string]string{
 			"%n1":     "Tool",
+			"%node":   "n1",
 			"%return": returnData,
 		}
-		query = util.ReplaceQuery(query, mapData)
+		query = util.DoubleReplaceQuery(query, mapData)
 		return query
 	default:
 		return ""
@@ -143,9 +144,10 @@ func (v Department) MakeQuery(typeOfQuery string) string {
 		query := constant.RETRIEVE_DATA_NODES_ALL
 		mapData := map[string]string{
 			"%n1":     "Department",
+			"%node":   "n1",
 			"%return": returnData,
 		}
-		query = util.ReplaceQuery(query, mapData)
+		query = util.DoubleReplaceQuery(query, mapData)
 		return query
 	default:
 		return ""
@@ -190,7 +192,7 @@ func (v Community) MakeQuery(typeOfQuery string) string {
 			"%node":   "n1",
 			"%return": returnData,
 		}
-		query = util.ReplaceQuery(query, mapData)
+		query = util.DoubleReplaceQuery(query, mapData)
 		return query
 	default:
 		return ""

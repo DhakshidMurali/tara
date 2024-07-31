@@ -2,7 +2,7 @@ POST http://localhost:8080/create/relation/employeeReportToEmployee
 content-type: application/json
 
 {
-    "EmployeeN1":{
+    "Employee":{
         "Name":"B",
         "MailAddress":"@gmail.com",
         "Domain":"TO",
@@ -12,12 +12,15 @@ content-type: application/json
         "Location":"Pune"
     },
     "Manager":{
-        "Name":"B",
-        "MailAddress":"@gmail.com",
+        "Name":"Manager",
+        "MailAddress":"Manager@gmail.com",
         "Domain":"TO",
         "Password":"12345678",
         "PhoneNumber":"12345678",
-        "Role":"Developer",
+        "Role":"Manager",
         "Location":"Pune"
     }
 }
+
+
+# verified

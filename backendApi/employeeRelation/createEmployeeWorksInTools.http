@@ -3,7 +3,7 @@ content-type: application/json
 
 {
     "Employee":{
-        "Name":"B",
+        "Name":"C",
         "MailAddress":"@gmail.com",
         "Domain":"TO",
         "Password":"12345678",
@@ -15,7 +15,9 @@ content-type: application/json
         "Role":"Developer"
     },
     "Tool":{
-        "Name":"B",
+        "Name":"Tool A",
         "ApprovalType":"Manager"
     }
 }
+
+# verified

@@ -95,6 +95,7 @@ func listCommunicationPostedByEmployee(context *gin.Context) {
 	}
 
 	query := communicationPostedByEmployee.MakeQuery("LIST_COMMUNICATION_POSTED_BY_EMPLOYEE")
+	fmt.Println(query)
 	params := communicationPostedByEmployee.MakeParams("LIST_COMMUNICATION_POSTED_BY_EMPLOYEE")
 	result := db.Execute(query, params)
 

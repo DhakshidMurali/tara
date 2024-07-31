@@ -11,7 +11,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-
 func createDepartmentManagedByEmployee(context *gin.Context) {
 	var departmentManagedByEmployee model.DepartmentManagedByEmployee
 	err := context.ShouldBindJSON(&departmentManagedByEmployee)
@@ -36,16 +35,20 @@ func createDepartmentManagedByEmployee(context *gin.Context) {
 	}
 }
 
-
-
 func listDepartmentManagedByEmployee(context *gin.Context) {
 	var departmentManagedByEmployee model.DepartmentManagedByEmployee
 	var data model.Department
+	err := context.ShouldBindJSON(&departmentManagedByEmployee)
 
+	if err != nil {
+		context.JSON(http.StatusBadRequest, gin.H{"Description": "Received data can't be parsed"})
+	}
 	query := departmentManagedByEmployee.MakeQuery("LIST_EMPLOYEE_MANAGES_DEPARTMENT")
+	fmt.Print(query)
 	params := departmentManagedByEmployee.MakeParams("LIST_EMPLOYEE_MANAGES_DEPARTMENT")
 	result := db.Execute(query, params)
-
+	fmt.Println(params)
+	fmt.Println(result)
 	for _, record := range result.Records {
 		mapRecord, _ := record.Get("n1")
 		byteData := util.MarshalData(mapRecord)

@@ -39,7 +39,7 @@ func (v CommunicationPostedInCommunity) MakeQuery(typeOfQuery string) string {
 			"%node":      "n1",
 			"%return":    returnData,
 		}
-		query = util.ReplaceQuery(query, mapData)
+		query = util.DoubleReplaceQuery(query, mapData)
 		return query
 
 	default:
@@ -90,7 +90,7 @@ func (v CommunicationPostedByEmployee) MakeQuery(typeOfQuery string) string {
 			"%node":      "n1",
 			"%return":    returnData,
 		}
-		query = util.ReplaceQuery(query, mapData)
+		query = util.DoubleReplaceQuery(query, mapData)
 		return query
 	default:
 		return ""
@@ -103,7 +103,7 @@ func (v CommunicationPostedByEmployee) MakeParams(typeOfQuery string) map[string
 		return map[string]any{
 			"CommunicationType":    v.Communication.Type,
 			"CommunicationContent": v.Communication.Content,
-			"PostedInPostedInDate": v.PostedBy.PostedByDate,
+			"PostedByPostedByDate": v.PostedBy.PostedByDate,
 			"EmployeeName":         v.Employee.Name,
 			"EmployeeMailAddress":  v.Employee.MailAddress,
 			"EmployeeDomain":       v.Employee.Domain,

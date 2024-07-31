@@ -27,6 +27,10 @@ type EmployeeReportToEmployee struct {
 	Employee Employee
 	Manager  Employee
 }
+type EmployeeComesUnderDepartment struct {
+	Employee   Employee
+	Department Department
+}
 
 func (v EmployeeCollaboratedWithEmployee) MakeQuery(typeOfQuery string) string {
 	switch typeOfQuery {
@@ -50,7 +54,7 @@ func (v EmployeeCollaboratedWithEmployee) MakeQuery(typeOfQuery string) string {
 			"%node":      "n2",
 			"%return":    returnData,
 		}
-		query = util.ReplaceQuery(query, mapData)
+		query = util.DoubleReplaceQuery(query, mapData)
 		return query
 	default:
 		return ""
@@ -108,7 +112,7 @@ func (v EmployeeWorksInTools) MakeQuery(typeOfQuery string) string {
 			"%node":      "n2",
 			"%return":    returnData,
 		}
-		query = util.ReplaceQuery(query, mapData)
+		query = util.DoubleReplaceQuery(query, mapData)
 		return query
 	case "LIST_EMPLOYEES_WORKS_IN_TOOL":
 		query := constant.RETRIEVE_DATA_NODE_WHERE
@@ -121,7 +125,7 @@ func (v EmployeeWorksInTools) MakeQuery(typeOfQuery string) string {
 			"%node":      "n1",
 			"%return":    returnData,
 		}
-		query = util.ReplaceQuery(query, mapData)
+		query = util.DoubleReplaceQuery(query, mapData)
 		return query
 	default:
 		return ""
@@ -167,7 +171,7 @@ func (v EmployeeSkilledInSkills) MakeQuery(typeOfQuery string) string {
 		}
 		query = util.ReplaceQuery(query, mapData)
 		return query
-	case "LIST_EMPLOYEE_SKILL_IN":
+	case "LIST_EMPLOYEE_SKILLED_IN":
 		query := constant.RETRIEVE_DATA_NODE_WHERE
 		returnData := constant.RETURNDATA_EMPLOYEE
 		mapData := map[string]string{
@@ -178,7 +182,7 @@ func (v EmployeeSkilledInSkills) MakeQuery(typeOfQuery string) string {
 			"%node":      "n1",
 			"%return":    returnData,
 		}
-		query = util.ReplaceQuery(query, mapData)
+		query = util.DoubleReplaceQuery(query, mapData)
 		return query
 	case "LIST_SKILLS_SKILLED_BY_EMPLOYEE":
 		query := constant.RETRIEVE_DATA_NODE_WHERE
@@ -191,7 +195,7 @@ func (v EmployeeSkilledInSkills) MakeQuery(typeOfQuery string) string {
 			"%node":      "n2",
 			"%return":    returnData,
 		}
-		query = util.ReplaceQuery(query, mapData)
+		query = util.DoubleReplaceQuery(query, mapData)
 		return query
 	default:
 		return ""
@@ -212,7 +216,7 @@ func (v EmployeeSkilledInSkills) MakeParams(typeOfQuery string) map[string]any {
 			"SkilledInExperience":  v.SkilledIn.Experience,
 			"SkillsSkills":         v.Skills.SkillName,
 		}
-	case "LIST_EMPLOYEE_SKILL_IN":
+	case "LIST_EMPLOYEE_SKILLED_IN":
 		return map[string]any{
 			"NodeId": v.Skills.Key,
 		}
@@ -260,7 +264,7 @@ func (v EmployeeReportToEmployee) MakeQuery(typeOfQuery string) string {
 			"%node":      "n1",
 			"%return":    returnData,
 		}
-		query = util.ReplaceQuery(query, mapData)
+		query = util.DoubleReplaceQuery(query, mapData)
 		return query
 	default:
 		return ""
@@ -293,6 +297,74 @@ func (v EmployeeReportToEmployee) MakeParams(typeOfQuery string) map[string]any 
 	case "LIST_EMPLOYEE_REPORTEE_OF_MANAGER":
 		return map[string]any{
 			"NodeId": v.Manager.Key,
+		}
+	default:
+		return map[string]any{}
+	}
+}
+
+func (v EmployeeComesUnderDepartment) MakeQuery(typeOfQuery string) string {
+	switch typeOfQuery {
+	case "CREATE":
+		query := constant.CREATE_NODE_TO_NODE_RELATION
+		mapData := map[string]string{
+			"%n1": constant.EMPLOYEEEN1,
+			"%r":  constant.COMESUNDER,
+			"%n2": constant.DEPARTMENT,
+		}
+		query = util.ReplaceQuery(query, mapData)
+		return query
+	case "LIST_DEPARTMENT_OF_EMPLOYEE":
+		query := constant.RETRIEVE_DATA_NODE_WHERE
+		returnData := constant.RETURNDATA_EMPLOYEE
+		mapData := map[string]string{
+			"%n1":        "Employee",
+			"%r":         "ComesUnder",
+			"%n2":        "Department",
+			"%condition": "elementId(n1)=$NodeId",
+			"%node":      "n2",
+			"%return":    returnData,
+		}
+		query = util.ReplaceQuery(query, mapData)
+		return query
+	case "LIST_EMPLOYEE_COMES_UNDER_DEPARTMENT":
+		query := constant.RETRIEVE_DATA_NODE_WHERE
+		returnData := constant.RETURNDATA_EMPLOYEE
+		mapData := map[string]string{
+			"%n1":        "Employee",
+			"%r":         "ComesUnder",
+			"%n2":        "Department",
+			"%condition": "elementId(n2)=$NodeId",
+			"%node":      "n1",
+			"%return":    returnData,
+		}
+		query = util.ReplaceQuery(query, mapData)
+		return query
+	default:
+		return ""
+	}
+}
+
+func (v EmployeeComesUnderDepartment) MakeParams(typeOfQuery string) map[string]any {
+	switch typeOfQuery {
+	case "CREATE":
+		return map[string]any{
+			"EmployeeName":         v.Employee.Name,
+			"EmployeeMailAddress":  v.Employee.MailAddress,
+			"EmployeeDomain":       v.Employee.Domain,
+			"EmployeePassword":     v.Employee.Password,
+			"EmployeePhoneNumber":  v.Employee.PhoneNumber,
+			"EmployeeEmployeeRole": v.Employee.Role,
+			"EmployeeLocation":     v.Employee.Location,
+			"DepartmentName":       v.Department.DepartmentName,
+		}
+	case "LIST_DEPARTMENT_OF_EMPLOYEE":
+		return map[string]any{
+			"NodeId": v.Employee.Key,
+		}
+	case "LIST_EMPLOYEE_COMES_UNDER_DEPARTMENT":
+		return map[string]any{
+			"NodeId": v.Department.Key,
 		}
 	default:
 		return map[string]any{}

@@ -38,3 +38,4 @@ type RequestBy struct {
 type AccessTo struct {
 	AccessType string
 }
+

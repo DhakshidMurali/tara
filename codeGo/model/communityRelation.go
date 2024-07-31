@@ -94,7 +94,7 @@ func (v CommunityCreatedByEmployee) MakeQuery(typeOfQuery string) string {
 			"%node":      "n1",
 			"%return":    returnData,
 		}
-		query = util.ReplaceQuery(query, mapData)
+		query = util.DoubleReplaceQuery(query, mapData)
 		return query
 
 	default:

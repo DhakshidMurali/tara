@@ -3,7 +3,7 @@ content-type: application/json
 
 {
      "Community":{
-        "Name":"B",
+        "Name":"A",
         "Description":"C",
         "AccessType":"D"
     },
@@ -11,9 +11,9 @@ content-type: application/json
         "AddedToCommunityDate":"A"
     },
     "Employee":{
-        "Name":"B",
-        "MailAddress":"@gmail.com",
-        "Domain":"TO",
+        "Name":"A",
+        "MailAddress":"1@gmail.com",
+        "Domain":"TO1",
         "Password":"12345678",
         "PhoneNumber":"12345678",
         "Role":"Developer",

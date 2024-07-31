@@ -1,0 +1,22 @@
+# POST http://localhost:8080/get/list/employeeReportToEmployee/EMPLOYEE
+POST http://localhost:8080/get/list/employeeReportToEmployee/MANAGER
+content-type: application/json
+
+# {
+#     "Employee":{
+#     },
+#     "Manager":{
+#         "Key":"4:41b0534a-8bbd-4d1b-80ed-d6c4f9f9f1a2:13"
+#     }
+# }
+
+{
+    "Employee":{
+        "Key":"4:41b0534a-8bbd-4d1b-80ed-d6c4f9f9f1a2:6"
+    },
+    "Manager":{
+        
+    }
+}
+
+# verified

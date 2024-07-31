@@ -38,6 +38,7 @@ func listCommunity(context *gin.Context) {
 	var data model.Community
 
 	query := community.MakeQuery("LIST_COMMUNITY")
+	fmt.Println(query)
 	params := map[string]any{}
 	result := db.Execute(query, params)
 
@@ -51,7 +52,7 @@ func listCommunity(context *gin.Context) {
 		}
 		communityList = append(communityList, data)
 	}
-	context.JSON(http.StatusOK, community)
+	context.JSON(http.StatusOK, communityList)
 	communityList = nil
 }
 
@@ -62,7 +63,6 @@ func listDepartment(context *gin.Context) {
 	query := department.MakeQuery("LIST_DEPARTMENT")
 	params := map[string]any{}
 	result := db.Execute(query, params)
-
 	for _, record := range result.Records {
 		mapRecord, _ := record.Get("n1")
 		byteData := util.MarshalData(mapRecord)

@@ -87,7 +87,7 @@ const (
 
 	SKILLS = `
 	Skills{
-		Skills:$SkillsSkills
+		SkillName:$SkillsSkills
 	}
 	`
 
@@ -102,7 +102,7 @@ const (
 	}
 	`
 
-	COLLABORATEDWITH = `'
+	COLLABORATEDWITH = `
 	CollaboratedWith{
 		TaskDescription:$CollaboratedWithTaskDescription
 	}

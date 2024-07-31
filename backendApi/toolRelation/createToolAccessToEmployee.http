@@ -3,17 +3,19 @@ content-type: application/json
 
 {
     "Tool":{
-        "Name":"B",
+        "Name":"A",
         "ApprovalType":"Manager"
     },
-    "AccessType":"Lvl 1",
+    "AccessTo":{
+      "AccessType":"Lvl 1"  
+    },
     "Employee":{
-        "Name":"B",
-        "MailAddress":"@gmail.com",
+        "Name":"Manager",
+        "MailAddress":"Manager@gmail.com",
         "Domain":"TO",
         "Password":"12345678",
         "PhoneNumber":"12345678",
-        "Role":"Developer",
+        "Role":"Manager",
         "Location":"Pune"
     }
 }

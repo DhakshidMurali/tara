@@ -20,6 +20,7 @@ func createEmployeeCollaboratedWithEmployee(context *gin.Context) {
 		context.JSON(http.StatusBadRequest, gin.H{"Description": "Received data can't be parsed"})
 	}
 	query := employeeCollaboratedWithEmployee.MakeQuery("CREATE")
+	fmt.Println(query)
 	params := employeeCollaboratedWithEmployee.MakeParams("CREATE")
 	result := db.Execute(query, params)
 
@@ -108,6 +109,29 @@ func createEmployeeReportToEmployee(context *gin.Context) {
 	}
 }
 
+func createEmployeeComesUnderDepartment(context *gin.Context) {
+	var employeeComesUnderDepartment model.EmployeeComesUnderDepartment
+	err := context.ShouldBindJSON((&employeeComesUnderDepartment))
+
+	if err != nil {
+		context.JSON(http.StatusBadRequest, gin.H{"Description": "Received data can't be parsed"})
+	}
+	query := employeeComesUnderDepartment.MakeQuery("CREATE")
+	params := employeeComesUnderDepartment.MakeParams("CREATE")
+	result := db.Execute(query, params)
+
+	isCreated := result.Records[0].Values[0].(bool)
+	if isCreated {
+		context.JSON(http.StatusOK, gin.H{
+			"message": "Data Created in Database",
+		})
+	}
+	if !isCreated {
+		context.JSON(http.StatusOK, gin.H{
+			"message": "Data already Exist in Database",
+		})
+	}
+}
 func listEmployeeCollaboratedWithEmployee(context *gin.Context) {
 	var employeeCollaboratedWithEmployee model.EmployeeCollaboratedWithEmployee
 	var data model.Employee
@@ -138,14 +162,14 @@ func listEmployeeWorksInTools(context *gin.Context) {
 	var employeeData model.Employee
 	var toolData model.Tool
 	err := context.ShouldBindJSON((&employeeWorksInTools))
-
+	fmt.Println(err)
 	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"Description": "Received data can't be parsed"})
 	}
 	retrieveNode := context.Param("node")
 	var result *neo4j.EagerResult
 
-	if retrieveNode == "Employee" {
+	if retrieveNode == "EMPLOYEE" {
 		query := employeeWorksInTools.MakeQuery("LIST_EMPLOYEES_WORKS_IN_TOOL")
 		params := employeeWorksInTools.MakeParams("LIST_EMPLOYEES_WORKS_IN_TOOL")
 		result = db.Execute(query, params)
@@ -163,7 +187,7 @@ func listEmployeeWorksInTools(context *gin.Context) {
 		context.JSON(http.StatusOK, employeeList)
 		employeeList = nil
 	}
-	if retrieveNode == "Tool" {
+	if retrieveNode == "TOOL" {
 		query := employeeWorksInTools.MakeQuery("LIST_TOOLS_EMPLOYEE_WORKS_IN")
 		params := employeeWorksInTools.MakeParams("LIST_TOOLS_EMPLOYEE_WORKS_IN")
 		result = db.Execute(query, params)
@@ -194,7 +218,7 @@ func listEmployeeSkilledInSkills(context *gin.Context) {
 	}
 	retrieveNode := context.Param("node")
 	var result *neo4j.EagerResult
-	if retrieveNode == "Employee" {
+	if retrieveNode == "EMPLOYEE" {
 		query := employeeSkilledInSkills.MakeQuery("LIST_EMPLOYEE_SKILLED_IN")
 		params := employeeSkilledInSkills.MakeParams("LIST_EMPLOYEE_SKILLED_IN")
 		result = db.Execute(query, params)
@@ -212,7 +236,7 @@ func listEmployeeSkilledInSkills(context *gin.Context) {
 		context.JSON(http.StatusOK, employeeList)
 		employeeList = nil
 	}
-	if retrieveNode == "Skills" {
+	if retrieveNode == "SKILLS" {
 		query := employeeSkilledInSkills.MakeQuery("LIST_SKILLS_SKILLED_BY_EMPLOYEE")
 		params := employeeSkilledInSkills.MakeParams("LIST_SKILLS_SKILLED_BY_EMPLOYEE")
 		result = db.Execute(query, params)
@@ -263,6 +287,7 @@ func listEmployeeReportToEmployee(context *gin.Context) {
 	}
 	if retrieveNode == "EMPLOYEE" {
 		query := employeeReportToEmployee.MakeQuery("LIST_EMPLOYEE_REPORTEE_OF_MANAGER")
+		fmt.Println(query)
 		params := employeeReportToEmployee.MakeParams("LIST_EMPLOYEE_REPORTEE_OF_MANAGER")
 		result = db.Execute(query, params)
 
@@ -278,5 +303,55 @@ func listEmployeeReportToEmployee(context *gin.Context) {
 		}
 		context.JSON(http.StatusOK, employeeList)
 		employeeList = nil
+	}
+}
+
+func listEmployeeComesUnderDepartment(context *gin.Context) {
+	var employeeComesUnderDepartment model.EmployeeComesUnderDepartment
+	var employeeData model.Employee
+	var departmentData model.Department
+	err := context.ShouldBindJSON(&employeeComesUnderDepartment)
+
+	if err != nil {
+		context.JSON(http.StatusBadRequest, gin.H{"Description": "Received data can't be parsed"})
+	}
+	retrieveNode := context.Param("node")
+	var result *neo4j.EagerResult
+
+	if retrieveNode == "EMPLOYEE" {
+		query := employeeComesUnderDepartment.MakeQuery("LIST_EMPLOYEE_COMES_UNDER_DEPARTMENT")
+		params := employeeComesUnderDepartment.MakeParams("LIST_EMPLOYEE_COMES_UNDER_DEPARTMENT")
+		result = db.Execute(query, params)
+
+		for _, record := range result.Records {
+			mapRecord, _ := record.Get("n1")
+			byteData := util.MarshalData(mapRecord)
+			err := json.Unmarshal(byteData, &employeeData)
+			if err != nil {
+				fmt.Println("Error Unmarshalling Json")
+				panic(err)
+			}
+			employeeList = append(employeeList, employeeData)
+		}
+		context.JSON(http.StatusOK, employeeList)
+		employeeList = nil
+	}
+	if retrieveNode == "DEPARTMENT" {
+		query := employeeComesUnderDepartment.MakeQuery("LIST_DEPARTMENT_OF_EMPLOYEE")
+		params := employeeComesUnderDepartment.MakeParams("LIST_DEPARTMENT_OF_EMPLOYEE")
+		result = db.Execute(query, params)
+
+		for _, record := range result.Records {
+			mapRecord, _ := record.Get("n2")
+			byteData := util.MarshalData(mapRecord)
+			err := json.Unmarshal(byteData, &departmentData)
+			if err != nil {
+				fmt.Println("Error Unmarshalling Json")
+				panic(err)
+			}
+			departmentList = append(departmentList, departmentData)
+		}
+		context.JSON(http.StatusOK, departmentList)
+		departmentList = nil
 	}
 }

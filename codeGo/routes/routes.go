@@ -18,6 +18,7 @@ func APIRoutes(server *gin.Engine) {
 	authRoutes.POST("/create/relation/employeeWorksInTools", createEmployeeWorksInTools)
 	authRoutes.POST("/create/relation/employeeSkilledInSkills", createEmployeeSkilledInSkills)
 	authRoutes.POST("/create/relation/employeeReportToEmployee", createEmployeeReportToEmployee)
+	authRoutes.POST("/create/relation/employeeComesUnderDepartment", createEmployeeComesUnderDepartment)
 
 	authRoutes.POST("/create/relation/departmentManagedByEmployee", createDepartmentManagedByEmployee)
 	authRoutes.POST("/create/relation/communityMemberEmployee", createCommunityMemberEmployee)
@@ -62,6 +63,7 @@ func APIRoutes(server *gin.Engine) {
 	authRoutes.POST("/get/list/employeeWorksInTools/:node", listEmployeeWorksInTools)
 	authRoutes.POST("/get/list/employeeSkilledInSkills/:node", listEmployeeSkilledInSkills)
 	authRoutes.POST("/get/list/employeeReportToEmployee/:node", listEmployeeReportToEmployee)
+	authRoutes.POST("/get/list/employeeComesUnderDepartment/:node", listEmployeeComesUnderDepartment)
 
 	/*
 	* Retrieve data for Tool

@@ -121,7 +121,7 @@ func listToolAccessToEmployee(context *gin.Context) {
 
 	retrieveNode := context.Param("node")
 	var result *neo4j.EagerResult
-	if retrieveNode == "Tool" {
+	if retrieveNode == "TOOL" {
 		query := toolAccessToEmployee.MakeQuery("LIST_TOOLS_ACCESS_BY_EMPLOYEE")
 		params := toolAccessToEmployee.MakeParams("LIST_TOOLS_ACCESS_BY_EMPLOYEE")
 		result = db.Execute(query, params)
@@ -136,9 +136,9 @@ func listToolAccessToEmployee(context *gin.Context) {
 			toolList = append(toolList, toolData)
 		}
 		context.JSON(http.StatusOK, toolList)
-		employeeList = nil
+		toolList = nil
 	}
-	if retrieveNode == "Employee" {
+	if retrieveNode == "EMPLOYEE" {
 		query := toolAccessToEmployee.MakeQuery("LIST_EMPLOYEES_ACCESS_TO_TOOL")
 		params := toolAccessToEmployee.MakeParams("LIST_EMPLOYEES_ACCESS_TO_TOOL")
 		result = db.Execute(query, params)

@@ -4,15 +4,15 @@ content-type: application/json
 {
     "Communication":{
         "Type":"A",
-        "Content":"New post"
+        "Content":"New post 2"
     },
     "PostedBy":{
         "PostedByDate":"A"
     },
     "Employee":{
-        "Name":"B",
-        "MailAddress":"@gmail.com",
-        "Domain":"TO",
+        "Name":"A",
+        "MailAddress":"1@gmail.com",
+        "Domain":"TO1",
         "Password":"12345678",
         "PhoneNumber":"12345678",
         "Role":"Developer",

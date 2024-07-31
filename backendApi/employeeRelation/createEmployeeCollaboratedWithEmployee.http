@@ -3,9 +3,9 @@ content-type: application/json
 
 {
     "EmployeeN1":{
-        "Name":"B",
-        "MailAddress":"@gmail.com",
-        "Domain":"TO",
+        "Name":"A",
+        "MailAddress":"1@gmail.com",
+        "Domain":"TO1",
         "Password":"12345678",
         "PhoneNumber":"12345678",
         "Role":"Developer",
@@ -16,11 +16,13 @@ content-type: application/json
     },
     "EmployeeN2":{
         "Name":"B",
-        "MailAddress":"@gmail.com",
-        "Domain":"TO",
+        "MailAddress":"1@gmail.com",
+        "Domain":"TO1",
         "Password":"12345678",
         "PhoneNumber":"12345678",
         "Role":"Developer",
         "Location":"Pune"
     }
 }
+
+# verified
