@@ -244,7 +244,7 @@ func (v ToolComesUnderDepartment) MakeQuery(typeOfQuery string) string {
 		mapData := map[string]string{
 			"%n1": constant.TOOL,
 			"%r":  constant.COMESUNDER,
-			"%n2": constant.EMPLOYEEEN1,
+			"%n2": constant.DEPARTMENT,
 		}
 		query = util.ReplaceQuery(query, mapData)
 		return query

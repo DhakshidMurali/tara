@@ -267,7 +267,7 @@ func listToolComesUnderDepartment(context *gin.Context) {
 
 	retrieveNode := context.Param("node")
 	var result *neo4j.EagerResult
-	if retrieveNode == "Tool" {
+	if retrieveNode == "TOOL" {
 		query := toolComesUnderDepartment.MakeQuery("LIST_TOOLS_COMES_UNDER_DEPARTMENT")
 		params := toolComesUnderDepartment.MakeParams("LIST_TOOLS_COMES_UNDER_DEPARTMENT")
 		result = db.Execute(query, params)
@@ -284,7 +284,7 @@ func listToolComesUnderDepartment(context *gin.Context) {
 		context.JSON(http.StatusOK, toolList)
 		employeeList = nil
 	}
-	if retrieveNode == "Department" {
+	if retrieveNode == "DEPARTMENT" {
 		query := toolComesUnderDepartment.MakeQuery("LIST_DEPARTMENT_MAINTAIN_TOOL")
 		params := toolComesUnderDepartment.MakeParams("LIST_DEPARTMENT_MAINTAIN_TOOL")
 		result = db.Execute(query, params)

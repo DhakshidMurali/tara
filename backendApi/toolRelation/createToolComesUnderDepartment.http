@@ -6,8 +6,7 @@ content-type: application/json
         "Name":"B",
         "ApprovalType":"Manager"
     },
-    "AccessType":"Lvl 1",
     "Department":{
-        "DepartmentName":"ISO"
-    },
+        "DepartmentName":"ISO1"
+    }
 }
