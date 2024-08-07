@@ -340,7 +340,6 @@ func listEmployeeComesUnderDepartment(context *gin.Context) {
 		query := employeeComesUnderDepartment.MakeQuery("LIST_DEPARTMENT_OF_EMPLOYEE")
 		params := employeeComesUnderDepartment.MakeParams("LIST_DEPARTMENT_OF_EMPLOYEE")
 		result = db.Execute(query, params)
-
 		for _, record := range result.Records {
 			mapRecord, _ := record.Get("n2")
 			byteData := util.MarshalData(mapRecord)

@@ -48,7 +48,7 @@ func (v EmployeeCollaboratedWithEmployee) MakeQuery(typeOfQuery string) string {
 		returnData := constant.RETURNDATA_EMPLOYEE
 		mapData := map[string]string{
 			"%n1":        "Employee",
-			"%r":         "CollaboratedWith",
+			"%rel":         "CollaboratedWith",
 			"%n2":        "Employee",
 			"%condition": "elementId(n1)=$NodeId",
 			"%node":      "n2",
@@ -106,7 +106,7 @@ func (v EmployeeWorksInTools) MakeQuery(typeOfQuery string) string {
 		returnData := constant.RETURNDATA_TOOL
 		mapData := map[string]string{
 			"%n1":        "Employee",
-			"%r":         "WorksIn",
+			"%rel":         "WorksIn",
 			"%n2":        "Tool",
 			"%condition": "elementId(n1)=$NodeId",
 			"%node":      "n2",
@@ -119,7 +119,7 @@ func (v EmployeeWorksInTools) MakeQuery(typeOfQuery string) string {
 		returnData := constant.RETURNDATA_EMPLOYEE
 		mapData := map[string]string{
 			"%n1":        "Employee",
-			"%r":         "WorksIn",
+			"%rel":         "WorksIn",
 			"%n2":        "Tool",
 			"%condition": "elementId(n2)=$NodeId",
 			"%node":      "n1",
@@ -176,7 +176,7 @@ func (v EmployeeSkilledInSkills) MakeQuery(typeOfQuery string) string {
 		returnData := constant.RETURNDATA_EMPLOYEE
 		mapData := map[string]string{
 			"%n1":        "Employee",
-			"%r":         "SkilledIn",
+			"%rel":         "SkilledIn",
 			"%n2":        "Skills",
 			"%condition": "elementId(n2)=$NodeId",
 			"%node":      "n1",
@@ -189,7 +189,7 @@ func (v EmployeeSkilledInSkills) MakeQuery(typeOfQuery string) string {
 		returnData := constant.RETURNDATA_SKILLS
 		mapData := map[string]string{
 			"%n1":        "Employee",
-			"%r":         "SkilledIn",
+			"%rel":         "SkilledIn",
 			"%n2":        "Skills",
 			"%condition": "elementId(n1)=$NodeId",
 			"%node":      "n2",
@@ -245,20 +245,20 @@ func (v EmployeeReportToEmployee) MakeQuery(typeOfQuery string) string {
 		returnData := constant.RETURNDATA_EMPLOYEE
 		mapData := map[string]string{
 			"%n1":        "Employee",
-			"%r":         "ReportTo",
+			"%rel":         "ReportTo",
 			"%n2":        "Employee",
 			"%condition": "elementId(n1)=$NodeId",
 			"%node":      "n2",
 			"%return":    returnData,
 		}
-		query = util.ReplaceQuery(query, mapData)
+		query = util.DoubleReplaceQuery(query, mapData)
 		return query
 	case "LIST_EMPLOYEE_REPORTEE_OF_MANAGER":
 		query := constant.RETRIEVE_DATA_NODE_WHERE
 		returnData := constant.RETURNDATA_EMPLOYEE
 		mapData := map[string]string{
 			"%n1":        "Employee",
-			"%r":         "ReportTo",
+			"%rel":         "ReportTo",
 			"%n2":        "Employee",
 			"%condition": "elementId(n2)=$NodeId",
 			"%node":      "n1",
@@ -319,26 +319,26 @@ func (v EmployeeComesUnderDepartment) MakeQuery(typeOfQuery string) string {
 		returnData := constant.RETURNDATA_EMPLOYEE
 		mapData := map[string]string{
 			"%n1":        "Employee",
-			"%r":         "ComesUnder",
+			"%rel":         "ComesUnder",
 			"%n2":        "Department",
 			"%condition": "elementId(n1)=$NodeId",
 			"%node":      "n2",
 			"%return":    returnData,
 		}
-		query = util.ReplaceQuery(query, mapData)
+		query = util.DoubleReplaceQuery(query, mapData)
 		return query
 	case "LIST_EMPLOYEE_COMES_UNDER_DEPARTMENT":
 		query := constant.RETRIEVE_DATA_NODE_WHERE
 		returnData := constant.RETURNDATA_EMPLOYEE
 		mapData := map[string]string{
 			"%n1":        "Employee",
-			"%r":         "ComesUnder",
+			"%rel":         "ComesUnder",
 			"%n2":        "Department",
 			"%condition": "elementId(n2)=$NodeId",
 			"%node":      "n1",
 			"%return":    returnData,
 		}
-		query = util.ReplaceQuery(query, mapData)
+		query = util.DoubleReplaceQuery(query, mapData)
 		return query
 	default:
 		return ""

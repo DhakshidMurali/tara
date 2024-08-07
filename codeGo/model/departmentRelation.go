@@ -26,7 +26,7 @@ func (v DepartmentManagedByEmployee) MakeQuery(typeOfQuery string) string {
 		returnData := constant.RETURNDATA_DEPARTMENT
 		mapData := map[string]string{
 			"%n1":        "Department",
-			"%r":         "ManagedBy",
+			"%rel":         "ManagedBy",
 			"%n2":        "Employee",
 			"%condition": "elementId(n2)=$NodeId",
 			"%node":      "n1",

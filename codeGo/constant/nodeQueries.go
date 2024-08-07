@@ -30,7 +30,7 @@ const (
 	`
 
 	RETRIEVE_DATA_NODE_WHERE = `
-	MATCH (n1:%n1)-[r:%r]->(n2:%n2)
+	MATCH (n1:%n1)-[r:%rel]->(n2:%n2)
 	WHERE %condition
 	RETURN %return
 	`

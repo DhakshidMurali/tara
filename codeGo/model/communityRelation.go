@@ -33,13 +33,13 @@ func (v CommunityMemberEmployee) MakeQuery(typeOfQuery string) string {
 		query := constant.RETRIEVE_DATA_NODE_WHERE
 		mapData := map[string]string{
 			"%n1":        "Community",
-			"%r":         "Member",
+			"%rel":       "Member",
 			"%n2":        "Employee",
 			"%condition": "elementId(n1)=$NodeId",
 			"%node":      "n2",
 			"%return":    returnData,
 		}
-		query = util.ReplaceQuery(query, mapData)
+		query = util.DoubleReplaceQuery(query, mapData)
 		return query
 
 	default:
@@ -88,7 +88,7 @@ func (v CommunityCreatedByEmployee) MakeQuery(typeOfQuery string) string {
 		query := constant.RETRIEVE_DATA_NODE_WHERE
 		mapData := map[string]string{
 			"%n1":        "Community",
-			"%r":         "CreatedBy",
+			"%rel":       "CreatedBy",
 			"%n2":        "Employee",
 			"%condition": "elementId(n2)=$NodeId",
 			"%node":      "n1",

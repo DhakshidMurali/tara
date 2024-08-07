@@ -1,0 +1,13 @@
+# POST http://localhost:8080/get/list/toolRequestByEmployee/TOOL
+POST http://localhost:8080/get/list/toolRequestByEmployee/EMPLOYEE
+content-type: application/json
+
+{
+    "Tool":{
+        "Key":"4:41b0534a-8bbd-4d1b-80ed-d6c4f9f9f1a2:26"
+    },
+    "Employee":{
+    }
+}
+
+# verified

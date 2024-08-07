@@ -49,7 +49,7 @@ func listToolRequestByEmployee(context *gin.Context) {
 	retrieveNode := context.Param("node")
 	var result *neo4j.EagerResult
 
-	if retrieveNode == "Tool" {
+	if retrieveNode == "TOOL" {
 		query := toolRequestByEmployee.MakeQuery("LIST_TOOL_REQUESTED_BY_EMPLOYEE")
 		params := toolRequestByEmployee.MakeParams("LIST_TOOL_REQUESTED_BY_EMPLOYEE")
 		result = db.Execute(query, params)
@@ -67,7 +67,7 @@ func listToolRequestByEmployee(context *gin.Context) {
 		toolList = nil
 	}
 
-	if retrieveNode == "Employee" {
+	if retrieveNode == "EMPLOYEE" {
 		query := toolRequestByEmployee.MakeQuery("LIST_EMPLOYEES_REQUESTED_TO_TOOL")
 		params := toolRequestByEmployee.MakeParams("LIST_EMPLOYEES_REQUESTED_TO_TOOL")
 		result = db.Execute(query, params)
@@ -194,8 +194,9 @@ func listToolManagedByEmployee(context *gin.Context) {
 
 	retrieveNode := context.Param("node")
 	var result *neo4j.EagerResult
-	if retrieveNode == "Tool" {
+	if retrieveNode == "TOOL" {
 		query := toolManagedByEmployee.MakeQuery("LIST_TOOLS_MANAGED_BY_EMPLOYEE")
+		fmt.Println(query)
 		params := toolManagedByEmployee.MakeParams("LIST_TOOLS_MANAGED_BY_EMPLOYEE")
 		result = db.Execute(query, params)
 		for _, record := range result.Records {
@@ -211,7 +212,7 @@ func listToolManagedByEmployee(context *gin.Context) {
 		context.JSON(http.StatusOK, toolList)
 		employeeList = nil
 	}
-	if retrieveNode == "Employee" {
+	if retrieveNode == "EMPLOYEE" {
 		query := toolManagedByEmployee.MakeQuery("LIST_EMPLOYEES_MANAGES_TOOL")
 		params := toolManagedByEmployee.MakeParams("LIST_EMPLOYEES_MANAGES_TOOL")
 		result = db.Execute(query, params)
@@ -269,6 +270,7 @@ func listToolComesUnderDepartment(context *gin.Context) {
 	var result *neo4j.EagerResult
 	if retrieveNode == "TOOL" {
 		query := toolComesUnderDepartment.MakeQuery("LIST_TOOLS_COMES_UNDER_DEPARTMENT")
+		fmt.Println(query)
 		params := toolComesUnderDepartment.MakeParams("LIST_TOOLS_COMES_UNDER_DEPARTMENT")
 		result = db.Execute(query, params)
 		for _, record := range result.Records {

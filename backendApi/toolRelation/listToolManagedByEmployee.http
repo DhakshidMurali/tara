@@ -1,0 +1,21 @@
+# POST http://localhost:8080/get/list/toolManagedByEmployee/TOOL
+POST http://localhost:8080/get/list/toolManagedByEmployee/EMPLOYEE
+content-type: application/json
+
+# {
+#     "Tool":{
+#     },
+#     "Employee":{
+#         "Key":"4:41b0534a-8bbd-4d1b-80ed-d6c4f9f9f1a2:28"
+#     }
+# }
+
+{
+    "Tool":{
+        "Key":"4:41b0534a-8bbd-4d1b-80ed-d6c4f9f9f1a2:30"
+    },
+    "Employee":{
+    }
+}
+
+# verified

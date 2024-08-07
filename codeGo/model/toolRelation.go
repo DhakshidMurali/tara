@@ -43,26 +43,26 @@ func (v ToolRequestByEmployee) MakeQuery(typeOfQuery string) string {
 		returnData := constant.RETURNDATA_TOOL
 		mapData := map[string]string{
 			"%n1":        "Tool",
-			"%r":         "RequestBy",
+			"%rel":       "RequestBy",
 			"%n2":        "Employee",
 			"%condition": "elementId(n2)=$NodeId",
 			"%node":      "n1",
 			"%return":    returnData,
 		}
-		query = util.ReplaceQuery(query, mapData)
+		query = util.DoubleReplaceQuery(query, mapData)
 		return query
 	case "LIST_EMPLOYEES_REQUESTED_TO_TOOL":
 		query := constant.RETRIEVE_DATA_NODE_WHERE
 		returnData := constant.RETURNDATA_EMPLOYEE
 		mapData := map[string]string{
 			"%n1":        "Tool",
-			"%r":         "RequestBy",
+			"%rel":       "RequestBy",
 			"%n2":        "Employee",
 			"%condition": "elementId(n1)=$NodeId",
 			"%node":      "n2",
 			"%return":    returnData,
 		}
-		query = util.ReplaceQuery(query, mapData)
+		query = util.DoubleReplaceQuery(query, mapData)
 		return query
 	default:
 		return ""
@@ -116,7 +116,7 @@ func (v ToolAccessToEmployee) MakeQuery(typeOfQuery string) string {
 		returnData := constant.RETURNDATA_TOOL
 		mapData := map[string]string{
 			"%n1":        "Tool",
-			"%r":         "AccessTo",
+			"%rel":       "AccessTo",
 			"%n2":        "Employee",
 			"%condition": "elementId(n2)=$NodeId",
 			"%node":      "n1",
@@ -129,7 +129,7 @@ func (v ToolAccessToEmployee) MakeQuery(typeOfQuery string) string {
 		returnData := constant.RETURNDATA_EMPLOYEE
 		mapData := map[string]string{
 			"%n1":        "Tool",
-			"%r":         "AccessTo",
+			"%rel":       "AccessTo",
 			"%n2":        "Employee",
 			"%condition": "elementId(n1)=$NodeId",
 			"%node":      "n2",
@@ -186,26 +186,26 @@ func (v ToolManagedByEmployee) MakeQuery(typeOfQuery string) string {
 		returnData := constant.RETURNDATA_TOOL
 		mapData := map[string]string{
 			"%n1":        "Tool",
-			"%r":         "AccessTo",
+			"%rel":       "ManagedBy",
 			"%n2":        "Employee",
 			"%condition": "elementId(n2)=$NodeId",
 			"%node":      "n1",
 			"%return":    returnData,
 		}
-		query = util.ReplaceQuery(query, mapData)
+		query = util.DoubleReplaceQuery(query, mapData)
 		return query
 	case "LIST_EMPLOYEES_MANAGES_TOOL":
 		query := constant.RETRIEVE_DATA_NODE_WHERE
 		returnData := constant.RETURNDATA_EMPLOYEE
 		mapData := map[string]string{
 			"%n1":        "Tool",
-			"%r":         "AccessTo",
+			"%rel":       "ManagedBy",
 			"%n2":        "Employee",
 			"%condition": "elementId(n1)=$NodeId",
 			"%node":      "n2",
 			"%return":    returnData,
 		}
-		query = util.ReplaceQuery(query, mapData)
+		query = util.DoubleReplaceQuery(query, mapData)
 		return query
 	default:
 		return ""
@@ -225,11 +225,11 @@ func (v ToolManagedByEmployee) MakeParams(typeOfQuery string) map[string]any {
 			"EmployeeEmployeeRole": v.Employee.Role,
 			"EmployeeLocation":     v.Employee.Location,
 		}
-	case "LIST_TOOL_REQUESTED_BY_EMPLOYEE":
+	case "LIST_TOOLS_MANAGED_BY_EMPLOYEE":
 		return map[string]any{
 			"NodeId": v.Employee.Key,
 		}
-	case "LIST_EMPLOYEES_REQUESTED_TO_TOOL":
+	case "LIST_EMPLOYEES_MANAGES_TOOL":
 		return map[string]any{
 			"NodeId": v.Tool.Key,
 		}
@@ -253,26 +253,26 @@ func (v ToolComesUnderDepartment) MakeQuery(typeOfQuery string) string {
 		returnData := constant.RETURNDATA_TOOL
 		mapData := map[string]string{
 			"%n1":        "Tool",
-			"%r":         "ComesUnder",
+			"%rel":       "ComesUnder",
 			"%n2":        "Department",
 			"%condition": "elementId(n2)=$NodeId",
 			"%node":      "n1",
 			"%return":    returnData,
 		}
-		query = util.ReplaceQuery(query, mapData)
+		query = util.DoubleReplaceQuery(query, mapData)
 		return query
 	case "LIST_DEPARTMENT_MAINTAIN_TOOL":
 		query := constant.RETRIEVE_DATA_NODE_WHERE
 		returnData := constant.RETURNDATA_DEPARTMENT
 		mapData := map[string]string{
 			"%n1":        "Tool",
-			"%r":         "ComesUnder",
+			"%rel":       "ComesUnder",
 			"%n2":        "Department",
 			"%condition": "elementId(n1)=$NodeId",
 			"%node":      "n2",
 			"%return":    returnData,
 		}
-		query = util.ReplaceQuery(query, mapData)
+		query = util.DoubleReplaceQuery(query, mapData)
 		return query
 	default:
 		return ""

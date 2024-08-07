@@ -96,7 +96,6 @@ func listCommunityMemberEmployee(context *gin.Context) {
 	}
 
 	query := communityMemberEmployee.MakeQuery("LIST_EMPLOYEES_MEMBER_OF_COMMUNITY")
-	fmt.Println(query)
 	params := communityMemberEmployee.MakeParams("LIST_EMPLOYEES_MEMBER_OF_COMMUNITY")
 	result := db.Execute(query, params)
 

@@ -33,7 +33,7 @@ func (v CommunicationPostedInCommunity) MakeQuery(typeOfQuery string) string {
 		query := constant.RETRIEVE_DATA_NODE_WHERE
 		mapData := map[string]string{
 			"%n1":        "Communication",
-			"%r":         "PostedIn",
+			"%rel":         "PostedIn",
 			"%n2":        "Community",
 			"%condition": "elementId(n2)=$NodeId",
 			"%node":      "n1",
@@ -84,7 +84,7 @@ func (v CommunicationPostedByEmployee) MakeQuery(typeOfQuery string) string {
 		query := constant.RETRIEVE_DATA_NODE_WHERE
 		mapData := map[string]string{
 			"%n1":        "Communication",
-			"%r":         "PostedBy",
+			"%rel":         "PostedBy",
 			"%n2":        "Employee",
 			"%condition": "elementId(n2)=$NodeId",
 			"%node":      "n1",

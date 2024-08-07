@@ -1,13 +1,19 @@
 POST http://localhost:8080/get/list/toolComesUnderDepartment/TOOL
+# POST http://localhost:8080/get/list/toolComesUnderDepartment/DEPARTMENT
 content-type: application/json
 
 {
     "Tool":{
-        "Name":"B",
-        "ApprovalType":"Manager"
     },
-    "AccessType":"Lvl 1",
     "Department":{
-        "DepartmentName":"ISO"
-    },
+        "Key":  "4:41b0534a-8bbd-4d1b-80ed-d6c4f9f9f1a2:2"
+    }
 }
+
+# {
+#     "Tool":{
+#         "Key":"4:41b0534a-8bbd-4d1b-80ed-d6c4f9f9f1a2:33"
+#     },
+#     "Department":{
+#     }
+# }

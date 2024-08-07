@@ -1,0 +1,21 @@
+# POST http://localhost:8080/get/list/employeeComesUnderDepartment/EMPLOYEE
+POST http://localhost:8080/get/list/employeeComesUnderDepartment/DEPARTMENT
+content-type: application/json
+
+# {
+#     "Employee":{
+#     },
+#     "Department":{
+#         "Key":"4:41b0534a-8bbd-4d1b-80ed-d6c4f9f9f1a2:2"
+#     }
+# }
+
+{
+    "Employee":{
+        "Key":"4:41b0534a-8bbd-4d1b-80ed-d6c4f9f9f1a2:35"
+    },
+    "Department":{
+    }
+}
+
+# Verified

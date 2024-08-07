@@ -1,20 +1,19 @@
-POST http://localhost:8080/create/relation/toolManagedByEmployee
+POST http://localhost:8080/create/relation/employeeComesUnderDepartment
 content-type: application/json
 
 {
-    "Tool":{
-        "Name":"New A",
-        "ApprovalType":"Manager"
-    },
     "Employee":{
-        "Name":"New B",
+        "Name":"New Employee",
         "MailAddress":"@gmail.com",
         "Domain":"TO",
         "Password":"12345678",
         "PhoneNumber":"12345678",
         "Role":"Developer",
         "Location":"Pune"
+    },
+    "Department":{
+        "DepartmentName":"ISO"
     }
 }
 
-# verified
+# Verified
