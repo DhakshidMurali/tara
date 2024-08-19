@@ -1,0 +1,10 @@
+ Grid 
+ 
+ - Grid MUI have Grid Container and Grid Item
+ - Grid Container is flex container for layout items, Grid Item is element which is presented inside Grid container.
+ - xs: For extra-small screens (mobile devices).
+ - sm: For small screens (tablets).
+ - md: For medium screens (small laptops).
+ - lg: For large screens (desktops).
+ - xl: For extra-large screens (large desktops).
+ - Those parameters are specified for grid which determine percentage of grid occupy the space - Example xs = 3 [ in total 12 ] , means 25% of widht is occupied
