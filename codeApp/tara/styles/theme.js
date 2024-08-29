@@ -8,12 +8,14 @@ const theme = createTheme({
     },
     secondary: {
       main: '#17153B',
+      light:'#C8ACD6'
     },
     background: {
       paper: '#ffffff', 
     },
   },
   typography: {
+    fontFamily:'IBM Plex Sans'
   },
 });
 
