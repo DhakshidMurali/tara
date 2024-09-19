@@ -1,0 +1,1 @@
+ - Grid in MUI have 12 as full width - Grid syntax follows : Grid parent has container

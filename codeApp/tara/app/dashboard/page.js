@@ -1,12 +1,7 @@
 "use client";
 import SearchBox from "@/components/box/searchBox";
 import NavBar from "@/components/navBar/navBar";
-import {
-  BuildCircleOutlined,
-  Domain,
-  ExpandMore,
-  PageviewRounded,
-} from "@mui/icons-material";
+import { Domain, ExpandMore, PageviewRounded } from "@mui/icons-material";
 import {
   Avatar,
   Box,
@@ -16,32 +11,11 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import useStyles, {
-  departmentsListBoxStyle,
-  employerByDepartmentBoxStyle,
-  listBoxStyle,
-  listContainBoxStyle,
-  searchTextFieldInputPropsStyle,
-} from "./useStyles";
+import { styles } from "./useStyles.ts";
 
+import { dayNames, month } from "@/utils/constants";
 export default function DashBoard() {
-  const style = useStyles();
   let time = new Date();
-  const month = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-  var dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   return (
     <>
       <Grid item xs={2.15} sx={{ bgcolor: "green", marginRight: 2 }}>
@@ -65,10 +39,7 @@ export default function DashBoard() {
                 style: { color: "#f3def5", fontWeight: "bolder", fontSize: 16 },
               }}
             />
-            <Typography
-              className={style.centerBoxText}
-              sx={{ textWrap: "nowrap" }}
-            >
+            <Typography sx={styles.dateTypographyStyle}>
               {dayNames[time.getDay()] +
                 ", " +
                 month[time.getMonth()] +
@@ -83,31 +54,19 @@ export default function DashBoard() {
           display={"flex"}
           justifyContent={"space-between"}
         >
-          <Typography variant="h3" className={style.titleText}>
+          <Typography variant="h3" sx={styles.dashboardTextTypographStyle}>
             Dashboard{" "}
           </Typography>
-          <Button
-            sx={{
-              paddingRight: 2,
-              marginRight: 4,
-              backgroundColor: "green",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              width: 128,
-            }}
-          >
-            Create
-          </Button>
+          <Button sx={styles.createButtonStyle}>Create</Button>
         </Stack>
         <Grid container spacing={2}>
           {/* Horizontal Scroll Grid */}
           <Grid item xs={12}>
-            <Box sx={listContainBoxStyle}>
+            <Box sx={styles.toolsContainerBoxStyle}>
               <Grid container spacing={2} sx={{ flexWrap: "nowrap" }}>
                 {Array.from({ length: 10 }).map((_, index) => (
                   <Grid item key={index}>
-                    <Box sx={listBoxStyle}>
+                    <Box sx={styles.toolsContainerListBoxStyle}>
                       <Typography variant="h6" color="white">
                         Item {index + 1}
                       </Typography>
@@ -119,27 +78,27 @@ export default function DashBoard() {
           </Grid>
           <Grid item xs={8}>
             <Box
-              sx={employerByDepartmentBoxStyle}
+              sx={styles.employerByDepartmentBoxStyle}
               padding={4}
               bgcolor={"purple"}
               height={548}
             >
               <Stack spacing={4}>
-                <Typography variant="h4" className={style.titleText}>
+                <Typography variant="h4" sx={styles.dashboardTextTypographStyle}>
                   Employee By Department
                 </Typography>
-                <Typography variant="h6" className={style.titleText}>
+                <Typography variant="h6" sx={styles.dashboardTextTypographStyle}>
                   Computer Science Eng
                 </Typography>
-                <Typography variant="h6" className={style.titleText}>
+                <Typography variant="h6" sx={styles.dashboardTextTypographStyle}>
                   {" "}
                   Computer Science Eng
                 </Typography>
-                <Typography variant="h6" className={style.titleText}>
+                <Typography variant="h6" sx={styles.dashboardTextTypographStyle}>
                   {" "}
                   Computer Science Eng
                 </Typography>
-                <Typography variant="h6" className={style.titleText}>
+                <Typography variant="h6" sx={styles.dashboardTextTypographStyle}>
                   {" "}
                   Computer Science Eng
                 </Typography>
@@ -147,36 +106,19 @@ export default function DashBoard() {
             </Box>
           </Grid>
           <Grid item xs={4}>
-            <Box
-              sx={{
-                backgroundColor: "purple",
-                height: 548,
-                padding: 4,
-                borderRadius: 4,
-                marginRight: 4,
-              }}
-            >
+            <Box sx={styles.departmentContainerBoxStyle}>
               <Stack spacing={0}>
-                <Typography variant="h4" className={style.titleText}>
+                <Typography variant="h4" sx={styles.dashboardTextTypographStyle}>
                   Departments
                 </Typography>
-                <Box
-                  sx={{
-                    borderRadius: 2,
-                    height: 72,
-                    width: "90%",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
+                <Box sx={styles.departmentContainerListBoxStyle}>
                   <Stack direction={"row"}>
                     <Avatar>
                       <Domain></Domain>
                     </Avatar>
                     <Typography
                       variant="h6"
-                      className={style.titleText}
+                      sx={styles.dashboardTextTypographStyle}
                       paddingLeft={2}
                     >
                       Computer Science Eng
@@ -188,23 +130,16 @@ export default function DashBoard() {
                     </Button>
                   </Stack>
                 </Box>
-                <Box
-                  sx={{
-                    height: 1.25,
-                    width: "70%",
-                    bgcolor: "red",
-                    alignSelf: "center",
-                  }}
-                ></Box>
-                <Typography variant="h6" className={style.titleText}>
+                <Box sx={styles.departmentContainerListDividerBoxStyle}></Box>
+                <Typography variant="h6" sx={styles.dashboardTextTypographStyle}>
                   {" "}
                   Computer Science Eng
                 </Typography>
-                <Typography variant="h6" className={style.titleText}>
+                <Typography variant="h6" sx={styles.dashboardTextTypographStyle}>
                   {" "}
                   Computer Science Eng
                 </Typography>
-                <Typography variant="h6" className={style.titleText}>
+                <Typography variant="h6" sx={styles.dashboardTextTypographStyle}>
                   {" "}
                   Computer Science Eng
                 </Typography>

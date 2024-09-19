@@ -18,3 +18,9 @@ export default function RootLayout({ children }) {
     </ThemeProvider>
   );
 }
+
+
+/*
+Grid hava containe where children do have Grid Items
+ThemeProvider have theme - Where custom theme is defined
+*/
