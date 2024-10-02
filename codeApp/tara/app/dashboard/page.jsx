@@ -1,24 +1,18 @@
 "use client";
-import SearchBox from "@/components/box/searchBox";
-import NavBar from "@/components/navBar/navBar";
-import { Domain, ExpandMore, PageviewRounded } from "@mui/icons-material";
-import {
-  Avatar,
-  Box,
-  Button,
-  Grid,
-  Stack,
-  TextField,
-  Typography,
-} from "@mui/material";
-import { styles } from "./useStyles.ts";
+
+import NavBar from "@/components/navBar/navBar.js";
+import { PageviewRounded } from "@mui/icons-material";
+import { Box, Button, Grid, Stack, TextField, Typography } from "@mui/material";
+import { styles } from "./useStyles.tsx";
 
 import { dayNames, month } from "@/utils/constants";
+import SearchBox from "@/components/dashboard/box/searchBox.js";
+import DepartmentListBox from "@/components/dashboard/box/departmentListBox.js";
 export default function DashBoard() {
   let time = new Date();
   return (
     <>
-      <Grid item xs={2.15} sx={{ bgcolor: "green", marginRight: 2 }}>
+      <Grid item xs={2.15} sx={{ marginRight: 2 }}>
         <NavBar selected="dashboard"></NavBar>
       </Grid>
       <Grid item xs={9.75}>
@@ -84,21 +78,36 @@ export default function DashBoard() {
               height={548}
             >
               <Stack spacing={4}>
-                <Typography variant="h4" sx={styles.dashboardTextTypographStyle}>
+                <Typography
+                  variant="h4"
+                  sx={styles.dashboardTextTypographStyle}
+                >
                   Employee By Department
                 </Typography>
-                <Typography variant="h6" sx={styles.dashboardTextTypographStyle}>
+                <Typography
+                  variant="h6"
+                  sx={styles.dashboardTextTypographStyle}
+                >
                   Computer Science Eng
                 </Typography>
-                <Typography variant="h6" sx={styles.dashboardTextTypographStyle}>
+                <Typography
+                  variant="h6"
+                  sx={styles.dashboardTextTypographStyle}
+                >
                   {" "}
                   Computer Science Eng
                 </Typography>
-                <Typography variant="h6" sx={styles.dashboardTextTypographStyle}>
+                <Typography
+                  variant="h6"
+                  sx={styles.dashboardTextTypographStyle}
+                >
                   {" "}
                   Computer Science Eng
                 </Typography>
-                <Typography variant="h6" sx={styles.dashboardTextTypographStyle}>
+                <Typography
+                  variant="h6"
+                  sx={styles.dashboardTextTypographStyle}
+                >
                   {" "}
                   Computer Science Eng
                 </Typography>
@@ -108,41 +117,17 @@ export default function DashBoard() {
           <Grid item xs={4}>
             <Box sx={styles.departmentContainerBoxStyle}>
               <Stack spacing={0}>
-                <Typography variant="h4" sx={styles.dashboardTextTypographStyle}>
+                <Typography
+                  variant="h4"
+                  sx={styles.dashboardTextTypographStyle}
+                >
                   Departments
                 </Typography>
-                <Box sx={styles.departmentContainerListBoxStyle}>
-                  <Stack direction={"row"}>
-                    <Avatar>
-                      <Domain></Domain>
-                    </Avatar>
-                    <Typography
-                      variant="h6"
-                      sx={styles.dashboardTextTypographStyle}
-                      paddingLeft={2}
-                    >
-                      Computer Science Eng
-                    </Typography>
-                    <Button sx={{ margin: 0 }}>
-                      <ExpandMore
-                        sx={{ marginLeft: 0, color: "white" }}
-                      ></ExpandMore>
-                    </Button>
-                  </Stack>
-                </Box>
-                <Box sx={styles.departmentContainerListDividerBoxStyle}></Box>
-                <Typography variant="h6" sx={styles.dashboardTextTypographStyle}>
-                  {" "}
-                  Computer Science Eng
-                </Typography>
-                <Typography variant="h6" sx={styles.dashboardTextTypographStyle}>
-                  {" "}
-                  Computer Science Eng
-                </Typography>
-                <Typography variant="h6" sx={styles.dashboardTextTypographStyle}>
-                  {" "}
-                  Computer Science Eng
-                </Typography>
+                <DepartmentListBox></DepartmentListBox>
+                <DepartmentListBox></DepartmentListBox>{" "}
+                <DepartmentListBox></DepartmentListBox>{" "}
+                <DepartmentListBox></DepartmentListBox>{" "}
+                <DepartmentListBox></DepartmentListBox>
               </Stack>
             </Box>
           </Grid>

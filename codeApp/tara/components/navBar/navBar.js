@@ -1,7 +1,9 @@
 "use client";
-import AvatarBox from "@/components/box/avatarBox";
-import ListBox from "@/components/box/listBox";
-import SpacerBox from "@/components/box/spacerBox";
+
+import AvatarBox from "./box/avatarBox";
+import ListBox from "./box/listBox";
+import SpacerBox from "./box/spacerBox";
+import { lightPurple } from "@/utils/constants";
 import {
   AccountCircleOutlined,
   DashboardRounded,
@@ -10,11 +12,10 @@ import {
 } from "@mui/icons-material";
 import { Avatar, Button, Stack, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
-import { green } from "@mui/material/colors";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
 import { useRouter } from "next/navigation";
-import useStyles from "./useStyles";
+import { styles } from "./useStyles";
 const Sidebar = styled(Paper)(({ theme }) => ({
   height: "100vh",
   backgroundColor: theme.palette.primary.main,
@@ -24,7 +25,6 @@ const Sidebar = styled(Paper)(({ theme }) => ({
 
 export default function NavBar(props) {
   const { selected } = props;
-  const style = useStyles();
   const route = useRouter();
   const handleNavigation = (currentPage) => {
     currentPage == "dashboard"
@@ -45,9 +45,9 @@ export default function NavBar(props) {
           <Box
             component="img"
             src="/images/logo.jpg"
-            sx={{ height: 80, width: 80, mixBlendMode: "multiply" }}
+            sx={styles.imageLogo}
           ></Box>
-          <Typography variant="h3" className={style.titleText}>
+          <Typography variant="h3" sx={styles.titleTextStyle}>
             Tara
           </Typography>
         </Stack>
@@ -55,18 +55,17 @@ export default function NavBar(props) {
         <AvatarBox>
           <Avatar
             variant="rounded"
-            sx={{ bgcolor: green[500], width: 112, height: 112 }}
+            sx={{ bgcolor: lightPurple, width: 112, height: 112 }}
           >
             AV
           </Avatar>
         </AvatarBox>
-        <Typography variant="body1" className={style.centerBoxText}>
+        <Typography variant="body1" sx={styles.userNameTextStyle}>
           Arjun Vijay
         </Typography>
         <Typography
           variant="h3"
-          className={style.centerBoxTextFWLight}
-          sx={{ margin: 0 }}
+          sx={styles.userEmailAddressTextStyle}
         >
           arjun.vijay@gmail.com
         </Typography>
@@ -80,7 +79,7 @@ export default function NavBar(props) {
             <DashboardRounded
               color={selected == "dashboard" ? "primary" : "secondary"}
             ></DashboardRounded>
-            <Typography variant="body1" className={style.centerBoxText}>
+            <Typography variant="body1" sx={styles.navbarSelectedMenuTextStyle}>
               Dashboard
             </Typography>
           </ListBox>
@@ -94,7 +93,7 @@ export default function NavBar(props) {
             <Groups2
               color={selected == "community" ? "primary" : "secondary"}
             ></Groups2>
-            <Typography variant="body1" className={style.centerBoxText}>
+            <Typography variant="body1" sx={styles.navbarMenuTextStyle}>
               Community
             </Typography>
           </ListBox>
@@ -109,7 +108,7 @@ export default function NavBar(props) {
             <TimelineOutlined
               color={selected == "hierarchy" ? "primary" : "secondary"}
             ></TimelineOutlined>
-            <Typography variant="body1" className={style.centerBoxText}>
+            <Typography variant="body1" sx={styles.navbarMenuTextStyle}>
               Hierarchy
             </Typography>
           </ListBox>
@@ -123,7 +122,7 @@ export default function NavBar(props) {
             <AccountCircleOutlined
               color={selected == "profile" ? "primary" : "secondary"}
             ></AccountCircleOutlined>
-            <Typography variant="body1" className={style.centerBoxText}>
+            <Typography variant="body1" sx={styles.navbarMenuTextStyle}>
               Profile
             </Typography>
           </ListBox>

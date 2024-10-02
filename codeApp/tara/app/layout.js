@@ -10,7 +10,7 @@ export default function RootLayout({ children }) {
     <ThemeProvider theme={theme}>
       <html>
         <body>
-          <Grid container sx={{ height: "100vh", width: "100vw" }}>
+          <Grid container sx={{ height: "100vh", width: "100vw" ,backgroundColor:theme.palette.secondary.main}}>
             {children}
           </Grid>
         </body>

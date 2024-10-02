@@ -4,14 +4,13 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#2E236C',  
+      main: 'rgb(39,14,95)',  // Blue Nav Bar
+      light:'rgb(177,248,180)', // Green Selected Nav Bar
+      contrastText:'#f3def5' // white color
     },
     secondary: {
-      main: '#17153B',
-      light:'#C8ACD6'
-    },
-    background: {
-      paper: '#ffffff', 
+      main: 'rgb(17,8,27)', // Background Color
+      light:'rgb(33,24,43)' // Dark Purple
     },
   },
   typography: {

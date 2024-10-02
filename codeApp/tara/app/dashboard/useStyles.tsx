@@ -23,7 +23,7 @@ const dateTypographyStyle: SxProps = {
 const createButtonStyle: SxProps = {
   paddingRight: 2,
   marginRight: 4,
-  backgroundColor: "green",
+  backgroundColor: "primary.light",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -38,7 +38,7 @@ const toolsContainerBoxStyle: SxProps = {
 const toolsContainerListBoxStyle: SxProps = {
   height: 168,
   width: 232,
-  backgroundColor: "primary.main",
+  backgroundColor: "secondary.light",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -47,36 +47,29 @@ const toolsContainerListBoxStyle: SxProps = {
 
 const employerByDepartmentBoxStyle: SxProps = {
   borderRadius: 4,
+  backgroundColor: "secondary.light",
 };
 
 const departmentContainerBoxStyle: SxProps = {
-  backgroundColor: "purple",
+  backgroundColor: "secondary.light",
   height: 548,
   padding: 4,
   borderRadius: 4,
   marginRight: 4,
 };
 
-const departmentContainerListBoxStyle: SxProps = {
-  borderRadius: 2,
-  height: 72,
-  width: "90%",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
+const dashboardTextTypographStyle: SxProps = {
+  color: "#f3def5",
+  fontWeight: "bolder",
 };
 
 const departmentContainerListDividerBoxStyle: SxProps = {
   height: 1.25,
   width: "70%",
-  bgcolor: "red",
+  bgcolor: "secondary.main",
   alignSelf: "center",
 };
 
-const dashboardTextTypographStyle: SxProps = {
-  color: "#f3def5",
-  fontWeight: "bolder",
-};
 
 export const styles = {
   searchTextFieldInputPropsStyle,
@@ -86,7 +79,6 @@ export const styles = {
   toolsContainerListBoxStyle,
   employerByDepartmentBoxStyle,
   departmentContainerBoxStyle,
-  departmentContainerListBoxStyle,
   departmentContainerListDividerBoxStyle,
-  dashboardTextTypographStyle,
+  dashboardTextTypographStyle
 };
