@@ -8,8 +8,11 @@ import { styles } from "./useStyles.tsx";
 import { dayNames, month } from "@/utils/constants";
 import SearchBox from "@/components/dashboard/box/searchBox.js";
 import DepartmentListBox from "@/components/dashboard/box/departmentListBox.js";
+import EmployeeByDepartmentListBox from "@/components/dashboard/box/employeeByDepartmentListBox.js";
+import { DepartmentList } from "@/public/Sample/data.js";
 export default function DashBoard() {
   let time = new Date();
+  const deparmentList = DepartmentList;
   return (
     <>
       <Grid item xs={2.15} sx={{ marginRight: 2 }}>
@@ -74,43 +77,18 @@ export default function DashBoard() {
             <Box
               sx={styles.employerByDepartmentBoxStyle}
               padding={4}
-              bgcolor={"purple"}
               height={548}
             >
-              <Stack spacing={4}>
+              <Stack spacing={4} sx={{ width: "100%" }}>
                 <Typography
                   variant="h4"
                   sx={styles.dashboardTextTypographStyle}
                 >
                   Employee By Department
                 </Typography>
-                <Typography
-                  variant="h6"
-                  sx={styles.dashboardTextTypographStyle}
-                >
-                  Computer Science Eng
-                </Typography>
-                <Typography
-                  variant="h6"
-                  sx={styles.dashboardTextTypographStyle}
-                >
-                  {" "}
-                  Computer Science Eng
-                </Typography>
-                <Typography
-                  variant="h6"
-                  sx={styles.dashboardTextTypographStyle}
-                >
-                  {" "}
-                  Computer Science Eng
-                </Typography>
-                <Typography
-                  variant="h6"
-                  sx={styles.dashboardTextTypographStyle}
-                >
-                  {" "}
-                  Computer Science Eng
-                </Typography>
+                <EmployeeByDepartmentListBox
+                  departmentList={deparmentList}
+                ></EmployeeByDepartmentListBox>
               </Stack>
             </Box>
           </Grid>
@@ -123,10 +101,6 @@ export default function DashBoard() {
                 >
                   Departments
                 </Typography>
-                <DepartmentListBox></DepartmentListBox>
-                <DepartmentListBox></DepartmentListBox>{" "}
-                <DepartmentListBox></DepartmentListBox>{" "}
-                <DepartmentListBox></DepartmentListBox>{" "}
                 <DepartmentListBox></DepartmentListBox>
               </Stack>
             </Box>

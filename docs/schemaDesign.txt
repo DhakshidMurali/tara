@@ -15,7 +15,7 @@ Labels
     7. Communication
 Relation
     1. Tool ->  Request by -> Employee, Access -> Employee, managed_by -> Employee, managed_by -> Department
-    2. Employee -> CollaboratesOn -> Employee, works in -> Product, skilled in -> skill, reports_to -> manager
+    2. Employee -> CollaboratesOn -> Employee, works in -> Product, skilled in -> skill, reports_to -> manager, ComesUnder -> Department
     3. Department -> managed_by -> Employee
     4. Community -> member -> Employee,createdBy -> employee
     5. Communication -> posted in -> community,  posted_by -> Employee

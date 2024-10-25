@@ -1,7 +1,11 @@
 package main
 
 import (
+	"encoding/json"
+	"fmt"
+
 	"github.com/DhakshidMurali/tara/db"
+	"github.com/DhakshidMurali/tara/model"
 	"github.com/DhakshidMurali/tara/routes"
 	"github.com/gin-gonic/gin"
 )
@@ -20,33 +24,43 @@ func main() {
 
 	routes.APIRoutes(server)
 
-	server.Run(":8080")
+	// server.Run(":8080")
 
-	// result := db.Execute(`
-	// 		match (n:Communication)
-	// 		return n{Type:n.Type,Content:n.Content}`, map[string]any{})
-	// for _, record := range result.Records {
-	// 	// fmt.Println(record.Values...)
-	// 	mapRecord, _ := record.Get("n")
-	// 	recordMap, ok := mapRecord.(map[string]interface{})
-	// 	if !ok {
-	// 		fmt.Println("Error unmarshalling JSON:")
-	// 		return
-	// 	}
-	// 	jsonData, err := json.Marshal(recordMap)
-	// 	if err != nil {
-	// 		fmt.Println("Error:", err)
-	// 		return
-	// 	}
-	// 	var data model.Communication
-	// 	err = json.Unmarshal(jsonData, &data)
-	// 	if err != nil {
-	// 		fmt.Println("Error unmarshalling JSON:", err)
-	// 		return
-	// 	}
-	// 	fmt.Printf("%+v\n", data)
-	// 	fmt.Println(data.Content)
-	// 	fmt.Println(data.Type)
-	// }
+	result := db.Execute(`
+			Match (n1:Employee)-[r:ComesUnder]->(n2:Department)
+WITH count(n1) as employeeCount, n2.DepartmentName as departmentName
+RETURN {
+    DepartmentName:departmentName,
+    EmployeeCount:employeeCount
+} as data`, map[string]any{})
+	for _, record := range result.Records {
+		// fmt.Println(record.Values...)
+		mapRecord, _ := record.Get("data")
+		fmt.Println(mapRecord)
+		recordMap, ok := mapRecord.(map[string]interface{})
+		if !ok {
+			fmt.Println("Error unmarshalling JSON:")
+			return
+		}
+		jsonData, err := json.Marshal(recordMap)
+		if err != nil {
+			fmt.Println("Error:", err)
+			return
+		}
+		var data model.EmployeeGroupByDepartment
+		err = json.Unmarshal(jsonData, &data)
+		fmt.Println(jsonData)
+		if err != nil {
+			fmt.Println("Error unmarshalling JSON:", err)
+			return
+		}
+		fmt.Printf("%+v\n", data)
+		fmt.Println(data.EmployeeCount)
+		fmt.Println(data.DepartmentName)
+	}
 
 }
+
+/*
+* Building list employeeGroupByDepartment Api and  Create API testing for that
+ */
