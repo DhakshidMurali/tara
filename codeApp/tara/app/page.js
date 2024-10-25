@@ -9,3 +9,6 @@ export default function BasicGrid() {
     <Typography> Launching Page </Typography>
   );
 }
+
+
+// Creating new const for Label Data and bar chart

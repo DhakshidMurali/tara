@@ -34,6 +34,20 @@ const toolsContainerBoxStyle: SxProps = {
   overflowX: "auto",
   display: "flex",
   padding: 2,
+  borderRadius:2,
+  "&::-webkit-scrollbar": {
+    height: "8px",
+  },
+  "&::-webkit-scrollbar-track": {
+    backgroundColor:"secondary.main",
+  },
+  "&::-webkit-scrollbar-thumb": {
+    backgroundColor:"secondary.light",
+    borderRadius: "8px",
+  },
+  "&::-webkit-scrollbar-thumb:hover": {
+    background: "#555",
+  },
 };
 const toolsContainerListBoxStyle: SxProps = {
   height: 168,
@@ -48,6 +62,13 @@ const toolsContainerListBoxStyle: SxProps = {
 const employerByDepartmentBoxStyle: SxProps = {
   borderRadius: 4,
   backgroundColor: "secondary.light",
+  overflowY: "auto",
+  display: "flex",
+};
+
+const employerByDepartmenyBoxStackStyle: SxProps = {
+  overflowX: "auto",
+  display: "flex",
 };
 
 const departmentContainerBoxStyle: SxProps = {
@@ -69,8 +90,6 @@ const departmentContainerListDividerBoxStyle: SxProps = {
   bgcolor: "secondary.main",
   alignSelf: "center",
 };
-
-
 export const styles = {
   searchTextFieldInputPropsStyle,
   dateTypographyStyle,
@@ -78,7 +97,8 @@ export const styles = {
   toolsContainerBoxStyle,
   toolsContainerListBoxStyle,
   employerByDepartmentBoxStyle,
+  employerByDepartmenyBoxStackStyle,
   departmentContainerBoxStyle,
   departmentContainerListDividerBoxStyle,
-  dashboardTextTypographStyle
+  dashboardTextTypographStyle,
 };

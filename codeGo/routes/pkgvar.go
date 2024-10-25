@@ -8,3 +8,4 @@ var employeeList = []model.Employee{}
 var departmentList = []model.Department{}
 var toolList = []model.Tool{}
 var skillsList = []model.Skills{}
+var employeeGroupByDepartmentList = []model.EmployeeGroupByDepartment{}

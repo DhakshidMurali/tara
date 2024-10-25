@@ -74,4 +74,9 @@ func APIRoutes(server *gin.Engine) {
 	authRoutes.POST("/get/list/toolManagedByEmployee/:node", listToolManagedByEmployee)
 	authRoutes.POST("/get/list/toolComesUnderDepartment/:node", listToolComesUnderDepartment)
 
+	/*
+	* Dashboard Page Api
+	 */
+	authRoutes.POST("/get/list/employeeGroupByDepartment", listEmployeeGroupByDepartment)
+
 }

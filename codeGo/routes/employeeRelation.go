@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/DhakshidMurali/tara/constant"
 	"github.com/DhakshidMurali/tara/db"
 	"github.com/DhakshidMurali/tara/model"
 	"github.com/DhakshidMurali/tara/util"
@@ -353,4 +354,23 @@ func listEmployeeComesUnderDepartment(context *gin.Context) {
 		context.JSON(http.StatusOK, departmentList)
 		departmentList = nil
 	}
+}
+
+func listEmployeeGroupByDepartment(context *gin.Context) {
+	var data model.EmployeeGroupByDepartment
+	var result *neo4j.EagerResult
+	query := constant.QUERY_EMPLOYEE_GROUPBY_DEPARTMENT
+	result = db.Execute(query, map[string]any{})
+	for _, record := range result.Records {
+		mapRecord, _ := record.Get("data")
+		byteData := util.MarshalData(mapRecord)
+		err := json.Unmarshal(byteData, &data)
+		if err != nil {
+			fmt.Println("Error Unmarshalling Json")
+			panic(err)
+		}
+		employeeGroupByDepartmentList = append(employeeGroupByDepartmentList, data)
+	}
+	context.JSON(http.StatusOK, employeeGroupByDepartmentList)
+	employeeGroupByDepartmentList = nil
 }

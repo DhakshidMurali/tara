@@ -31,6 +31,10 @@ type EmployeeComesUnderDepartment struct {
 	Employee   Employee
 	Department Department
 }
+type EmployeeGroupByDepartment struct {
+	EmployeeCount  int
+	DepartmentName string
+}
 
 func (v EmployeeCollaboratedWithEmployee) MakeQuery(typeOfQuery string) string {
 	switch typeOfQuery {
@@ -48,7 +52,7 @@ func (v EmployeeCollaboratedWithEmployee) MakeQuery(typeOfQuery string) string {
 		returnData := constant.RETURNDATA_EMPLOYEE
 		mapData := map[string]string{
 			"%n1":        "Employee",
-			"%rel":         "CollaboratedWith",
+			"%rel":       "CollaboratedWith",
 			"%n2":        "Employee",
 			"%condition": "elementId(n1)=$NodeId",
 			"%node":      "n2",
@@ -106,7 +110,7 @@ func (v EmployeeWorksInTools) MakeQuery(typeOfQuery string) string {
 		returnData := constant.RETURNDATA_TOOL
 		mapData := map[string]string{
 			"%n1":        "Employee",
-			"%rel":         "WorksIn",
+			"%rel":       "WorksIn",
 			"%n2":        "Tool",
 			"%condition": "elementId(n1)=$NodeId",
 			"%node":      "n2",
@@ -119,7 +123,7 @@ func (v EmployeeWorksInTools) MakeQuery(typeOfQuery string) string {
 		returnData := constant.RETURNDATA_EMPLOYEE
 		mapData := map[string]string{
 			"%n1":        "Employee",
-			"%rel":         "WorksIn",
+			"%rel":       "WorksIn",
 			"%n2":        "Tool",
 			"%condition": "elementId(n2)=$NodeId",
 			"%node":      "n1",
@@ -176,7 +180,7 @@ func (v EmployeeSkilledInSkills) MakeQuery(typeOfQuery string) string {
 		returnData := constant.RETURNDATA_EMPLOYEE
 		mapData := map[string]string{
 			"%n1":        "Employee",
-			"%rel":         "SkilledIn",
+			"%rel":       "SkilledIn",
 			"%n2":        "Skills",
 			"%condition": "elementId(n2)=$NodeId",
 			"%node":      "n1",
@@ -189,7 +193,7 @@ func (v EmployeeSkilledInSkills) MakeQuery(typeOfQuery string) string {
 		returnData := constant.RETURNDATA_SKILLS
 		mapData := map[string]string{
 			"%n1":        "Employee",
-			"%rel":         "SkilledIn",
+			"%rel":       "SkilledIn",
 			"%n2":        "Skills",
 			"%condition": "elementId(n1)=$NodeId",
 			"%node":      "n2",
@@ -245,7 +249,7 @@ func (v EmployeeReportToEmployee) MakeQuery(typeOfQuery string) string {
 		returnData := constant.RETURNDATA_EMPLOYEE
 		mapData := map[string]string{
 			"%n1":        "Employee",
-			"%rel":         "ReportTo",
+			"%rel":       "ReportTo",
 			"%n2":        "Employee",
 			"%condition": "elementId(n1)=$NodeId",
 			"%node":      "n2",
@@ -258,7 +262,7 @@ func (v EmployeeReportToEmployee) MakeQuery(typeOfQuery string) string {
 		returnData := constant.RETURNDATA_EMPLOYEE
 		mapData := map[string]string{
 			"%n1":        "Employee",
-			"%rel":         "ReportTo",
+			"%rel":       "ReportTo",
 			"%n2":        "Employee",
 			"%condition": "elementId(n2)=$NodeId",
 			"%node":      "n1",
@@ -319,7 +323,7 @@ func (v EmployeeComesUnderDepartment) MakeQuery(typeOfQuery string) string {
 		returnData := constant.RETURNDATA_EMPLOYEE
 		mapData := map[string]string{
 			"%n1":        "Employee",
-			"%rel":         "ComesUnder",
+			"%rel":       "ComesUnder",
 			"%n2":        "Department",
 			"%condition": "elementId(n1)=$NodeId",
 			"%node":      "n2",
@@ -332,7 +336,7 @@ func (v EmployeeComesUnderDepartment) MakeQuery(typeOfQuery string) string {
 		returnData := constant.RETURNDATA_EMPLOYEE
 		mapData := map[string]string{
 			"%n1":        "Employee",
-			"%rel":         "ComesUnder",
+			"%rel":       "ComesUnder",
 			"%n2":        "Department",
 			"%condition": "elementId(n2)=$NodeId",
 			"%node":      "n1",

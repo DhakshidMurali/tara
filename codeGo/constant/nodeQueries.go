@@ -25,7 +25,7 @@ const (
 	RETURN %return
 	`
 	RETRIEVE_DATA_NODES = `
-	MATCH (n1:%n1)-(r:%r)->(n2:%n2)
+	MATCH (n1:%n1)-[r:%r]->(n2:%n2)
 	RETURN %return
 	`
 
@@ -190,4 +190,13 @@ const (
 		SkillName:%node.SkillName,
 		Key:elementId(%node)
 	}`
+)
+
+const (
+	QUERY_EMPLOYEE_GROUPBY_DEPARTMENT = `Match (n1:Employee)-[r:ComesUnder]->(n2:Department)
+	WITH count(n1) as employeeCount, n2.DepartmentName as departmentName
+	RETURN {
+		DepartmentName:departmentName,
+		EmployeeCount:employeeCount
+	} as data`
 )
