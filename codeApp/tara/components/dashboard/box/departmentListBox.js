@@ -1,4 +1,5 @@
 "use client";
+<<<<<<< HEAD
 import {
   Avatar,
   Box,
@@ -8,10 +9,14 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
+=======
+import { Avatar, Box, Button, Grid, Stack, Typography } from "@mui/material";
+>>>>>>> dd64d5ba35af4a29e638d731b832199630c785c6
 import { styles } from "../useStyles";
 import { Domain, ExpandMore } from "@mui/icons-material";
 import { useRouter } from "next/navigation";
 import { DepartmentList } from "@/public/Sample/data";
+<<<<<<< HEAD
 import { useState } from "react";
 
 export default function DepartmentListBox(props) {
@@ -24,6 +29,16 @@ export default function DepartmentListBox(props) {
       return;
     }
     setSelectedDropDownOpen(value);
+=======
+
+export default function DepartmentListBox(props) {
+  const router = useRouter();
+  let isDropDownOpen = false;
+  const departmentList = DepartmentList;
+  const handleDropDownDepartmentList = () => {
+    isDropDownOpen = !isDropDownOpen;
+    router.refresh();
+>>>>>>> dd64d5ba35af4a29e638d731b832199630c785c6
   };
   return (
     <Grid
@@ -44,6 +59,7 @@ export default function DepartmentListBox(props) {
         {departmentList.map((i, index) => {
           return (
             <Box sx={styles.departmentContainerListBoxStyle}>
+<<<<<<< HEAD
               <Grid
                 container
                 spacing={2}
@@ -122,6 +138,28 @@ export default function DepartmentListBox(props) {
                   <></>
                 )}
               </Grid>
+=======
+              <Stack direction={"row"}>
+                <Avatar>
+                  <Domain sx={styles.deparmentListIconStyle}></Domain>
+                </Avatar>
+                <Typography
+                  variant="h6"
+                  sx={styles.dashboardTextTypographStyle}
+                  paddingLeft={2}
+                >
+                  {departmentList[index]}
+                </Typography>
+                <Button
+                  sx={{ margin: 0 }}
+                  onClick={handleDropDownDepartmentList}
+                >
+                  <ExpandMore
+                    sx={{ marginLeft: 0, color: "white" }}
+                  ></ExpandMore>
+                </Button>
+              </Stack>
+>>>>>>> dd64d5ba35af4a29e638d731b832199630c785c6
             </Box>
           );
         })}

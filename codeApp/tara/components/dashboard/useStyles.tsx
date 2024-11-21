@@ -1,7 +1,11 @@
 import { SxProps } from "@mui/system";
 const departmentContainerListBoxStyle: SxProps = {
   borderRadius: 2,
+<<<<<<< HEAD
   minHeight:72,
+=======
+  height: 72,
+>>>>>>> dd64d5ba35af4a29e638d731b832199630c785c6
   width: "100%",
   display: "flex",
   justifyContent: "center",
