@@ -14,4 +14,4 @@ export const month = [
 ];
 export var dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-export var lightPurple='rgb(60,36,110)'
+export var lightPurple = "rgb(60,36,110)";

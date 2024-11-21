@@ -63,10 +63,7 @@ export default function NavBar(props) {
         <Typography variant="body1" sx={styles.userNameTextStyle}>
           Arjun Vijay
         </Typography>
-        <Typography
-          variant="h3"
-          sx={styles.userEmailAddressTextStyle}
-        >
+        <Typography variant="h3" sx={styles.userEmailAddressTextStyle}>
           arjun.vijay@gmail.com
         </Typography>
         <SpacerBox height={24}></SpacerBox>
@@ -79,7 +76,14 @@ export default function NavBar(props) {
             <DashboardRounded
               color={selected == "dashboard" ? "primary" : "secondary"}
             ></DashboardRounded>
-            <Typography variant="body1" sx={styles.navbarSelectedMenuTextStyle}>
+            <Typography
+              variant="body1"
+              sx={
+                selected == "dashboard"
+                  ? styles.navbarSelectedMenuTextStyle
+                  : styles.navbarMenuTextStyle
+              }
+            >
               Dashboard
             </Typography>
           </ListBox>
@@ -93,7 +97,11 @@ export default function NavBar(props) {
             <Groups2
               color={selected == "community" ? "primary" : "secondary"}
             ></Groups2>
-            <Typography variant="body1" sx={styles.navbarMenuTextStyle}>
+            <Typography variant="body1"  sx={
+                selected == "community"
+                  ? styles.navbarSelectedMenuTextStyle
+                  : styles.navbarMenuTextStyle
+              }>
               Community
             </Typography>
           </ListBox>

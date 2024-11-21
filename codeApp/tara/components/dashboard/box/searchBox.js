@@ -1,11 +1,11 @@
 import { Box } from "@mui/material";
 import { styled } from "@mui/material/styles";
 const SearchBox = styled(Box)(({ theme, selected }) => ({
-  margin: 16,
-  marginTop: 8,
-  padding: 16,
+  margin: "1%",
+  marginTop: "0.5%",
+  padding: "1%",
   borderRadius: 16,
-  height: 72,
+  height: "8%",
   backgroundColor: theme.palette.secondary.light,
   //   padding: 8,
 }));

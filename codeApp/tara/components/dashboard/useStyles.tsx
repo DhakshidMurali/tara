@@ -1,11 +1,12 @@
 import { SxProps } from "@mui/system";
 const departmentContainerListBoxStyle: SxProps = {
   borderRadius: 2,
-  height: 72,
+  minHeight:72,
   width: "100%",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
+  marginTop:"4px",
 };
 
 const dashboardTextTypographStyle: SxProps = {
