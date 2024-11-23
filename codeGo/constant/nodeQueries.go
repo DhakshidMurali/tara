@@ -35,27 +35,27 @@ const (
 	RETURN %return
 	`
 
-	EMPLOYEEEN1 = `
-	Employee{
-		Name:$EmployeeName,
-        MailAddress:$EmployeeMailAddress,
-        Domain:$EmployeeDomain,
-        Password:$EmployeePassword,
-        PhoneNumber:$EmployeePhoneNumber,
-        Role:$EmployeeEmployeeRole,
-        Location:$EmployeeLocation
+	USEREN1 = `
+	User{
+		Name:$UserName,
+        MailAddress:$UserMailAddress,
+        Domain:$UserDomain,
+        Password:$UserPassword,
+        PhoneNumber:$UserPhoneNumber,
+        Role:$UserUserRole,
+        Location:$UserLocation
 	}
 	`
 
-	EMPLOYEEEN2 = `
-	Employee{
-		Name:$EmployeeNameN2,
-        MailAddress:$EmployeeMailAddressN2,
-        Domain:$EmployeeDomainN2,
-        Password:$EmployeePasswordN2,
-        PhoneNumber:$EmployeePhoneNumberN2,
-        Role:$EmployeeEmployeeRoleN2,
-        Location:$EmployeeLocationN2
+	USEREN2 = `
+	User{
+		Name:$UserNameN2,
+        MailAddress:$UserMailAddressN2,
+        Domain:$UserDomainN2,
+        Password:$UserPasswordN2,
+        PhoneNumber:$UserPhoneNumberN2,
+        Role:$UserUserRoleN2,
+        Location:$UserLocationN2
 	}
 	`
 	TOOL = `
@@ -152,7 +152,7 @@ const (
 
 	REPORTTO = `ReportTo{}`
 
-	RETURNDATA_EMPLOYEE = `%node{
+	RETURNDATA_USER = `%node{
 		Name:%node.Name,
 		MailAddress:%node.MailAddress,
 		Domain:%node.Domain,
@@ -193,10 +193,10 @@ const (
 )
 
 const (
-	QUERY_EMPLOYEE_GROUPBY_DEPARTMENT = `Match (n1:Employee)-[r:ComesUnder]->(n2:Department)
-	WITH count(n1) as employeeCount, n2.DepartmentName as departmentName
+	QUERY_USER_GROUPBY_DEPARTMENT = `Match (n1:User)-[r:ComesUnder]->(n2:Department)
+	WITH count(n1) as userCount, n2.DepartmentName as departmentName
 	RETURN {
 		DepartmentName:departmentName,
-		EmployeeCount:employeeCount
+		UserCount:userCount
 	} as data`
 )

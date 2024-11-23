@@ -27,11 +27,11 @@ func main() {
 	// server.Run(":8080")
 
 	result := db.Execute(`
-			Match (n1:Employee)-[r:ComesUnder]->(n2:Department)
-WITH count(n1) as employeeCount, n2.DepartmentName as departmentName
+			Match (n1:User)-[r:ComesUnder]->(n2:Department)
+WITH count(n1) as userCount, n2.DepartmentName as departmentName
 RETURN {
     DepartmentName:departmentName,
-    EmployeeCount:employeeCount
+    UserCount:userCount
 } as data`, map[string]any{})
 	for _, record := range result.Records {
 		// fmt.Println(record.Values...)
@@ -47,7 +47,7 @@ RETURN {
 			fmt.Println("Error:", err)
 			return
 		}
-		var data model.EmployeeGroupByDepartment
+		var data model.UserGroupByDepartment
 		err = json.Unmarshal(jsonData, &data)
 		fmt.Println(jsonData)
 		if err != nil {
@@ -55,12 +55,12 @@ RETURN {
 			return
 		}
 		fmt.Printf("%+v\n", data)
-		fmt.Println(data.EmployeeCount)
+		fmt.Println(data.UserCount)
 		fmt.Println(data.DepartmentName)
 	}
 
 }
 
 /*
-* Building list employeeGroupByDepartment Api and  Create API testing for that
+* Building list userGroupByDepartment Api and  Create API testing for that
  */

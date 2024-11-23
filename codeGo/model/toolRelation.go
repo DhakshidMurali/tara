@@ -5,21 +5,21 @@ import (
 	"github.com/DhakshidMurali/tara/util"
 )
 
-type ToolRequestByEmployee struct {
+type ToolRequestByUser struct {
 	Tool      Tool
 	RequestBy RequestBy
-	Employee  Employee
+	User      User
 }
 
-type ToolAccessToEmployee struct {
+type ToolAccessToUser struct {
 	Tool     Tool
 	AccessTo AccessTo
-	Employee Employee
+	User     User
 }
 
-type ToolManagedByEmployee struct {
-	Tool     Tool
-	Employee Employee
+type ToolManagedByUser struct {
+	Tool Tool
+	User User
 }
 
 type ToolComesUnderDepartment struct {
@@ -27,37 +27,37 @@ type ToolComesUnderDepartment struct {
 	Department Department
 }
 
-func (v ToolRequestByEmployee) MakeQuery(typeOfQuery string) string {
+func (v ToolRequestByUser) MakeQuery(typeOfQuery string) string {
 	switch typeOfQuery {
 	case "CREATE":
 		query := constant.CREATE_NODE_TO_NODE_RELATION
 		mapData := map[string]string{
 			"%n1": constant.TOOL,
 			"%r":  constant.REQUESTBY,
-			"%n2": constant.EMPLOYEEEN1,
+			"%n2": constant.USEREN1,
 		}
 		query = util.ReplaceQuery(query, mapData)
 		return query
-	case "LIST_TOOL_REQUESTED_BY_EMPLOYEE":
+	case "LIST_TOOL_REQUESTED_BY_USER":
 		query := constant.RETRIEVE_DATA_NODE_WHERE
 		returnData := constant.RETURNDATA_TOOL
 		mapData := map[string]string{
 			"%n1":        "Tool",
 			"%rel":       "RequestBy",
-			"%n2":        "Employee",
+			"%n2":        "User",
 			"%condition": "elementId(n2)=$NodeId",
 			"%node":      "n1",
 			"%return":    returnData,
 		}
 		query = util.DoubleReplaceQuery(query, mapData)
 		return query
-	case "LIST_EMPLOYEES_REQUESTED_TO_TOOL":
+	case "LIST_USERS_REQUESTED_TO_TOOL":
 		query := constant.RETRIEVE_DATA_NODE_WHERE
-		returnData := constant.RETURNDATA_EMPLOYEE
+		returnData := constant.RETURNDATA_USER
 		mapData := map[string]string{
 			"%n1":        "Tool",
 			"%rel":       "RequestBy",
-			"%n2":        "Employee",
+			"%n2":        "User",
 			"%condition": "elementId(n1)=$NodeId",
 			"%node":      "n2",
 			"%return":    returnData,
@@ -69,7 +69,7 @@ func (v ToolRequestByEmployee) MakeQuery(typeOfQuery string) string {
 	}
 }
 
-func (v ToolRequestByEmployee) MakeParams(typeOfQuery string) map[string]any {
+func (v ToolRequestByUser) MakeParams(typeOfQuery string) map[string]any {
 	switch typeOfQuery {
 	case "CREATE":
 		return map[string]any{
@@ -79,19 +79,19 @@ func (v ToolRequestByEmployee) MakeParams(typeOfQuery string) map[string]any {
 			"RequestByRequestByAccessType": v.RequestBy.AccessType,
 			"RequestByLvl1Approval":        v.RequestBy.Lvl1Approval,
 			"RequestByLvl2Approval":        v.RequestBy.Lvl2Approval,
-			"EmployeeName":                 v.Employee.Name,
-			"EmployeeMailAddress":          v.Employee.MailAddress,
-			"EmployeeDomain":               v.Employee.Domain,
-			"EmployeePassword":             v.Employee.Password,
-			"EmployeePhoneNumber":          v.Employee.PhoneNumber,
-			"EmployeeEmployeeRole":         v.Employee.Role,
-			"EmployeeLocation":             v.Employee.Location,
+			"UserName":                     v.User.Name,
+			"UserMailAddress":              v.User.MailAddress,
+			"UserDomain":                   v.User.Domain,
+			"UserPassword":                 v.User.Password,
+			"UserPhoneNumber":              v.User.PhoneNumber,
+			"UserUserRole":                 v.User.Role,
+			"UserLocation":                 v.User.Location,
 		}
-	case "LIST_TOOL_REQUESTED_BY_EMPLOYEE":
+	case "LIST_TOOL_REQUESTED_BY_USER":
 		return map[string]any{
-			"NodeId": v.Employee.Key,
+			"NodeId": v.User.Key,
 		}
-	case "LIST_EMPLOYEES_REQUESTED_TO_TOOL":
+	case "LIST_USERS_REQUESTED_TO_TOOL":
 		return map[string]any{
 			"NodeId": v.Tool.Key,
 		}
@@ -100,37 +100,37 @@ func (v ToolRequestByEmployee) MakeParams(typeOfQuery string) map[string]any {
 	}
 }
 
-func (v ToolAccessToEmployee) MakeQuery(typeOfQuery string) string {
+func (v ToolAccessToUser) MakeQuery(typeOfQuery string) string {
 	switch typeOfQuery {
 	case "CREATE":
 		query := constant.CREATE_NODE_TO_NODE_RELATION
 		mapData := map[string]string{
 			"%n1": constant.TOOL,
 			"%r":  constant.ACCESSTO,
-			"%n2": constant.EMPLOYEEEN1,
+			"%n2": constant.USEREN1,
 		}
 		query = util.ReplaceQuery(query, mapData)
 		return query
-	case "LIST_TOOLS_ACCESS_BY_EMPLOYEE":
+	case "LIST_TOOLS_ACCESS_BY_USER":
 		query := constant.RETRIEVE_DATA_NODE_WHERE
 		returnData := constant.RETURNDATA_TOOL
 		mapData := map[string]string{
 			"%n1":        "Tool",
 			"%rel":       "AccessTo",
-			"%n2":        "Employee",
+			"%n2":        "User",
 			"%condition": "elementId(n2)=$NodeId",
 			"%node":      "n1",
 			"%return":    returnData,
 		}
 		query = util.DoubleReplaceQuery(query, mapData)
 		return query
-	case "LIST_EMPLOYEES_ACCESS_TO_TOOL":
+	case "LIST_USERS_ACCESS_TO_TOOL":
 		query := constant.RETRIEVE_DATA_NODE_WHERE
-		returnData := constant.RETURNDATA_EMPLOYEE
+		returnData := constant.RETURNDATA_USER
 		mapData := map[string]string{
 			"%n1":        "Tool",
 			"%rel":       "AccessTo",
-			"%n2":        "Employee",
+			"%n2":        "User",
 			"%condition": "elementId(n1)=$NodeId",
 			"%node":      "n2",
 			"%return":    returnData,
@@ -142,26 +142,26 @@ func (v ToolAccessToEmployee) MakeQuery(typeOfQuery string) string {
 	}
 }
 
-func (v ToolAccessToEmployee) MakeParams(typeOfQuery string) map[string]any {
+func (v ToolAccessToUser) MakeParams(typeOfQuery string) map[string]any {
 	switch typeOfQuery {
 	case "CREATE":
 		return map[string]any{
-			"ToolName":             v.Tool.Name,
-			"ToolApprovalType":     v.Tool.ApprovalType,
-			"RequestByAccessType":  v.AccessTo.AccessType,
-			"EmployeeName":         v.Employee.Name,
-			"EmployeeMailAddress":  v.Employee.MailAddress,
-			"EmployeeDomain":       v.Employee.Domain,
-			"EmployeePassword":     v.Employee.Password,
-			"EmployeePhoneNumber":  v.Employee.PhoneNumber,
-			"EmployeeEmployeeRole": v.Employee.Role,
-			"EmployeeLocation":     v.Employee.Location,
+			"ToolName":            v.Tool.Name,
+			"ToolApprovalType":    v.Tool.ApprovalType,
+			"RequestByAccessType": v.AccessTo.AccessType,
+			"UserName":            v.User.Name,
+			"UserMailAddress":     v.User.MailAddress,
+			"UserDomain":          v.User.Domain,
+			"UserPassword":        v.User.Password,
+			"UserPhoneNumber":     v.User.PhoneNumber,
+			"UserUserRole":        v.User.Role,
+			"UserLocation":        v.User.Location,
 		}
-	case "LIST_TOOLS_ACCESS_BY_EMPLOYEE":
+	case "LIST_TOOLS_ACCESS_BY_USER":
 		return map[string]any{
-			"NodeId": v.Employee.Key,
+			"NodeId": v.User.Key,
 		}
-	case "LIST_EMPLOYEES_ACCESS_TO_TOOL":
+	case "LIST_USERS_ACCESS_TO_TOOL":
 		return map[string]any{
 			"NodeId": v.Tool.Key,
 		}
@@ -170,37 +170,37 @@ func (v ToolAccessToEmployee) MakeParams(typeOfQuery string) map[string]any {
 	}
 }
 
-func (v ToolManagedByEmployee) MakeQuery(typeOfQuery string) string {
+func (v ToolManagedByUser) MakeQuery(typeOfQuery string) string {
 	switch typeOfQuery {
 	case "CREATE":
 		query := constant.CREATE_NODE_TO_NODE_RELATION
 		mapData := map[string]string{
 			"%n1": constant.TOOL,
 			"%r":  constant.MANAGEDBY,
-			"%n2": constant.EMPLOYEEEN1,
+			"%n2": constant.USEREN1,
 		}
 		query = util.ReplaceQuery(query, mapData)
 		return query
-	case "LIST_TOOLS_MANAGED_BY_EMPLOYEE":
+	case "LIST_TOOLS_MANAGED_BY_USER":
 		query := constant.RETRIEVE_DATA_NODE_WHERE
 		returnData := constant.RETURNDATA_TOOL
 		mapData := map[string]string{
 			"%n1":        "Tool",
 			"%rel":       "ManagedBy",
-			"%n2":        "Employee",
+			"%n2":        "User",
 			"%condition": "elementId(n2)=$NodeId",
 			"%node":      "n1",
 			"%return":    returnData,
 		}
 		query = util.DoubleReplaceQuery(query, mapData)
 		return query
-	case "LIST_EMPLOYEES_MANAGES_TOOL":
+	case "LIST_USERS_MANAGES_TOOL":
 		query := constant.RETRIEVE_DATA_NODE_WHERE
-		returnData := constant.RETURNDATA_EMPLOYEE
+		returnData := constant.RETURNDATA_USER
 		mapData := map[string]string{
 			"%n1":        "Tool",
 			"%rel":       "ManagedBy",
-			"%n2":        "Employee",
+			"%n2":        "User",
 			"%condition": "elementId(n1)=$NodeId",
 			"%node":      "n2",
 			"%return":    returnData,
@@ -211,25 +211,25 @@ func (v ToolManagedByEmployee) MakeQuery(typeOfQuery string) string {
 		return ""
 	}
 }
-func (v ToolManagedByEmployee) MakeParams(typeOfQuery string) map[string]any {
+func (v ToolManagedByUser) MakeParams(typeOfQuery string) map[string]any {
 	switch typeOfQuery {
 	case "CREATE":
 		return map[string]any{
-			"ToolName":             v.Tool.Name,
-			"ToolApprovalType":     v.Tool.ApprovalType,
-			"EmployeeName":         v.Employee.Name,
-			"EmployeeMailAddress":  v.Employee.MailAddress,
-			"EmployeeDomain":       v.Employee.Domain,
-			"EmployeePassword":     v.Employee.Password,
-			"EmployeePhoneNumber":  v.Employee.PhoneNumber,
-			"EmployeeEmployeeRole": v.Employee.Role,
-			"EmployeeLocation":     v.Employee.Location,
+			"ToolName":         v.Tool.Name,
+			"ToolApprovalType": v.Tool.ApprovalType,
+			"UserName":         v.User.Name,
+			"UserMailAddress":  v.User.MailAddress,
+			"UserDomain":       v.User.Domain,
+			"UserPassword":     v.User.Password,
+			"UserPhoneNumber":  v.User.PhoneNumber,
+			"UserUserRole":     v.User.Role,
+			"UserLocation":     v.User.Location,
 		}
-	case "LIST_TOOLS_MANAGED_BY_EMPLOYEE":
+	case "LIST_TOOLS_MANAGED_BY_USER":
 		return map[string]any{
-			"NodeId": v.Employee.Key,
+			"NodeId": v.User.Key,
 		}
-	case "LIST_EMPLOYEES_MANAGES_TOOL":
+	case "LIST_USERS_MANAGES_TOOL":
 		return map[string]any{
 			"NodeId": v.Tool.Key,
 		}

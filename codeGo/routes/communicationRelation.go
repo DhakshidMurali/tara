@@ -35,15 +35,15 @@ func createCommunicationPostedInCommunity(context *gin.Context) {
 	}
 }
 
-func createCommunicationPostedByEmployee(context *gin.Context) {
-	var communicationPostedByEmployee model.CommunicationPostedByEmployee
-	err := context.ShouldBindJSON(&communicationPostedByEmployee)
+func createCommunicationPostedByUser(context *gin.Context) {
+	var communicationPostedByUser model.CommunicationPostedByUser
+	err := context.ShouldBindJSON(&communicationPostedByUser)
 
 	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"Description": "Received data can't be parsed"})
 	}
-	query := communicationPostedByEmployee.MakeQuery("CREATE")
-	params := communicationPostedByEmployee.MakeParams("CREATE")
+	query := communicationPostedByUser.MakeQuery("CREATE")
+	params := communicationPostedByUser.MakeParams("CREATE")
 	result := db.Execute(query, params)
 	isCreated := result.Records[0].Values[0].(bool)
 	if isCreated {
@@ -85,18 +85,18 @@ func listCommunicationPostedInCommunity(context *gin.Context) {
 	communicationList = nil
 }
 
-func listCommunicationPostedByEmployee(context *gin.Context) {
-	var communicationPostedByEmployee model.CommunicationPostedByEmployee
+func listCommunicationPostedByUser(context *gin.Context) {
+	var communicationPostedByUser model.CommunicationPostedByUser
 	var data model.Communication
-	err := context.ShouldBindJSON(&communicationPostedByEmployee)
+	err := context.ShouldBindJSON(&communicationPostedByUser)
 
 	if err != nil {
 		panic(err)
 	}
 
-	query := communicationPostedByEmployee.MakeQuery("LIST_COMMUNICATION_POSTED_BY_EMPLOYEE")
+	query := communicationPostedByUser.MakeQuery("LIST_COMMUNICATION_POSTED_BY_USER")
 	fmt.Println(query)
-	params := communicationPostedByEmployee.MakeParams("LIST_COMMUNICATION_POSTED_BY_EMPLOYEE")
+	params := communicationPostedByUser.MakeParams("LIST_COMMUNICATION_POSTED_BY_USER")
 	result := db.Execute(query, params)
 
 	for _, record := range result.Records {

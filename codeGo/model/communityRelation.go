@@ -5,36 +5,36 @@ import (
 	"github.com/DhakshidMurali/tara/util"
 )
 
-type CommunityMemberEmployee struct {
+type CommunityMemberUser struct {
 	Community Community
 	Member    Member
-	Employee  Employee
+	User      User
 }
 
-type CommunityCreatedByEmployee struct {
+type CommunityCreatedByUser struct {
 	Community Community
 	CreatedBy CreatedBy
-	Employee  Employee
+	User      User
 }
 
-func (v CommunityMemberEmployee) MakeQuery(typeOfQuery string) string {
+func (v CommunityMemberUser) MakeQuery(typeOfQuery string) string {
 	switch typeOfQuery {
 	case "CREATE":
 		query := constant.CREATE_NODE_TO_NODE_RELATION
 		mapData := map[string]string{
 			"%n1": constant.COMMUNITY,
 			"%r":  constant.MEMBER,
-			"%n2": constant.EMPLOYEEEN1,
+			"%n2": constant.USEREN1,
 		}
 		query = util.ReplaceQuery(query, mapData)
 		return query
-	case "LIST_EMPLOYEES_MEMBER_OF_COMMUNITY":
-		returnData := constant.RETURNDATA_EMPLOYEE
+	case "LIST_USERS_MEMBER_OF_COMMUNITY":
+		returnData := constant.RETURNDATA_USER
 		query := constant.RETRIEVE_DATA_NODE_WHERE
 		mapData := map[string]string{
 			"%n1":        "Community",
 			"%rel":       "Member",
-			"%n2":        "Employee",
+			"%n2":        "User",
 			"%condition": "elementId(n1)=$NodeId",
 			"%node":      "n2",
 			"%return":    returnData,
@@ -47,7 +47,7 @@ func (v CommunityMemberEmployee) MakeQuery(typeOfQuery string) string {
 	}
 }
 
-func (v CommunityMemberEmployee) MakeParams(typeOfQuery string) map[string]any {
+func (v CommunityMemberUser) MakeParams(typeOfQuery string) map[string]any {
 	switch typeOfQuery {
 	case "CREATE":
 		return map[string]any{
@@ -55,15 +55,15 @@ func (v CommunityMemberEmployee) MakeParams(typeOfQuery string) map[string]any {
 			"CommunityDescription":       v.Community.Description,
 			"CommunityAccessType":        v.Community.AccessType,
 			"MemberAddedToCommunityDate": v.Member.AddedToCommunityDate,
-			"EmployeeName":               v.Employee.Name,
-			"EmployeeMailAddress":        v.Employee.MailAddress,
-			"EmployeeDomain":             v.Employee.Domain,
-			"EmployeePassword":           v.Employee.Password,
-			"EmployeePhoneNumber":        v.Employee.PhoneNumber,
-			"EmployeeEmployeeRole":       v.Employee.Role,
-			"EmployeeLocation":           v.Employee.Location,
+			"UserName":                   v.User.Name,
+			"UserMailAddress":            v.User.MailAddress,
+			"UserDomain":                 v.User.Domain,
+			"UserPassword":               v.User.Password,
+			"UserPhoneNumber":            v.User.PhoneNumber,
+			"UserUserRole":               v.User.Role,
+			"UserLocation":               v.User.Location,
 		}
-	case "LIST_EMPLOYEES_MEMBER_OF_COMMUNITY":
+	case "LIST_USERS_MEMBER_OF_COMMUNITY":
 		return map[string]any{
 			"NodeId": v.Community.Key,
 		}
@@ -72,24 +72,24 @@ func (v CommunityMemberEmployee) MakeParams(typeOfQuery string) map[string]any {
 	}
 }
 
-func (v CommunityCreatedByEmployee) MakeQuery(typeOfQuery string) string {
+func (v CommunityCreatedByUser) MakeQuery(typeOfQuery string) string {
 	switch typeOfQuery {
 	case "CREATE":
 		query := constant.CREATE_NODE_TO_NODE_RELATION
 		mapData := map[string]string{
 			"%n1": constant.COMMUNITY,
 			"%r":  constant.CREATEDBY,
-			"%n2": constant.EMPLOYEEEN1,
+			"%n2": constant.USEREN1,
 		}
 		query = util.ReplaceQuery(query, mapData)
 		return query
-	case "LIST_COMMUNITY_CREATED_BY_EMPLOYEE":
+	case "LIST_COMMUNITY_CREATED_BY_USER":
 		returnData := constant.RETURNDATA_COMMUNITY
 		query := constant.RETRIEVE_DATA_NODE_WHERE
 		mapData := map[string]string{
 			"%n1":        "Community",
 			"%rel":       "CreatedBy",
-			"%n2":        "Employee",
+			"%n2":        "User",
 			"%condition": "elementId(n2)=$NodeId",
 			"%node":      "n1",
 			"%return":    returnData,
@@ -102,7 +102,7 @@ func (v CommunityCreatedByEmployee) MakeQuery(typeOfQuery string) string {
 	}
 }
 
-func (v CommunityCreatedByEmployee) MakeParams(typeOfQuery string) map[string]any {
+func (v CommunityCreatedByUser) MakeParams(typeOfQuery string) map[string]any {
 	switch typeOfQuery {
 	case "CREATE":
 		return map[string]any{
@@ -110,17 +110,17 @@ func (v CommunityCreatedByEmployee) MakeParams(typeOfQuery string) map[string]an
 			"CommunityDescription":          v.Community.Description,
 			"CommunityAccessType":           v.Community.AccessType,
 			"CreatedByCommunityCreatedDate": v.CreatedBy.CommunityCreatedDate,
-			"EmployeeName":                  v.Employee.Name,
-			"EmployeeMailAddress":           v.Employee.MailAddress,
-			"EmployeeDomain":                v.Employee.Domain,
-			"EmployeePassword":              v.Employee.Password,
-			"EmployeePhoneNumber":           v.Employee.PhoneNumber,
-			"EmployeeEmployeeRole":          v.Employee.Role,
-			"EmployeeLocation":              v.Employee.Location,
+			"UserName":                      v.User.Name,
+			"UserMailAddress":               v.User.MailAddress,
+			"UserDomain":                    v.User.Domain,
+			"UserPassword":                  v.User.Password,
+			"UserPhoneNumber":               v.User.PhoneNumber,
+			"UserUserRole":                  v.User.Role,
+			"UserLocation":                  v.User.Location,
 		}
-	case "LIST_COMMUNITY_CREATED_BY_EMPLOYEE":
+	case "LIST_COMMUNITY_CREATED_BY_USER":
 		return map[string]any{
-			"NodeId": v.Employee.Key,
+			"NodeId": v.User.Key,
 		}
 	default:
 		return map[string]any{}

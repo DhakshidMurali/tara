@@ -11,10 +11,10 @@ type CommunicationPostedInCommunity struct {
 	Community     Community
 }
 
-type CommunicationPostedByEmployee struct {
+type CommunicationPostedByUser struct {
 	Communication Communication
 	PostedBy      PostedBy
-	Employee      Employee
+	User          User
 }
 
 func (v CommunicationPostedInCommunity) MakeQuery(typeOfQuery string) string {
@@ -33,7 +33,7 @@ func (v CommunicationPostedInCommunity) MakeQuery(typeOfQuery string) string {
 		query := constant.RETRIEVE_DATA_NODE_WHERE
 		mapData := map[string]string{
 			"%n1":        "Communication",
-			"%rel":         "PostedIn",
+			"%rel":       "PostedIn",
 			"%n2":        "Community",
 			"%condition": "elementId(n2)=$NodeId",
 			"%node":      "n1",
@@ -68,24 +68,24 @@ func (v CommunicationPostedInCommunity) MakeParams(typeOfQuery string) map[strin
 	}
 }
 
-func (v CommunicationPostedByEmployee) MakeQuery(typeOfQuery string) string {
+func (v CommunicationPostedByUser) MakeQuery(typeOfQuery string) string {
 	switch typeOfQuery {
 	case "CREATE":
 		query := constant.CREATE_NODE_TO_NODE_RELATION
 		mapData := map[string]string{
 			"%n1": constant.COMMUNICATION,
 			"%r":  constant.POSTEDBY,
-			"%n2": constant.EMPLOYEEEN1,
+			"%n2": constant.USEREN1,
 		}
 		query = util.ReplaceQuery(query, mapData)
 		return query
-	case "LIST_COMMUNICATION_POSTED_BY_EMPLOYEE":
+	case "LIST_COMMUNICATION_POSTED_BY_USER":
 		returnData := constant.RETURNDATA_COMMUNICATION
 		query := constant.RETRIEVE_DATA_NODE_WHERE
 		mapData := map[string]string{
 			"%n1":        "Communication",
-			"%rel":         "PostedBy",
-			"%n2":        "Employee",
+			"%rel":       "PostedBy",
+			"%n2":        "User",
 			"%condition": "elementId(n2)=$NodeId",
 			"%node":      "n1",
 			"%return":    returnData,
@@ -97,24 +97,24 @@ func (v CommunicationPostedByEmployee) MakeQuery(typeOfQuery string) string {
 	}
 }
 
-func (v CommunicationPostedByEmployee) MakeParams(typeOfQuery string) map[string]any {
+func (v CommunicationPostedByUser) MakeParams(typeOfQuery string) map[string]any {
 	switch typeOfQuery {
 	case "CREATE":
 		return map[string]any{
 			"CommunicationType":    v.Communication.Type,
 			"CommunicationContent": v.Communication.Content,
 			"PostedByPostedByDate": v.PostedBy.PostedByDate,
-			"EmployeeName":         v.Employee.Name,
-			"EmployeeMailAddress":  v.Employee.MailAddress,
-			"EmployeeDomain":       v.Employee.Domain,
-			"EmployeePassword":     v.Employee.Password,
-			"EmployeePhoneNumber":  v.Employee.PhoneNumber,
-			"EmployeeEmployeeRole": v.Employee.Role,
-			"EmployeeLocation":     v.Employee.Location,
+			"UserName":             v.User.Name,
+			"UserMailAddress":      v.User.MailAddress,
+			"UserDomain":           v.User.Domain,
+			"UserPassword":         v.User.Password,
+			"UserPhoneNumber":      v.User.PhoneNumber,
+			"UserUserRole":         v.User.Role,
+			"UserLocation":         v.User.Location,
 		}
-	case "LIST_COMMUNICATION_POSTED_BY_EMPLOYEE":
+	case "LIST_COMMUNICATION_POSTED_BY_USER":
 		return map[string]any{
-			"NodeId": v.Employee.Key,
+			"NodeId": v.User.Key,
 		}
 	default:
 		return map[string]any{}

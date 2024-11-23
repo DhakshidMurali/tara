@@ -11,15 +11,15 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func createCommunityMemberEmployee(context *gin.Context) {
-	var communityMemberEmployee model.CommunityMemberEmployee
-	err := context.ShouldBindJSON(&communityMemberEmployee)
+func createCommunityMemberUser(context *gin.Context) {
+	var communityMemberUser model.CommunityMemberUser
+	err := context.ShouldBindJSON(&communityMemberUser)
 
 	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"Description": "Received data can't be parsed"})
 	}
-	query := communityMemberEmployee.MakeQuery("CREATE")
-	params := communityMemberEmployee.MakeParams("CREATE")
+	query := communityMemberUser.MakeQuery("CREATE")
+	params := communityMemberUser.MakeParams("CREATE")
 	result := db.Execute(query, params)
 
 	isCreated := result.Records[0].Values[0].(bool)
@@ -35,15 +35,15 @@ func createCommunityMemberEmployee(context *gin.Context) {
 	}
 }
 
-func createCommunityCreatedByEmployee(context *gin.Context) {
-	var communityCreatedByEmployee model.CommunityCreatedByEmployee
-	err := context.ShouldBindJSON(&communityCreatedByEmployee)
+func createCommunityCreatedByUser(context *gin.Context) {
+	var communityCreatedByUser model.CommunityCreatedByUser
+	err := context.ShouldBindJSON(&communityCreatedByUser)
 
 	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"Description": "Received data can't be parsed"})
 	}
-	query := communityCreatedByEmployee.MakeQuery("CREATE")
-	params := communityCreatedByEmployee.MakeParams("CREATE")
+	query := communityCreatedByUser.MakeQuery("CREATE")
+	params := communityCreatedByUser.MakeParams("CREATE")
 	result := db.Execute(query, params)
 
 	isCreated := result.Records[0].Values[0].(bool)
@@ -59,17 +59,17 @@ func createCommunityCreatedByEmployee(context *gin.Context) {
 	}
 }
 
-func listCommunityCreatedByEmployee(context *gin.Context) {
-	var communityCreatedByEmployee model.CommunityCreatedByEmployee
+func listCommunityCreatedByUser(context *gin.Context) {
+	var communityCreatedByUser model.CommunityCreatedByUser
 	var data model.Community
-	err := context.ShouldBindJSON(&communityCreatedByEmployee)
+	err := context.ShouldBindJSON(&communityCreatedByUser)
 
 	if err != nil {
 		panic(err)
 	}
 
-	query := communityCreatedByEmployee.MakeQuery("LIST_COMMUNITY_CREATED_BY_EMPLOYEE")
-	params := communityCreatedByEmployee.MakeParams("LIST_COMMUNITY_CREATED_BY_EMPLOYEE")
+	query := communityCreatedByUser.MakeQuery("LIST_COMMUNITY_CREATED_BY_USER")
+	params := communityCreatedByUser.MakeParams("LIST_COMMUNITY_CREATED_BY_USER")
 	result := db.Execute(query, params)
 
 	for _, record := range result.Records {
@@ -86,17 +86,17 @@ func listCommunityCreatedByEmployee(context *gin.Context) {
 	communityList = nil
 }
 
-func listCommunityMemberEmployee(context *gin.Context) {
-	var communityMemberEmployee model.CommunityMemberEmployee
-	var data model.Employee
-	err := context.ShouldBindJSON(&communityMemberEmployee)
+func listCommunityMemberUser(context *gin.Context) {
+	var communityMemberUser model.CommunityMemberUser
+	var data model.User
+	err := context.ShouldBindJSON(&communityMemberUser)
 
 	if err != nil {
 		panic(err)
 	}
 
-	query := communityMemberEmployee.MakeQuery("LIST_EMPLOYEES_MEMBER_OF_COMMUNITY")
-	params := communityMemberEmployee.MakeParams("LIST_EMPLOYEES_MEMBER_OF_COMMUNITY")
+	query := communityMemberUser.MakeQuery("LIST_USERS_MEMBER_OF_COMMUNITY")
+	params := communityMemberUser.MakeParams("LIST_USERS_MEMBER_OF_COMMUNITY")
 	result := db.Execute(query, params)
 
 	for _, record := range result.Records {
@@ -107,8 +107,8 @@ func listCommunityMemberEmployee(context *gin.Context) {
 			fmt.Println("Error Unmarshalling Json")
 			panic(err)
 		}
-		employeeList = append(employeeList, data)
+		userList = append(userList, data)
 	}
-	context.JSON(http.StatusOK, employeeList)
-	employeeList = nil
+	context.JSON(http.StatusOK, userList)
+	userList = nil
 }

@@ -5,7 +5,7 @@ import (
 	"github.com/DhakshidMurali/tara/util"
 )
 
-type Employee struct {
+type User struct {
 	Name        string
 	MailAddress string
 	Domain      string
@@ -63,9 +63,9 @@ func (v Node) MakeQuery() string {
 	return query
 }
 
-func (v Employee) MakeQuery(typeOfQuery string) string {
+func (v User) MakeQuery(typeOfQuery string) string {
 	switch typeOfQuery {
-	case "LIST_EMPLOYEE":
+	case "LIST_USER":
 		returnData := `n1{
 			Name:n1.Name,
 			MailAddress:n1.Description,
@@ -88,7 +88,7 @@ func (v Employee) MakeQuery(typeOfQuery string) string {
 		return ""
 	}
 }
-func (v Employee) MakeParams(key string, typeOfQuery string) map[string]any {
+func (v User) MakeParams(key string, typeOfQuery string) map[string]any {
 	switch typeOfQuery {
 	case "UPDATE":
 		params := make(map[string]string)

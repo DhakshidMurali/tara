@@ -12,15 +12,15 @@ import (
 	"github.com/neo4j/neo4j-go-driver/v5/neo4j"
 )
 
-func createToolRequestByEmployee(context *gin.Context) {
-	var toolRequestByEmployee model.ToolRequestByEmployee
-	err := context.ShouldBindJSON(&toolRequestByEmployee)
+func createToolRequestByUser(context *gin.Context) {
+	var toolRequestByUser model.ToolRequestByUser
+	err := context.ShouldBindJSON(&toolRequestByUser)
 
 	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"Description": "Received data can't be parsed"})
 	}
-	query := toolRequestByEmployee.MakeQuery("CREATE")
-	params := toolRequestByEmployee.MakeParams("CREATE")
+	query := toolRequestByUser.MakeQuery("CREATE")
+	params := toolRequestByUser.MakeParams("CREATE")
 	result := db.Execute(query, params)
 
 	isCreated := result.Records[0].Values[0].(bool)
@@ -35,12 +35,12 @@ func createToolRequestByEmployee(context *gin.Context) {
 		})
 	}
 }
-func listToolRequestByEmployee(context *gin.Context) {
-	var toolRequestByEmployee model.ToolRequestByEmployee
-	err := context.ShouldBindJSON(&toolRequestByEmployee)
+func listToolRequestByUser(context *gin.Context) {
+	var toolRequestByUser model.ToolRequestByUser
+	err := context.ShouldBindJSON(&toolRequestByUser)
 
 	var toolData model.Tool
-	var employeeData model.Employee
+	var userData model.User
 
 	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"Description": "Received data can't be parsed"})
@@ -50,8 +50,8 @@ func listToolRequestByEmployee(context *gin.Context) {
 	var result *neo4j.EagerResult
 
 	if retrieveNode == "TOOL" {
-		query := toolRequestByEmployee.MakeQuery("LIST_TOOL_REQUESTED_BY_EMPLOYEE")
-		params := toolRequestByEmployee.MakeParams("LIST_TOOL_REQUESTED_BY_EMPLOYEE")
+		query := toolRequestByUser.MakeQuery("LIST_TOOL_REQUESTED_BY_USER")
+		params := toolRequestByUser.MakeParams("LIST_TOOL_REQUESTED_BY_USER")
 		result = db.Execute(query, params)
 		for _, record := range result.Records {
 			mapRecord, _ := record.Get("n1")
@@ -67,33 +67,33 @@ func listToolRequestByEmployee(context *gin.Context) {
 		toolList = nil
 	}
 
-	if retrieveNode == "EMPLOYEE" {
-		query := toolRequestByEmployee.MakeQuery("LIST_EMPLOYEES_REQUESTED_TO_TOOL")
-		params := toolRequestByEmployee.MakeParams("LIST_EMPLOYEES_REQUESTED_TO_TOOL")
+	if retrieveNode == "USER" {
+		query := toolRequestByUser.MakeQuery("LIST_USERS_REQUESTED_TO_TOOL")
+		params := toolRequestByUser.MakeParams("LIST_USERS_REQUESTED_TO_TOOL")
 		result = db.Execute(query, params)
 		for _, record := range result.Records {
 			mapRecord, _ := record.Get("n2")
 			byteData := util.MarshalData(mapRecord)
-			err := json.Unmarshal(byteData, &employeeData)
+			err := json.Unmarshal(byteData, &userData)
 			if err != nil {
 				fmt.Println("Error Unmarshalling Json")
 				panic(err)
 			}
-			employeeList = append(employeeList, employeeData)
+			userList = append(userList, userData)
 		}
-		context.JSON(http.StatusOK, employeeList)
-		employeeList = nil
+		context.JSON(http.StatusOK, userList)
+		userList = nil
 	}
 }
-func createToolAccessToEmployee(context *gin.Context) {
-	var toolAccessToEmployee model.ToolAccessToEmployee
-	err := context.ShouldBindJSON(&toolAccessToEmployee)
+func createToolAccessToUser(context *gin.Context) {
+	var toolAccessToUser model.ToolAccessToUser
+	err := context.ShouldBindJSON(&toolAccessToUser)
 
 	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"Description": "Received data can't be parsed"})
 	}
-	query := toolAccessToEmployee.MakeQuery("CREATE")
-	params := toolAccessToEmployee.MakeParams("CREATE")
+	query := toolAccessToUser.MakeQuery("CREATE")
+	params := toolAccessToUser.MakeParams("CREATE")
 	result := db.Execute(query, params)
 
 	isCreated := result.Records[0].Values[0].(bool)
@@ -108,12 +108,12 @@ func createToolAccessToEmployee(context *gin.Context) {
 		})
 	}
 }
-func listToolAccessToEmployee(context *gin.Context) {
-	var toolAccessToEmployee model.ToolAccessToEmployee
-	err := context.ShouldBindJSON(&toolAccessToEmployee)
+func listToolAccessToUser(context *gin.Context) {
+	var toolAccessToUser model.ToolAccessToUser
+	err := context.ShouldBindJSON(&toolAccessToUser)
 
 	var toolData model.Tool
-	var employeeData model.Employee
+	var userData model.User
 
 	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"Description": "Received data can't be parsed"})
@@ -122,8 +122,8 @@ func listToolAccessToEmployee(context *gin.Context) {
 	retrieveNode := context.Param("node")
 	var result *neo4j.EagerResult
 	if retrieveNode == "TOOL" {
-		query := toolAccessToEmployee.MakeQuery("LIST_TOOLS_ACCESS_BY_EMPLOYEE")
-		params := toolAccessToEmployee.MakeParams("LIST_TOOLS_ACCESS_BY_EMPLOYEE")
+		query := toolAccessToUser.MakeQuery("LIST_TOOLS_ACCESS_BY_USER")
+		params := toolAccessToUser.MakeParams("LIST_TOOLS_ACCESS_BY_USER")
 		result = db.Execute(query, params)
 		for _, record := range result.Records {
 			mapRecord, _ := record.Get("n1")
@@ -138,34 +138,34 @@ func listToolAccessToEmployee(context *gin.Context) {
 		context.JSON(http.StatusOK, toolList)
 		toolList = nil
 	}
-	if retrieveNode == "EMPLOYEE" {
-		query := toolAccessToEmployee.MakeQuery("LIST_EMPLOYEES_ACCESS_TO_TOOL")
-		params := toolAccessToEmployee.MakeParams("LIST_EMPLOYEES_ACCESS_TO_TOOL")
+	if retrieveNode == "USER" {
+		query := toolAccessToUser.MakeQuery("LIST_USERS_ACCESS_TO_TOOL")
+		params := toolAccessToUser.MakeParams("LIST_USERS_ACCESS_TO_TOOL")
 		result = db.Execute(query, params)
 		for _, record := range result.Records {
 			mapRecord, _ := record.Get("n2")
 			byteData := util.MarshalData(mapRecord)
-			err := json.Unmarshal(byteData, &employeeData)
+			err := json.Unmarshal(byteData, &userData)
 			if err != nil {
 				fmt.Println("Error Unmarshalling Json")
 				panic(err)
 			}
-			employeeList = append(employeeList, employeeData)
+			userList = append(userList, userData)
 		}
-		context.JSON(http.StatusOK, employeeList)
-		employeeList = nil
+		context.JSON(http.StatusOK, userList)
+		userList = nil
 	}
 
 }
-func createToolManagedByEmployee(context *gin.Context) {
-	var toolManagedByEmployee model.ToolManagedByEmployee
-	err := context.ShouldBindJSON(&toolManagedByEmployee)
+func createToolManagedByUser(context *gin.Context) {
+	var toolManagedByUser model.ToolManagedByUser
+	err := context.ShouldBindJSON(&toolManagedByUser)
 
 	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"Description": "Received data can't be parsed"})
 	}
-	query := toolManagedByEmployee.MakeQuery("CREATE")
-	params := toolManagedByEmployee.MakeParams("CREATE")
+	query := toolManagedByUser.MakeQuery("CREATE")
+	params := toolManagedByUser.MakeParams("CREATE")
 	result := db.Execute(query, params)
 
 	isCreated := result.Records[0].Values[0].(bool)
@@ -181,12 +181,12 @@ func createToolManagedByEmployee(context *gin.Context) {
 	}
 }
 
-func listToolManagedByEmployee(context *gin.Context) {
-	var toolManagedByEmployee model.ToolManagedByEmployee
-	err := context.ShouldBindJSON(&toolManagedByEmployee)
+func listToolManagedByUser(context *gin.Context) {
+	var toolManagedByUser model.ToolManagedByUser
+	err := context.ShouldBindJSON(&toolManagedByUser)
 
 	var toolData model.Tool
-	var employeeData model.Employee
+	var userData model.User
 
 	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"Description": "Received data can't be parsed"})
@@ -195,9 +195,9 @@ func listToolManagedByEmployee(context *gin.Context) {
 	retrieveNode := context.Param("node")
 	var result *neo4j.EagerResult
 	if retrieveNode == "TOOL" {
-		query := toolManagedByEmployee.MakeQuery("LIST_TOOLS_MANAGED_BY_EMPLOYEE")
+		query := toolManagedByUser.MakeQuery("LIST_TOOLS_MANAGED_BY_USER")
 		fmt.Println(query)
-		params := toolManagedByEmployee.MakeParams("LIST_TOOLS_MANAGED_BY_EMPLOYEE")
+		params := toolManagedByUser.MakeParams("LIST_TOOLS_MANAGED_BY_USER")
 		result = db.Execute(query, params)
 		for _, record := range result.Records {
 			mapRecord, _ := record.Get("n1")
@@ -210,24 +210,24 @@ func listToolManagedByEmployee(context *gin.Context) {
 			toolList = append(toolList, toolData)
 		}
 		context.JSON(http.StatusOK, toolList)
-		employeeList = nil
+		userList = nil
 	}
-	if retrieveNode == "EMPLOYEE" {
-		query := toolManagedByEmployee.MakeQuery("LIST_EMPLOYEES_MANAGES_TOOL")
-		params := toolManagedByEmployee.MakeParams("LIST_EMPLOYEES_MANAGES_TOOL")
+	if retrieveNode == "USER" {
+		query := toolManagedByUser.MakeQuery("LIST_USERS_MANAGES_TOOL")
+		params := toolManagedByUser.MakeParams("LIST_USERS_MANAGES_TOOL")
 		result = db.Execute(query, params)
 		for _, record := range result.Records {
 			mapRecord, _ := record.Get("n2")
 			byteData := util.MarshalData(mapRecord)
-			err := json.Unmarshal(byteData, &employeeData)
+			err := json.Unmarshal(byteData, &userData)
 			if err != nil {
 				fmt.Println("Error Unmarshalling Json")
 				panic(err)
 			}
-			employeeList = append(employeeList, employeeData)
+			userList = append(userList, userData)
 		}
-		context.JSON(http.StatusOK, employeeList)
-		employeeList = nil
+		context.JSON(http.StatusOK, userList)
+		userList = nil
 	}
 
 }
@@ -284,7 +284,7 @@ func listToolComesUnderDepartment(context *gin.Context) {
 			toolList = append(toolList, toolData)
 		}
 		context.JSON(http.StatusOK, toolList)
-		employeeList = nil
+		userList = nil
 	}
 	if retrieveNode == "DEPARTMENT" {
 		query := toolComesUnderDepartment.MakeQuery("LIST_DEPARTMENT_MAINTAIN_TOOL")

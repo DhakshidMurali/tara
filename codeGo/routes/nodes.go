@@ -76,9 +76,9 @@ func listDepartment(context *gin.Context) {
 	context.JSON(http.StatusOK, departmentList)
 	departmentList = nil
 }
-func updateEmployee(context *gin.Context) {
+func updateUser(context *gin.Context) {
 	var node model.UpdateNode
-	var employee model.Employee
+	var user model.User
 	err := context.ShouldBindJSON(&node)
 
 	if err != nil {
@@ -92,7 +92,7 @@ func updateEmployee(context *gin.Context) {
 		panic(err)
 	}
 
-	if err = json.Unmarshal(jsonData, &employee); err != nil {
+	if err = json.Unmarshal(jsonData, &user); err != nil {
 		panic(err)
 	}
 
@@ -100,7 +100,7 @@ func updateEmployee(context *gin.Context) {
 		NodeName: "Hello",
 	}.MakeQuery()
 
-	params := employee.MakeParams(node.Key, "UPDATE")
+	params := user.MakeParams(node.Key, "UPDATE")
 
 	fmt.Println(query)
 	fmt.Println(params)
