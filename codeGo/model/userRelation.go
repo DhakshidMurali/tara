@@ -27,13 +27,9 @@ type UserReportToUser struct {
 	User    User
 	Manager User
 }
-type UserComesUnderDepartment struct {
-	User       User
-	Department Department
-}
-type UserGroupByDepartment struct {
-	UserCount      int
-	DepartmentName string
+type UserComesUnderDomain struct {
+	User   User
+	Domain Domain
 }
 
 func (v UserCollaboratedWithUser) MakeQuery(typeOfQuery string) string {

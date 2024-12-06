@@ -64,9 +64,9 @@ const (
 		ApprovalType:$ToolApprovalType
 	}
 	`
-	DEPARTMENT = `
-	Department{
-		DepartmentName:$DepartmentName
+	DOMAIN = `
+	Domain{
+		DomainName:$DomainName
 	}
 	`
 
@@ -169,8 +169,8 @@ const (
 		Key:elementId(%node)
 	}`
 
-	RETURNDATA_DEPARTMENT = `%node{
-		DepartmentName:%node.DepartmentName,
+	RETURNDATA_DOMAIN = `%node{
+		DomainName:%node.DomainName,
 		Key:elementId(%node)
 	}`
 
@@ -190,13 +190,4 @@ const (
 		SkillName:%node.SkillName,
 		Key:elementId(%node)
 	}`
-)
-
-const (
-	QUERY_USER_GROUPBY_DEPARTMENT = `Match (n1:User)-[r:ComesUnder]->(n2:Department)
-	WITH count(n1) as userCount, n2.DepartmentName as departmentName
-	RETURN {
-		DepartmentName:departmentName,
-		UserCount:userCount
-	} as data`
 )

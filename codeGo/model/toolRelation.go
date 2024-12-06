@@ -22,9 +22,9 @@ type ToolManagedByUser struct {
 	User User
 }
 
-type ToolComesUnderDepartment struct {
-	Tool       Tool
-	Department Department
+type ToolComesUnderDomain struct {
+	Tool   Tool
+	Domain Domain
 }
 
 func (v ToolRequestByUser) MakeQuery(typeOfQuery string) string {
@@ -237,37 +237,37 @@ func (v ToolManagedByUser) MakeParams(typeOfQuery string) map[string]any {
 		return map[string]any{}
 	}
 }
-func (v ToolComesUnderDepartment) MakeQuery(typeOfQuery string) string {
+func (v ToolComesUnderDomain) MakeQuery(typeOfQuery string) string {
 	switch typeOfQuery {
 	case "CREATE":
 		query := constant.CREATE_NODE_TO_NODE_RELATION
 		mapData := map[string]string{
 			"%n1": constant.TOOL,
 			"%r":  constant.COMESUNDER,
-			"%n2": constant.DEPARTMENT,
+			"%n2": constant.DOMAIN,
 		}
 		query = util.ReplaceQuery(query, mapData)
 		return query
-	case "LIST_TOOLS_COMES_UNDER_DEPARTMENT":
+	case "LIST_TOOLS_COMES_UNDER_DOMAIN":
 		query := constant.RETRIEVE_DATA_NODE_WHERE
 		returnData := constant.RETURNDATA_TOOL
 		mapData := map[string]string{
 			"%n1":        "Tool",
 			"%rel":       "ComesUnder",
-			"%n2":        "Department",
+			"%n2":        "Domain",
 			"%condition": "elementId(n2)=$NodeId",
 			"%node":      "n1",
 			"%return":    returnData,
 		}
 		query = util.DoubleReplaceQuery(query, mapData)
 		return query
-	case "LIST_DEPARTMENT_MAINTAIN_TOOL":
+	case "LIST_DOMAIN_MAINTAIN_TOOL":
 		query := constant.RETRIEVE_DATA_NODE_WHERE
-		returnData := constant.RETURNDATA_DEPARTMENT
+		returnData := constant.RETURNDATA_DOMAIN
 		mapData := map[string]string{
 			"%n1":        "Tool",
 			"%rel":       "ComesUnder",
-			"%n2":        "Department",
+			"%n2":        "Domain",
 			"%condition": "elementId(n1)=$NodeId",
 			"%node":      "n2",
 			"%return":    returnData,
@@ -279,19 +279,19 @@ func (v ToolComesUnderDepartment) MakeQuery(typeOfQuery string) string {
 	}
 }
 
-func (v ToolComesUnderDepartment) MakeParams(typeOfQuery string) map[string]any {
+func (v ToolComesUnderDomain) MakeParams(typeOfQuery string) map[string]any {
 	switch typeOfQuery {
 	case "CREATE":
 		return map[string]any{
 			"ToolName":         v.Tool.Name,
 			"ToolApprovalType": v.Tool.ApprovalType,
-			"DepartmentName":   v.Department.DepartmentName,
+			"DomainName":       v.Domain.DomainName,
 		}
-	case "LIST_TOOLS_COMES_UNDER_DEPARTMENT":
+	case "LIST_TOOLS_COMES_UNDER_DOMAIN":
 		return map[string]any{
-			"NodeId": v.Department.Key,
+			"NodeId": v.Domain.Key,
 		}
-	case "LIST_DEPARTMENT_MAINTAIN_TOOL":
+	case "LIST_DOMAIN_MAINTAIN_TOOL":
 		return map[string]any{
 			"NodeId": v.Tool.Key,
 		}

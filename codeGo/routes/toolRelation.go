@@ -231,15 +231,15 @@ func listToolManagedByUser(context *gin.Context) {
 	}
 
 }
-func createToolComesUnderDepartment(context *gin.Context) {
-	var toolComesUnderDepartment model.ToolComesUnderDepartment
-	err := context.ShouldBindJSON(&toolComesUnderDepartment)
+func createToolComesUnderDomain(context *gin.Context) {
+	var toolComesUnderDomain model.ToolComesUnderDomain
+	err := context.ShouldBindJSON(&toolComesUnderDomain)
 
 	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"Description": "Received data can't be parsed"})
 	}
-	query := toolComesUnderDepartment.MakeQuery("CREATE")
-	params := toolComesUnderDepartment.MakeParams("CREATE")
+	query := toolComesUnderDomain.MakeQuery("CREATE")
+	params := toolComesUnderDomain.MakeParams("CREATE")
 	result := db.Execute(query, params)
 
 	isCreated := result.Records[0].Values[0].(bool)
@@ -255,12 +255,12 @@ func createToolComesUnderDepartment(context *gin.Context) {
 	}
 }
 
-func listToolComesUnderDepartment(context *gin.Context) {
-	var toolComesUnderDepartment model.ToolComesUnderDepartment
-	err := context.ShouldBindJSON(&toolComesUnderDepartment)
+func listToolComesUnderDomain(context *gin.Context) {
+	var toolComesUnderDomain model.ToolComesUnderDomain
+	err := context.ShouldBindJSON(&toolComesUnderDomain)
 
 	var toolData model.Tool
-	var departmentData model.Department
+	var domainData model.Domain
 
 	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"Description": "Received data can't be parsed"})
@@ -269,9 +269,9 @@ func listToolComesUnderDepartment(context *gin.Context) {
 	retrieveNode := context.Param("node")
 	var result *neo4j.EagerResult
 	if retrieveNode == "TOOL" {
-		query := toolComesUnderDepartment.MakeQuery("LIST_TOOLS_COMES_UNDER_DEPARTMENT")
+		query := toolComesUnderDomain.MakeQuery("LIST_TOOLS_COMES_UNDER_DOMAIN")
 		fmt.Println(query)
-		params := toolComesUnderDepartment.MakeParams("LIST_TOOLS_COMES_UNDER_DEPARTMENT")
+		params := toolComesUnderDomain.MakeParams("LIST_TOOLS_COMES_UNDER_DOMAIN")
 		result = db.Execute(query, params)
 		for _, record := range result.Records {
 			mapRecord, _ := record.Get("n1")
@@ -286,22 +286,22 @@ func listToolComesUnderDepartment(context *gin.Context) {
 		context.JSON(http.StatusOK, toolList)
 		userList = nil
 	}
-	if retrieveNode == "DEPARTMENT" {
-		query := toolComesUnderDepartment.MakeQuery("LIST_DEPARTMENT_MAINTAIN_TOOL")
-		params := toolComesUnderDepartment.MakeParams("LIST_DEPARTMENT_MAINTAIN_TOOL")
+	if retrieveNode == "DOMAIN" {
+		query := toolComesUnderDomain.MakeQuery("LIST_DOMAIN_MAINTAIN_TOOL")
+		params := toolComesUnderDomain.MakeParams("LIST_DOMAIN_MAINTAIN_TOOL")
 		result = db.Execute(query, params)
 		for _, record := range result.Records {
 			mapRecord, _ := record.Get("n2")
 			byteData := util.MarshalData(mapRecord)
-			err := json.Unmarshal(byteData, &departmentData)
+			err := json.Unmarshal(byteData, &domainData)
 			if err != nil {
 				fmt.Println("Error Unmarshalling Json")
 				panic(err)
 			}
-			departmentList = append(departmentList, departmentData)
+			domainList = append(domainList, domainData)
 		}
-		context.JSON(http.StatusOK, departmentList)
-		departmentList = nil
+		context.JSON(http.StatusOK, domainList)
+		domainList = nil
 	}
 
 }

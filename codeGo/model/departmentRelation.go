@@ -1,6 +1,6 @@
 package model
 
-type DepartmentManagedByUser struct {
-	Department Department
+type DomainManagedByUser struct {
+	Domain Domain
 	User       User
 }

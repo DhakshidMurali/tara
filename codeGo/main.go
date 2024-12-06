@@ -1,11 +1,7 @@
 package main
 
 import (
-	"encoding/json"
-	"fmt"
-
 	"github.com/DhakshidMurali/tara/db"
-	"github.com/DhakshidMurali/tara/model"
 	"github.com/DhakshidMurali/tara/routes"
 	"github.com/gin-gonic/gin"
 )
@@ -24,43 +20,27 @@ func main() {
 
 	routes.APIRoutes(server)
 
-	// server.Run(":8080")
+	server.Run(":8080")
 
-	result := db.Execute(`
-			Match (n1:User)-[r:ComesUnder]->(n2:Department)
-WITH count(n1) as userCount, n2.DepartmentName as departmentName
-RETURN {
-    DepartmentName:departmentName,
-    UserCount:userCount
-} as data`, map[string]any{})
-	for _, record := range result.Records {
-		// fmt.Println(record.Values...)
-		mapRecord, _ := record.Get("data")
-		fmt.Println(mapRecord)
-		recordMap, ok := mapRecord.(map[string]interface{})
-		if !ok {
-			fmt.Println("Error unmarshalling JSON:")
-			return
-		}
-		jsonData, err := json.Marshal(recordMap)
-		if err != nil {
-			fmt.Println("Error:", err)
-			return
-		}
-		var data model.UserGroupByDepartment
-		err = json.Unmarshal(jsonData, &data)
-		fmt.Println(jsonData)
-		if err != nil {
-			fmt.Println("Error unmarshalling JSON:", err)
-			return
-		}
-		fmt.Printf("%+v\n", data)
-		fmt.Println(data.UserCount)
-		fmt.Println(data.DepartmentName)
-	}
+	// result := db.Execute(`
+	// 		MATCH (N1:TOOL)-[r:COMESUNDER]->(N2:DOMAIN)
+	// RETURN N2.DomainName AS DomainName,COUNT(N2.DomainName) AS CountToolsGroupByDomain
+	// ORDER BY CountToolsGroupByDomain DESC`, map[string]any{})
+	// var data dashboardModel.ToolGroupByDomain
+
+	// for _, record := range result.Records {
+	// 	fmt.Println(record)
+	// 	// byteData := util.MarshalData(record)
+	// 	// err := json.Unmarshal(byteData, &data)
+	// 	// if err != nil {
+	// 	// 	fmt.Println("Error Unmarshalling Json")
+	// 	// 	panic(err)
+	// 	// }
+	// 	// fmt.Println(data)
+	// }
 
 }
 
 /*
-* Building list userGroupByDepartment Api and  Create API testing for that
+* Building list userGroupByDomain Api and  Create API testing for that
  */

@@ -12,7 +12,7 @@ func APIRoutes(server *gin.Engine) {
 	authRoutes.POST("/create/relation/toolRequestByUser", createToolRequestByUser)
 	authRoutes.POST("/create/relation/toolAccessToUser", createToolAccessToUser)
 	authRoutes.POST("/create/relation/toolManagedByUser", createToolManagedByUser)
-	authRoutes.POST("/create/relation/toolComesUnderDepartment", createToolComesUnderDepartment)
+	authRoutes.POST("/create/relation/toolComesUnderDomain", createToolComesUnderDomain)
 
 	authRoutes.POST("/create/relation/userCollaboratedWithUser", createUserCollaboratedWithUser)
 	authRoutes.POST("/create/relation/userWorksInTools", createUserWorksInTools)
@@ -29,7 +29,7 @@ func APIRoutes(server *gin.Engine) {
 	 */
 	authRoutes.POST("/update/node/user", updateUser)
 	authRoutes.POST("/update/node/tool", updateTool)
-	authRoutes.POST("/update/node/department", updateDepartment)
+	authRoutes.POST("/update/node/domain", updateDomain)
 	authRoutes.POST("/update/node/community", updateCommunity)
 	authRoutes.POST("/update/node/communication", updateCommunication)
 	authRoutes.POST("/update/node/skills", updateSkills)
@@ -48,9 +48,9 @@ func APIRoutes(server *gin.Engine) {
 	authRoutes.POST("/get/list/community", listCommunity)
 
 	/*
-	* Retrieve data for Department
+	* Retrieve data for Domain
 	 */
-	authRoutes.POST("/get/list/department", listDepartment)
+	authRoutes.POST("/get/list/domain", listDomain)
 
 	/*
 	* Retrieve data for User
@@ -65,6 +65,6 @@ func APIRoutes(server *gin.Engine) {
 	authRoutes.POST("/get/list/toolRequestByUser/:node", listToolRequestByUser)
 	authRoutes.POST("/get/list/toolAccessToUser/:node", listToolAccessToUser)
 	authRoutes.POST("/get/list/toolManagedByUser/:node", listToolManagedByUser)
-	authRoutes.POST("/get/list/toolComesUnderDepartment/:node", listToolComesUnderDepartment)
+	authRoutes.POST("/get/list/toolComesUnderDomain/:node", listToolComesUnderDomain)
 
 }

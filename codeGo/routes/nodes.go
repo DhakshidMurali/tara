@@ -56,11 +56,11 @@ func listCommunity(context *gin.Context) {
 	communityList = nil
 }
 
-func listDepartment(context *gin.Context) {
-	var department model.Department
-	var data model.Department
+func listDomain(context *gin.Context) {
+	var domain model.Domain
+	var data model.Domain
 
-	query := department.MakeQuery("LIST_DEPARTMENT")
+	query := domain.MakeQuery("LIST_DOMAIN")
 	params := map[string]any{}
 	result := db.Execute(query, params)
 	for _, record := range result.Records {
@@ -71,10 +71,10 @@ func listDepartment(context *gin.Context) {
 			fmt.Println("Error Unmarshalling Json")
 			panic(err)
 		}
-		departmentList = append(departmentList, data)
+		domainList = append(domainList, data)
 	}
-	context.JSON(http.StatusOK, departmentList)
-	departmentList = nil
+	context.JSON(http.StatusOK, domainList)
+	domainList = nil
 }
 func updateUser(context *gin.Context) {
 	var node model.UpdateNode
@@ -137,9 +137,9 @@ func updateTool(context *gin.Context) {
 	db.Execute(query, params)
 }
 
-func updateDepartment(context *gin.Context) {
+func updateDomain(context *gin.Context) {
 	var node model.UpdateNode
-	var department model.Department
+	var domain model.Domain
 	err := context.ShouldBindJSON(&node)
 
 	if err != nil {
@@ -153,15 +153,15 @@ func updateDepartment(context *gin.Context) {
 		panic(err)
 	}
 
-	if err = json.Unmarshal(jsonData, &department); err != nil {
+	if err = json.Unmarshal(jsonData, &domain); err != nil {
 		panic(err)
 	}
 
 	query := model.Node{
-		NodeName: "Department",
+		NodeName: "Domain",
 	}.MakeQuery()
 
-	params := department.MakeParams(node.Key, "UPDATE")
+	params := domain.MakeParams(node.Key, "UPDATE")
 
 	db.Execute(query, params)
 

@@ -1,5 +1,5 @@
 POST http://localhost:8080/get/list/toolComesUnderDepartment/TOOL
-# POST http://localhost:8080/get/list/toolComesUnderDepartment/DEPARTMENT
+# POST http://localhost:8080/get/list/toolComesUnderDepartment/DOMAIN
 content-type: application/json
 
 {

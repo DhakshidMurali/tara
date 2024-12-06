@@ -22,9 +22,9 @@ type Tool struct {
 	Key          string
 }
 
-type Department struct {
-	DepartmentName string
-	Key            string
+type Domain struct {
+	DomainName string
+	Key        string
 }
 
 type Community struct {
@@ -79,7 +79,7 @@ func (v User) MakeQuery(typeOfQuery string) string {
 		`
 		query := constant.RETRIEVE_DATA_NODES_ALL
 		mapData := map[string]string{
-			"%n1":     "Department",
+			"%n1":     "Domain",
 			"%return": returnData,
 		}
 		query = util.ReplaceQuery(query, mapData)
@@ -137,13 +137,13 @@ func (v Tool) MakeParams(key string, typeOfQuery string) map[string]any {
 		return map[string]any{}
 	}
 }
-func (v Department) MakeQuery(typeOfQuery string) string {
+func (v Domain) MakeQuery(typeOfQuery string) string {
 	switch typeOfQuery {
-	case "LIST_DEPARTMENT":
-		returnData := constant.RETURNDATA_DEPARTMENT
+	case "LIST_DOMAIN":
+		returnData := constant.RETURNDATA_DOMAIN
 		query := constant.RETRIEVE_DATA_NODES_ALL
 		mapData := map[string]string{
-			"%n1":     "Department",
+			"%n1":     "Domain",
 			"%node":   "n1",
 			"%return": returnData,
 		}
@@ -153,11 +153,11 @@ func (v Department) MakeQuery(typeOfQuery string) string {
 		return ""
 	}
 }
-func (v Department) MakeParams(key string, typeOfQuery string) map[string]any {
+func (v Domain) MakeParams(key string, typeOfQuery string) map[string]any {
 	switch typeOfQuery {
 	case "UPDATE":
 		params := make(map[string]string)
-		util.AddToParams(v.DepartmentName, "DepartmentName", params)
+		util.AddToParams(v.DomainName, "DomainName", params)
 		return map[string]any{
 			"NodeId": key,
 			"v":      params,

@@ -1,5 +1,5 @@
 # POST http://localhost:8080/get/list/employeeComesUnderDepartment/EMPLOYEE
-POST http://localhost:8080/get/list/employeeComesUnderDepartment/DEPARTMENT
+POST http://localhost:8080/get/list/employeeComesUnderDepartment/DOMAIN
 content-type: application/json
 
 # {
