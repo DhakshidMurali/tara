@@ -2,7 +2,15 @@
 
 import NavBar from "@/components/navBar/navBar.js";
 import { PageviewRounded } from "@mui/icons-material";
-import { Box, Button, Grid, Stack, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Grid,
+  Stack,
+  TextField,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 import { styles } from "./useStyles.tsx";
 
 import { dayNames, month } from "@/utils/constants";
@@ -64,9 +72,25 @@ export default function DashBoard() {
                 {Array.from({ length: 10 }).map((_, index) => (
                   <Grid item key={index}>
                     <Box sx={styles.toolsContainerListBoxStyle}>
-                      <Typography variant="h6" color="white">
-                        Item {index + 1}
-                      </Typography>
+                      <Stack sx={styles.toolsContainerListBoxStackStyle}>
+                        <Box
+                          sx={{
+                            width: "2%",
+                            height: "85%",
+                            bgcolor: "yellow",
+                            borderRadius: "4px",
+                          }}
+                        ></Box>
+                        <Box
+                          sx={{
+                            width: "2%",
+                            height: "85%",
+                            bgcolor: "yellow",
+                            borderRadius: "4px",
+                          }}
+                        ></Box>
+                        <Grid></Grid>
+                      </Stack>
                     </Box>
                   </Grid>
                 ))}

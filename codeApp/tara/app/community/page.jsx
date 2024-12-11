@@ -15,7 +15,7 @@ export default function Community() {
 
   return (
     <>
-      <Grid item xs={2.25}>
+      <Grid item xs={2.15} sx={{ marginRight: 2 }}>
         <NavBar selected="community"></NavBar>
       </Grid>
       <Grid item xs={9.75}>

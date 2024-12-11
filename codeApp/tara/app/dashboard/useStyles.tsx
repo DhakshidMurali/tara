@@ -90,6 +90,15 @@ const departmentContainerListDividerBoxStyle: SxProps = {
   bgcolor: "secondary.main",
   alignSelf: "center",
 };
+
+const toolsContainerListBoxStackStyle: SxProps={
+  direction:"row",
+  height:"100%",
+  width:"100%",
+  justifyContent:"flex-start",
+  alignItems:"center",
+  paddingLeft:2
+}
 export const styles = {
   searchTextFieldInputPropsStyle,
   dateTypographyStyle,
@@ -101,4 +110,5 @@ export const styles = {
   departmentContainerBoxStyle,
   departmentContainerListDividerBoxStyle,
   dashboardTextTypographStyle,
+  toolsContainerListBoxStackStyle
 };
