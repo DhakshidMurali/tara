@@ -17,9 +17,10 @@ type User struct {
 }
 
 type Tool struct {
-	Name         string
-	ApprovalType string
-	Key          string
+	Name           string
+	DeliveryFormat string
+	ApprovalType   string
+	Key            string
 }
 
 type Domain struct {

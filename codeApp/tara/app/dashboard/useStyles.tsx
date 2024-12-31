@@ -1,3 +1,4 @@
+import { getRandomColor } from "@/utils/functions";
 import { SxProps } from "@mui/system";
 /*
 
@@ -34,15 +35,15 @@ const toolsContainerBoxStyle: SxProps = {
   overflowX: "auto",
   display: "flex",
   padding: 2,
-  borderRadius:2,
+  borderRadius: 2,
   "&::-webkit-scrollbar": {
     height: "8px",
   },
   "&::-webkit-scrollbar-track": {
-    backgroundColor:"secondary.main",
+    backgroundColor: "secondary.main",
   },
   "&::-webkit-scrollbar-thumb": {
-    backgroundColor:"secondary.light",
+    backgroundColor: "secondary.light",
     borderRadius: "8px",
   },
   "&::-webkit-scrollbar-thumb:hover": {
@@ -91,13 +92,26 @@ const departmentContainerListDividerBoxStyle: SxProps = {
   alignSelf: "center",
 };
 
-const toolsContainerListBoxStackStyle: SxProps={
-  direction:"row",
-  height:"100%",
-  width:"100%",
-  justifyContent:"flex-start",
-  alignItems:"center",
-  paddingLeft:2
+const toolsContainerListBoxStackStyle: SxProps = {
+  height: "100%",
+  width: "100%",
+};
+
+const toolsContainerListBoxBoxStyle: SxProps={
+  width: "2%",
+  height: "70%",
+  borderRadius: "4px",
+  marginLeft: 2,
+  marginRight:1.5,
+}
+
+const toolsContainerListBoxCountTypographyStyle : SxProps ={
+  color: "#f3def5",
+  fontWeight: "bolder",
+}
+const toolsContainerListBoxDomainTypographyStyle : SxProps ={
+  color: "#f3def5",
+  fontWeight: "bolder",
 }
 export const styles = {
   searchTextFieldInputPropsStyle,
@@ -110,5 +124,8 @@ export const styles = {
   departmentContainerBoxStyle,
   departmentContainerListDividerBoxStyle,
   dashboardTextTypographStyle,
-  toolsContainerListBoxStackStyle
+  toolsContainerListBoxStackStyle,
+  toolsContainerListBoxBoxStyle,
+  toolsContainerListBoxCountTypographyStyle,
+  toolsContainerListBoxDomainTypographyStyle
 };

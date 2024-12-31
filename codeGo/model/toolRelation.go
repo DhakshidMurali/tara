@@ -74,6 +74,7 @@ func (v ToolRequestByUser) MakeParams(typeOfQuery string) map[string]any {
 	case "CREATE":
 		return map[string]any{
 			"ToolName":                     v.Tool.Name,
+			"ToolDeliveryFormat":           v.Tool.DeliveryFormat,
 			"ToolApprovalType":             v.Tool.ApprovalType,
 			"RequestByRequestedDate":       v.RequestBy.RequestedDate,
 			"RequestByRequestByAccessType": v.RequestBy.AccessType,
@@ -147,6 +148,7 @@ func (v ToolAccessToUser) MakeParams(typeOfQuery string) map[string]any {
 	case "CREATE":
 		return map[string]any{
 			"ToolName":            v.Tool.Name,
+			"ToolDeliveryFormat":  v.Tool.DeliveryFormat,
 			"ToolApprovalType":    v.Tool.ApprovalType,
 			"RequestByAccessType": v.AccessTo.AccessType,
 			"UserName":            v.User.Name,
@@ -215,15 +217,16 @@ func (v ToolManagedByUser) MakeParams(typeOfQuery string) map[string]any {
 	switch typeOfQuery {
 	case "CREATE":
 		return map[string]any{
-			"ToolName":         v.Tool.Name,
-			"ToolApprovalType": v.Tool.ApprovalType,
-			"UserName":         v.User.Name,
-			"UserMailAddress":  v.User.MailAddress,
-			"UserDomain":       v.User.Domain,
-			"UserPassword":     v.User.Password,
-			"UserPhoneNumber":  v.User.PhoneNumber,
-			"UserUserRole":     v.User.Role,
-			"UserLocation":     v.User.Location,
+			"ToolName":           v.Tool.Name,
+			"ToolDeliveryFormat": v.Tool.DeliveryFormat,
+			"ToolApprovalType":   v.Tool.ApprovalType,
+			"UserName":           v.User.Name,
+			"UserMailAddress":    v.User.MailAddress,
+			"UserDomain":         v.User.Domain,
+			"UserPassword":       v.User.Password,
+			"UserPhoneNumber":    v.User.PhoneNumber,
+			"UserUserRole":       v.User.Role,
+			"UserLocation":       v.User.Location,
 		}
 	case "LIST_TOOLS_MANAGED_BY_USER":
 		return map[string]any{
@@ -283,9 +286,10 @@ func (v ToolComesUnderDomain) MakeParams(typeOfQuery string) map[string]any {
 	switch typeOfQuery {
 	case "CREATE":
 		return map[string]any{
-			"ToolName":         v.Tool.Name,
-			"ToolApprovalType": v.Tool.ApprovalType,
-			"DomainName":       v.Domain.DomainName,
+			"ToolName":           v.Tool.Name,
+			"ToolDeliveryFormat": v.Tool.DeliveryFormat,
+			"ToolApprovalType":   v.Tool.ApprovalType,
+			"DomainName":         v.Domain.DomainName,
 		}
 	case "LIST_TOOLS_COMES_UNDER_DOMAIN":
 		return map[string]any{

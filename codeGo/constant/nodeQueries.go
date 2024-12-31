@@ -61,6 +61,7 @@ const (
 	TOOL = `
 	Tool{
 		Name:$ToolName,
+		DeliveryFormat:$ToolDeliveryFormat,
 		ApprovalType:$ToolApprovalType
 	}
 	`

@@ -18,6 +18,8 @@ import SearchBox from "@/components/dashboard/box/searchBox.js";
 import DepartmentListBox from "@/components/dashboard/box/departmentListBox.js";
 import EmployeeByDepartmentListBox from "@/components/dashboard/box/employeeByDepartmentListBox.js";
 import { DepartmentList } from "@/public/Sample/data.js";
+import { getRandomColor } from "@/utils/functions";
+
 export default function DashBoard() {
   let time = new Date();
   const deparmentList = DepartmentList;
@@ -72,24 +74,43 @@ export default function DashBoard() {
                 {Array.from({ length: 10 }).map((_, index) => (
                   <Grid item key={index}>
                     <Box sx={styles.toolsContainerListBoxStyle}>
-                      <Stack sx={styles.toolsContainerListBoxStackStyle}>
+                      <Stack
+                        direction={"row"}
+                        justifyContent={"flex-start"}
+                        alignItems={"center"}
+                        sx={styles.toolsContainerListBoxStackStyle}
+                      >
+
+                        {/* Learning : To get sx props and inline styling alone applied, we do following way  */}
                         <Box
                           sx={{
-                            width: "2%",
-                            height: "85%",
-                            bgcolor: "yellow",
-                            borderRadius: "4px",
+                            ...styles.toolsContainerListBoxBoxStyle,
+                            bgcolor: getRandomColor(index),
                           }}
                         ></Box>
-                        <Box
-                          sx={{
-                            width: "2%",
-                            height: "85%",
-                            bgcolor: "yellow",
-                            borderRadius: "4px",
-                          }}
-                        ></Box>
-                        <Grid></Grid>
+                        <Grid container paddingRight={"4px"}>
+                          {/* Grid for Showing Count of tools group by Domain */}
+                          <Grid item xs={12}>
+                            <Typography
+                              variant="h3"
+                              sx={
+                                styles.toolsContainerListBoxCountTypographyStyle
+                              }
+                            >
+                              79
+                            </Typography>
+                          </Grid>
+                          <Grid item xs={12}>
+                            <Typography
+                              variant="h6"
+                              sx={
+                                styles.toolsContainerListBoxDomainTypographyStyle
+                              }
+                            >
+                              Cloud Computing
+                            </Typography>
+                          </Grid>
+                        </Grid>
                       </Stack>
                     </Box>
                   </Grid>
@@ -108,7 +129,7 @@ export default function DashBoard() {
                   variant="h4"
                   sx={styles.dashboardTextTypographStyle}
                 >
-                  Employee By Department
+                  Tools By Domain
                 </Typography>
                 <EmployeeByDepartmentListBox
                   departmentList={deparmentList}

@@ -1,3 +1,5 @@
+import { Colors } from "./constants";
+
 const translations = {
   DevOps: "DevOps",
   "Web Devlopment": "Web Devlopment",
@@ -14,4 +16,8 @@ export function addLabels<T extends { dataKey: keyof typeof translations }>(
     ...item,
     label: translations[item.dataKey],
   }));
+}
+
+export function getRandomColor(index) {
+  return Colors[index%4];
 }

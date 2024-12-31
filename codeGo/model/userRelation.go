@@ -145,6 +145,7 @@ func (v UserWorksInTools) MakeParams(typeOfQuery string) map[string]any {
 			"UserLocation":       v.User.Location,
 			"WorksInWorksInRole": v.WorksIn.Role,
 			"ToolName":           v.Tool.Name,
+			"ToolDeliveryFormat": v.Tool.DeliveryFormat,
 			"ToolApprovalType":   v.Tool.ApprovalType,
 		}
 	case "LIST_TOOLS_USER_WORKS_IN":

@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/DhakshidMurali/tara/db"
 	"github.com/DhakshidMurali/tara/routes"
+	dashboardRoutes "github.com/DhakshidMurali/tara/routes/dashboard"
 	"github.com/gin-gonic/gin"
 )
 
@@ -19,6 +20,7 @@ func main() {
 	server := gin.Default()
 
 	routes.APIRoutes(server)
+	dashboardRoutes.APIRoutes(server)
 
 	server.Run(":8080")
 
