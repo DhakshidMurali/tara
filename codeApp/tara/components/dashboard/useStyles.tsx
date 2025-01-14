@@ -4,9 +4,16 @@ const departmentContainerListBoxStyle: SxProps = {
   height: 72,
   width: "100%",
   display: "flex",
-  justifyContent: "center",
+  justifyContent: "flex-start",
   alignItems: "center",
-  marginTop:"4px",
+  marginTop: "8px",
+};
+
+const departmentContainerListBoxStackStyle: SxProps = {
+  width: "100%",
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "space-between",
 };
 
 const dashboardTextTypographStyle: SxProps = {
@@ -45,10 +52,11 @@ const employeeByDepartmentListBoxBarBoxToolTipStyle: SxProps = {
 
 export const styles = {
   departmentContainerListBoxStyle,
+  departmentContainerListBoxStackStyle,
   dashboardTextTypographStyle,
   deparmentListIconStyle,
   employeeByDepartmentListBoxBarStyle,
   employeeByDepartmentListBoxLabelTypographyStyle,
   employeeByDepartmentListBoxLabelBoxStyle,
-  employeeByDepartmentListBoxBarBoxToolTipStyle
+  employeeByDepartmentListBoxBarBoxToolTipStyle,
 };
