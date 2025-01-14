@@ -1,5 +1,5 @@
 "use client";
-import SearchBox from "@/components/dashboard/box/searchBox";
+import SearchBox from "@/components/dashboard/box/searchBox.jsx";
 import NavBar from "@/components/navBar/navBar";
 import { PageviewRounded } from "@mui/icons-material";
 import { Box, Button, Grid, Stack, TextField, Typography } from "@mui/material";
@@ -137,7 +137,7 @@ export default function Community() {
                         strokeWidth: 2.4,
                       },
                     }}
-                    tooltip={{trigger:"item"}}
+                    tooltip={{ trigger: "item" }}
                   />
                 </Grid>
               </Grid>

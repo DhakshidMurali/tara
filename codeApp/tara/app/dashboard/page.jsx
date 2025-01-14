@@ -14,9 +14,9 @@ import {
 import { styles } from "./useStyles.tsx";
 
 import { dayNames, month } from "@/utils/constants";
-import SearchBox from "@/components/dashboard/box/searchBox.js";
-import DepartmentListBox from "@/components/dashboard/box/departmentListBox.js";
-import EmployeeByDepartmentListBox from "@/components/dashboard/box/employeeByDepartmentListBox.js";
+import SearchBox from "@/components/dashboard/box/searchBox.jsx";
+import DepartmentListBox from "@/components/dashboard/box/departmentListBox.jsx";
+import EmployeeByDepartmentListBox from "@/components/dashboard/box/employeeByDepartmentListBox.jsx";
 import { DepartmentList } from "@/public/Sample/data.js";
 import { getRandomColor } from "@/utils/functions";
 
