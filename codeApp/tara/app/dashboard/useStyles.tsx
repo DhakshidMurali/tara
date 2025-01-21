@@ -83,6 +83,7 @@ const departmentContainerBoxStyle: SxProps = {
 const dashboardTextTypographStyle: SxProps = {
   color: "#f3def5",
   fontWeight: "bolder",
+  marginBottom:"8px"
 };
 
 const departmentContainerListDividerBoxStyle: SxProps = {

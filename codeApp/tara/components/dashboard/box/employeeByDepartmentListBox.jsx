@@ -13,7 +13,7 @@ export default function EmployeeByDepartmentListBox(props) {
       <Stack direction={"column"} spacing={5}>
         {departmentList.map((i, index) => (
           <Typography variant="h6" sx={styles.dashboardTextTypographStyle}>
-            {i}
+            {i.Domain}
           </Typography>
         ))}
       </Stack>

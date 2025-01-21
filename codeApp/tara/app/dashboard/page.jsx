@@ -139,7 +139,7 @@ export default function DashBoard() {
           </Grid>
           <Grid item xs={4}>
             <Box sx={styles.departmentContainerBoxStyle}>
-              <Stack spacing={0}>
+              <Stack spacing={2}>
                 <Typography
                   variant="h4"
                   sx={styles.dashboardTextTypographStyle}

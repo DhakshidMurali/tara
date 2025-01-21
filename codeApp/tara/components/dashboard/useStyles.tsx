@@ -1,12 +1,12 @@
 import { SxProps } from "@mui/system";
 const departmentContainerListBoxStyle: SxProps = {
   borderRadius: 2,
-  height: 72,
   width: "100%",
   display: "flex",
+  flexDirection: "column",
   justifyContent: "flex-start",
   alignItems: "center",
-  marginTop: "8px",
+  height:"100%"
 };
 
 const departmentContainerListBoxStackStyle: SxProps = {
@@ -14,6 +14,20 @@ const departmentContainerListBoxStackStyle: SxProps = {
   display: "flex",
   flexDirection: "row",
   justifyContent: "space-between",
+};
+
+const departmentContainerListBoxStackExpandedStyle: SxProps = {
+  width: "100%",
+  height: "400px",
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "space-between",
+};
+const departmentContainerListBoxStackTopicBoxStyle: SxProps = {
+  backgroundColor: "secondary.main",
+  padding: 1,
+  borderRadius: 2,
+  marginTop: 1.5,
 };
 
 const dashboardTextTypographStyle: SxProps = {
@@ -33,7 +47,6 @@ const employeeByDepartmentListBoxBarStyle: SxProps = {
 const employeeByDepartmentListBoxLabelTypographyStyle: SxProps = {
   color: "#f3def5",
   fontWeight: "bolder",
-  // textWrap:"nowrap"
 };
 
 const employeeByDepartmentListBoxLabelBoxStyle: SxProps = {
@@ -53,6 +66,8 @@ const employeeByDepartmentListBoxBarBoxToolTipStyle: SxProps = {
 export const styles = {
   departmentContainerListBoxStyle,
   departmentContainerListBoxStackStyle,
+  departmentContainerListBoxStackExpandedStyle,
+  departmentContainerListBoxStackTopicBoxStyle,
   dashboardTextTypographStyle,
   deparmentListIconStyle,
   employeeByDepartmentListBoxBarStyle,
