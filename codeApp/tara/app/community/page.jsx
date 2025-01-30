@@ -1,18 +1,18 @@
 "use client";
 import SearchBox from "@/components/dashboard/box/searchBox.jsx";
 import NavBar from "@/components/navBar/navBar";
-import { PageviewRounded } from "@mui/icons-material";
+import { Group, PageviewRounded } from "@mui/icons-material";
 import { Box, Button, Grid, Stack, TextField, Typography } from "@mui/material";
 import { styles } from "./useStyles";
 import { dayNames, month } from "@/utils/constants";
 import { BarChart } from "@mui/x-charts/BarChart";
 import { Dataset } from "@/public/Sample/data";
-import { axisClasses } from "@mui/x-charts/ChartsAxis";
 import { addLabels } from "@/utils/functions";
+import { communityOverViewDetails } from "@/public/data/community";
 
 export default function Community() {
   let time = new Date();
-
+  console.log(communityOverViewDetails);
   return (
     <>
       <Grid item xs={2.15} sx={{ marginRight: 2 }}>
@@ -58,25 +58,88 @@ export default function Community() {
               <Button sx={styles.createButtonStyle}>Create</Button>
             </Stack>
           </Grid>
-          <Grid item xs={12} sx={{ height: "19.5%" }}>
+          <Grid item xs={12} sx={{ height: "22.5%" }}>
             <Box sx={styles.toolsContainerBoxStyle}>
               <Grid container spacing={2} sx={{ flexWrap: "nowrap" }}>
-                {Array.from({ length: 10 }).map((_, index) => (
-                  <Grid item key={index}>
+                {communityOverViewDetails.map((data, index) => (
+                  <Grid item key={index} sx={{ height: "100%" }}>
                     <Box sx={styles.toolsContainerListBoxStyle}>
-                      <Typography variant="h6" color="white">
-                        Item {index + 1}
-                      </Typography>
+                      <Grid
+                        container
+                        sx={{
+                          height: "100%",
+                          display: "flex",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <Grid item xs={12}>
+                          <Typography
+                            variant="h6"
+                            sx={{
+                              color: "#f3def5",
+                              paddingLeft: 1,
+                              paddingTop: 0.5,
+                            }}
+                          >
+                            {" "}
+                            {data.communityName}
+                          </Typography>
+                        </Grid>
+                        <Grid item xs={6}>
+                          <Box
+                            sx={{
+                              display: "flex",
+                              flexDirection: "row",
+                              paddingLeft: 1,
+                            }}
+                          >
+                            <Group sx={{ color: "white" }}></Group>
+                            <Typography
+                              variant="subtitle1"
+                              sx={{
+                                color: "#f3def5",
+                                paddingLeft: 1,
+                              }}
+                            >
+                              {" "}
+                              {data.totalParticipants}
+                            </Typography>
+                          </Box>
+                        </Grid>
+                        <Grid item xs={3} marginRight={2}>
+                          <Box
+                            sx={{
+                              backgroundColor: "rgb(177,248,180)",
+                              display: "flex",
+                              justifyContent: "center",
+                              alignContent: "center",
+                              borderRadius: 3,
+                            }}
+                          >
+                            <Typography
+                              variant="subtitle1"
+                              sx={{
+                                color: "rgb(33,24,43)",
+                                justifyContent: "flex-end",
+                                fontWeight: "bolder  ",
+                              }}
+                            >
+                              {"+  " + data.increaseInLastMonth}
+                            </Typography>
+                          </Box>
+                        </Grid>
+                      </Grid>
+                      ;
                     </Box>
                   </Grid>
                 ))}
               </Grid>
             </Box>
           </Grid>
-          <Grid item xs={8} sx={{ height: "40%" }}>
+          <Grid item xs={12} sx={{ height: "36%" }}>
             <Box sx={{ height: "100%" }}>
               <Grid container sx={{ height: "100%" }}>
-                <Grid item xs={12} sx={{ height: "20%" }}>
+                <Grid item xs={8} sx={{ height: "20%" }}>
                   <Typography
                     variant="h4"
                     sx={styles.communityTextTypographStyle}
@@ -84,7 +147,37 @@ export default function Community() {
                     Find Community works for your
                   </Typography>
                 </Grid>
-                <Grid item xs={12} sx={{ height: "80%" }}>
+                <Grid item xs={4} sx={{ height: "20%" }}>
+                  <Stack direction={"row"} spacing={1} height={"100%"}>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignContent: "center",
+                      }}
+                    >
+                      <Typography
+                        variant="h6"
+                        sx={{
+                          color: "#f3def5",
+                          paddingLeft: 1,
+                        }}
+                        textAlign="center"
+                      >
+                        Select 5 for study
+                      </Typography>
+                    </Box>
+                    <Box
+                      sx={{
+                        width: "1.5%",
+                        backgroundColor: "blue",
+                        height: "100%",
+                        borderRadius: 2,
+                      }}
+                    ></Box>
+                  </Stack>
+                </Grid>
+                <Grid item xs={8} sx={{ height: "80%" }}>
                   <BarChart
                     dataset={Dataset}
                     xAxis={[
@@ -140,17 +233,17 @@ export default function Community() {
                     tooltip={{ trigger: "item" }}
                   />
                 </Grid>
+                <Grid
+                  item
+                  xs={4}
+                  sx={{ backgroundColor: "greenyellow", height: "100%" }}
+                >
+                  <Box></Box>
+                </Grid>
               </Grid>
             </Box>
           </Grid>
-          <Grid item xs={4} sx={{ height: "40%" }}>
-            <Box></Box>
-          </Grid>
-          <Grid
-            item
-            xs={12}
-            sx={{ backgroundColor: "greenyellow", height: "35%" }}
-          >
+          <Grid item xs={12} sx={{ backgroundColor: "yellow", height: "35%" }}>
             <Box></Box>
           </Grid>
         </Grid>

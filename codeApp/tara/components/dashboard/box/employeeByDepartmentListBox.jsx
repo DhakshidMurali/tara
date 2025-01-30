@@ -1,6 +1,6 @@
 import { Box, Stack, Tooltip, Typography } from "@mui/material";
 import { styles } from "../useStyles";
-import { DashBoardPageEmployeeByDepartmentBoxLabelData } from "@/public/data/const";
+import { DashBoardPageEmployeeByDepartmentBoxLabelData } from "@/public/data/dashboard";
 
 export default function EmployeeByDepartmentListBox(props) {
   const { departmentList } = props;

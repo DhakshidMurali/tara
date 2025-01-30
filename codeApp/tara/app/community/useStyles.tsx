@@ -1,7 +1,7 @@
 import { SxProps } from "@mui/system";
 const dateTypographyStyle: SxProps = {
   textAlign: "center",
-  color: "#f3def5",
+  color: "primary.contrastText",
   fontWeight: "bolder",
   fontSize: 18,
   paddingLeft: 8,
@@ -9,7 +9,7 @@ const dateTypographyStyle: SxProps = {
 };
 
 const communityTextTypographStyle: SxProps = {
-  color: "#f3def5",
+  color: "primary.contrastText",
   fontWeight: "bolder",
 };
 const createButtonStyle: SxProps = {
@@ -24,7 +24,7 @@ const createButtonStyle: SxProps = {
 const toolsContainerBoxStyle: SxProps = {
   overflowX: "auto",
   display: "flex",
-  marginTop:"1%",
+  marginTop: "1%",
   borderRadius: 2,
   height: "80%",
   "&::-webkit-scrollbar": {
