@@ -50,5 +50,3 @@ export const communityOverViewDetails = [
     increaseInLastMonth: 200,
   },
 ];
-
-

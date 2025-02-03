@@ -1,8 +1,26 @@
 "use client";
 import SearchBox from "@/components/dashboard/box/searchBox.jsx";
 import NavBar from "@/components/navBar/navBar";
-import { Group, PageviewRounded } from "@mui/icons-material";
-import { Box, Button, Grid, Stack, TextField, Typography } from "@mui/material";
+import {
+  Close,
+  ClosedCaptionOffOutlined,
+  CloseFullscreenOutlined,
+  Forward,
+  Group,
+  PageviewRounded,
+  RemoveCircleOutlineRounded,
+  RemoveFromQueueOutlined,
+} from "@mui/icons-material";
+import {
+  Box,
+  Button,
+  Grid,
+  IconButton,
+  Paper,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { styles } from "./useStyles";
 import { dayNames, month } from "@/utils/constants";
 import { BarChart } from "@mui/x-charts/BarChart";
@@ -161,20 +179,56 @@ export default function Community() {
                         sx={{
                           color: "#f3def5",
                           paddingLeft: 1,
+                          margin: "auto",
                         }}
                         textAlign="center"
                       >
-                        Select 5 for study
+                        Select 5 for study case
                       </Typography>
                     </Box>
                     <Box
                       sx={{
-                        width: "1.5%",
+                        width: "1.1%",
                         backgroundColor: "blue",
                         height: "100%",
                         borderRadius: 2,
                       }}
                     ></Box>
+                    <Grid
+                      container
+                      sx={{
+                        height: "100%",
+                        width: "90%",
+                      }}
+                    >
+                      {[1, 1, 1, 1, 1].map(() => {
+                        return (
+                          <Grid item xs={3.5} marginRight={1}>
+                            <Box
+                              variant="elevation"
+                              sx={{
+                                height: "90%",
+                                backgroundColor: "green",
+                                borderRadius: 2,
+                                display: "flex",
+                                justifyContent: "center",
+                                alignContent: "center",
+                              }}
+                            >
+                              <IconButton sx={{ padding: 0 }}>
+                                <Close sx={{ alignSelf: "center" }}></Close>
+                              </IconButton>
+                              <Typography
+                                variant="body2"
+                                sx={{ alignSelf: "center", color: "white" }}
+                              >
+                                Cloud-Neo..
+                              </Typography>
+                            </Box>
+                          </Grid>
+                        );
+                      })}
+                    </Grid>
                   </Stack>
                 </Grid>
                 <Grid item xs={8} sx={{ height: "80%" }}>
@@ -233,12 +287,59 @@ export default function Community() {
                     tooltip={{ trigger: "item" }}
                   />
                 </Grid>
-                <Grid
-                  item
-                  xs={4}
-                  sx={{ backgroundColor: "greenyellow", height: "100%" }}
-                >
-                  <Box></Box>
+                <Grid item xs={4} sx={{ height: "80%" }}>
+                  <Grid container sx={{ height: "100%" }}>
+                    <Grid item xs={5}>
+                      {[1, 1, 1, 1, 1].map(() => {
+                        return (
+                          <Stack
+                            direction={"column"}
+                            sx={{
+                              height: "18%",
+                              display: "flex",
+                              backgroundColor: "orange",
+                              justifyContent: "center",
+                              alignContent: "center",
+                              textAlign: "center",
+                              borderTopLeftRadius: "16px",
+                            }}
+                            marginTop={0.5}
+                          >
+                            <Typography
+                              variant="subtitle1"
+                              sx={{
+                                color: "white",
+                                overflow: "hidden",
+                                textOverflow: "ellipsis",
+                                whiteSpace: "nowrap",
+                              }}
+                            >
+                              Cloud Computing and DevOps
+                            </Typography>
+                          </Stack>
+                        );
+                      })}
+                    </Grid>
+                    <Grid item xs={7}>
+                      {[1, 1, 1, 1, 1].map((data, index) => {
+                        return (
+                          <Stack direction={"column"}>
+                            <Typography
+                              variant="subtitle1"
+                              sx={{
+                                color: "white",
+                                paddingLeft: 2,
+                                paddingTop: 1,
+                                paddingRight: 2,
+                              }}
+                            >
+                              Cloud Computing and DevOps
+                            </Typography>
+                          </Stack>
+                        );
+                      })}
+                    </Grid>
+                  </Grid>
                 </Grid>
               </Grid>
             </Box>
