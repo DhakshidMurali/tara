@@ -2,18 +2,18 @@
 import SearchBox from "@/components/dashboard/box/searchBox.jsx";
 import NavBar from "@/components/navBar/navBar";
 import {
+  CheckBox,
   Close,
-  ClosedCaptionOffOutlined,
-  CloseFullscreenOutlined,
-  Forward,
   Group,
   PageviewRounded,
-  RemoveCircleOutlineRounded,
-  RemoveFromQueueOutlined,
+  Star,
+  StarBorder,
+  StarRate,
 } from "@mui/icons-material";
 import {
   Box,
   Button,
+  Checkbox,
   Grid,
   IconButton,
   Paper,
@@ -27,10 +27,11 @@ import { BarChart } from "@mui/x-charts/BarChart";
 import { Dataset } from "@/public/Sample/data";
 import { addLabels } from "@/utils/functions";
 import { communityOverViewDetails } from "@/public/data/community";
+import { purple } from "@mui/material/colors";
 
 export default function Community() {
   let time = new Date();
-  console.log(communityOverViewDetails);
+  const label = { inputProps: { "aria-label": "Checkbox demo" } };
   return (
     <>
       <Grid item xs={2.15} sx={{ marginRight: 2 }}>
@@ -84,40 +85,26 @@ export default function Community() {
                     <Box sx={styles.toolsContainerListBoxStyle}>
                       <Grid
                         container
-                        sx={{
-                          height: "100%",
-                          display: "flex",
-                          justifyContent: "space-between",
-                        }}
+                        sx={styles.toolsContainerListBoxGridStyle}
                       >
                         <Grid item xs={12}>
                           <Typography
                             variant="h6"
-                            sx={{
-                              color: "#f3def5",
-                              paddingLeft: 1,
-                              paddingTop: 0.5,
-                            }}
+                            sx={
+                              styles.toolsContainerListBoxGridTypograghyCommunityNameStyle
+                            }
                           >
-                            {" "}
                             {data.communityName}
                           </Typography>
                         </Grid>
                         <Grid item xs={6}>
-                          <Box
-                            sx={{
-                              display: "flex",
-                              flexDirection: "row",
-                              paddingLeft: 1,
-                            }}
-                          >
+                          <Box sx={styles.toolsContainerListBoxGridBoxStyle}>
                             <Group sx={{ color: "white" }}></Group>
                             <Typography
                               variant="subtitle1"
-                              sx={{
-                                color: "#f3def5",
-                                paddingLeft: 1,
-                              }}
+                              sx={
+                                styles.toolsContainerListBoxGridBoxTypographyParticipantsStyle
+                              }
                             >
                               {" "}
                               {data.totalParticipants}
@@ -126,21 +113,15 @@ export default function Community() {
                         </Grid>
                         <Grid item xs={3} marginRight={2}>
                           <Box
-                            sx={{
-                              backgroundColor: "rgb(177,248,180)",
-                              display: "flex",
-                              justifyContent: "center",
-                              alignContent: "center",
-                              borderRadius: 3,
-                            }}
+                            sx={
+                              styles.toolsContainerListBoxGridIncreaseInLastMonthBoxStyle
+                            }
                           >
                             <Typography
                               variant="subtitle1"
-                              sx={{
-                                color: "rgb(33,24,43)",
-                                justifyContent: "flex-end",
-                                fontWeight: "bolder  ",
-                              }}
+                              sx={
+                                styles.toolsContainerListBoxGridIncreaseInLastMonthBoxTypograghyStyle
+                              }
                             >
                               {"+  " + data.increaseInLastMonth}
                             </Typography>
@@ -167,32 +148,22 @@ export default function Community() {
                 </Grid>
                 <Grid item xs={4} sx={{ height: "20%" }}>
                   <Stack direction={"row"} spacing={1} height={"100%"}>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignContent: "center",
-                      }}
-                    >
+                    <Button>
                       <Typography
                         variant="h6"
-                        sx={{
-                          color: "#f3def5",
-                          paddingLeft: 1,
-                          margin: "auto",
-                        }}
+                        sx={
+                          styles.toolsContainerListBoxGridSelectGridItemTypographyStyle
+                        }
                         textAlign="center"
                       >
-                        Select 5 for study case
+                        Analysis
                       </Typography>
-                    </Box>
+                    </Button>
+
                     <Box
-                      sx={{
-                        width: "1.1%",
-                        backgroundColor: "blue",
-                        height: "100%",
-                        borderRadius: 2,
-                      }}
+                      sx={
+                        styles.toolsContainerListBoxGridSelectGridItemSplittingBoxStyle
+                      }
                     ></Box>
                     <Grid
                       container
@@ -206,14 +177,9 @@ export default function Community() {
                           <Grid item xs={3.5} marginRight={1}>
                             <Box
                               variant="elevation"
-                              sx={{
-                                height: "90%",
-                                backgroundColor: "green",
-                                borderRadius: 2,
-                                display: "flex",
-                                justifyContent: "center",
-                                alignContent: "center",
-                              }}
+                              sx={
+                                styles.toolsContainerListBoxGridSelectGridItemGridItemStyle
+                              }
                             >
                               <IconButton sx={{ padding: 0 }}>
                                 <Close sx={{ alignSelf: "center" }}></Close>
@@ -290,29 +256,20 @@ export default function Community() {
                 <Grid item xs={4} sx={{ height: "80%" }}>
                   <Grid container sx={{ height: "100%" }}>
                     <Grid item xs={5}>
-                      {[1, 1, 1, 1, 1].map(() => {
+                      {[1, 1, 1, 1, 1].map((data, index) => {
                         return (
                           <Stack
-                            direction={"column"}
-                            sx={{
-                              height: "18%",
-                              display: "flex",
-                              backgroundColor: "orange",
-                              justifyContent: "center",
-                              alignContent: "center",
-                              textAlign: "center",
-                              borderTopLeftRadius: "16px",
-                            }}
+                            direction={"row"}
+                            sx={
+                              styles.toolsContainerListBoxGridSelectGridItemGridItemStackStyle
+                            }
                             marginTop={0.5}
                           >
                             <Typography
                               variant="subtitle1"
-                              sx={{
-                                color: "white",
-                                overflow: "hidden",
-                                textOverflow: "ellipsis",
-                                whiteSpace: "nowrap",
-                              }}
+                              sx={
+                                styles.toolsContainerListBoxGridSelectGridItemGridItemStackTypographyListStyle
+                              }
                             >
                               Cloud Computing and DevOps
                             </Typography>
@@ -320,18 +277,54 @@ export default function Community() {
                         );
                       })}
                     </Grid>
-                    <Grid item xs={7}>
+                    <Grid item xs={0.3}>
                       {[1, 1, 1, 1, 1].map((data, index) => {
+                        if (index == 1) {
+                          return (
+                            <Box
+                              sx={{
+                                height: "16%",
+                                backgroundColor: "orange",
+                                marginTop: "4px",
+                              }}
+                            ></Box>
+                          );
+                        }
+                      })}
+                    </Grid>
+                    <Grid
+                      item
+                      xs={6.7}
+                      sx={
+                        styles.toolsContainerListBoxGridSelectGridItemGridItemStackCommunityListStyle
+                      }
+                    >
+                      {[1, 1, 1, 1, 1, 1, 1, 1].map((data, index) => {
                         return (
-                          <Stack direction={"column"}>
+                          <Stack
+                            direction={"row"}
+                            marginTop={1}
+                            sx={{
+                              display: "flex",
+
+                              alignmentBaseline: "baseline",
+                            }}
+                          >
+                            <Checkbox
+                              {...label}
+                              sx={{
+                                "& .MuiSvgIcon-root": { fontSize: 20 },
+                                color: purple[800],
+                                "&.Mui-checked": {
+                                  color: purple[600],
+                                },
+                              }}
+                            />
                             <Typography
                               variant="subtitle1"
-                              sx={{
-                                color: "white",
-                                paddingLeft: 2,
-                                paddingTop: 1,
-                                paddingRight: 2,
-                              }}
+                              sx={
+                                styles.toolsContainerListBoxGridSelectGridItemGridItemStackTypographyCommunityListStyle
+                              }
                             >
                               Cloud Computing and DevOps
                             </Typography>
