@@ -2,14 +2,11 @@
 
 import { Dataset } from "@/public/Sample/data";
 import { addLabels } from "@/utils/functions";
-import {
-    Grid,
-    Typography
-} from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import { BarChart } from "@mui/x-charts/BarChart";
 import {
-    AnalysisCommunitySelection,
-    AnalysisHeader,
+  AnalysisCommunitySelection,
+  AnalysisHeader,
 } from "./communityBarChartAnalysis";
 import { styles } from "./useStyles";
 

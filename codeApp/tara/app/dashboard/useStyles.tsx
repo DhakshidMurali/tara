@@ -83,7 +83,7 @@ const departmentContainerBoxStyle: SxProps = {
 const dashboardTextTypographStyle: SxProps = {
   color: "#f3def5",
   fontWeight: "bolder",
-  marginBottom:"8px"
+  marginBottom: "8px",
 };
 
 const departmentContainerListDividerBoxStyle: SxProps = {
@@ -98,22 +98,22 @@ const toolsContainerListBoxStackStyle: SxProps = {
   width: "100%",
 };
 
-const toolsContainerListBoxBoxStyle: SxProps={
+const toolsContainerListBoxBoxStyle: SxProps = {
   width: "2%",
   height: "70%",
   borderRadius: "4px",
   marginLeft: 2,
-  marginRight:1.5,
-}
+  marginRight: 1.5,
+};
 
-const toolsContainerListBoxCountTypographyStyle : SxProps ={
+const toolsContainerListBoxCountTypographyStyle: SxProps = {
   color: "#f3def5",
   fontWeight: "bolder",
-}
-const toolsContainerListBoxDomainTypographyStyle : SxProps ={
+};
+const toolsContainerListBoxDomainTypographyStyle: SxProps = {
   color: "#f3def5",
   fontWeight: "bolder",
-}
+};
 export const styles = {
   searchTextFieldInputPropsStyle,
   dateTypographyStyle,
@@ -128,5 +128,5 @@ export const styles = {
   toolsContainerListBoxStackStyle,
   toolsContainerListBoxBoxStyle,
   toolsContainerListBoxCountTypographyStyle,
-  toolsContainerListBoxDomainTypographyStyle
+  toolsContainerListBoxDomainTypographyStyle,
 };

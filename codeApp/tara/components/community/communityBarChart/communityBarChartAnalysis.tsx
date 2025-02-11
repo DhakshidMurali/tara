@@ -12,19 +12,14 @@ import {
 } from "@mui/material";
 import { styles } from "./useStyles";
 import { purple } from "@mui/material/colors";
+import { useState } from "react";
 
 export function AnalysisHeader() {
   return (
-    <Grid item xs={4} sx={{ height: "20%" }}>
+    <Grid item xs={4} sx={{ height: "20%", backgroundColor: "secondary.main" }}>
       <Stack direction={"row"} spacing={1} height={"100%"}>
-        <Button>
-          <Typography
-            variant="h6"
-            sx={styles.toolsContainerListBoxGridSelectGridItemTypographyStyle}
-            textAlign="center"
-          >
-            Analysis
-          </Typography>
+        <Button sx={{ backgroundColor: "primary.light", padding: 2 }}>
+          Analysis
         </Button>
 
         <Box
@@ -45,14 +40,29 @@ export function AnalysisHeader() {
                     styles.toolsContainerListBoxGridSelectGridItemGridItemStyle
                   }
                 >
-                  <IconButton sx={{ padding: 0 }}>
+                  <IconButton
+                    sx={{
+                      padding: 0,
+                      "& .css-55fg2l-MuiSvgIcon-root": {
+                        height: "0.7em",
+                        width: "0.7em",
+                      },
+                    }}
+                  >
                     <Close sx={{ alignSelf: "center" }}></Close>
                   </IconButton>
                   <Typography
                     variant="body2"
-                    sx={{ alignSelf: "center", color: "white" }}
+                    sx={{
+                      alignSelf: "center",
+                      color: "white",
+                      width: "90%",
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
                   >
-                    Cloud-Neo..
+                    Cloud Compusdsdst..
                   </Typography>
                 </Box>
               </Grid>
@@ -92,12 +102,21 @@ export function AnalysisCommunitySelection() {
         </Grid>
         <Grid item xs={0.3}>
           {[1, 1, 1, 1, 1].map((data, index) => {
-            if (index == 1) {
+            if (index == 2) {
               return (
                 <Box
                   sx={{
                     height: "16%",
-                    backgroundColor: "orange",
+                    backgroundColor: "secondary.dark",
+                    marginTop: "4px",
+                  }}
+                ></Box>
+              );
+            } else {
+              return (
+                <Box
+                  sx={{
+                    height: "16%",
                     marginTop: "4px",
                   }}
                 ></Box>
@@ -126,9 +145,9 @@ export function AnalysisCommunitySelection() {
                 <Checkbox
                   sx={{
                     "& .MuiSvgIcon-root": { fontSize: 20 },
-                    color: purple[800],
+                    color: "rgb(46, 36,57)"[100],
                     "&.Mui-checked": {
-                      color: purple[600],
+                      color: "rgb(33,24,43)",
                     },
                   }}
                 />

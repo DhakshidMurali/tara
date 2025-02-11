@@ -10,7 +10,8 @@ const theme = createTheme({
     },
     secondary: {
       main: 'rgb(17,8,27)', // Background Color
-      light:'rgb(33,24,43)' // Dark Purple
+      light:'rgb(33,24,43)', // Dark Purple
+      dark:'rgb(46, 36,57)'
     },
   },
   typography: {

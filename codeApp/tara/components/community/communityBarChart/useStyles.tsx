@@ -8,21 +8,20 @@ const toolsContainerListBoxGridSelectGridItemTypographyStyle: SxProps = {
 
 const toolsContainerListBoxGridSelectGridItemSplittingBoxStyle: SxProps = {
   width: "1.1%",
-  backgroundColor: "blue",
+  backgroundColor: "rgb(174,199,243)",
   height: "100%",
   borderRadius: 2,
 };
 const toolsContainerListBoxGridSelectGridItemGridItemStyle: SxProps = {
   height: "90%",
-  backgroundColor: "green",
+  backgroundColor: "secondary.dark",
   borderRadius: 2,
   display: "flex",
-  justifyContent: "center",
-  alignContent: "center",
+  justifyContent: "space-evenly",
 };
 const toolsContainerListBoxGridSelectGridItemGridItemStackStyle: SxProps = {
   height: "16%",
-  backgroundColor: "orange",
+  backgroundColor: "secondary.dark",
   borderTopLeftRadius: "16px",
 };
 const toolsContainerListBoxGridSelectGridItemGridItemStackTypographyListStyle: SxProps =
@@ -33,13 +32,14 @@ const toolsContainerListBoxGridSelectGridItemGridItemStackTypographyListStyle: S
 const toolsContainerListBoxGridSelectGridItemGridItemStackTypographyCommunityListStyle: SxProps =
   {
     color: "white",
-    paddingLeft: 0.1,
+    margin: "auto 0",
   };
 const toolsContainerListBoxGridSelectGridItemGridItemStackCommunityListStyle: SxProps =
   {
+    backgroundColor: "secondary.dark",
     overflowX: "auto",
     borderRadius: 2,
-    height: "100%",
+    height: "95%",
     "&::-webkit-scrollbar": {
       height: "8px",
     },

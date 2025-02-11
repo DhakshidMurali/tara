@@ -1,7 +1,7 @@
 "use client";
 import CommunityBarChart from "@/components/community/communityBarChart/communityBarChart";
 import CommunityList from "@/components/community/communityList/communityList";
-import SearchBox from "@/components/dashboard/box/searchBox.jsx";
+import SearchBox from "@/components/common/searchBox.jsx";
 import NavBar from "@/components/navBar/navBar";
 import { dayNames, month } from "@/utils/constants";
 import { PageviewRounded } from "@mui/icons-material";

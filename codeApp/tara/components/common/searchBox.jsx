@@ -7,7 +7,6 @@ const SearchBox = styled(Box)(({ theme, selected }) => ({
   borderRadius: 16,
   height: "8%",
   backgroundColor: theme.palette.secondary.light,
-  //   padding: 8,
 }));
 
 export default SearchBox;

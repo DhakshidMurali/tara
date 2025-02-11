@@ -6,7 +6,6 @@ export default function EmployeeByDepartmentListBox(props) {
   const { departmentList } = props;
   const dashBoardPageEmployeeByDepartmentBoxLabelData =
     DashBoardPageEmployeeByDepartmentBoxLabelData;
-  console.log(dashBoardPageEmployeeByDepartmentBoxLabelData);
   return (
     <Stack direction={"row"} spacing={2} sx={{ width: "100%" }}>
       {/* Creating List of Department Name */}
