@@ -3,6 +3,8 @@ import { SxProps } from "@mui/system";
 const communityTextTypographStyle: SxProps = {
   color: "primary.contrastText",
   fontWeight: "bolder",
+  marginBottom: "8px",
+
 };
 
 const createButtonStyle: SxProps = {

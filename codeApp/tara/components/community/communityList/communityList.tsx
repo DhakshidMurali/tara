@@ -8,7 +8,7 @@ import { styles } from "./useStyles";
 export default function CommunityList() {
   return (
     <>
-      <Grid item xs={12} sx={{ height: "5%", marginBottom: "0.5%" }}>
+      <Grid item xs={12} sx={{}}>
         <Stack
           direction={"row"}
           display={"flex"}

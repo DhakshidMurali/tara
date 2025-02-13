@@ -6,7 +6,7 @@ import { DashBoardPageEmployeeByDepartmentBoxLabelData } from "@/public/data/das
 import { DepartmentList } from "@/public/Sample/data.js";
 
 export default function DashBoardBarChart() {
-  const { departmentList } = DepartmentList;
+  const departmentList = DepartmentList
   const dashBoardPageEmployeeByDepartmentBoxLabelData =
     DashBoardPageEmployeeByDepartmentBoxLabelData;
   return (
@@ -126,30 +126,31 @@ export default function DashBoardBarChart() {
                 </Tooltip>
               </Stack>
             ))}
-            {/* Creating row of Legend for Employee By Department Color Bar */}
-            <Stack direction={"row"} spacing={4} sx={{ width: "100%" }}>
-              {dashBoardPageEmployeeByDepartmentBoxLabelData.map((i, index) => (
-                <Stack
-                  direction={"row"}
-                  alignItems={"baseline"}
-                  sx={{ width: "25%" }}
-                >
-                  <Box
-                    sx={{
-                      ...styles.employeeByDepartmentListBoxLabelBoxStyle,
-                      backgroundColor: i["Color"],
-                    }}
-                  ></Box>
-                  <Typography
-                    variant="h6"
-                    sx={styles.employeeByDepartmentListBoxLabelTypographyStyle}
-                  >
-                    {i["LabelName"]}
-                  </Typography>
-                </Stack>
-              ))}
-            </Stack>
+
           </Stack>
+
+        </Stack>
+        <Stack direction={"row"} spacing={4} sx={{ width: "100%" }}>
+          {dashBoardPageEmployeeByDepartmentBoxLabelData.map((i, index) => (
+            <Stack
+              direction={"row"}
+              alignItems={"baseline"}
+              sx={{ width: "25%" }}
+            >
+              <Box
+                sx={{
+                  ...styles.employeeByDepartmentListBoxLabelBoxStyle,
+                  backgroundColor: i["Color"],
+                }}
+              ></Box>
+              <Typography
+                variant="h6"
+                sx={styles.employeeByDepartmentListBoxLabelTypographyStyle}
+              >
+                {i["LabelName"]}
+              </Typography>
+            </Stack>
+          ))}
         </Stack>
       </Stack>
     </Box>

@@ -1,20 +1,18 @@
 "use client";
 
-import NavBar from "@/components/navBar/navBar.js";
+import NavBar from "@/components/common/navBar/navBar";
 import { PageviewRounded } from "@mui/icons-material";
 import { Box, Button, Grid, Stack, TextField, Typography } from "@mui/material";
-import { styles } from "./useStyles.tsx";
+import { styles } from "./useStyles";
 
 import SearchBox from "@/components/common/searchBox.jsx";
-import DepartmentListBox from "@/components/dashboard/box/departmentListBox.jsx";
-import EmployeeByDepartmentListBox from "@/components/dashboard/box/employeeByDepartmentListBox.jsx";
+import DashBoardBarChart from "@/components/dashboard/dashboardBarChart/dashboardBarChart";
+import DashboardDeptMenu from "@/components/dashboard/dashboardDeptMenu/dashboardDeptMenu";
 import { DashBoardList } from "@/components/dashboard/dashBoardList/dashboardList";
-import { DepartmentList } from "@/public/Sample/data.js";
 import { dayNames, month } from "@/utils/constants";
 
 export default function DashBoard() {
   let time = new Date();
-  const deparmentList = DepartmentList;
   return (
     <>
       <Grid item xs={2.15} sx={{ marginRight: 2 }}>
@@ -47,24 +45,25 @@ export default function DashBoard() {
             </Typography>
           </Stack>
         </SearchBox>
-
-        <Stack
-          direction={"row"}
-          display={"flex"}
-          justifyContent={"space-between"}
-        >
-          <Typography variant="h3" sx={styles.dashboardTextTypographStyle}>
-            Dashboard{" "}
-          </Typography>
-          <Button sx={styles.createButtonStyle}>Create</Button>
-        </Stack>
+        <Grid item xs={12} sx={{}}>
+          <Stack
+            direction={"row"}
+            display={"flex"}
+            justifyContent={"space-between"}
+          >
+            <Typography variant="h3" sx={styles.dashboardTextTypographStyle}>
+              Dashboard{" "}
+            </Typography>
+            <Button sx={styles.createButtonStyle}>Create</Button>
+          </Stack>
+        </Grid>
         <Grid container spacing={2}>
           {/* Horizontal Scroll Grid */}
           <Grid item xs={12}>
             <DashBoardList></DashBoardList>
           </Grid>
           <Grid item xs={8}>
-            
+            <DashBoardBarChart></DashBoardBarChart>
           </Grid>
           <Grid item xs={4}>
             <Box sx={styles.departmentContainerBoxStyle}>
@@ -75,7 +74,7 @@ export default function DashBoard() {
                 >
                   Departments
                 </Typography>
-                <DepartmentListBox></DepartmentListBox>
+                <DashboardDeptMenu></DashboardDeptMenu>
               </Stack>
             </Box>
           </Grid>

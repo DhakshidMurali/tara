@@ -1,8 +1,6 @@
 "use client";
 
-import AvatarBox from "./box/avatarBox";
-import ListBox from "./box/listBox";
-import SpacerBox from "./box/spacerBox";
+
 import { lightPurple } from "@/utils/constants";
 import {
   AccountCircleOutlined,
@@ -16,6 +14,7 @@ import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
 import { useRouter } from "next/navigation";
 import { styles } from "./useStyles";
+import { SpacerBox, AvatarBox, ListBox } from "./boxComponent/avatarBox";
 const Sidebar = styled(Paper)(({ theme }) => ({
   height: "100vh",
   backgroundColor: theme.palette.primary.main,
@@ -30,12 +29,12 @@ export default function NavBar(props) {
     currentPage == "dashboard"
       ? route.push("/dashboard")
       : currentPage == "hierarchy"
-      ? route.push("/hierarchy")
-      : currentPage == "community"
-      ? route.push("/community")
-      : currentPage == "profile"
-      ? route.push("/profile")
-      : null;
+        ? route.push("/hierarchy")
+        : currentPage == "community"
+          ? route.push("/community")
+          : currentPage == "profile"
+            ? route.push("/profile")
+            : null;
   };
   return (
     <Sidebar>
@@ -97,11 +96,11 @@ export default function NavBar(props) {
             <Groups2
               color={selected == "community" ? "primary" : "secondary"}
             ></Groups2>
-            <Typography variant="body1"  sx={
-                selected == "community"
-                  ? styles.navbarSelectedMenuTextStyle
-                  : styles.navbarMenuTextStyle
-              }>
+            <Typography variant="body1" sx={
+              selected == "community"
+                ? styles.navbarSelectedMenuTextStyle
+                : styles.navbarMenuTextStyle
+            }>
               Community
             </Typography>
           </ListBox>

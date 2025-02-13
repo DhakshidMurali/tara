@@ -1,4 +1,4 @@
-import NavBar from "@/components/navBar/navBar";
+import NavBar from "@/components/common/navBar/navBar";
 import { Box, Grid } from "@mui/material";
 
 export default function Hierarchy() {
