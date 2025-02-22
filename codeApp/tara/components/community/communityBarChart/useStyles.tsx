@@ -42,6 +42,7 @@ const toolsContainerListBoxGridSelectGridItemGridItemStackCommunityListStyle: Sx
     height: "95%",
     "&::-webkit-scrollbar": {
       height: "8px",
+      width:"6px"
     },
     "&::-webkit-scrollbar-track": {
       backgroundColor: "secondary.main",

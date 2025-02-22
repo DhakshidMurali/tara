@@ -45,10 +45,24 @@ export default function Community() {
         </SearchBox>
         <Grid container sx={{ height: "89%", paddingLeft: "8px" }}>
           <CommunityList></CommunityList>
-          <CommunityBarChart></CommunityBarChart>
-          <Grid item xs={12} sx={{ backgroundColor: "yellow", height: "35%" }}>
-            <Box></Box>
-          </Grid>
+          <Box sx={styles.gridContainerCommnityBox}>
+            <CommunityBarChart></CommunityBarChart>
+            <Grid item xs={12} >
+              <Grid container>
+                <Grid item xs={8}>
+                  <Grid container>
+                    {[1, 1, 1, 1].map((data) =>
+                    (<Grid item xs={12} sx={{ height: "10%px", display: "flex", backgroundColor: "red" }}>
+                      <Box sx={{ height: "100%", backgroundColor: "orange" }}>
+
+                      </Box>
+                    </Grid>))}
+                  </Grid>
+                </Grid>
+                <Grid item xs={4}></Grid>
+              </Grid>
+            </Grid>
+          </Box>
         </Grid>
       </Grid>
     </>

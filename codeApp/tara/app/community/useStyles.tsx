@@ -8,6 +8,29 @@ const dateTypographyStyle: SxProps = {
   textWrap: "nowrap",
 };
 
+const gridContainerCommnityBox: SxProps = {
+  overflowY: "auto",
+  height: "65%",
+  "&::-webkit-scrollbar": {
+    height: "8px",
+    width:"6px"
+  },
+  "&::-webkit-scrollbar-track": {
+    backgroundColor: "secondary.main",
+  },
+  "&::-webkit-scrollbar-thumb": {
+    backgroundColor: "secondary.light",
+    borderRadius: "8px",
+  },
+  "&::-webkit-scrollbar-thumb:hover": {
+    background: "#555",
+  },
+};
+
 export const styles = {
   dateTypographyStyle,
+  gridContainerCommnityBox
 };
+
+
+

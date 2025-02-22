@@ -2,17 +2,15 @@
 
 import { Close } from "@mui/icons-material";
 import {
-  Grid,
-  Stack,
-  Button,
-  Typography,
   Box,
-  IconButton,
+  Button,
   Checkbox,
+  Grid,
+  IconButton,
+  Stack,
+  Typography,
 } from "@mui/material";
 import { styles } from "./useStyles";
-import { purple } from "@mui/material/colors";
-import { useState } from "react";
 
 export function AnalysisHeader() {
   return (
@@ -77,7 +75,7 @@ export function AnalysisHeader() {
 export function AnalysisCommunitySelection() {
   return (
     <Grid item xs={4} sx={{ height: "80%" }}>
-      <Grid container sx={{ height: "100%" }}>
+      <Grid container sx={{ height: "100%", paddingRight: 1 }}>
         <Grid item xs={5}>
           {[1, 1, 1, 1, 1].map((data, index) => {
             return (
@@ -94,7 +92,7 @@ export function AnalysisCommunitySelection() {
                     styles.toolsContainerListBoxGridSelectGridItemGridItemStackTypographyListStyle
                   }
                 >
-                  Cloud Computing and DevOps
+                  Cloud Computing and DevOps  
                 </Typography>
               </Stack>
             );
@@ -157,7 +155,7 @@ export function AnalysisCommunitySelection() {
                     styles.toolsContainerListBoxGridSelectGridItemGridItemStackTypographyCommunityListStyle
                   }
                 >
-                  Cloud Computing and DevOps
+                  Cloud Computing and DevOps 
                 </Typography>
               </Stack>
             );

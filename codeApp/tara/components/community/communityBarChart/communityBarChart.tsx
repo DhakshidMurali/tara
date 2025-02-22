@@ -2,7 +2,7 @@
 
 import { Dataset } from "@/public/Sample/data";
 import { addLabels } from "@/utils/functions";
-import { Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import { BarChart } from "@mui/x-charts/BarChart";
 import {
   AnalysisCommunitySelection,
@@ -12,7 +12,7 @@ import { styles } from "./useStyles";
 
 export default function CommunityBarChart() {
   return (
-    <Grid item xs={12} sx={{ height: "36%" }}>
+    <Grid item xs={12} sx={{ height: "65%" }}>
       <Grid container sx={{ height: "100%" }}>
         <Grid item xs={8} sx={{ height: "20%" }}>
           <Typography variant="h4" sx={styles.communityTextTypographStyle}>

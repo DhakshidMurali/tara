@@ -20,7 +20,7 @@ export default function CommunityList() {
           <Button sx={styles.createButtonStyle}>Create</Button>
         </Stack>
       </Grid>
-      <Grid item xs={12} sx={{ height: "22.5%" }}>
+      <Grid item xs={12} sx={{ height: "21.5%" }}>
         <Box sx={styles.toolsContainerBoxStyle}>
           <Grid container spacing={2} sx={{ flexWrap: "nowrap" }}>
             {communityOverViewDetails.map((data, index) => (

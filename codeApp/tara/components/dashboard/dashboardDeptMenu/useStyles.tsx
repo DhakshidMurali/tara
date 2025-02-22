@@ -33,10 +33,10 @@ const departmentContainerListBoxBoxExpandedStyle: SxProps = {
         width: "4px"
     },
     "&::-webkit-scrollbar-track": {
-        backgroundColor: "secondary.main",
+        backgroundColor: "secondary.light",
     },
     "&::-webkit-scrollbar-thumb": {
-        backgroundColor: "secondary.light",
+        backgroundColor: "secondary.main",
         borderRadius: "8px",
     },
     "&::-webkit-scrollbar-thumb:hover": {
