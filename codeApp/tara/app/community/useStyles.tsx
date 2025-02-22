@@ -10,10 +10,10 @@ const dateTypographyStyle: SxProps = {
 
 const gridContainerCommnityBox: SxProps = {
   overflowY: "auto",
-  height: "65%",
+  height: "70%",
   "&::-webkit-scrollbar": {
     height: "8px",
-    width:"6px"
+    width: "6px"
   },
   "&::-webkit-scrollbar-track": {
     backgroundColor: "secondary.main",
