@@ -20,9 +20,8 @@ const createButtonStyle: SxProps = {
 const toolsContainerBoxStyle: SxProps = {
   overflowX: "auto",
   display: "flex",
-  marginTop: "1%",
   borderRadius: 2,
-  height: "80%",
+  flexWrap: "nowrap",
   "&::-webkit-scrollbar": {
     height: "8px",
   },
@@ -38,19 +37,14 @@ const toolsContainerBoxStyle: SxProps = {
   },
 };
 
-const toolsContainerListBoxStyle: SxProps = {
-  height: "90%",
-  width: 232,
+
+const toolsContainerListBoxGridStyle: SxProps = {
   backgroundColor: "secondary.light",
   display: "flex",
   alignItems: "center",
-  justifyContent: "center",
   borderRadius: 2,
-};
-
-const toolsContainerListBoxGridStyle: SxProps = {
-  height: "100%",
-  display: "flex",
+  height: 168,
+  width: 232,
   justifyContent: "space-between",
 };
 
@@ -80,17 +74,16 @@ const toolsContainerListBoxGridIncreaseInLastMonthBoxStyle: SxProps = {
 };
 
 const toolsContainerListBoxGridIncreaseInLastMonthBoxTypograghyStyle: SxProps =
-  {
-    color: "rgb(33,24,43)",
-    justifyContent: "flex-end",
-    fontWeight: "bolder",
-  };
+{
+  color: "rgb(33,24,43)",
+  justifyContent: "flex-end",
+  fontWeight: "bolder",
+};
 
 export const styles = {
   communityTextTypographStyle,
   createButtonStyle,
   toolsContainerBoxStyle,
-  toolsContainerListBoxStyle,
   toolsContainerListBoxGridStyle,
   toolsContainerListBoxGridTypograghyCommunityNameStyle,
   toolsContainerListBoxGridBoxStyle,

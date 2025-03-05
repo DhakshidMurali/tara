@@ -45,20 +45,19 @@ export default function DashBoard() {
             </Typography>
           </Stack>
         </SearchBox>
-        <Grid item xs={12} sx={{}}>
-          <Stack
-            direction={"row"}
-            display={"flex"}
-            justifyContent={"space-between"}
-          >
-            <Typography variant="h3" sx={styles.dashboardTextTypographStyle}>
-              Dashboard{" "}
-            </Typography>
-            <Button sx={styles.createButtonStyle}>Create</Button>
-          </Stack>
-        </Grid>
-        <Grid container spacing={2}>
-          {/* Horizontal Scroll Grid */}
+        <Grid container spacing={1}>
+          <Grid item xs={12} sx={{}}>
+            <Stack
+              direction={"row"}
+              display={"flex"}
+              justifyContent={"space-between"}
+            >
+              <Typography variant="h3" sx={styles.dashboardTextTypographStyle}>
+                Dashboard{" "}
+              </Typography>
+              <Button sx={styles.createButtonStyle}>Create</Button>
+            </Stack>
+          </Grid>
           <Grid item xs={12}>
             <DashBoardList></DashBoardList>
           </Grid>

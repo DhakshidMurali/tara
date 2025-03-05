@@ -5,7 +5,7 @@ import SearchBox from "@/components/common/searchBox";
 import NavBar from "@/components/common/navBar/navBar";
 import { dayNames, month } from "@/utils/constants";
 import { PageviewRounded } from "@mui/icons-material";
-import { Box, Grid, Stack, TextField, Typography } from "@mui/material";
+import { Box, Button, Grid, Stack, TextField, Typography } from "@mui/material";
 import { styles } from "./useStyles";
 
 export default function Community() {
@@ -43,23 +43,24 @@ export default function Community() {
             </Typography>
           </Stack>
         </SearchBox>
-        <Grid container sx={{ height: "89%", paddingLeft: "8px" }}>
-          <CommunityList></CommunityList>
-          <Grid item sx={styles.gridContainerCommnityBox}>
+        <Grid container spacing={1}>
+          <Grid item xs={12}>
+            <Stack
+              direction={"row"}
+              display={"flex"}
+              justifyContent={"space-between"}
+            >
+              <Typography variant="h3" sx={styles.communityTextTypographStyle}>
+                Community{" "}
+              </Typography>
+              <Button sx={styles.createButtonStyle}>Create</Button>
+            </Stack>
+          </Grid>
+          <Grid item xs={12} >
+            <CommunityList></CommunityList>
+          </Grid>
+          <Grid item xs={12} sx={styles.gridContainerCommnityBox}>
             <CommunityBarChart></CommunityBarChart>
-            <Grid item xs={12}  >
-              <Grid container >
-                <Grid item xs={8}>
-                  <Grid container >
-                    {[1, 1, 1, 1, 1, 1, 1, 1].map((data) =>
-                    (<Grid item xs={12} sx={{ height: "90px", backgroundColor: "red" }}>
-
-                    </Grid>))}
-                  </Grid>
-                </Grid>
-                <Grid item xs={4}></Grid>
-              </Grid>
-            </Grid>
           </Grid>
         </Grid>
       </Grid>

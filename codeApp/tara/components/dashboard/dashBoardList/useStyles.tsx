@@ -5,6 +5,7 @@ const toolsContainerBoxStyle: SxProps = {
   display: "flex",
   padding: 2,
   borderRadius: 2,
+  flexWrap: "nowrap",
   "&::-webkit-scrollbar": {
     height: "8px",
   },
