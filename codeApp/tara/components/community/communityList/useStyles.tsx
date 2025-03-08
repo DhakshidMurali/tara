@@ -4,7 +4,6 @@ const communityTextTypographStyle: SxProps = {
   color: "primary.contrastText",
   fontWeight: "bolder",
   marginBottom: "8px",
-
 };
 
 const createButtonStyle: SxProps = {
@@ -22,6 +21,7 @@ const toolsContainerBoxStyle: SxProps = {
   display: "flex",
   borderRadius: 2,
   flexWrap: "nowrap",
+  padding: 2,
   "&::-webkit-scrollbar": {
     height: "8px",
   },
@@ -36,7 +36,6 @@ const toolsContainerBoxStyle: SxProps = {
     background: "#555",
   },
 };
-
 
 const toolsContainerListBoxGridStyle: SxProps = {
   backgroundColor: "secondary.light",
@@ -62,7 +61,9 @@ const toolsContainerListBoxGridBoxStyle: SxProps = {
 const toolsContainerListBoxGridBoxTypographyParticipantsStyle: SxProps = {
   display: "flex",
   flexDirection: "row",
+  fontWeight: "bold",
   paddingLeft: 1,
+  color: "white",
 };
 
 const toolsContainerListBoxGridIncreaseInLastMonthBoxStyle: SxProps = {
@@ -74,11 +75,11 @@ const toolsContainerListBoxGridIncreaseInLastMonthBoxStyle: SxProps = {
 };
 
 const toolsContainerListBoxGridIncreaseInLastMonthBoxTypograghyStyle: SxProps =
-{
-  color: "rgb(33,24,43)",
-  justifyContent: "flex-end",
-  fontWeight: "bolder",
-};
+  {
+    color: "rgb(33,24,43)",
+    justifyContent: "flex-end",
+    fontWeight: "bolder",
+  };
 
 export const styles = {
   communityTextTypographStyle,

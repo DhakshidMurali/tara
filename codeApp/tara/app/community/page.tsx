@@ -43,7 +43,7 @@ export default function Community() {
             </Typography>
           </Stack>
         </SearchBox>
-        <Grid container spacing={1}>
+        <Grid container spacing={1} height={"80%"}>
           <Grid item xs={12}>
             <Stack
               direction={"row"}
@@ -56,7 +56,7 @@ export default function Community() {
               <Button sx={styles.createButtonStyle}>Create</Button>
             </Stack>
           </Grid>
-          <Grid item xs={12} >
+          <Grid item xs={12}>
             <CommunityList></CommunityList>
           </Grid>
           <Grid item xs={12} sx={styles.gridContainerCommnityBox}>

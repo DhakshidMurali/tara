@@ -1,6 +1,5 @@
 "use client";
 
-
 import { lightPurple } from "@/utils/constants";
 import {
   AccountCircleOutlined,
@@ -26,15 +25,15 @@ export default function NavBar(props) {
   const { selected } = props;
   const route = useRouter();
   const handleNavigation = (currentPage) => {
-    currentPage == "dashboard"
-      ? route.push("/dashboard")
+    currentPage == "domain"
+      ? route.push("/domain")
       : currentPage == "hierarchy"
-        ? route.push("/hierarchy")
-        : currentPage == "community"
-          ? route.push("/community")
-          : currentPage == "profile"
-            ? route.push("/profile")
-            : null;
+      ? route.push("/hierarchy")
+      : currentPage == "community"
+      ? route.push("/community")
+      : currentPage == "profile"
+      ? route.push("/profile")
+      : null;
   };
   return (
     <Sidebar>
@@ -68,27 +67,6 @@ export default function NavBar(props) {
         <SpacerBox height={24}></SpacerBox>
         <Button
           onClick={() => {
-            handleNavigation("dashboard");
-          }}
-        >
-          <ListBox selected={selected == "dashboard"}>
-            <DashboardRounded
-              color={selected == "dashboard" ? "primary" : "secondary"}
-            ></DashboardRounded>
-            <Typography
-              variant="body1"
-              sx={
-                selected == "dashboard"
-                  ? styles.navbarSelectedMenuTextStyle
-                  : styles.navbarMenuTextStyle
-              }
-            >
-              Dashboard
-            </Typography>
-          </ListBox>
-        </Button>
-        <Button
-          onClick={() => {
             handleNavigation("community");
           }}
         >
@@ -96,11 +74,14 @@ export default function NavBar(props) {
             <Groups2
               color={selected == "community" ? "primary" : "secondary"}
             ></Groups2>
-            <Typography variant="body1" sx={
-              selected == "community"
-                ? styles.navbarSelectedMenuTextStyle
-                : styles.navbarMenuTextStyle
-            }>
+            <Typography
+              variant="body1"
+              sx={
+                selected == "community"
+                  ? styles.navbarSelectedMenuTextStyle
+                  : styles.navbarMenuTextStyle
+              }
+            >
               Community
             </Typography>
           </ListBox>
@@ -117,6 +98,27 @@ export default function NavBar(props) {
             ></TimelineOutlined>
             <Typography variant="body1" sx={styles.navbarMenuTextStyle}>
               Hierarchy
+            </Typography>
+          </ListBox>
+        </Button>
+        <Button
+          onClick={() => {
+            handleNavigation("domain");
+          }}
+        >
+          <ListBox selected={selected == "domain"}>
+            <DashboardRounded
+              color={selected == "domain" ? "primary" : "secondary"}
+            ></DashboardRounded>
+            <Typography
+              variant="body1"
+              sx={
+                selected == "domain"
+                  ? styles.navbarSelectedMenuTextStyle
+                  : styles.navbarMenuTextStyle
+              }
+            >
+              Domain
             </Typography>
           </ListBox>
         </Button>

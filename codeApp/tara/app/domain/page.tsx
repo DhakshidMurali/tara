@@ -16,7 +16,7 @@ export default function DashBoard() {
   return (
     <>
       <Grid item xs={2.15} sx={{ marginRight: 2 }}>
-        <NavBar selected="dashboard"></NavBar>
+        <NavBar selected="domain"></NavBar>
       </Grid>
       <Grid item xs={9.75}>
         <SearchBox>
@@ -46,14 +46,14 @@ export default function DashBoard() {
           </Stack>
         </SearchBox>
         <Grid container spacing={1}>
-          <Grid item xs={12} sx={{}}>
+          <Grid item xs={12}>
             <Stack
               direction={"row"}
               display={"flex"}
               justifyContent={"space-between"}
             >
               <Typography variant="h3" sx={styles.dashboardTextTypographStyle}>
-                Dashboard{" "}
+                Domain{" "}
               </Typography>
               <Button sx={styles.createButtonStyle}>Create</Button>
             </Stack>
@@ -71,7 +71,7 @@ export default function DashBoard() {
                   variant="h4"
                   sx={styles.dashboardTextTypographStyle}
                 >
-                  Departments
+                  Domains
                 </Typography>
                 <DashboardDeptMenu></DashboardDeptMenu>
               </Stack>

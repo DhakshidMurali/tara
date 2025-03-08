@@ -9,7 +9,7 @@ export function DashBoardList() {
     <Grid container spacing={2} sx={styles.toolsContainerBoxStyle}>
       {Array.from({ length: 10 }).map((_, index) => (
         <Grid item key={index}>
-          <Box sx={styles.toolsContainerListBoxStyle}>
+          <Grid container sx={styles.toolsContainerListBoxStyle}>
             <Stack
               direction={"row"}
               justifyContent={"flex-start"}
@@ -43,7 +43,7 @@ export function DashBoardList() {
                 </Grid>
               </Grid>
             </Stack>
-          </Box>
+          </Grid>
         </Grid>
       ))}
     </Grid>

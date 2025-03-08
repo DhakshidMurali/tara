@@ -19,7 +19,6 @@ export function AnalysisHeader() {
         <Button sx={{ backgroundColor: "primary.light", padding: 2 }}>
           Analysis
         </Button>
-
         <Box
           sx={styles.toolsContainerListBoxGridSelectGridItemSplittingBoxStyle}
         ></Box>
@@ -54,10 +53,10 @@ export function AnalysisHeader() {
                     sx={{
                       alignSelf: "center",
                       color: "white",
-                      width: "90%",
                       whiteSpace: "nowrap",
                       overflow: "hidden",
                       textOverflow: "ellipsis",
+                      padding: 0.5,
                     }}
                   >
                     Cloud Compusdsdst..
@@ -92,7 +91,7 @@ export function AnalysisCommunitySelection() {
                     styles.toolsContainerListBoxGridSelectGridItemGridItemStackTypographyListStyle
                   }
                 >
-                  Cloud Computing and DevOps  
+                  Cloud Computing and DevOps
                 </Typography>
               </Stack>
             );
@@ -100,7 +99,7 @@ export function AnalysisCommunitySelection() {
         </Grid>
         <Grid item xs={0.3}>
           {[1, 1, 1, 1, 1].map((data, index) => {
-            if (index == 2) {
+            if (index == 1) {
               return (
                 <Box
                   sx={{
@@ -129,37 +128,39 @@ export function AnalysisCommunitySelection() {
             styles.toolsContainerListBoxGridSelectGridItemGridItemStackCommunityListStyle
           }
         >
-          {[1, 1, 1, 1, 1, 1, 1, 1].map((data, index) => {
-            return (
-              <Stack
-                direction={"row"}
-                marginTop={1}
-                sx={{
-                  display: "flex",
-
-                  alignmentBaseline: "baseline",
-                }}
-              >
-                <Checkbox
+          {[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map(
+            (data, index) => {
+              return (
+                <Stack
+                  direction={"row"}
+                  marginTop={1}
                   sx={{
-                    "& .MuiSvgIcon-root": { fontSize: 20 },
-                    color: "rgb(46, 36,57)"[100],
-                    "&.Mui-checked": {
-                      color: "rgb(33,24,43)",
-                    },
+                    display: "flex",
+
+                    alignmentBaseline: "baseline",
                   }}
-                />
-                <Typography
-                  variant="subtitle1"
-                  sx={
-                    styles.toolsContainerListBoxGridSelectGridItemGridItemStackTypographyCommunityListStyle
-                  }
                 >
-                  Cloud Computing and DevOps 
-                </Typography>
-              </Stack>
-            );
-          })}
+                  <Checkbox
+                    sx={{
+                      "& .MuiSvgIcon-root": { fontSize: 20 },
+                      color: "rgb(46, 36,57)"[100],
+                      "&.Mui-checked": {
+                        color: "rgb(33,24,43)",
+                      },
+                    }}
+                  />
+                  <Typography
+                    variant="subtitle1"
+                    sx={
+                      styles.toolsContainerListBoxGridSelectGridItemGridItemStackTypographyCommunityListStyle
+                    }
+                  >
+                    Cloud Computing and DevOps
+                  </Typography>
+                </Stack>
+              );
+            }
+          )}
         </Grid>
       </Grid>
     </Grid>

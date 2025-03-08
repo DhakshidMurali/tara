@@ -18,6 +18,7 @@ const toolsContainerListBoxGridSelectGridItemGridItemStyle: SxProps = {
   borderRadius: 2,
   display: "flex",
   justifyContent: "space-evenly",
+  padding: 0.3,
 };
 const toolsContainerListBoxGridSelectGridItemGridItemStackStyle: SxProps = {
   height: "16%",
@@ -39,10 +40,10 @@ const toolsContainerListBoxGridSelectGridItemGridItemStackCommunityListStyle: Sx
     backgroundColor: "secondary.dark",
     overflowX: "auto",
     borderRadius: 2,
-    height: "95%",
+    height: "380px",
     "&::-webkit-scrollbar": {
       height: "8px",
-      width:"6px"
+      width: "6px",
     },
     "&::-webkit-scrollbar-track": {
       backgroundColor: "secondary.main",

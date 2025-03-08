@@ -4,6 +4,7 @@ import { communityOverViewDetails } from "@/public/data/community";
 import { Group } from "@mui/icons-material";
 import { Box, Grid, Typography } from "@mui/material";
 import { styles } from "./useStyles";
+import { getRandomColor } from "@/utils/functions";
 
 export default function CommunityList() {
   return (
@@ -26,9 +27,9 @@ export default function CommunityList() {
                 <Group sx={{ color: "white" }}></Group>
                 <Typography
                   variant="subtitle1"
-                  sx={
-                    styles.toolsContainerListBoxGridBoxTypographyParticipantsStyle
-                  }
+                  sx={{
+                    ...styles.toolsContainerListBoxGridBoxTypographyParticipantsStyle,
+                  }}
                 >
                   {" "}
                   {data.totalParticipants}
@@ -37,9 +38,7 @@ export default function CommunityList() {
             </Grid>
             <Grid item xs={3} marginRight={2}>
               <Box
-                sx={
-                  styles.toolsContainerListBoxGridIncreaseInLastMonthBoxStyle
-                }
+                sx={styles.toolsContainerListBoxGridIncreaseInLastMonthBoxStyle}
               >
                 <Typography
                   variant="subtitle1"

@@ -11,7 +11,6 @@ const communityTextTypographStyle: SxProps = {
   color: "primary.contrastText",
   fontWeight: "bolder",
   marginBottom: "8px",
-
 };
 
 const createButtonStyle: SxProps = {
@@ -25,30 +24,13 @@ const createButtonStyle: SxProps = {
 };
 
 const gridContainerCommnityBox: SxProps = {
-  overflowY: "auto",
+  marginTop: 2,
   height: "70%",
-  "&::-webkit-scrollbar": {
-    height: "8px",
-    width: "6px"
-  },
-  "&::-webkit-scrollbar-track": {
-    backgroundColor: "secondary.main",
-  },
-  "&::-webkit-scrollbar-thumb": {
-    backgroundColor: "secondary.light",
-    borderRadius: "8px",
-  },
-  "&::-webkit-scrollbar-thumb:hover": {
-    background: "#555",
-  },
 };
 
 export const styles = {
   dateTypographyStyle,
   gridContainerCommnityBox,
   communityTextTypographStyle,
-  createButtonStyle
+  createButtonStyle,
 };
-
-
-
