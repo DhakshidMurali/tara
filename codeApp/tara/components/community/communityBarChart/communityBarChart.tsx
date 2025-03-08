@@ -2,24 +2,54 @@
 
 import { Dataset } from "@/public/Sample/data";
 import { addLabels } from "@/utils/functions";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, IconButton, Typography } from "@mui/material";
 import { BarChart } from "@mui/x-charts/BarChart";
 import {
   AnalysisCommunitySelection,
   AnalysisHeader,
 } from "./communityBarChartAnalysis";
 import { styles } from "./useStyles";
+import { RefreshOutlined, RefreshTwoTone } from "@mui/icons-material";
 
 export default function CommunityBarChart() {
   return (
     <Grid container sx={{ height: "100%" }}>
-      <Grid item xs={8} sx={{ height: "20%" }}>
+      <Grid
+        item
+        xs={8}
+        sx={{
+          height: "20%",
+          backgroundColor: "secondary.light",
+          borderTopRightRadius: "16px",
+          borderTopLeftRadius: "16px",
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
         <Typography variant="h4" sx={styles.communityTextTypographStyle}>
           Find Community works for your
         </Typography>
+        <IconButton
+          sx={{ padding: 1, bgcolor: "secondary.contrastText", marginRight: 8 }}
+        >
+          {" "}
+          <RefreshOutlined></RefreshOutlined>
+        </IconButton>
       </Grid>
       <AnalysisHeader></AnalysisHeader>
-      <Grid item xs={8} sx={{ height: "80%" }}>
+      <Grid
+        item
+        xs={8}
+        sx={{
+          height: "80%",
+          backgroundColor: "secondary.light",
+          borderBottomRightRadius: "16px",
+          borderBottomLeftRadius: "16px",
+          paddingLeft: "8px",
+        }}
+      >
         <BarChart
           dataset={Dataset}
           xAxis={[
@@ -31,22 +61,14 @@ export default function CommunityBarChart() {
             },
           ]}
           series={addLabels([
-            { dataKey: "DevOps", stack: "assets" },
-            { dataKey: "Web Devlopment", stack: "assets" },
-            { dataKey: "App Devlopment", stack: "liability" },
+            { dataKey: "DevOps Communication", stack: "assets" },
+            { dataKey: "Web Devlopment Communication", stack: "liability" },
+            { dataKey: "App Devlopment Communication", stack: "equity" },
             {
-              dataKey: "Internet of Things",
-              stack: "liability",
+              dataKey: "Internet of Things Communication",
+              stack: "assets",
             },
-            { dataKey: "Cloud Computing", stack: "equity" },
-            { dataKey: "DevOps", stack: "assets" },
-            { dataKey: "Web Devlopment", stack: "assets" },
-            { dataKey: "App Devlopment", stack: "liability" },
-            {
-              dataKey: "Internet of Things",
-              stack: "liability",
-            },
-            { dataKey: "Cloud Computing", stack: "equity" },
+            { dataKey: "Cloud Computing Communication", stack: "liability" },
           ])}
           slotProps={{
             legend: { hidden: true },

@@ -22,9 +22,9 @@ export default function CommunityList() {
                 {data.communityName}
               </Typography>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={5}>
               <Box sx={styles.toolsContainerListBoxGridBoxStyle}>
-                <Group sx={{ color: "white" }}></Group>
+                <Group sx={{ color: "primary.contrastText" }}></Group>
                 <Typography
                   variant="subtitle1"
                   sx={{
@@ -36,7 +36,7 @@ export default function CommunityList() {
                 </Typography>
               </Box>
             </Grid>
-            <Grid item xs={3} marginRight={2}>
+            <Grid item xs={5} marginRight={2}>
               <Box
                 sx={styles.toolsContainerListBoxGridIncreaseInLastMonthBoxStyle}
               >
@@ -46,7 +46,7 @@ export default function CommunityList() {
                     styles.toolsContainerListBoxGridIncreaseInLastMonthBoxTypograghyStyle
                   }
                 >
-                  {"+  " + data.increaseInLastMonth}
+                  {"+  " + data.increaseInLastMonth +" MoM"}
                 </Typography>
               </Box>
             </Grid>

@@ -1,6 +1,6 @@
 Menu
     1. Profile Edit - Top right side
-    2. View Org hierarchy - sidepanel
+    2. View Org tool - sidepanel
     3. Search Tool - sidepanel
     4. Submitted request - sidepanel
     5. Search people- top search bar

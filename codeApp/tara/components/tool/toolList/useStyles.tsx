@@ -1,0 +1,48 @@
+import { SxProps } from "@mui/material";
+
+const toolsContainerBoxStyle: SxProps = {
+  overflowX: "auto",
+  display: "flex",
+  borderRadius: 2,
+  flexWrap: "nowrap",
+  padding: 2,
+  "&::-webkit-scrollbar": {
+    height: "8px",
+  },
+  "&::-webkit-scrollbar-track": {
+    backgroundColor: "secondary.main",
+  },
+  "&::-webkit-scrollbar-thumb": {
+    backgroundColor: "secondary.light",
+    borderRadius: "8px",
+  },
+  "&::-webkit-scrollbar-thumb:hover": {
+    background: "#555",
+  },
+};
+const toolsContainerListBoxGridStyle: SxProps = {
+  backgroundColor: "secondary.light",
+  display: "flex",
+  alignItems: "center",
+  borderRadius: 2,
+  height: 168,
+  width: 232,
+  justifyContent: "space-between",
+};
+
+const toolsContainerListBoxGridCommunicationCountTypography: SxProps = {
+  fontSize: "24px",
+  color: "secondary.main",
+};
+const toolsContainerListBoxGridToolNameTypography: SxProps = {
+  color: "primary.contrastText",
+  paddingLeft: 1,
+  paddingTop: 0.5,
+};
+
+export const styles = {
+  toolsContainerBoxStyle,
+  toolsContainerListBoxGridStyle,
+  toolsContainerListBoxGridCommunicationCountTypography,
+  toolsContainerListBoxGridToolNameTypography,
+};

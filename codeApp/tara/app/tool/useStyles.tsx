@@ -1,13 +1,20 @@
-import { SxProps } from "@mui/system";
+import { SxProps } from "@mui/material";
+
+const searchTextFieldInputPropsStyle: SxProps = {
+  color: "#f3def5",
+  fontWeight: "bolder",
+  fontSize: 16,
+};
+
 const dateTypographyStyle: SxProps = {
   textAlign: "center",
-  color: "primary.contrastText",
+  color: "#f3def5",
   fontWeight: "bolder",
   fontSize: 18,
   paddingLeft: 8,
   textWrap: "nowrap",
 };
-const communityTextTypographStyle: SxProps = {
+const toolTextTypographStyle: SxProps = {
   color: "primary.contrastText",
   fontWeight: "bolder",
   marginBottom: "8px",
@@ -22,14 +29,9 @@ const createButtonStyle: SxProps = {
   justifyContent: "center",
   width: 128,
 };
-
-const gridContainerCommnityBox: SxProps = {
-  height: "70%",
-};
-
 export const styles = {
+  searchTextFieldInputPropsStyle,
   dateTypographyStyle,
-  gridContainerCommnityBox,
-  communityTextTypographStyle,
+  toolTextTypographStyle,
   createButtonStyle,
 };

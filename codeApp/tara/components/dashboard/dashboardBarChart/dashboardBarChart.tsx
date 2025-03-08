@@ -1,20 +1,40 @@
 "use client";
 
-import { Box, Stack, Typography, Tooltip } from "@mui/material";
+import { Box, Stack, Typography, Tooltip, IconButton } from "@mui/material";
 import { styles } from "./useStyles";
 import { DashBoardPageEmployeeByDepartmentBoxLabelData } from "@/public/data/dashboard";
 import { DepartmentList } from "@/public/Sample/data.js";
+import { RefreshOutlined } from "@mui/icons-material";
 
 export default function DashBoardBarChart() {
-  const departmentList = DepartmentList
+  const departmentList = DepartmentList.slice(0, 5);
   const dashBoardPageEmployeeByDepartmentBoxLabelData =
     DashBoardPageEmployeeByDepartmentBoxLabelData;
   return (
     <Box sx={styles.employerByDepartmentBoxStyle} padding={4} height={548}>
       <Stack spacing={4} sx={{ width: "100%" }}>
-        <Typography variant="h4" sx={styles.dashboardTextTypographStyle}>
-          Tools By Domain
-        </Typography>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="h4" sx={styles.dashboardTextTypographStyle}>
+            Tools By Domain
+          </Typography>
+          <IconButton
+            sx={{
+              padding: 1,
+              bgcolor: "secondary.contrastText",
+              marginRight: 4,
+            }}
+          >
+            {" "}
+            <RefreshOutlined></RefreshOutlined>
+          </IconButton>
+        </Box>
         <Stack direction={"row"} spacing={2} sx={{ width: "100%" }}>
           {/* Creating List of Department Name */}
           <Stack direction={"column"} spacing={5}>
@@ -126,9 +146,7 @@ export default function DashBoardBarChart() {
                 </Tooltip>
               </Stack>
             ))}
-
           </Stack>
-
         </Stack>
         <Stack direction={"row"} spacing={4} sx={{ width: "100%" }}>
           {dashBoardPageEmployeeByDepartmentBoxLabelData.map((i, index) => (

@@ -48,7 +48,7 @@ const toolsContainerListBoxGridStyle: SxProps = {
 };
 
 const toolsContainerListBoxGridTypograghyCommunityNameStyle: SxProps = {
-  color: "#f3def5",
+  color: "primary.contrastText",
   paddingLeft: 1,
   paddingTop: 0.5,
 };
@@ -63,7 +63,7 @@ const toolsContainerListBoxGridBoxTypographyParticipantsStyle: SxProps = {
   flexDirection: "row",
   fontWeight: "bold",
   paddingLeft: 1,
-  color: "white",
+  color: "primary.contrastText",
 };
 
 const toolsContainerListBoxGridIncreaseInLastMonthBoxStyle: SxProps = {

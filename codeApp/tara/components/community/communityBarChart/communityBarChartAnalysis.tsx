@@ -14,10 +14,10 @@ import { styles } from "./useStyles";
 
 export function AnalysisHeader() {
   return (
-    <Grid item xs={4} sx={{ height: "20%", backgroundColor: "secondary.main" }}>
-      <Stack direction={"row"} spacing={1} height={"100%"}>
+    <Grid item xs={4} sx={{ height: "20%" }}>
+      <Stack direction={"row"} spacing={1} height={"100%"} marginLeft={1}>
         <Button sx={{ backgroundColor: "primary.light", padding: 2 }}>
-          Analysis
+          Change Domains
         </Button>
         <Box
           sx={styles.toolsContainerListBoxGridSelectGridItemSplittingBoxStyle}
@@ -52,7 +52,7 @@ export function AnalysisHeader() {
                     variant="body2"
                     sx={{
                       alignSelf: "center",
-                      color: "white",
+                      color: "primary.contrastText",
                       whiteSpace: "nowrap",
                       overflow: "hidden",
                       textOverflow: "ellipsis",
@@ -74,7 +74,7 @@ export function AnalysisHeader() {
 export function AnalysisCommunitySelection() {
   return (
     <Grid item xs={4} sx={{ height: "80%" }}>
-      <Grid container sx={{ height: "100%", paddingRight: 1 }}>
+      <Grid container sx={{ height: "100%", paddingRight: 1 }} paddingLeft={1}>
         <Grid item xs={5}>
           {[1, 1, 1, 1, 1].map((data, index) => {
             return (

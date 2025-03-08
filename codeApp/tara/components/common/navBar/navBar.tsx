@@ -3,11 +3,12 @@
 import { lightPurple } from "@/utils/constants";
 import {
   AccountCircleOutlined,
+  BuildCircle,
   DashboardRounded,
   Groups2,
   TimelineOutlined,
 } from "@mui/icons-material";
-import { Avatar, Button, Stack, Typography } from "@mui/material";
+import { Avatar, Button, Stack, Toolbar, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
@@ -27,8 +28,8 @@ export default function NavBar(props) {
   const handleNavigation = (currentPage) => {
     currentPage == "domain"
       ? route.push("/domain")
-      : currentPage == "hierarchy"
-      ? route.push("/hierarchy")
+      : currentPage == "tool"
+      ? route.push("/tool")
       : currentPage == "community"
       ? route.push("/community")
       : currentPage == "profile"
@@ -88,16 +89,23 @@ export default function NavBar(props) {
         </Button>
         <Button
           onClick={() => {
-            handleNavigation("hierarchy");
+            handleNavigation("tool");
           }}
         >
           {" "}
-          <ListBox selected={selected == "hierarchy"}>
-            <TimelineOutlined
-              color={selected == "hierarchy" ? "primary" : "secondary"}
-            ></TimelineOutlined>
-            <Typography variant="body1" sx={styles.navbarMenuTextStyle}>
-              Hierarchy
+          <ListBox selected={selected == "tool"}>
+            <BuildCircle
+              color={selected == "tool" ? "primary" : "secondary"}
+            ></BuildCircle>
+            <Typography
+              variant="body1"
+              sx={
+                selected == "tool"
+                  ? styles.navbarSelectedMenuTextStyle
+                  : styles.navbarMenuTextStyle
+              }
+            >
+              Tool
             </Typography>
           </ListBox>
         </Button>

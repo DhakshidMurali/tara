@@ -1,12 +1,12 @@
 import { Colors } from "./constants";
 
 const translations = {
-  DevOps: "DevOps",
-  "Web Devlopment": "Web Devlopment",
-  "App Devlopment": "App Devlopment",
-  "Internet of Things": "Internet of Things",
-  "Cloud Computing": "Cloud Computing",
-  "Netflix Blog Post": "Netflix Blog Post",
+  "DevOps Communication": "DevOps Communication",
+  "Web Devlopment Communication": "Web Devlopment Communication",
+  "App Devlopment Communication": "App Devlopment Communication",
+  "Internet of Things Communication": "Internet of Things Communication",
+  "Cloud Computing Communication": "Cloud Computing Communication",
+  "Netflix Blog Post Communication": "Netflix Blog Post Communication",
 } as const;
 
 export function addLabels<T extends { dataKey: keyof typeof translations }>(

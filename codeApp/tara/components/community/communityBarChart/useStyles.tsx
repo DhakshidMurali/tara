@@ -27,12 +27,12 @@ const toolsContainerListBoxGridSelectGridItemGridItemStackStyle: SxProps = {
 };
 const toolsContainerListBoxGridSelectGridItemGridItemStackTypographyListStyle: SxProps =
   {
-    color: "white",
+    color: "primary.contrastText",
     margin: "auto",
   };
 const toolsContainerListBoxGridSelectGridItemGridItemStackTypographyCommunityListStyle: SxProps =
   {
-    color: "white",
+    color: "primary.contrastText",
     margin: "auto 0",
   };
 const toolsContainerListBoxGridSelectGridItemGridItemStackCommunityListStyle: SxProps =
@@ -59,6 +59,7 @@ const toolsContainerListBoxGridSelectGridItemGridItemStackCommunityListStyle: Sx
 const communityTextTypographStyle: SxProps = {
   color: "primary.contrastText",
   fontWeight: "bolder",
+  marginLeft: 2,
 };
 export const styles = {
   communityTextTypographStyle,
