@@ -1,7 +1,7 @@
 "use client";
 
 import { communityOverViewDetails } from "@/public/data/community";
-import { Group } from "@mui/icons-material";
+import { Group, GroupAddRounded, Groups, Groups2Rounded, Groups3Rounded, GroupsRounded, GroupWorkRounded } from "@mui/icons-material";
 import { Box, Grid, Typography } from "@mui/material";
 import { styles } from "./useStyles";
 import { getRandomColor } from "@/utils/functions";

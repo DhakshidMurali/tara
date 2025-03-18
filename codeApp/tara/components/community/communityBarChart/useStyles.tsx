@@ -26,40 +26,40 @@ const toolsContainerListBoxGridSelectGridItemGridItemStackStyle: SxProps = {
   borderTopLeftRadius: "16px",
 };
 const toolsContainerListBoxGridSelectGridItemGridItemStackTypographyListStyle: SxProps =
-  {
-    color: "primary.contrastText",
-    margin: "auto",
-  };
+{
+  color: "primary.contrastText",
+  margin: "auto",
+};
 const toolsContainerListBoxGridSelectGridItemGridItemStackTypographyCommunityListStyle: SxProps =
-  {
-    color: "primary.contrastText",
-    margin: "auto 0",
-  };
+{
+  color: "primary.contrastText",
+  margin: "auto 0",
+};
 const toolsContainerListBoxGridSelectGridItemGridItemStackCommunityListStyle: SxProps =
-  {
-    backgroundColor: "secondary.dark",
-    overflowX: "auto",
-    borderRadius: 2,
-    height: "380px",
-    "&::-webkit-scrollbar": {
-      height: "8px",
-      width: "6px",
-    },
-    "&::-webkit-scrollbar-track": {
-      backgroundColor: "secondary.main",
-    },
-    "&::-webkit-scrollbar-thumb": {
-      backgroundColor: "secondary.light",
-      borderRadius: "8px",
-    },
-    "&::-webkit-scrollbar-thumb:hover": {
-      background: "#555",
-    },
-  };
+{
+  backgroundColor: "secondary.dark",
+  overflowX: "auto",
+  borderRadius: 2,
+  height: "380px",
+  "&::-webkit-scrollbar": {
+    height: "8px",
+    width: "6px",
+  },
+  "&::-webkit-scrollbar-track": {
+    backgroundColor: "secondary.main",
+  },
+  "&::-webkit-scrollbar-thumb": {
+    backgroundColor: "secondary.light",
+    borderRadius: "8px",
+  },
+  "&::-webkit-scrollbar-thumb:hover": {
+    background: "#555",
+  },
+};
 const communityTextTypographStyle: SxProps = {
   color: "primary.contrastText",
   fontWeight: "bolder",
-  marginLeft: 2,
+  marginLeft: 4,
 };
 export const styles = {
   communityTextTypographStyle,

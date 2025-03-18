@@ -2,14 +2,14 @@
 
 import { Dataset } from "@/public/Sample/data";
 import { addLabels } from "@/utils/functions";
-import { Box, Grid, IconButton, Typography } from "@mui/material";
+import { RefreshOutlined } from "@mui/icons-material";
+import { Grid, IconButton, Typography } from "@mui/material";
 import { BarChart } from "@mui/x-charts/BarChart";
 import {
   AnalysisCommunitySelection,
   AnalysisHeader,
 } from "./communityBarChartAnalysis";
 import { styles } from "./useStyles";
-import { RefreshOutlined, RefreshTwoTone } from "@mui/icons-material";
 
 export default function CommunityBarChart() {
   return (

@@ -6,6 +6,8 @@ import { Box, Button, Grid, Stack, TextField, Typography } from "@mui/material";
 import { styles } from "./useStyles";
 import { dayNames, month } from "@/utils/constants";
 import ToolList from "@/components/tool/toolList/toollist";
+import ToolBarChart from "@/components/tool/toolBarChart/toolBarChart";
+import ToolBarChartAnalysis from "@/components/tool/toolBarChart/toolBarChartAnalysis";
 
 export default function Tool() {
   let time = new Date();
@@ -58,6 +60,8 @@ export default function Tool() {
           <Grid item xs={12}>
             <ToolList></ToolList>
           </Grid>
+          <Grid item xs={8}><ToolBarChart></ToolBarChart></Grid>
+          <Grid item xs={4}><ToolBarChartAnalysis></ToolBarChartAnalysis></Grid>
         </Grid>
       </Grid>
     </>

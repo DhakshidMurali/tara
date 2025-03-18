@@ -31,8 +31,9 @@ const toolsContainerListBoxGridStyle: SxProps = {
 };
 
 const toolsContainerListBoxGridCommunicationCountTypography: SxProps = {
-  fontSize: "24px",
+  fontSize: "18px",
   color: "secondary.main",
+  fontWeight: "bold"
 };
 const toolsContainerListBoxGridToolNameTypography: SxProps = {
   color: "primary.contrastText",
