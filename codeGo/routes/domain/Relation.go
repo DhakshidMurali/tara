@@ -1,4 +1,4 @@
-package dashboardRoutes
+package domainRoutes
 
 import (
 	"encoding/json"
@@ -6,13 +6,13 @@ import (
 	"net/http"
 
 	"github.com/DhakshidMurali/tara/db"
-	dashboardModel "github.com/DhakshidMurali/tara/model/dashboard"
+	domainModel "github.com/DhakshidMurali/tara/model/domain"
 	"github.com/DhakshidMurali/tara/util"
 	"github.com/gin-gonic/gin"
 )
 
 func listToolGroupByDomain(context *gin.Context) {
-	var data dashboardModel.DashboardFields
+	var data domainModel.DashboardFields
 	query := data.MakeQuery("GET_LIST_TOOLS_GROUPBY_DOMAIN")
 	params := map[string]any{}
 	result := db.Execute(query, params)
@@ -31,7 +31,7 @@ func listToolGroupByDomain(context *gin.Context) {
 }
 
 func listToolsGroupByDeliveryFormatForTop4Domain(context *gin.Context) {
-	var data dashboardModel.DashboardFields
+	var data domainModel.DashboardFields
 	query := data.MakeQuery("GET_LIST_TOOLS_GROUPBY_DELIVERYFORMAT_FOR_TOP4DOMAINS")
 	params := map[string]any{}
 	result := db.Execute(query, params)

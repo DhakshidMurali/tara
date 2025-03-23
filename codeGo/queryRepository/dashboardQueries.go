@@ -1,4 +1,4 @@
-package constant
+package queryRepository
 
 const (
 	GET_LIST_TOOLS_GROUPBY_DOMAIN = `

@@ -75,7 +75,6 @@ func (v ToolRequestByUser) MakeParams(typeOfQuery string) map[string]any {
 		return map[string]any{
 			"ToolName":                     v.Tool.Name,
 			"ToolDeliveryFormat":           v.Tool.DeliveryFormat,
-			"ToolApprovalType":             v.Tool.ApprovalType,
 			"RequestByRequestedDate":       v.RequestBy.RequestedDate,
 			"RequestByRequestByAccessType": v.RequestBy.AccessType,
 			"RequestByLvl1Approval":        v.RequestBy.Lvl1Approval,
@@ -149,7 +148,6 @@ func (v ToolAccessToUser) MakeParams(typeOfQuery string) map[string]any {
 		return map[string]any{
 			"ToolName":            v.Tool.Name,
 			"ToolDeliveryFormat":  v.Tool.DeliveryFormat,
-			"ToolApprovalType":    v.Tool.ApprovalType,
 			"RequestByAccessType": v.AccessTo.AccessType,
 			"UserName":            v.User.Name,
 			"UserMailAddress":     v.User.MailAddress,
@@ -219,7 +217,6 @@ func (v ToolManagedByUser) MakeParams(typeOfQuery string) map[string]any {
 		return map[string]any{
 			"ToolName":           v.Tool.Name,
 			"ToolDeliveryFormat": v.Tool.DeliveryFormat,
-			"ToolApprovalType":   v.Tool.ApprovalType,
 			"UserName":           v.User.Name,
 			"UserMailAddress":    v.User.MailAddress,
 			"UserDomain":         v.User.Domain,
@@ -288,8 +285,8 @@ func (v ToolComesUnderDomain) MakeParams(typeOfQuery string) map[string]any {
 		return map[string]any{
 			"ToolName":           v.Tool.Name,
 			"ToolDeliveryFormat": v.Tool.DeliveryFormat,
-			"ToolApprovalType":   v.Tool.ApprovalType,
-			"DomainName":         v.Domain.DomainName,
+
+			"DomainName": v.Domain.DomainName,
 		}
 	case "LIST_TOOLS_COMES_UNDER_DOMAIN":
 		return map[string]any{

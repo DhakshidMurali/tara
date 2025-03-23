@@ -19,7 +19,6 @@ type User struct {
 type Tool struct {
 	Name           string
 	DeliveryFormat string
-	ApprovalType   string
 	Key            string
 }
 
@@ -36,7 +35,7 @@ type Community struct {
 }
 
 type Communication struct {
-	Type    string
+	Link    string
 	Content string
 	Key     string
 }
@@ -129,7 +128,6 @@ func (v Tool) MakeParams(key string, typeOfQuery string) map[string]any {
 	case "UPDATE":
 		params := make(map[string]string)
 		util.AddToParams(v.Name, "Name", params)
-		util.AddToParams(v.ApprovalType, "ApprovalType", params)
 		return map[string]any{
 			"NodeId": key,
 			"v":      params,
@@ -203,7 +201,6 @@ func (v Communication) MakeParams(key string, typeOfQuery string) map[string]any
 	switch typeOfQuery {
 	case "UPDATE":
 		params := make(map[string]string)
-		util.AddToParams(v.Type, "Type", params)
 		util.AddToParams(v.Content, "Content", params)
 		return map[string]any{
 			"NodeId": key,

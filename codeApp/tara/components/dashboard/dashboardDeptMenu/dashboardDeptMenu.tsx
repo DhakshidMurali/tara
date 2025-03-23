@@ -33,9 +33,6 @@ export default function DashboardDeptMenu() {
           sx={styles.departmentContainerListBoxStackStyle}
         >
           <Box sx={{ display: "flex", flexDirection: "row" }}>
-            <Avatar>
-              <Domain sx={styles.deparmentListIconStyle}></Domain>
-            </Avatar>
             <Typography
               variant="h6"
               sx={styles.dashboardTextTypographStyle}
@@ -65,7 +62,7 @@ export default function DashboardDeptMenu() {
                 key={index}
                 sx={styles.departmentContainerListBoxStackTopicBoxStyle}
               >
-                <Typography variant="h6" sx={{ color: "primary.contrastText" }}>
+                <Typography  sx={{ color: "primary.contrastText" }}>
                   {data}
                 </Typography>
               </Box>

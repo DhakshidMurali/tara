@@ -1,6 +1,9 @@
 package routes
 
-import "github.com/gin-gonic/gin"
+import (
+	domainRoutes "github.com/DhakshidMurali/tara/routes/domain"
+	"github.com/gin-gonic/gin"
+)
 
 func APIRoutes(server *gin.Engine) {
 
@@ -66,5 +69,10 @@ func APIRoutes(server *gin.Engine) {
 	authRoutes.POST("/get/list/toolAccessToUser/:node", listToolAccessToUser)
 	authRoutes.POST("/get/list/toolManagedByUser/:node", listToolManagedByUser)
 	authRoutes.POST("/get/list/toolComesUnderDomain/:node", listToolComesUnderDomain)
+
+	/*
+	* Tool Page Routes
+	 */
+	domainRoutes.APIRoutes(server)
 
 }

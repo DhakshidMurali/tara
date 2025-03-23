@@ -76,6 +76,7 @@ func listDomain(context *gin.Context) {
 	context.JSON(http.StatusOK, domainList)
 	domainList = nil
 }
+
 func updateUser(context *gin.Context) {
 	var node model.UpdateNode
 	var user model.User
@@ -164,7 +165,6 @@ func updateDomain(context *gin.Context) {
 	params := domain.MakeParams(node.Key, "UPDATE")
 
 	db.Execute(query, params)
-
 }
 
 func updateCommunity(context *gin.Context) {
@@ -194,7 +194,6 @@ func updateCommunity(context *gin.Context) {
 	params := community.MakeParams(node.Key, "UPDATE")
 
 	db.Execute(query, params)
-
 }
 
 func updateCommunication(context *gin.Context) {
@@ -224,8 +223,8 @@ func updateCommunication(context *gin.Context) {
 	params := communication.MakeParams(node.Key, "UPDATE")
 
 	db.Execute(query, params)
-
 }
+
 func updateSkills(context *gin.Context) {
 	var node model.UpdateNode
 	var skills model.Skills
@@ -253,5 +252,4 @@ func updateSkills(context *gin.Context) {
 	params := skills.MakeParams(node.Key, "UPDATE")
 
 	db.Execute(query, params)
-
 }

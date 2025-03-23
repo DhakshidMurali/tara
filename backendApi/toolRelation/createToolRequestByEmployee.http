@@ -4,8 +4,7 @@ content-type: application/json
 {
     "Tool":{
         "Name":"A",
-        "ToolDeliveryFormat":"github",
-        "ApprovalType":"Manager"
+        "DeliveryFormat":"Open Source",
     },
     "RequestedDate":"2202-11-1",
     "AccessType":"Developer",

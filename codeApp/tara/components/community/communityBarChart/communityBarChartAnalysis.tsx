@@ -15,7 +15,12 @@ import { styles } from "./useStyles";
 export function AnalysisHeader() {
   return (
     <Grid item xs={4} sx={{ height: "20%" }}>
-      <Stack direction={"row"} spacing={1} height={"100%"} marginLeft={1}>
+      <Stack direction={"row"} spacing={1} height={"100%"} marginLeft={1} sx={{
+        "& .MuiButtonBase-root:hover": {
+          backgroundColor: "primary.light",
+          fontWeight: "bold"
+        }
+      }}>
         <Button sx={{ backgroundColor: "primary.light", padding: 2 }}>
           Change Domains
         </Button>
@@ -46,7 +51,7 @@ export function AnalysisHeader() {
                       },
                     }}
                   >
-                    <Close sx={{ alignSelf: "center" }}></Close>
+                    <Close sx={{ alignSelf: "center", color: "primary.contrastText" }}></Close>
                   </IconButton>
                   <Typography
                     variant="body2"
@@ -67,7 +72,7 @@ export function AnalysisHeader() {
           })}
         </Grid>
       </Stack>
-    </Grid>
+    </Grid >
   );
 }
 

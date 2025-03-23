@@ -35,6 +35,79 @@ func createToolRequestByUser(context *gin.Context) {
 		})
 	}
 }
+
+func createToolAccessToUser(context *gin.Context) {
+	var toolAccessToUser model.ToolAccessToUser
+	err := context.ShouldBindJSON(&toolAccessToUser)
+
+	if err != nil {
+		context.JSON(http.StatusBadRequest, gin.H{"Description": "Received data can't be parsed"})
+	}
+	query := toolAccessToUser.MakeQuery("CREATE")
+	params := toolAccessToUser.MakeParams("CREATE")
+	result := db.Execute(query, params)
+
+	isCreated := result.Records[0].Values[0].(bool)
+	if isCreated {
+		context.JSON(http.StatusOK, gin.H{
+			"message": "Data Created in Database",
+		})
+	}
+	if !isCreated {
+		context.JSON(http.StatusOK, gin.H{
+			"message": "Data already Exist in Database",
+		})
+	}
+}
+
+func createToolManagedByUser(context *gin.Context) {
+	var toolManagedByUser model.ToolManagedByUser
+	err := context.ShouldBindJSON(&toolManagedByUser)
+
+	if err != nil {
+		context.JSON(http.StatusBadRequest, gin.H{"Description": "Received data can't be parsed"})
+	}
+	query := toolManagedByUser.MakeQuery("CREATE")
+	params := toolManagedByUser.MakeParams("CREATE")
+	result := db.Execute(query, params)
+
+	isCreated := result.Records[0].Values[0].(bool)
+	if isCreated {
+		context.JSON(http.StatusOK, gin.H{
+			"message": "Data Created in Database",
+		})
+	}
+	if !isCreated {
+		context.JSON(http.StatusOK, gin.H{
+			"message": "Data already Exist in Database",
+		})
+	}
+}
+
+func createToolComesUnderDomain(context *gin.Context) {
+	var toolComesUnderDomain model.ToolComesUnderDomain
+	err := context.ShouldBindJSON(&toolComesUnderDomain)
+
+	if err != nil {
+		context.JSON(http.StatusBadRequest, gin.H{"Description": "Received data can't be parsed"})
+	}
+	query := toolComesUnderDomain.MakeQuery("CREATE")
+	params := toolComesUnderDomain.MakeParams("CREATE")
+	result := db.Execute(query, params)
+
+	isCreated := result.Records[0].Values[0].(bool)
+	if isCreated {
+		context.JSON(http.StatusOK, gin.H{
+			"message": "Data Created in Database",
+		})
+	}
+	if !isCreated {
+		context.JSON(http.StatusOK, gin.H{
+			"message": "Data already Exist in Database",
+		})
+	}
+}
+
 func listToolRequestByUser(context *gin.Context) {
 	var toolRequestByUser model.ToolRequestByUser
 	err := context.ShouldBindJSON(&toolRequestByUser)
@@ -85,29 +158,7 @@ func listToolRequestByUser(context *gin.Context) {
 		userList = nil
 	}
 }
-func createToolAccessToUser(context *gin.Context) {
-	var toolAccessToUser model.ToolAccessToUser
-	err := context.ShouldBindJSON(&toolAccessToUser)
 
-	if err != nil {
-		context.JSON(http.StatusBadRequest, gin.H{"Description": "Received data can't be parsed"})
-	}
-	query := toolAccessToUser.MakeQuery("CREATE")
-	params := toolAccessToUser.MakeParams("CREATE")
-	result := db.Execute(query, params)
-
-	isCreated := result.Records[0].Values[0].(bool)
-	if isCreated {
-		context.JSON(http.StatusOK, gin.H{
-			"message": "Data Created in Database",
-		})
-	}
-	if !isCreated {
-		context.JSON(http.StatusOK, gin.H{
-			"message": "Data already Exist in Database",
-		})
-	}
-}
 func listToolAccessToUser(context *gin.Context) {
 	var toolAccessToUser model.ToolAccessToUser
 	err := context.ShouldBindJSON(&toolAccessToUser)
@@ -154,30 +205,6 @@ func listToolAccessToUser(context *gin.Context) {
 		}
 		context.JSON(http.StatusOK, userList)
 		userList = nil
-	}
-
-}
-func createToolManagedByUser(context *gin.Context) {
-	var toolManagedByUser model.ToolManagedByUser
-	err := context.ShouldBindJSON(&toolManagedByUser)
-
-	if err != nil {
-		context.JSON(http.StatusBadRequest, gin.H{"Description": "Received data can't be parsed"})
-	}
-	query := toolManagedByUser.MakeQuery("CREATE")
-	params := toolManagedByUser.MakeParams("CREATE")
-	result := db.Execute(query, params)
-
-	isCreated := result.Records[0].Values[0].(bool)
-	if isCreated {
-		context.JSON(http.StatusOK, gin.H{
-			"message": "Data Created in Database",
-		})
-	}
-	if !isCreated {
-		context.JSON(http.StatusOK, gin.H{
-			"message": "Data already Exist in Database",
-		})
 	}
 }
 
@@ -229,30 +256,6 @@ func listToolManagedByUser(context *gin.Context) {
 		context.JSON(http.StatusOK, userList)
 		userList = nil
 	}
-
-}
-func createToolComesUnderDomain(context *gin.Context) {
-	var toolComesUnderDomain model.ToolComesUnderDomain
-	err := context.ShouldBindJSON(&toolComesUnderDomain)
-
-	if err != nil {
-		context.JSON(http.StatusBadRequest, gin.H{"Description": "Received data can't be parsed"})
-	}
-	query := toolComesUnderDomain.MakeQuery("CREATE")
-	params := toolComesUnderDomain.MakeParams("CREATE")
-	result := db.Execute(query, params)
-
-	isCreated := result.Records[0].Values[0].(bool)
-	if isCreated {
-		context.JSON(http.StatusOK, gin.H{
-			"message": "Data Created in Database",
-		})
-	}
-	if !isCreated {
-		context.JSON(http.StatusOK, gin.H{
-			"message": "Data already Exist in Database",
-		})
-	}
 }
 
 func listToolComesUnderDomain(context *gin.Context) {
@@ -303,5 +306,4 @@ func listToolComesUnderDomain(context *gin.Context) {
 		context.JSON(http.StatusOK, domainList)
 		domainList = nil
 	}
-
 }

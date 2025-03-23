@@ -1,0 +1,59 @@
+Nodes / Vertexes
+    - User
+    - Tool  
+    - Domain
+    - Community
+    - Communication
+    - Skills ( Optional )
+
+Relation / Edges
+    - PostedIn 
+        + PostedInDate
+
+    - PostedBy
+        + PostedByDate
+
+    - CollaboratedWith
+        + TaskDescription
+
+    - WorksIn
+        + Role
+
+    - SkilledIn
+        + Experience
+
+    - CreatedBy
+        + CommunityCreatedDate
+
+    - Member
+        + AddedToCommunityDate
+
+    - RequestBy
+        + RequestedDate string
+	    + AccessType    string
+	    + Lvl1Approval  string
+	    + Lvl2Approval  string
+
+    - AccessTo
+        + AccessType
+
+Node Relation
+
+Communication   
+    -> PostedIn -> Community
+    -> PostedBy -> User
+    -> RelatedTo -> Tool ( New )
+
+Community
+    -> Member -> User
+    -> CreatedBy -> User
+
+Domain
+    -> ManagedBy -> User
+
+Tool
+    -> ManagedBy -> User
+    -> ComesUnder -> Domain
+
+
+

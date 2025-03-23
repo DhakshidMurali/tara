@@ -1,7 +1,7 @@
 package model
 
 import (
-	"github.com/DhakshidMurali/tara/constant"
+	constant "github.com/DhakshidMurali/tara/constant"
 	"github.com/DhakshidMurali/tara/util"
 )
 
@@ -52,7 +52,6 @@ func (v CommunicationPostedInCommunity) MakeParams(typeOfQuery string) map[strin
 	switch typeOfQuery {
 	case "CREATE":
 		return map[string]any{
-			"CommunicationType":    v.Communication.Type,
 			"CommunicationContent": v.Communication.Content,
 			"PostedInPostedInDate": v.PostedIn.PostedInDate,
 			"CommunityName":        v.Community.Name,
@@ -101,7 +100,6 @@ func (v CommunicationPostedByUser) MakeParams(typeOfQuery string) map[string]any
 	switch typeOfQuery {
 	case "CREATE":
 		return map[string]any{
-			"CommunicationType":    v.Communication.Type,
 			"CommunicationContent": v.Communication.Content,
 			"PostedByPostedByDate": v.PostedBy.PostedByDate,
 			"UserName":             v.User.Name,

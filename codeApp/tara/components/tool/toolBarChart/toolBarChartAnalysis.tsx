@@ -1,33 +1,32 @@
-import { Close, CommentBank, EmojiEmotions } from "@mui/icons-material";
-import { Avatar, Box, Button, Checkbox, Chip, Divider, Grid, IconButton, Stack, Tooltip, Typography } from "@mui/material";
+import { Close, CommentBank, EmojiEmotions, HighlightOff } from "@mui/icons-material";
+import { Avatar, Box, Button, Checkbox, Chip, Divider, Grid, IconButton, Stack, TextField, Tooltip, Typography } from "@mui/material";
 
 export default function ToolBarChartAnalysis() {
     return (<Grid container spacing={1}>
         <Grid item xs={12}>
-            <Stack direction={"row"} spacing={1} height={"100%"} marginLeft={1}>
+            <Stack direction={"row"} spacing={1} height={"100%"} sx={{ "& .MuiFormControl-root .MuiTextField-root": { color: "white" } }} marginLeft={1}>
                 <Button sx={{ backgroundColor: "primary.light", padding: 2 }}>
                     Change Domains
                 </Button>
-                <Chip
-                    icon={<EmojiEmotions></EmojiEmotions>}
-                    label={'REMOVE FROM LIST'}
-                    onDelete={() => { console.log("delete") }}
+                <TextField
+                    id="outlined-basic"
+                    label="Index to Remove" variant="filled"
                     sx={{
-                        " span": {
-                            color: "white"
+                        "& .MuiInputBase-root": {
+                            borderBottom: "2px solid rgb(239,241,255)",
+                            color: "rgb(239,241,255)"
                         },
-                        " svg": {
-                            color: "white"
-                        }
-
-                    }}
-                />
+                        "& .MuiFormLabel-root": { color: "rgb(239,241,255)" },
+                    }} />
+                <Button sx={{ padding: 2, backgroundColor: "secondary.light" }}>
+                    <HighlightOff sx={{ color: "rgb(239,241,255)" }} ></HighlightOff>
+                </Button>
             </Stack>
         </Grid>
         <Grid item xs={12} >
             <Stack direction={"row"} sx={{
                 "& hr": { borderColor: "white" }, flexWrap: "wrap",
-                "& .MuiAvatar-root": { width: "25px", height: "25px", fontSize: "0.95rem" },
+                "& .MuiAvatar-root": { width: "25px", height: "25px", fontSize: "0.95rem", backgroundColor: "rgb(239,241,255)" },
                 border: "2px solid rgb(239,241,255)"
             }} padding={1}>
                 {[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map(() => <>

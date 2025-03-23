@@ -5,7 +5,6 @@ content-type: application/json
     "Tool":{
         "Name":"D5O1S",
         "DeliveryFormat":"Open Source",
-        "ApprovalType":"free"
     },
     "Domain":{
         "DomainName":"Tool3" 

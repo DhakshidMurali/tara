@@ -39,3 +39,5 @@ type AccessTo struct {
 	AccessType string
 }
 
+type RelatedTo struct {
+}

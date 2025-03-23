@@ -1,10 +1,9 @@
 package main
 
 import (
+	"strconv"
+
 	"github.com/DhakshidMurali/tara/db"
-	"github.com/DhakshidMurali/tara/routes"
-	dashboardRoutes "github.com/DhakshidMurali/tara/routes/dashboard"
-	"github.com/gin-gonic/gin"
 )
 
 // type nodeProp struct {
@@ -17,12 +16,28 @@ func main() {
 
 	db.Init()
 
-	server := gin.Default()
+	for i := 20; i < 100; i++ {
+		var applicationName string = "Perform Application Matters " + strconv.Itoa(i)
+		var query string = `
+		MERGE (n1:COMMUNICATION{
+			CONTENT:'New content'
+		})
+		MERGE (n2:TOOL{
+				NAME:$applicationName,
+				DELIVERYFORMAT:'Open Source'
+			})
+		MERGE (n1)-[r:RELATED_TO]->(n2)`
 
-	routes.APIRoutes(server)
-	dashboardRoutes.APIRoutes(server)
+		db.Execute(query,
+			map[string]any{"applicationName": applicationName})
 
-	server.Run(":8080")
+	}
+
+	// server := gin.Default()
+
+	// routes.APIRoutes(server)
+
+	// server.Run(":8080")
 
 	// result := db.Execute(`
 	// 		MATCH (N1:TOOL)-[r:COMESUNDER]->(N2:DOMAIN)
@@ -42,7 +57,3 @@ func main() {
 	// }
 
 }
-
-/*
-* Building list userGroupByDomain Api and  Create API testing for that
- */
