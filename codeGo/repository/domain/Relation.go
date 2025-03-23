@@ -1,4 +1,4 @@
-package domainRoutes
+package domainService
 
 import (
 	"encoding/json"
@@ -6,13 +6,15 @@ import (
 	"net/http"
 
 	"github.com/DhakshidMurali/tara/db"
-	domainModel "github.com/DhakshidMurali/tara/model/domain"
+	model "github.com/DhakshidMurali/tara/model/domain"
 	"github.com/DhakshidMurali/tara/util"
 	"github.com/gin-gonic/gin"
 )
 
-func listToolGroupByDomain(context *gin.Context) {
-	var data domainModel.DashboardFields
+var dasboardDataList = []model.DashboardFields{}
+
+func ListToolGroupByDomain(context *gin.Context) {
+	var data model.DashboardFields
 	query := data.MakeQuery("GET_LIST_TOOLS_GROUPBY_DOMAIN")
 	params := map[string]any{}
 	result := db.Execute(query, params)
@@ -30,8 +32,8 @@ func listToolGroupByDomain(context *gin.Context) {
 	dasboardDataList = nil
 }
 
-func listToolsGroupByDeliveryFormatForTop4Domain(context *gin.Context) {
-	var data domainModel.DashboardFields
+func ListToolsGroupByDeliveryFormatForTop4Domain(context *gin.Context) {
+	var data model.DashboardFields
 	query := data.MakeQuery("GET_LIST_TOOLS_GROUPBY_DELIVERYFORMAT_FOR_TOP4DOMAINS")
 	params := map[string]any{}
 	result := db.Execute(query, params)

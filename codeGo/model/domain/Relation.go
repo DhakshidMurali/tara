@@ -1,6 +1,6 @@
 package domainModel
 
-import "github.com/DhakshidMurali/tara/queryRepository"
+import "github.com/DhakshidMurali/tara/constant"
 
 type DashboardFields struct {
 	DomainName              string `json:"DomainName,omitempty"`
@@ -19,9 +19,9 @@ Learning :
 func (v DashboardFields) MakeQuery(queryConst string) string {
 	switch queryConst {
 	case "GET_LIST_TOOLS_GROUPBY_DOMAIN":
-		return queryRepository.GET_LIST_TOOLS_GROUPBY_DOMAIN
+		return constant.GET_LIST_TOOLS_GROUPBY_DOMAIN
 	case "GET_LIST_TOOLS_GROUPBY_DELIVERYFORMAT_FOR_TOP4DOMAINS":
-		return queryRepository.GET_LIST_TOOLS_GROUPBY_DELIVERYFORMAT_FOR_TOP4DOMAINS
+		return constant.GET_LIST_TOOLS_GROUPBY_DELIVERYFORMAT_FOR_TOP4DOMAINS
 	default:
 		return ""
 	}

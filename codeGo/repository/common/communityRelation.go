@@ -1,4 +1,4 @@
-package routes
+package commonRepository
 
 import (
 	"encoding/json"
@@ -11,13 +11,9 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func createCommunityMemberUser(context *gin.Context) {
-	var communityMemberUser model.CommunityMemberUser
-	err := context.ShouldBindJSON(&communityMemberUser)
+var communityList = []model.Community{}
 
-	if err != nil {
-		context.JSON(http.StatusBadRequest, gin.H{"Description": "Received data can't be parsed"})
-	}
+func CreateCommunityMemberUser(communityMemberUser *model.CommunityMemberUser, context *gin.Context) {
 	query := communityMemberUser.MakeQuery("CREATE")
 	params := communityMemberUser.MakeParams("CREATE")
 	result := db.Execute(query, params)
@@ -35,13 +31,7 @@ func createCommunityMemberUser(context *gin.Context) {
 	}
 }
 
-func createCommunityCreatedByUser(context *gin.Context) {
-	var communityCreatedByUser model.CommunityCreatedByUser
-	err := context.ShouldBindJSON(&communityCreatedByUser)
-
-	if err != nil {
-		context.JSON(http.StatusBadRequest, gin.H{"Description": "Received data can't be parsed"})
-	}
+func CreateCommunityCreatedByUser(communityCreatedByUser *model.CommunityCreatedByUser, context *gin.Context) {
 	query := communityCreatedByUser.MakeQuery("CREATE")
 	params := communityCreatedByUser.MakeParams("CREATE")
 	result := db.Execute(query, params)
@@ -59,15 +49,8 @@ func createCommunityCreatedByUser(context *gin.Context) {
 	}
 }
 
-func listCommunityCreatedByUser(context *gin.Context) {
-	var communityCreatedByUser model.CommunityCreatedByUser
+func ListCommunityCreatedByUser(communityCreatedByUser *model.CommunityCreatedByUser, context *gin.Context) {
 	var data model.Community
-	err := context.ShouldBindJSON(&communityCreatedByUser)
-
-	if err != nil {
-		panic(err)
-	}
-
 	query := communityCreatedByUser.MakeQuery("LIST_COMMUNITY_CREATED_BY_USER")
 	params := communityCreatedByUser.MakeParams("LIST_COMMUNITY_CREATED_BY_USER")
 	result := db.Execute(query, params)
@@ -75,7 +58,7 @@ func listCommunityCreatedByUser(context *gin.Context) {
 	for _, record := range result.Records {
 		mapRecord, _ := record.Get("n1")
 		byteData := util.MarshalData(mapRecord)
-		err = json.Unmarshal(byteData, &data)
+		err := json.Unmarshal(byteData, &data)
 		if err != nil {
 			fmt.Println("Error Unmarshalling Json")
 			panic(err)
@@ -86,15 +69,8 @@ func listCommunityCreatedByUser(context *gin.Context) {
 	communityList = nil
 }
 
-func listCommunityMemberUser(context *gin.Context) {
-	var communityMemberUser model.CommunityMemberUser
+func ListCommunityMemberUser(communityMemberUser *model.CommunityMemberUser, context *gin.Context) {
 	var data model.User
-	err := context.ShouldBindJSON(&communityMemberUser)
-
-	if err != nil {
-		panic(err)
-	}
-
 	query := communityMemberUser.MakeQuery("LIST_USERS_MEMBER_OF_COMMUNITY")
 	params := communityMemberUser.MakeParams("LIST_USERS_MEMBER_OF_COMMUNITY")
 	result := db.Execute(query, params)
@@ -102,7 +78,7 @@ func listCommunityMemberUser(context *gin.Context) {
 	for _, record := range result.Records {
 		mapRecord, _ := record.Get("n2")
 		byteData := util.MarshalData(mapRecord)
-		err = json.Unmarshal(byteData, &data)
+		err := json.Unmarshal(byteData, &data)
 		if err != nil {
 			fmt.Println("Error Unmarshalling Json")
 			panic(err)

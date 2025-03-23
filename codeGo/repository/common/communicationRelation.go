@@ -1,4 +1,4 @@
-package routes
+package commonRepository
 
 import (
 	"encoding/json"
@@ -11,13 +11,9 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func createCommunicationPostedInCommunity(context *gin.Context) {
-	var communicationPostedInCommunity model.CommunicationPostedInCommunity
-	err := context.ShouldBindJSON(&communicationPostedInCommunity)
+var communicationList = []model.Communication{}
 
-	if err != nil {
-		context.JSON(http.StatusBadRequest, gin.H{"Description": "Received data can't be parsed"})
-	}
+func CreateCommunicationPostedInCommunity(communicationPostedInCommunity *model.CommunicationPostedInCommunity, context *gin.Context) {
 	query := communicationPostedInCommunity.MakeQuery("CREATE")
 	params := communicationPostedInCommunity.MakeParams("CREATE")
 	result := db.Execute(query, params)
@@ -35,13 +31,7 @@ func createCommunicationPostedInCommunity(context *gin.Context) {
 	}
 }
 
-func createCommunicationPostedByUser(context *gin.Context) {
-	var communicationPostedByUser model.CommunicationPostedByUser
-	err := context.ShouldBindJSON(&communicationPostedByUser)
-
-	if err != nil {
-		context.JSON(http.StatusBadRequest, gin.H{"Description": "Received data can't be parsed"})
-	}
+func CreateCommunicationPostedByUser(communicationPostedByUser *model.CommunicationPostedByUser, context *gin.Context) {
 	query := communicationPostedByUser.MakeQuery("CREATE")
 	params := communicationPostedByUser.MakeParams("CREATE")
 	result := db.Execute(query, params)
@@ -58,15 +48,8 @@ func createCommunicationPostedByUser(context *gin.Context) {
 	}
 }
 
-func listCommunicationPostedInCommunity(context *gin.Context) {
-	var communicationPostedInCommunity model.CommunicationPostedInCommunity
+func ListCommunicationPostedInCommunity(communicationPostedInCommunity *model.CommunicationPostedInCommunity, context *gin.Context) {
 	var data model.Communication
-	err := context.ShouldBindJSON(&communicationPostedInCommunity)
-
-	if err != nil {
-		panic(err)
-	}
-
 	query := communicationPostedInCommunity.MakeQuery("LIST_COMMUNICATION_POSTED_IN_COMMUNITY")
 	params := communicationPostedInCommunity.MakeParams("LIST_COMMUNICATION_POSTED_IN_COMMUNITY")
 	result := db.Execute(query, params)
@@ -74,7 +57,7 @@ func listCommunicationPostedInCommunity(context *gin.Context) {
 	for _, record := range result.Records {
 		mapRecord, _ := record.Get("n1")
 		byteData := util.MarshalData(mapRecord)
-		err = json.Unmarshal(byteData, &data)
+		err := json.Unmarshal(byteData, &data)
 		if err != nil {
 			fmt.Println("Error Unmarshalling Json")
 			panic(err)
@@ -85,24 +68,16 @@ func listCommunicationPostedInCommunity(context *gin.Context) {
 	communicationList = nil
 }
 
-func listCommunicationPostedByUser(context *gin.Context) {
-	var communicationPostedByUser model.CommunicationPostedByUser
+func ListCommunicationPostedByUser(communicationPostedByUser *model.CommunicationPostedByUser, context *gin.Context) {
 	var data model.Communication
-	err := context.ShouldBindJSON(&communicationPostedByUser)
-
-	if err != nil {
-		panic(err)
-	}
-
 	query := communicationPostedByUser.MakeQuery("LIST_COMMUNICATION_POSTED_BY_USER")
-	fmt.Println(query)
 	params := communicationPostedByUser.MakeParams("LIST_COMMUNICATION_POSTED_BY_USER")
 	result := db.Execute(query, params)
 
 	for _, record := range result.Records {
 		mapRecord, _ := record.Get("n1")
 		byteData := util.MarshalData(mapRecord)
-		err = json.Unmarshal(byteData, &data)
+		err := json.Unmarshal(byteData, &data)
 		if err != nil {
 			fmt.Println("Error Unmarshalling Json")
 			panic(err)

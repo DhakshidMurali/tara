@@ -1,9 +1,9 @@
 package main
 
 import (
-	"strconv"
-
 	"github.com/DhakshidMurali/tara/db"
+	"github.com/DhakshidMurali/tara/handler"
+	"github.com/gin-gonic/gin"
 )
 
 // type nodeProp struct {
@@ -16,28 +16,28 @@ func main() {
 
 	db.Init()
 
-	for i := 20; i < 100; i++ {
-		var applicationName string = "Perform Application Matters " + strconv.Itoa(i)
-		var query string = `
-		MERGE (n1:COMMUNICATION{
-			CONTENT:'New content'
-		})
-		MERGE (n2:TOOL{
-				NAME:$applicationName,
-				DELIVERYFORMAT:'Open Source'
-			})
-		MERGE (n1)-[r:RELATED_TO]->(n2)`
+	// for i := 20; i < 100; i++ {
+	// 	var applicationName string = "Perform Application Matters " + strconv.Itoa(i)
+	// 	var query string = `
+	// 	MERGE (n1:COMMUNICATION{
+	// 		CONTENT:'New content'
+	// 	})
+	// 	MERGE (n2:TOOL{
+	// 			NAME:$applicationName,
+	// 			DELIVERYFORMAT:'Open Source'
+	// 		})
+	// 	MERGE (n1)-[r:RELATED_TO]->(n2)`
 
-		db.Execute(query,
-			map[string]any{"applicationName": applicationName})
+	// 	db.Execute(query,
+	// 		map[string]any{"applicationName": applicationName})
 
-	}
+	// }
 
-	// server := gin.Default()
+	server := gin.Default()
 
-	// routes.APIRoutes(server)
+	handler.APIRoutes(server)
 
-	// server.Run(":8080")
+	server.Run(":8080")
 
 	// result := db.Execute(`
 	// 		MATCH (N1:TOOL)-[r:COMESUNDER]->(N2:DOMAIN)
