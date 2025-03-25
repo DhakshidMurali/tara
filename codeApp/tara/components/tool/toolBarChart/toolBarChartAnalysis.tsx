@@ -4,7 +4,13 @@ import { Avatar, Box, Button, Checkbox, Chip, Divider, Grid, IconButton, Stack, 
 export default function ToolBarChartAnalysis() {
     return (<Grid container spacing={1}>
         <Grid item xs={12}>
-            <Stack direction={"row"} spacing={1} height={"100%"} sx={{ "& .MuiFormControl-root .MuiTextField-root": { color: "white" } }} marginLeft={1}>
+            <Stack direction={"row"} spacing={1} height={"100%"} sx={{
+                "& .MuiFormControl-root .MuiTextField-root": { color: "white" }, "& .MuiButtonBase-root:hover": {
+                    backgroundColor: "primary.light",
+                    fontWeight: "bold",
+                    padding: 1.7
+                }
+            }} marginLeft={1}>
                 <Button sx={{ backgroundColor: "primary.light", padding: 2 }}>
                     Change Domains
                 </Button>

@@ -50,6 +50,12 @@ export default function Tool() {
               direction={"row"}
               display={"flex"}
               justifyContent={"space-between"}
+              sx={{
+                "& .MuiButtonBase-root:hover": {
+                  backgroundColor: "primary.light",
+                  fontWeight: "bold"
+                }
+              }}
             >
               <Typography variant="h3" sx={styles.toolTextTypographStyle}>
                 Tool{" "}

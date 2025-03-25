@@ -79,7 +79,7 @@ func (v User) MakeQuery(typeOfQuery string) string {
 		`
 		query := constant.RETRIEVE_DATA_NODES_ALL
 		mapData := map[string]string{
-			"%n1":     "Domain",
+			"%n1":     "DOMAIN",
 			"%return": returnData,
 		}
 		query = util.ReplaceQuery(query, mapData)
@@ -113,7 +113,7 @@ func (v Tool) MakeQuery(typeOfQuery string) string {
 		returnData := constant.RETURNDATA_TOOL
 		query := constant.RETRIEVE_DATA_NODES_ALL
 		mapData := map[string]string{
-			"%n1":     "Tool",
+			"%n1":     "TOOL",
 			"%node":   "n1",
 			"%return": returnData,
 		}

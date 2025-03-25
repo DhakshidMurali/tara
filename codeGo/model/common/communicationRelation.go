@@ -6,7 +6,7 @@ import (
 )
 
 type CommunicationPostedInCommunity struct {
-	Communication Communication `json:"communication"`
+	Communication Communication
 	PostedIn      PostedIn
 	Community     Community
 }
@@ -32,9 +32,9 @@ func (v CommunicationPostedInCommunity) MakeQuery(typeOfQuery string) string {
 		returnData := constant.RETURNDATA_COMMUNICATION
 		query := constant.RETRIEVE_DATA_NODE_WHERE
 		mapData := map[string]string{
-			"%n1":        "Communication",
-			"%rel":       "PostedIn",
-			"%n2":        "Community",
+			"%n1":        "COMMUNICATION",
+			"%rel":       "POSTEDIN",
+			"%n2":        "COMMUNITY",
 			"%condition": "elementId(n2)=$NodeId",
 			"%node":      "n1",
 			"%return":    returnData,
@@ -82,9 +82,9 @@ func (v CommunicationPostedByUser) MakeQuery(typeOfQuery string) string {
 		returnData := constant.RETURNDATA_COMMUNICATION
 		query := constant.RETRIEVE_DATA_NODE_WHERE
 		mapData := map[string]string{
-			"%n1":        "Communication",
-			"%rel":       "PostedBy",
-			"%n2":        "User",
+			"%n1":        "COMMUNICATION",
+			"%rel":       "POSTEDBY",
+			"%n2":        "USER",
 			"%condition": "elementId(n2)=$NodeId",
 			"%node":      "n1",
 			"%return":    returnData,
@@ -100,6 +100,7 @@ func (v CommunicationPostedByUser) MakeParams(typeOfQuery string) map[string]any
 	switch typeOfQuery {
 	case "CREATE":
 		return map[string]any{
+			"CommunicationLink":    v.Communication.Link,
 			"CommunicationContent": v.Communication.Content,
 			"PostedByPostedByDate": v.PostedBy.PostedByDate,
 			"UserName":             v.User.Name,

@@ -6,7 +6,7 @@ import (
 	"net/http"
 
 	"github.com/DhakshidMurali/tara/db"
-	"github.com/DhakshidMurali/tara/model"
+	"github.com/DhakshidMurali/tara/model/common"
 	"github.com/DhakshidMurali/tara/util"
 	"github.com/gin-gonic/gin"
 )

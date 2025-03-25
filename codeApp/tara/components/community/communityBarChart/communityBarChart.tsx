@@ -32,7 +32,14 @@ export default function CommunityBarChart() {
           Find Community works for your
         </Typography>
         <IconButton
-          sx={{ padding: 1, bgcolor: "secondary.contrastText", marginRight: 8 }}
+          sx={{
+            padding: 1, bgcolor: "secondary.contrastText", marginRight: 8, "&   .MuiButtonBase-root:hover": {
+              backgroundColor: "primary.light",
+              fontWeight: "bold",
+              padding: 1.7,
+              zIndex: 1
+            }
+          }}
         >
           {" "}
           <RefreshOutlined></RefreshOutlined>

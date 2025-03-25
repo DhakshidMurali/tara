@@ -16,9 +16,12 @@ export function AnalysisHeader() {
   return (
     <Grid item xs={4} sx={{ height: "20%" }}>
       <Stack direction={"row"} spacing={1} height={"100%"} marginLeft={1} sx={{
-        "& .MuiButtonBase-root:hover": {
+        // Learning : In the specific scope of styling, we are applying the changes
+        "& > :first-child.MuiButtonBase-root:hover": {
           backgroundColor: "primary.light",
-          fontWeight: "bold"
+          fontWeight: "bold",
+          padding: 1.7,
+          zIndex: 1
         }
       }}>
         <Button sx={{ backgroundColor: "primary.light", padding: 2 }}>
@@ -45,9 +48,10 @@ export function AnalysisHeader() {
                   <IconButton
                     sx={{
                       padding: 0,
+                      zIndex: 0,
                       "& .css-55fg2l-MuiSvgIcon-root": {
-                        height: "0.7em",
-                        width: "0.7em",
+                        height: "0.4em",
+                        width: "0.2em",
                       },
                     }}
                   >

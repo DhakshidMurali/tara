@@ -36,7 +36,7 @@ const (
 	`
 
 	USEREN1 = `
-	User{
+	USER{
 		Name:$UserName,
         MailAddress:$UserMailAddress,
         Domain:$UserDomain,
@@ -48,7 +48,7 @@ const (
 	`
 
 	USEREN2 = `
-	User{
+	USER{
 		Name:$UserNameN2,
         MailAddress:$UserMailAddressN2,
         Domain:$UserDomainN2,
@@ -59,20 +59,19 @@ const (
 	}
 	`
 	TOOL = `
-	Tool{
+	TOOL{
 		Name:$ToolName,
-		DeliveryFormat:$ToolDeliveryFormat,
-		ApprovalType:$ToolApprovalType
+		DeliveryFormat:$ToolDeliveryFormat
 	}
 	`
 	DOMAIN = `
-	Domain{
+	DOMAIN{
 		DomainName:$DomainName
 	}
 	`
 
 	COMMUNITY = `
-	Community{
+	COMMUNITY{
 		Name:$CommunityName,
 		Description:$CommunityDescription,
 		AccessType:$CommunityAccessType
@@ -80,61 +79,61 @@ const (
 	`
 
 	COMMUNICATION = `
-	Communication{
-		Type:$CommunicationType,
+	COMMUNICATION{
+		Link:$CommunicationLink,
 		Content:$CommunicationContent
 	}
 	`
 
 	SKILLS = `
-	Skills{
+	SKILLS{
 		SkillName:$SkillsSkills
 	}
 	`
 
 	POSTEDIN = `
-	PostedIn{
+	POSTEDIN{
 		PostedInDate:$PostedInPostedInDate
 	}
 	`
 	POSTEDBY = `
-	PostedBy{
+	POSTEDBY{
 		PostedByDate:$PostedByPostedByDate
 	}
 	`
 
 	COLLABORATEDWITH = `
-	CollaboratedWith{
+	COLLABORATEDWITH{
 		TaskDescription:$CollaboratedWithTaskDescription
 	}
 	`
 
 	WORKSIN = `
-	WorksIn{
+	WORKSIN{
 		Role:$WorksInWorksInRole
 	}
 	`
 
 	SKILLEDIN = `
-	SkilledIn{
+	SKILLEDIN{
 		Experience:$SkilledInExperience
 	}
 	`
 
 	CREATEDBY = `
-	CreatedBy{
+	CREATEDBY{
 		CommunityCreatedDate:$CreatedByCommunityCreatedDate
 	}
 	`
 
 	MEMBER = `
-	Member{
+	MEMBER{
 		AddedToCommunityDate:$MemberAddedToCommunityDate
 	}
 	`
 
 	REQUESTBY = `
-	RequestBy{
+	REQUESTBY{
 		RequestedDate:$RequestByRequestedDate,
 		AccessType:$RequestByRequestByAccessType,
 		Lvl1Approval:$RequestByLvl1Approval,
@@ -143,15 +142,15 @@ const (
 	`
 
 	ACCESSTO = `
-	AccessTo{
+	ACCESSTO{
 		AccessType:$RequestByAccessType
 	}`
 
-	MANAGEDBY = `ManagedBy{}`
+	MANAGEDBY = `MANAGEDBY{}`
 
-	COMESUNDER = `ComesUnder{}`
+	COMESUNDER = `COMESUNDER{}`
 
-	REPORTTO = `ReportTo{}`
+	REPORTTO = `REPORTTO{}`
 
 	RETURNDATA_USER = `%node{
 		Name:%node.Name,

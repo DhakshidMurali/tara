@@ -20,10 +20,7 @@ const createButtonStyle: SxProps = {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  width: 128,
-  "& :hover": {
-    backgroundColor: "red"
-  }
+  width: 128
 };
 
 const gridContainerCommnityBox: SxProps = {

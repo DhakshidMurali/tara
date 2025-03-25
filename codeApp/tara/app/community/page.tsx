@@ -50,9 +50,9 @@ export default function Community() {
               display={"flex"}
               justifyContent={"space-between"}
               sx={{
-                "& :hover": {
+                "& .MuiButtonBase-root:hover": {
                   backgroundColor: "primary.light",
-                  fontWeight:"bold"
+                  fontWeight: "bold"
                 }
               }}
             >

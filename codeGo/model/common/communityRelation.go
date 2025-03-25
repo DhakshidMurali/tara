@@ -32,9 +32,9 @@ func (v CommunityMemberUser) MakeQuery(typeOfQuery string) string {
 		returnData := constant.RETURNDATA_USER
 		query := constant.RETRIEVE_DATA_NODE_WHERE
 		mapData := map[string]string{
-			"%n1":        "Community",
-			"%rel":       "Member",
-			"%n2":        "User",
+			"%n1":        "COMMUNITY",
+			"%rel":       "MEMBER",
+			"%n2":        "USER",
 			"%condition": "elementId(n1)=$NodeId",
 			"%node":      "n2",
 			"%return":    returnData,
@@ -87,9 +87,9 @@ func (v CommunityCreatedByUser) MakeQuery(typeOfQuery string) string {
 		returnData := constant.RETURNDATA_COMMUNITY
 		query := constant.RETRIEVE_DATA_NODE_WHERE
 		mapData := map[string]string{
-			"%n1":        "Community",
-			"%rel":       "CreatedBy",
-			"%n2":        "User",
+			"%n1":        "COMMMUNITY",
+			"%rel":       "CREATEDBY",
+			"%n2":        "USER",
 			"%condition": "elementId(n2)=$NodeId",
 			"%node":      "n1",
 			"%return":    returnData,

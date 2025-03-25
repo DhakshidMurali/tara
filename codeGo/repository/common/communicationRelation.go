@@ -6,7 +6,7 @@ import (
 	"net/http"
 
 	"github.com/DhakshidMurali/tara/db"
-	"github.com/DhakshidMurali/tara/model"
+	"github.com/DhakshidMurali/tara/model/common"
 	"github.com/DhakshidMurali/tara/util"
 	"github.com/gin-gonic/gin"
 )
@@ -33,8 +33,10 @@ func CreateCommunicationPostedInCommunity(communicationPostedInCommunity *model.
 
 func CreateCommunicationPostedByUser(communicationPostedByUser *model.CommunicationPostedByUser, context *gin.Context) {
 	query := communicationPostedByUser.MakeQuery("CREATE")
+	fmt.Println(query)
 	params := communicationPostedByUser.MakeParams("CREATE")
 	result := db.Execute(query, params)
+
 	isCreated := result.Records[0].Values[0].(bool)
 	if isCreated {
 		context.JSON(http.StatusOK, gin.H{

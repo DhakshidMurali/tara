@@ -16,9 +16,15 @@ const toolsContainerListBoxGridSelectGridItemGridItemStyle: SxProps = {
   height: "90%",
   backgroundColor: "secondary.dark",
   borderRadius: 2,
+  width: "100%",
   display: "flex",
   justifyContent: "space-evenly",
   padding: 0.3,
+  ":hover": {
+    width: "200px",
+    transform: "scale(1.05)",
+    transition: "all 0.1s ease"
+  }
 };
 const toolsContainerListBoxGridSelectGridItemGridItemStackStyle: SxProps = {
   height: "16%",

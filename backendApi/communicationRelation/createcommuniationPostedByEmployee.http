@@ -1,15 +1,15 @@
-POST http://localhost:8080/create/relation/communiationPostedByEmployee
+POST http://localhost:8080/create/relation/communiationPostedByUser
 content-type: application/json
 
 {
     "Communication":{
-        "Type":"A",
+        "Link":"https://mui.com/material-ui/react-typography/",
         "Content":"New post 2"
     },
     "PostedBy":{
-        "PostedByDate":"A"
+        "PostedByDate":"22-03-2025"
     },
-    "Employee":{
+    "User":{
         "Name":"A",
         "MailAddress":"1@gmail.com",
         "Domain":"TO1",

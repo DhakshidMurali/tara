@@ -3,7 +3,7 @@ package commonService
 import (
 	"net/http"
 
-	"github.com/DhakshidMurali/tara/model"
+	"github.com/DhakshidMurali/tara/model/common"
 	repository "github.com/DhakshidMurali/tara/repository/common"
 	"github.com/gin-gonic/gin"
 )
