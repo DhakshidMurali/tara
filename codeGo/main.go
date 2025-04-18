@@ -16,20 +16,22 @@ func main() {
 
 	db.Init()
 
-	// for i := 20; i < 100; i++ {
+	// for i := 10; i < 25; i++ {
 	// 	var applicationName string = "Perform Application Matters " + strconv.Itoa(i)
+	// 	var communicationCount int = 30 - i
 	// 	var query string = `
-	// 	MERGE (n1:COMMUNICATION{
-	// 		CONTENT:'New content'
-	// 	})
-	// 	MERGE (n2:TOOL{
+	// 	MERGE (n1:TOOL{
 	// 			NAME:$applicationName,
-	// 			DELIVERYFORMAT:'Open Source'
+	// 			DELIVERYFORMAT:'IDE Plugin',
+	// 			COMMUNICATIONCOUNT:$communicationCount
 	// 		})
-	// 	MERGE (n1)-[r:RELATED_TO]->(n2)`
+	// 	MERGE(n2:Domain{
+	// 			DomainName:'Dev Operation'
+	// 		})
+	// 	MERGE (n1)-[r:COMESUNDER]->(n2)`
 
 	// 	db.Execute(query,
-	// 		map[string]any{"applicationName": applicationName})
+	// 		map[string]any{"applicationName": applicationName, "communicationCount": communicationCount})
 
 	// }
 

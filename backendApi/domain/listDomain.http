@@ -1,0 +1,8 @@
+GET http://localhost:8080/get/list/domain
+content-type: application/json
+
+{
+}
+
+
+# verified

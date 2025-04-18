@@ -10,11 +10,14 @@ const (
 	RETURN n2.DomainName, n1
 	`
 	GET_TOP_COMMNICATION_LISTED_TOOL = `
-	MATCH (n1:TOOL)-[r1:COMESUNDER]->(n2:Domain)
-	WITH n1, n1.COMMUNICATIONCOUNT AS totalCommunicationCount,n2
-	ORDER BY totalCommunicationCount DESC
-	LIMIT 25
-	RETURN n2.DomainName, n1
+	MATCH (N1:TOOL)-[r:COMESUNDER]->(N2:Domain)
+	WITH N2, COUNT(N2.DomainName) AS CountToolsGroupByDomain,N1
+	ORDER BY CountToolsGroupByDomain DESC
+	RETURN N2{
+		ToolName:N1.NAME,
+		DomainName:N2.DomainName,
+		CountToolsGroupByDomain:CountToolsGroupByDomain
+	}
 	`
 )
 

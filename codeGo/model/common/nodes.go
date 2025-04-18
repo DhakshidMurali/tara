@@ -146,7 +146,7 @@ func (v Domain) MakeQuery(typeOfQuery string) string {
 			"%node":   "n1",
 			"%return": returnData,
 		}
-		query = util.DoubleReplaceQuery(query, mapData)
+		query = util.DoubleReplaceQuery(query, mapData) + constant.ORDERBY_DOMAINAME_ASC
 		return query
 	default:
 		return ""

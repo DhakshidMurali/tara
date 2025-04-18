@@ -1,4 +1,4 @@
-package domainService
+package domainRepository
 
 import (
 	"encoding/json"

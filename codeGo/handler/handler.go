@@ -2,6 +2,7 @@ package handler
 
 import (
 	domainHandler "github.com/DhakshidMurali/tara/handler/domain"
+	toolHandler "github.com/DhakshidMurali/tara/handler/tool"
 	service "github.com/DhakshidMurali/tara/service/common"
 	"github.com/gin-gonic/gin"
 )
@@ -75,5 +76,5 @@ func APIRoutes(server *gin.Engine) {
 	* Tool Page Handler
 	 */
 	domainHandler.APIRoutes(server)
-
+	toolHandler.APIRoutes(server)
 }

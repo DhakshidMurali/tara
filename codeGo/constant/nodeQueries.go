@@ -190,4 +190,6 @@ const (
 		SkillName:%node.SkillName,
 		Key:elementId(%node)
 	}`
+	ORDERBY_DOMAINAME_ASC = `
+	ORDER BY n1.DomainName asc`
 )
