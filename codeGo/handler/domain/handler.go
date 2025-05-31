@@ -7,9 +7,9 @@ import (
 
 func APIRoutes(server *gin.Engine) {
 
-	domainRoutes := server.Group("/")
+	domainRoutes := server.Group("/domain")
 
-	domainRoutes.GET("get/list/toolGroupByDomain", domainService.ListToolGroupByDomain)
+	domainRoutes.GET("/get/dashboardDetails", domainService.GetDashBoardDetails)
 
 	domainRoutes.GET("get/list/toolsGroupByDeliveryFormatForTopDomains", domainService.ListToolsGroupByDeliveryFormatForTop5Domain)
 

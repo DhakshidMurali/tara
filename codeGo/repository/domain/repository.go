@@ -11,11 +11,11 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-var dasboardDataList = []model.DashboardFields{}
+var dasboardDataList = model.DashboardPayload{}
 
-func ListToolGroupByDomain(context *gin.Context) {
-	var data model.DashboardFields
-	query := data.MakeQuery("GET_LIST_TOOLS_GROUPBY_DOMAIN")
+func GetDashBoardDetails(context *gin.Context) {
+	var data model.DashboardPayload
+	query := data.GetQuery("GET_LIST_TOOLS_GROUPBY_DOMAIN")
 	params := map[string]any{}
 	result := db.Execute(query, params)
 	for _, record := range result.Records {
@@ -26,15 +26,14 @@ func ListToolGroupByDomain(context *gin.Context) {
 			fmt.Println("Error Unmarshalling Json")
 			panic(err)
 		}
-		dasboardDataList = append(dasboardDataList, data)
+
 	}
 	context.JSON(http.StatusOK, dasboardDataList)
-	dasboardDataList = nil
 }
 
 func ListToolsGroupByDeliveryFormatForTop4Domain(context *gin.Context) {
-	var data model.DashboardFields
-	query := data.MakeQuery("GET_LIST_TOOLS_GROUPBY_DELIVERYFORMAT_FOR_TOP4DOMAINS")
+	var data model.DashboardPayload
+	query := data.GetQuery("GET_LIST_TOOLS_GROUPBY_DELIVERYFORMAT_FOR_TOP4DOMAINS")
 	params := map[string]any{}
 	result := db.Execute(query, params)
 	for _, record := range result.Records {
@@ -45,8 +44,7 @@ func ListToolsGroupByDeliveryFormatForTop4Domain(context *gin.Context) {
 			fmt.Println("Error Unmarshalling Json")
 			panic(err)
 		}
-		dasboardDataList = append(dasboardDataList, data)
+
 	}
 	context.JSON(http.StatusOK, dasboardDataList)
-	dasboardDataList = nil
 }

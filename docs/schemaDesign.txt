@@ -93,3 +93,43 @@ posted_by
 
 Condition
     -> Once request by get completed, delete that relation and make access relation to be enabled.
+
+
+
+Latest Schema Design
+
+Communication
+    - content
+    - link
+
+Domain 
+    - domainName
+    - subDomains
+
+Tool    
+    - deliveryFormat
+    - likes
+    - toolName
+    - communicationCount 
+
+User
+    - role
+    - mailAddress
+    - phoneNumber
+    - userName
+    - location
+    - password
+
+Tool -> Under -> Domain
+
+postedIn
+    -> postedInDate
+
+postedBy 
+    -> Timestamp
+
+createdBy
+    -> communityCreatedDate
+
+member
+    -> addedToCommunityDate
