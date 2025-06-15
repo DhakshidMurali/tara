@@ -104,7 +104,9 @@ Communication
 
 Domain 
     - domainName
-    - subDomains
+
+SubDomain
+    - subDomainName
 
 Tool    
     - deliveryFormat
@@ -133,3 +135,6 @@ createdBy
 
 member
     -> addedToCommunityDate
+
+Tool - SubDomain ( USED_FOR )
+SubDomain - Domain ( PART_OF )
