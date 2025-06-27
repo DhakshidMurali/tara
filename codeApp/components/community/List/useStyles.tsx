@@ -42,8 +42,8 @@ const toolsContainerListBoxGridStyle: SxProps = {
   display: "flex",
   alignItems: "center",
   borderRadius: 2,
-  height: 168,
-  width: 232,
+  height: "16rem",
+  width:"90rem",
   justifyContent: "space-between",
 };
 
@@ -75,11 +75,11 @@ const toolsContainerListBoxGridIncreaseInLastMonthBoxStyle: SxProps = {
 };
 
 const toolsContainerListBoxGridIncreaseInLastMonthBoxTypograghyStyle: SxProps =
-  {
-    color: "rgb(33,24,43)",
-    justifyContent: "flex-end",
-    fontWeight: "bolder",
-  };
+{
+  color: "rgb(33,24,43)",
+  justifyContent: "flex-end",
+  fontWeight: "bolder",
+};
 
 export const styles = {
   communityTextTypographStyle,

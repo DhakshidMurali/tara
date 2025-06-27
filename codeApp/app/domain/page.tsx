@@ -15,10 +15,10 @@ export default function DashBoard() {
   let time = new Date();
   return (
     <>
-      <Grid item xs={2.15} sx={{ marginRight: 2 }}>
-        <NavBar selected="domain"></NavBar>
+      <Grid size={{ xs: 2 }} component="div" sx={{ marginRight: 2 }}>
+        <NavBar selected="domain" />
       </Grid>
-      <Grid item xs={9.75}>
+      <Grid size={{ xs: 9.75 }} component="div">
         <SearchBox>
           <Stack
             direction={"row"}
@@ -32,9 +32,6 @@ export default function DashBoard() {
               variant="standard"
               placeholder="Search"
               fullWidth
-              InputProps={{
-                style: { color: "#f3def5", fontWeight: "bolder", fontSize: 16 },
-              }}
             />
             <Typography sx={styles.dateTypographyStyle}>
               {dayNames[time.getDay()] +
@@ -46,7 +43,7 @@ export default function DashBoard() {
           </Stack>
         </SearchBox>
         <Grid container spacing={1}>
-          <Grid item xs={12}>
+          <Grid size={{ xs: 12 }} component="div">
             <Stack
               direction={"row"}
               display={"flex"}
@@ -64,13 +61,13 @@ export default function DashBoard() {
               <Button sx={styles.createButtonStyle}>Create</Button>
             </Stack>
           </Grid>
-          <Grid item xs={12}>
+          <Grid size={{ xs: 12 }} component="div">
             <DashBoardList></DashBoardList>
           </Grid>
-          <Grid item xs={8}>
+          <Grid size={{ xs: 8 }} component="div">
             <DashBoardBarChart></DashBoardBarChart>
           </Grid>
-          <Grid item xs={4}>
+          <Grid size={{ xs: 4 }} component="div">
             <Box sx={styles.departmentContainerBoxStyle}>
               <Stack spacing={2}>
                 <Typography

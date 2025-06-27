@@ -18,23 +18,26 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@/*":["./*"]
+      "@/*": [
+        "./*"
+      ]
     },
     "plugins": [
       {
         "name": "next"
       }
-    ]
+    ],
+    "target": "ES2017"
   },
   "include": [
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx",
-     "**/*.js",
+    "**/*.js",
     "**/*.jsx"
   ],
   "exclude": [
     "node_modules"
-  ],
+  ]
 }

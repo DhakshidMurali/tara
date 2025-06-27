@@ -49,4 +49,24 @@ export const communityOverViewDetails = [
     totalParticipants: 3000,
     increaseInLastMonth: 200,
   },
+  {
+    communityName: "Application Performance Matters",
+    totalParticipants: 3000,
+    increaseInLastMonth: 200,
+  },
+  {
+    communityName: "Application Performance Matters",
+    totalParticipants: 3000,
+    increaseInLastMonth: 200,
+  },
+  {
+    communityName: "Application Performance Matters",
+    totalParticipants: 3000,
+    increaseInLastMonth: 200,
+  },
+  {
+    communityName: "Application Performance Matters",
+    totalParticipants: 3000,
+    increaseInLastMonth: 200,
+  },
 ];

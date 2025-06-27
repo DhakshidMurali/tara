@@ -1,107 +1,3 @@
-Labels 
-    1. Employee 
-        1. Manager
-        2. Leader 
-        3. Developer
-        4. Tester
-        5. DBA 
-    2. Product
-        1. Tool
-        2. Application
-    3. Department
-    4. Approval Type
-    5. Skills
-    6. Community
-    7. Communication
-Relation
-    1. Tool ->  Request by -> Employee, Access -> Employee, managed_by -> Employee, managed_by -> Department
-    2. Employee -> CollaboratesOn -> Employee, works in -> Product, skilled in -> skill, reports_to -> manager, ComesUnder -> Department
-    3. Department -> managed_by -> Employee
-    4. Community -> member -> Employee,createdBy -> employee
-    5. Communication -> posted in -> community,  posted_by -> Employee
-Properties 
-
-Employee
-    -> Name 
-    -> Mail Address
-    -> Domain 
-    -> UserId 
-    -> Password
-    -> Phone Number
-    -> Position
-    -> Employee ID 
-    -> Location
-    
-Tool & Application
-    -> Name
-    -> Approval Type
-    -> ID
-
-Department
-    -> ID
-    -> Name
-
-Approval Type
-    -> ID
-    -> FlowOfTool
-
-Community
-    -> Name
-    -> Description
-    -> ID
-    -> Public/private
-
-Communication
-    -> Type of Communication
-    -> Content
-    -> ID
-
-Skills
-    -> ID
-    -> Skill name
-
-Request by
-    -> Requested Date 
-    -> Type of Access
-    -> lvl1Approval
-    -> lvl2Approval
-
-Access
-    -> Type Of Access
-    -> lvl 1 Approved By
-    -> lvl 2 Approved By
-
-Managed By 
-    -> Period
-
-CollaboratesOn
-    -> Task Description
-
-works in
-    -> Role
-    -> period
-
-skilled in
-    -> Experience Years
-    -> Rating
-
-posted_in
-    -> Timestamp
-
-posted_by 
-    -> Timestamp
-
-Condition
-    -> Once request by get completed, delete that relation and make access relation to be enabled.
-
-
-
-Latest Schema Design
-
-Communication
-    - content
-    - link
-
 Domain 
     - domainName
 
@@ -113,28 +9,28 @@ Tool
     - likes
     - toolName
     - communicationCount 
+    - link
 
 User
-    - role
     - mailAddress
-    - phoneNumber
     - userName
-    - location
-    - password
 
-Tool -> Under -> Domain
+Communication
+    - link
+    - title
+    - id
 
-postedIn
-    -> postedInDate
+Community
+    - communityName
+    - Description
+    - Public/private
 
-postedBy 
-    -> Timestamp
 
-createdBy
-    -> communityCreatedDate
-
-member
-    -> addedToCommunityDate
 
 Tool - SubDomain ( USED_FOR )
 SubDomain - Domain ( PART_OF )
+User - Tool ( POSTED_BY )
+User - Communication ( POSTED_BY )
+User - Community ( CREATED_BY )
+Communication - Tool ( USED_FOR )
+Communication - Community ( POSTED_IN )

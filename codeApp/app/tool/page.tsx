@@ -13,10 +13,10 @@ export default function Tool() {
   let time = new Date();
   return (
     <>
-      <Grid item xs={2.15} sx={{ marginRight: 2 }}>
-        <NavBar selected="tool"></NavBar>
+      <Grid size={{ xs: 2 }} component="div" sx={{ marginRight: 2 }}>
+        <NavBar selected="tool" />
       </Grid>
-      <Grid item xs={9.75}>
+      <Grid size={{ xs: 9.75 }} component="div">
         <SearchBox>
           <Stack
             direction={"row"}
@@ -30,9 +30,7 @@ export default function Tool() {
               variant="standard"
               placeholder="Search"
               fullWidth
-              InputProps={{
-                style: { color: "#f3def5", fontWeight: "bolder", fontSize: 16 },
-              }}
+
             />
             <Typography sx={styles.dateTypographyStyle}>
               {dayNames[time.getDay()] +
@@ -45,7 +43,7 @@ export default function Tool() {
         </SearchBox>{" "}
         <Grid container spacing={1}>
           {" "}
-          <Grid item xs={12}>
+          <Grid size={{ xs: 12 }} component="div">
             <Stack
               direction={"row"}
               display={"flex"}
@@ -63,11 +61,11 @@ export default function Tool() {
               <Button sx={styles.createButtonStyle}>Create</Button>
             </Stack>
           </Grid>
-          <Grid item xs={12}>
+          <Grid size={{ xs: 12 }} component="div">
             <ToolList></ToolList>
           </Grid>
-          <Grid item xs={8}><ToolBarChart></ToolBarChart></Grid>
-          <Grid item xs={4}><ToolBarChartAnalysis></ToolBarChartAnalysis></Grid>
+          <Grid size={{ xs: 8 }} component="div"><ToolBarChart></ToolBarChart></Grid>
+          <Grid size={{ xs: 4 }} component="div"><ToolBarChartAnalysis></ToolBarChartAnalysis></Grid>
         </Grid>
       </Grid>
     </>

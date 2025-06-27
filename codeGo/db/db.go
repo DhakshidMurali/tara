@@ -29,13 +29,6 @@ func Init() {
 }
 
 func Execute(query string, params map[string]any) *neo4j.EagerResult {
-	// properties := map[string]interface{}{
-	// 	"name": "Alice",
-	// 	"age":  31,
-	// 	"city": "New York",
-	// }
-	// result, err := neo4j.ExecuteQuery(ctx, driver, query, params, neo4j.EagerResultTransformer,
-	// 	neo4j.ExecuteQueryWithDatabase("neo4j"))
 	result, err := neo4j.ExecuteQuery(ctx, driver, query, params, neo4j.EagerResultTransformer,
 		neo4j.ExecuteQueryWithDatabase("neo4j"))
 	if err != nil {

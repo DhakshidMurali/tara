@@ -10,11 +10,11 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { styles } from "./useStyles";
+import { styles } from "../useStyles";
 
 export function AnalysisHeader() {
   return (
-    <Grid item xs={4} sx={{ height: "20%" }}>
+    <Grid size={{ xs: 4 }} sx={{ height: "20%" }}>
       <Stack direction={"row"} spacing={1} height={"100%"} marginLeft={1} sx={{
         // Learning : In the specific scope of styling, we are applying the changes
         "& > :first-child.MuiButtonBase-root:hover": {
@@ -39,7 +39,7 @@ export function AnalysisHeader() {
         >
           {[1, 1, 1, 1, 1].map(() => {
             return (
-              <Grid item xs={3.5} marginRight={1}>
+              <Grid size={{ xs: 3.5 }} marginRight={1}>
                 <Box
                   sx={
                     styles.toolsContainerListBoxGridSelectGridItemGridItemStyle
@@ -82,9 +82,9 @@ export function AnalysisHeader() {
 
 export function AnalysisCommunitySelection() {
   return (
-    <Grid item xs={4} sx={{ height: "80%" }}>
+    <Grid size={{ xs: 12 }} sx={{ height: "80%" }}>
       <Grid container sx={{ height: "100%", paddingRight: 1 }} paddingLeft={1}>
-        <Grid item xs={5}>
+        <Grid size={{ xs: 12 }}>
           {[1, 1, 1, 1, 1].map((data, index) => {
             return (
               <Stack
@@ -106,7 +106,7 @@ export function AnalysisCommunitySelection() {
             );
           })}
         </Grid>
-        <Grid item xs={0.3}>
+        <Grid size={{ xs: 0.3 }}>
           {[1, 1, 1, 1, 1].map((data, index) => {
             if (index == 1) {
               return (
@@ -131,8 +131,8 @@ export function AnalysisCommunitySelection() {
           })}
         </Grid>
         <Grid
-          item
-          xs={6.7}
+
+          size={{ xs: 6.7 }}
           sx={
             styles.toolsContainerListBoxGridSelectGridItemGridItemStackCommunityListStyle
           }

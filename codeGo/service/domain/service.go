@@ -5,10 +5,15 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func GetDashBoardDetails(context *gin.Context) {
-	domainRepository.GetDashBoardDetails(context)
+func GetDomainDetails(context *gin.Context) {
+	domainRepository.GetDomainDetails(context)
 }
 
-func ListToolsGroupByDeliveryFormatForTop5Domain(context *gin.Context) {
-	domainRepository.ListToolsGroupByDeliveryFormatForTop4Domain(context)
+func GetTopDomainsByTool(context *gin.Context) {
+	domainRepository.GetTopDomainsByTool(context)
 }
+
+func GetDeliveryFormatByDomains(context *gin.Context) {
+	domainRepository.GetDeliveryFormatByDomains(context)
+}
+

@@ -1,35 +1,38 @@
 package domainModel
 
 const (
-	GET_LIST_TOOLS_GROUPBY_DOMAIN = `
-	MATCH (N1:TOOL)-[r:COMESUNDER]->(N2:DOMAIN)
-	WITH N2, COUNT(N2.domainName) AS CountToolsGroupByDomain
-	ORDER BY CountToolsGroupByDomain DESC
-	RETURN N2{
-		DomainName:N2.DomainName,
-		CountToolsGroupByDomain:CountToolsGroupByDomain
-	}
-	`
+	GET_DOMAIN_AND_SUBDOMAINS_DETAILS = `
+	MATCH (N1:SUBDOMAIN)-[:PART_OF]->(N2:DOMAIN)
+	WITH N2.domainName AS domainName, COLLECT(N1.subDomainName) AS subDomains
+	RETURN {
+		domainName: domainName,
+		subDomains: subDomains
+	} as response`
 
-	GET_LIST_TOOLS_GROUPBY_DELIVERYFORMAT_FOR_TOP4DOMAINS = `
-	MATCH (N1:TOOL)-[r:COMESUNDER]->(N2:Domain)
-	WITH N2,COUNT (r) AS NoOfToolsUnderDomain
-	ORDER BY NoOfToolsUnderDomain DESC
-	LIMIT 5
-	WITH COLLECT(N2.DomainName) AS Top4Domains
-	match (N1:TOOL)-[r:COMESUNDER]->(N2:Domain)
-	where N2.DomainName in Top4Domains
-	with N1.DELIVERYFORMAT as DeliveryFormat,N2, COUNT(N1.DELIVERYFORMAT) as NoOfToolsInDomain
-	return N2{
-		DeliveryFormat:DeliveryFormat,
-		DomainName:N2.DomainName,
-		DeliveryFormatCount:NoOfToolsInDomain
-	}`
+	GET_TOP_DOMAINS_ORDER_BY_TOOLS = `
+	MATCH (N1:TOOL)-[:USED_FOR]->(N2:SUBDOMAIN)
+    MATCH (N2:SUBDOMAIN)-[:PART_OF]->(N3:DOMAIN)
+    WITH N3.domainName AS domainName, COUNT(N1) AS toolsCount
+    ORDER BY toolsCount DESC
+    RETURN {
+      domainName:domainName,
+      toolsCount:toolsCount
+    } as response`
 
-	GET_LIST_TOOLS_ORDERBY_COMMUNICATION = `
-	MATCH (N1:TOOL)
-	RETURN N1
-	ORDER BY N1.COMMUNICATIONCOUNT desc
-	LIMIT 25
-	`
+	GET_DELIVERY_FORMAT_GROUP_BY_DOMAINS = `
+	    MATCH (N1:TOOL)-[:USED_FOR]->(N2:SUBDOMAIN)
+    MATCH (N2:SUBDOMAIN)-[:PART_OF]->(N3:DOMAIN)
+    WITH N3, COUNT (N1) AS countOfTools
+     ORDER BY countOfTools DESC
+    LIMIT 5
+    WITH COLLECT(N3.domainName) AS Top5Domains
+    MATCH (N1:TOOL)-[:USED_FOR]->(N2:SUBDOMAIN)
+    MATCH (N2:SUBDOMAIN)-[:PART_OF]->(N3:DOMAIN)
+    WHERE N3.domainName IN Top5Domains
+    WITH N1.deliveryFormat AS deliveryFormat, N3, COUNT(N1.deliveryFormat) AS groupByDeliveryFormat
+    RETURN {
+      deliveryFormat:deliveryFormat,
+      domainName:N3.domainName,
+      groupByDeliveryFormat:groupByDeliveryFormat
+      } AS result`
 )

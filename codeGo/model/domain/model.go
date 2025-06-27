@@ -8,11 +8,11 @@ type DashboardPayload struct {
 
 type ToolCountByDomain struct {
 	DomainName string `json:"domainName,omitempty"`
-	ToolCount  int    `json:"toolCount,omitempty"`
+	ToolsCount int    `json:"toolsCount,omitempty"`
 }
 
 type DomainDetails struct {
-	Domain     string   `json:"domain,omitempty"`
+	DomainName string   `json:"domainName,omitempty"`
 	SubDomains []string `json:"subDomains,omitempty"`
 }
 
@@ -34,12 +34,20 @@ Learning :
 	Say for Example : If API returns DomainName alone, then only domainname field to be returned as API response, no other fields included
 	We added omitempty to make fields which are not populated to be omitted
 */
-func (v DashboardPayload) GetQuery(queryConst string) string {
+
+func (v DomainDetails) GetQuery(queryConst string) string {
 	switch queryConst {
-	case "GET_LIST_TOOLS_GROUPBY_DOMAIN":
-		return GET_LIST_TOOLS_GROUPBY_DOMAIN
-	case "GET_LIST_TOOLS_GROUPBY_DELIVERYFORMAT_FOR_TOP4DOMAINS":
-		return GET_LIST_TOOLS_GROUPBY_DELIVERYFORMAT_FOR_TOP4DOMAINS
+	case "GET_DOMAIN_AND_SUBDOMAINS_DETAILS":
+		return GET_DOMAIN_AND_SUBDOMAINS_DETAILS
+	default:
+		return ""
+	}
+}
+
+func (v ToolCountByDomain) GetQuery(queryConst string) string {
+	switch queryConst {
+	case "GET_TOP_DOMAINS_ORDER_BY_TOOLS":
+		return GET_TOP_DOMAINS_ORDER_BY_TOOLS
 	default:
 		return ""
 	}

@@ -9,10 +9,11 @@ func APIRoutes(server *gin.Engine) {
 
 	domainRoutes := server.Group("/domain")
 
-	domainRoutes.GET("/get/dashboardDetails", domainService.GetDashBoardDetails)
+	domainRoutes.GET("/get/list/domain-details", domainService.GetDomainDetails)
 
-	domainRoutes.GET("get/list/toolsGroupByDeliveryFormatForTopDomains", domainService.ListToolsGroupByDeliveryFormatForTop5Domain)
+	domainRoutes.GET("/get/list/count-tools-by-domains", domainService.GetTopDomainsByTool)
 
-	// Other handler used for Domain Page Routes
-	// authHandler.POST("/get/list/domain", service.ListDomain)
+	domainRoutes.GET("/get/list/group-delivery-format-by-domains", domainService.GetDeliveryFormatByDomains)
+
+
 }

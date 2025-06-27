@@ -1,18 +1,41 @@
 "use client";
 
 import { communityOverViewDetails } from "@/public/data/community";
-import { Group, GroupAddRounded, Groups, Groups2Rounded, Groups3Rounded, GroupsRounded, GroupWorkRounded } from "@mui/icons-material";
+import { Group } from "@mui/icons-material";
 import { Box, Grid, Typography } from "@mui/material";
 import { styles } from "./useStyles";
-import { getRandomColor } from "@/utils/functions";
 
 export default function CommunityList() {
   return (
-    <Grid container spacing={2} sx={styles.toolsContainerBoxStyle}>
-      {communityOverViewDetails.map((data, index) => (
-        <Grid item key={index}>
+    <Grid container size={{ xs: 12 }} spacing={2} sx={{ height: "90rem", width: "120rem" }}>
+      <Grid
+        sx={{
+          overflowX: 'auto',
+          display: 'flex',
+          flexWrap: 'nowrap',
+          width: '100%',
+          maxWidth: '100%',
+          padding: 2,
+          borderRadius: 2,
+          '&::-webkit-scrollbar': {
+            height: '8px',
+          },
+          '&::-webkit-scrollbar-track': {
+            backgroundColor: 'secondary.main',
+          },
+          '&::-webkit-scrollbar-thumb': {
+            backgroundColor: 'secondary.light',
+            borderRadius: '8px',
+          },
+          '&::-webkit-scrollbar-thumb:hover': {
+            background: '#555',
+          },
+        }}
+
+      >
+        {communityOverViewDetails.map((data) => (
           <Grid container sx={styles.toolsContainerListBoxGridStyle}>
-            <Grid item xs={12}>
+            <Grid size={{ xs: 12 }}>
               <Typography
                 variant="h6"
                 sx={
@@ -22,7 +45,7 @@ export default function CommunityList() {
                 {data.communityName}
               </Typography>
             </Grid>
-            <Grid item xs={5}>
+            <Grid size={{ xs: 5 }}>
               <Box sx={styles.toolsContainerListBoxGridBoxStyle}>
                 <Group sx={{ color: "primary.contrastText" }}></Group>
                 <Typography
@@ -36,7 +59,7 @@ export default function CommunityList() {
                 </Typography>
               </Box>
             </Grid>
-            <Grid item xs={5} marginRight={2}>
+            <Grid size={{ xs: 5 }} marginRight={2}>
               <Box
                 sx={styles.toolsContainerListBoxGridIncreaseInLastMonthBoxStyle}
               >
@@ -46,13 +69,13 @@ export default function CommunityList() {
                     styles.toolsContainerListBoxGridIncreaseInLastMonthBoxTypograghyStyle
                   }
                 >
-                  {"+  " + data.increaseInLastMonth +" MoM"}
+                  {"+  " + data.increaseInLastMonth + " MoM"}
                 </Typography>
               </Box>
             </Grid>
           </Grid>
-        </Grid>
-      ))}
+        ))}
+      </Grid>
     </Grid>
   );
 }

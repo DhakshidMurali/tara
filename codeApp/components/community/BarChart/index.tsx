@@ -8,15 +8,14 @@ import { BarChart } from "@mui/x-charts/BarChart";
 import {
   AnalysisCommunitySelection,
   AnalysisHeader,
-} from "./communityBarChartAnalysis";
+} from "./BarChartAnalyst/index";
 import { styles } from "./useStyles";
 
 export default function CommunityBarChart() {
   return (
     <Grid container sx={{ height: "100%" }}>
       <Grid
-        item
-        xs={8}
+        size={{ xs: 8 }}
         sx={{
           height: "20%",
           backgroundColor: "secondary.light",
@@ -47,8 +46,7 @@ export default function CommunityBarChart() {
       </Grid>
       <AnalysisHeader></AnalysisHeader>
       <Grid
-        item
-        xs={8}
+        size={{ xs: 8 }}
         sx={{
           height: "80%",
           backgroundColor: "secondary.light",
@@ -77,9 +75,9 @@ export default function CommunityBarChart() {
             },
             { dataKey: "Cloud Computing Communication", stack: "liability" },
           ])}
-          slotProps={{
-            legend: { hidden: true },
-          }}
+          // slotProps={{
+          //   legend: { hidden: true },
+          // }}
           sx={{
             /* Left Axis Label Font Styling */
             "& .MuiChartsAxis-left .MuiChartsAxis-tickLabel": {
@@ -106,7 +104,7 @@ export default function CommunityBarChart() {
               stroke: "#f3def5",
             },
           }}
-          tooltip={{ trigger: "item" }}
+        // tooltip={{ trigger: "item" }}
         />
       </Grid>
       <AnalysisCommunitySelection></AnalysisCommunitySelection>

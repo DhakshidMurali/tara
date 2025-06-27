@@ -1,4 +1,4 @@
-GET http://localhost:8080/get/list/domain
+GET http://localhost:8080/domain/get/list/domain-details
 content-type: application/json
 
 {
