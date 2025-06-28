@@ -9,11 +9,9 @@ const toolsContainerListBoxGridSelectGridItemTypographyStyle: SxProps = {
 const toolsContainerListBoxGridSelectGridItemSplittingBoxStyle: SxProps = {
   width: "1.1%",
   backgroundColor: "rgb(174,199,243)",
-  height: "100%",
   borderRadius: 2,
 };
 const toolsContainerListBoxGridSelectGridItemGridItemStyle: SxProps = {
-  height: "90%",
   backgroundColor: "secondary.dark",
   borderRadius: 2,
   width: "100%",

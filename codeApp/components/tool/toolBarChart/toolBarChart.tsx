@@ -1,5 +1,5 @@
 import { RefreshOutlined } from "@mui/icons-material";
-import { Grid, IconButton, Stack, Typography } from "@mui/material";
+import { Box, Grid, IconButton, Stack, Typography } from "@mui/material";
 import { BarChart } from "@mui/x-charts/BarChart";
 import { axisClasses } from "@mui/x-charts/ChartsAxis";
 const chartSetting = {
@@ -190,55 +190,59 @@ export function valueFormatter(value: number | null) {
 }
 export default function ToolBarChart() {
     return (
-        <Grid container sx={{
-            borderRadius: 4,
-            backgroundColor: "secondary.light",
-            overflowY: "auto",
-            display: "flex",
-        }} padding={4} height={548}>
-            <Grid item xs={12} height={"20%"} >
-                <Stack direction={"row"} justifyContent={"space-between"}>
-                    <Typography variant="h4" sx={{
-                        color: "primary.contrastText",
-                        fontWeight: "bolder",
-                        marginLeft: 1.5,
-                    }}>
-                        Find the Tools most liked
-                    </Typography>
-                    <IconButton
-                        sx={{ padding: 1, bgcolor: "secondary.contrastText", marginRight: 4 }}
-                    >
-                        {" "}
-                        <RefreshOutlined></RefreshOutlined>
-                    </IconButton>
-                </Stack>
-            </Grid>
-            <Grid item xs={12} height={"80%"} alignContent={"flex-end"}><BarChart
-                dataset={dataset}
-                xAxis={[
-                    { scaleType: 'band', dataKey: 'month' }
-                ]}
-                {...chartSetting}
-                sx={{
-                    "& .MuiChartsAxis-left .MuiChartsAxis-line": {
-                        strokeWidth: "1",
-                        stroke: "white"
-                    },
-                    "& .MuiChartsAxis-bottom .MuiChartsAxis-line": {
-                        strokeWidth: "1",
-                        stroke: "white"
-                    },
-                    "& .MuiChartsAxis-bottom .MuiChartsAxis-tickLabel": {
-                        fill: 'white'
-                    },
-                    "& .MuiChartsAxis-left .MuiChartsAxis-tickLabel": {
-                        fill: 'white'
-                    },
-                    "& .MuiChartsAxis-left .MuiChartsAxis-label": {
-                        fill: 'white'
-                    }
-                }}
-            /></Grid>
-        </Grid>
+        <Grid size={{ xs: 8 }} component="div">
+            <Box height={"38rem"} padding={4} sx={{
+                borderRadius: 4,
+                backgroundColor: "secondary.light",
+                overflowY: "auto",
+                display: "flex",
+            }}>
+                <Grid container>
+                    <Grid size={{ xs: 12 }} component="div" >
+                        <Stack direction={"row"} justifyContent={"space-between"}>
+                            <Typography variant="h4" sx={{
+                                color: "primary.contrastText",
+                                fontWeight: "bolder",
+                                marginLeft: 1.5,
+                            }}>
+                                Find the Tools most liked
+                            </Typography>
+                            <IconButton
+                                sx={{ padding: 1, bgcolor: "secondary.contrastText", marginRight: 4 }}
+                            >
+                                {" "}
+                                <RefreshOutlined></RefreshOutlined>
+                            </IconButton>
+                        </Stack>
+                    </Grid>
+                    <Grid size={{ xs: 12 }} component="div" alignContent={"flex-end"}><BarChart
+                        dataset={dataset}
+                        xAxis={[
+                            { scaleType: 'band', dataKey: 'month' }
+                        ]}
+                        {...chartSetting}
+                        sx={{
+                            "& .MuiChartsAxis-left .MuiChartsAxis-line": {
+                                strokeWidth: "1",
+                                stroke: "white"
+                            },
+                            "& .MuiChartsAxis-bottom .MuiChartsAxis-line": {
+                                strokeWidth: "1",
+                                stroke: "white"
+                            },
+                            "& .MuiChartsAxis-bottom .MuiChartsAxis-tickLabel": {
+                                fill: 'white'
+                            },
+                            "& .MuiChartsAxis-left .MuiChartsAxis-tickLabel": {
+                                fill: 'white'
+                            },
+                            "& .MuiChartsAxis-left .MuiChartsAxis-label": {
+                                fill: 'white'
+                            }
+                        }}
+                    /></Grid>
+                </Grid>
+            </Box >
+        </Grid >
     )
 }

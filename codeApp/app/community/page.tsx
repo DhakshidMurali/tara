@@ -9,15 +9,17 @@ export default function Community() {
   let time = new Date();
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
   return (
-    <>
+    <Grid container>
       <Grid size={{ xs: 2 }} component="div" sx={{ marginRight: 2 }}>
         <NavBar selected="community" />
       </Grid>
-      <Grid container size={{ xs: 9.75 }} spacing={1} sx={{ marginTop: 2 }}>
-        <CommmunityHeader></CommmunityHeader>
-        <CommunityList></CommunityList>
-        {/* <CommunityBarChart></CommunityBarChart> */}
+      <Grid size={{ xs: 9.75 }} component={"div"} >
+        <Grid container spacing={1} sx={{ marginTop: 2 }}>
+          <CommmunityHeader></CommmunityHeader>
+          <CommunityList></CommunityList>
+          <CommunityBarChart></CommunityBarChart>
+        </Grid>
       </Grid>
-    </>
+    </Grid>
   );
 }

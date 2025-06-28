@@ -25,9 +25,11 @@ const toolsContainerListBoxGridStyle: SxProps = {
   display: "flex",
   alignItems: "center",
   borderRadius: 2,
-  height: 168,
-  width: 232,
+  height: "12rem",
+  width: "16rem",
   justifyContent: "space-between",
+  marginLeft: 1,
+  marginRight: 1
 };
 
 const toolsContainerListBoxGridCommunicationCountTypography: SxProps = {

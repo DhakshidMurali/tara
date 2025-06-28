@@ -14,8 +14,8 @@ import { styles } from "../useStyles";
 
 export function AnalysisHeader() {
   return (
-    <Grid size={{ xs: 4 }} sx={{ height: "20%" }}>
-      <Stack direction={"row"} spacing={1} height={"100%"} marginLeft={1} sx={{
+    <Grid size={{ xs: 4 }}>
+      <Stack direction={"row"} spacing={1} marginLeft={1} sx={{
         // Learning : In the specific scope of styling, we are applying the changes
         "& > :first-child.MuiButtonBase-root:hover": {
           backgroundColor: "primary.light",
@@ -32,10 +32,7 @@ export function AnalysisHeader() {
         ></Box>
         <Grid
           container
-          sx={{
-            height: "100%",
-            width: "90%",
-          }}
+
         >
           {[1, 1, 1, 1, 1].map(() => {
             return (
@@ -82,8 +79,8 @@ export function AnalysisHeader() {
 
 export function AnalysisCommunitySelection() {
   return (
-    <Grid size={{ xs: 12 }} sx={{ height: "80%" }}>
-      <Grid container sx={{ height: "100%", paddingRight: 1 }} paddingLeft={1}>
+    <Grid size={{ xs: 12 }} >
+      <Grid container sx={{ paddingRight: 1 }} paddingLeft={1}>
         <Grid size={{ xs: 12 }}>
           {[1, 1, 1, 1, 1].map((data, index) => {
             return (
@@ -112,7 +109,6 @@ export function AnalysisCommunitySelection() {
               return (
                 <Box
                   sx={{
-                    height: "16%",
                     backgroundColor: "secondary.dark",
                     marginTop: "4px",
                   }}
@@ -122,7 +118,6 @@ export function AnalysisCommunitySelection() {
               return (
                 <Box
                   sx={{
-                    height: "16%",
                     marginTop: "4px",
                   }}
                 ></Box>
@@ -145,7 +140,6 @@ export function AnalysisCommunitySelection() {
                   marginTop={1}
                   sx={{
                     display: "flex",
-
                     alignmentBaseline: "baseline",
                   }}
                 >

@@ -6,7 +6,6 @@ const departmentContainerListBoxStyle: SxProps = {
   flexDirection: "column",
   justifyContent: "flex-start",
   alignItems: "center",
-  height: "17%",
 };
 
 const departmentContainerListBoxStackStyle: SxProps = {
@@ -18,14 +17,13 @@ const departmentContainerListBoxStackStyle: SxProps = {
 };
 
 const departmentContainerListBoxBoxExpandedStyle: SxProps = {
-  width: "100%",
-  height: "380px",
   padding: 1,
   display: "flex",
+  height: "inherit",
   flexDirection: "row",
   justifyContent: "space-between",
   alignContent: "flex-start",
-  overflowX: "auto",
+  overflowY: "auto",
   borderRadius: 2,
   alignItems: "flex-start",
   "&::-webkit-scrollbar": {
@@ -58,7 +56,13 @@ const dashboardTextTypographStyle: SxProps = {
 const deparmentListIconStyle: SxProps = {
   color: "secondary.main",
 };
-
+const departmentContainerBoxStyle: SxProps = {
+  backgroundColor: "secondary.light",
+  height: "38rem",
+  padding: 4,
+  borderRadius: 4,
+  marginRight: 4,
+};
 export const styles = {
   departmentContainerListBoxStyle,
   departmentContainerListBoxStackStyle,
@@ -66,4 +70,7 @@ export const styles = {
   departmentContainerListBoxStackTopicBoxStyle,
   dashboardTextTypographStyle,
   deparmentListIconStyle,
+  departmentContainerBoxStyle
 };
+
+

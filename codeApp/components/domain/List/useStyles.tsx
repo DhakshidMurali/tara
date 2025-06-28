@@ -6,6 +6,7 @@ const toolsContainerBoxStyle: SxProps = {
   padding: 2,
   borderRadius: 2,
   flexWrap: "nowrap",
+  height: "inherit",
   "&::-webkit-scrollbar": {
     height: "8px",
   },
@@ -22,13 +23,15 @@ const toolsContainerBoxStyle: SxProps = {
 };
 
 const toolsContainerListBoxStyle: SxProps = {
-  height: 168,
-  width: 232,
+  height: "12rem",
+  width: "16rem",
   backgroundColor: "secondary.light",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
   borderRadius: 2,
+  marginLeft: 1,
+  marginRight: 1
 };
 
 const toolsContainerListBoxStackStyle: SxProps = {

@@ -42,8 +42,8 @@ const toolsContainerListBoxGridStyle: SxProps = {
   display: "flex",
   alignItems: "center",
   borderRadius: 2,
-  height: "16rem",
-  width:"90rem",
+  height: "12rem",
+  width: "14rem",
   justifyContent: "space-between",
 };
 
