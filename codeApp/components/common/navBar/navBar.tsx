@@ -29,12 +29,12 @@ export default function NavBar(props) {
     currentPage == "domain"
       ? route.push("/domain")
       : currentPage == "tool"
-      ? route.push("/tool")
-      : currentPage == "community"
-      ? route.push("/community")
-      : currentPage == "profile"
-      ? route.push("/profile")
-      : null;
+        ? route.push("/tool")
+        : currentPage == "community"
+          ? route.push("/community")
+          : currentPage == "profile"
+            ? route.push("/profile")
+            : null;
   };
   return (
     <Sidebar>
@@ -68,22 +68,22 @@ export default function NavBar(props) {
         <SpacerBox height={24}></SpacerBox>
         <Button
           onClick={() => {
-            handleNavigation("community");
+            handleNavigation("domain");
           }}
         >
-          <ListBox selected={selected == "community"}>
+          <ListBox selected={selected == "domain"}>
             <Groups2
-              color={selected == "community" ? "primary" : "secondary"}
+              color={selected == "domain" ? "primary" : "secondary"}
             ></Groups2>
             <Typography
               variant="body1"
               sx={
-                selected == "community"
+                selected == "domain"
                   ? styles.navbarSelectedMenuTextStyle
                   : styles.navbarMenuTextStyle
               }
             >
-              Community
+              Domain
             </Typography>
           </ListBox>
         </Button>
@@ -111,22 +111,22 @@ export default function NavBar(props) {
         </Button>
         <Button
           onClick={() => {
-            handleNavigation("domain");
+            handleNavigation("community");
           }}
         >
-          <ListBox selected={selected == "domain"}>
+          <ListBox selected={selected == "community"}>
             <DashboardRounded
-              color={selected == "domain" ? "primary" : "secondary"}
+              color={selected == "community" ? "primary" : "secondary"}
             ></DashboardRounded>
             <Typography
               variant="body1"
               sx={
-                selected == "domain"
+                selected == "community"
                   ? styles.navbarSelectedMenuTextStyle
                   : styles.navbarMenuTextStyle
               }
             >
-              Domain
+              Community
             </Typography>
           </ListBox>
         </Button>

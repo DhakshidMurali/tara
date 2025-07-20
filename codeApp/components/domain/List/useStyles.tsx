@@ -3,7 +3,7 @@ import { SxProps } from "@mui/material";
 const toolsContainerBoxStyle: SxProps = {
   overflowX: "auto",
   display: "flex",
-  padding: 2,
+  padding: 1,
   borderRadius: 2,
   flexWrap: "nowrap",
   height: "inherit",

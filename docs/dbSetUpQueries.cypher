@@ -498,13 +498,13 @@ class Main {
           LIMIT 10;
 
 // Tool Dashboard
-          MATCH (N:TOOL)
-          RETURN {
-            toolName:N.toolName,
-            likes:N.likes
-            } AS res
-             ORDER BY N.likes DESC
-            LIMIT 15;
+MATCH (N:TOOL)
+RETURN {
+  toolName:N.toolName,
+  likes:N.likes
+  } AS res
+ORDER BY N.likes DESC
+LIMIT 15;
 
 //  Selected Tools Refresh
             WITH ['T_N_SofBac-10'] AS selectedTools
@@ -524,7 +524,7 @@ class Main {
               RETURN {
                 domainName:domainName,
                 subDomains: subDomain,
-                toolNames: toolNames
+                toolsName: toolsName
                 } AS result
 
 

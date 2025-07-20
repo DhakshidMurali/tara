@@ -1,10 +1,10 @@
-export const DashBoardPageEmployeeByDepartmentBoxLabelData = [
+export const DomainDeliveryFormatLegend = [
   {
     LabelName: "Open Source",
     Color: "rgb(141,100,200)",
   },
   {
-    LabelName: "Package Managers",
+    LabelName: "Package Source",
     Color: "rgb(228,172,99)",
   },
   {
@@ -16,4 +16,3 @@ export const DashBoardPageEmployeeByDepartmentBoxLabelData = [
     Color: "rgb(174,199,243)",
   },
 ];
-

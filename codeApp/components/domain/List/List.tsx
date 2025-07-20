@@ -3,13 +3,20 @@
 import { getRandomColor } from "@/utils/functions";
 import { Box, Grid, Stack, Typography } from "@mui/material";
 import { styles } from "./useStyles";
+import { DomainListPayload } from "@/api/types/domain";
 
-export function DomainList() {
+type PropsType = {
+  domainList: DomainListPayload[]
+}
+
+export function DomainList(props: PropsType) {
+  const { domainList } = props
+
   return (
     <Grid component={"div"} size={{ xs: 12 }} spacing={2} height={"14rem"}>
       <Box sx={styles.toolsContainerBoxStyle}>
-        {Array.from({ length: 10 }).map((_, index) => (
-          <Box>
+        {domainList.map((data, index) => (
+          <Box key={index}>
             <Grid container sx={styles.toolsContainerListBoxStyle}>
               <Stack
                 direction={"row"}
@@ -31,7 +38,7 @@ export function DomainList() {
                       variant="h3"
                       sx={styles.toolsContainerListBoxCountTypographyStyle}
                     >
-                      79
+                      {data.toolsCount}
                     </Typography>
                   </Grid>
                   <Grid size={{ xs: 12 }}>
@@ -39,7 +46,7 @@ export function DomainList() {
                       variant="h6"
                       sx={styles.toolsContainerListBoxDomainTypographyStyle}
                     >
-                      Cloud Computing
+                      {data.domainName}
                     </Typography>
                   </Grid>
                 </Grid>

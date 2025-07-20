@@ -1,4 +1,4 @@
-GET http://localhost:8080/get/list/toolsGroupByDeliveryFormatForTopDomains
+GET http://localhost:8080/domain/get/list/group-delivery-format-by-domains
 content-type: application/json
 
 {

@@ -63,7 +63,14 @@ const toolsContainerListBoxGridSelectGridItemGridItemStackCommunityListStyle: Sx
 const communityTextTypographStyle: SxProps = {
   color: "primary.contrastText",
   fontWeight: "bolder",
-  marginLeft: 4,
+};
+
+
+const employerByDepartmentBoxStyle: SxProps = {
+  borderRadius: 4,
+  backgroundColor: "secondary.light",
+  overflowY: "auto",
+  display: "flex",
 };
 export const styles = {
   communityTextTypographStyle,
@@ -74,4 +81,5 @@ export const styles = {
   toolsContainerListBoxGridSelectGridItemGridItemStackTypographyListStyle,
   toolsContainerListBoxGridSelectGridItemGridItemStackTypographyCommunityListStyle,
   toolsContainerListBoxGridSelectGridItemGridItemStackCommunityListStyle,
+  employerByDepartmentBoxStyle
 };

@@ -20,7 +20,7 @@ const (
     } as response`
 
 	GET_DELIVERY_FORMAT_GROUP_BY_DOMAINS = `
-	    MATCH (N1:TOOL)-[:USED_FOR]->(N2:SUBDOMAIN)
+	  MATCH (N1:TOOL)-[:USED_FOR]->(N2:SUBDOMAIN)
     MATCH (N2:SUBDOMAIN)-[:PART_OF]->(N3:DOMAIN)
     WITH N3, COUNT (N1) AS countOfTools
      ORDER BY countOfTools DESC
@@ -31,8 +31,8 @@ const (
     WHERE N3.domainName IN Top5Domains
     WITH N1.deliveryFormat AS deliveryFormat, N3, COUNT(N1.deliveryFormat) AS groupByDeliveryFormat
     RETURN {
-      deliveryFormat:deliveryFormat,
       domainName:N3.domainName,
-      groupByDeliveryFormat:groupByDeliveryFormat
-      } AS result`
+      deliveryFormat:deliveryFormat,
+      toolsCount:groupByDeliveryFormat
+      } as response`
 )

@@ -28,11 +28,12 @@ func Init() {
 	}
 }
 
-func Execute(query string, params map[string]any) *neo4j.EagerResult {
+func Execute(query string, params map[string]any) (*neo4j.EagerResult, error) {
 	result, err := neo4j.ExecuteQuery(ctx, driver, query, params, neo4j.EagerResultTransformer,
 		neo4j.ExecuteQueryWithDatabase("neo4j"))
 	if err != nil {
 		fmt.Println(err)
+		return nil, err
 	}
-	return result
+	return result, nil
 }

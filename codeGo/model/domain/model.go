@@ -17,18 +17,13 @@ type DomainDetails struct {
 }
 
 type DeliveryStatsByDomain struct {
-	Domain       string            `json:"domain,omitempty"`
-	DeliveryType []DeliveryDetails `json:"deliveryType,omitempty"`
-}
-
-type DeliveryDetails struct {
-	DeliveryType         string `json:"deliveryType,omitempty"`
-	CountPerDeliveryType []int  `json:"countPerDeliveryType,omitempty"`
+	DomainName     string `json:"domainName,omitempty"`
+	DeliveryFormat string `json:"deliveryFormat,omitempty"`
+	ToolsCount     int    `json:"toolsCount,omitempty"`
 }
 
 /*
 Learning :
-
 	Here we are using an same common type struct, this struct referred by all Api ( Excluding Common API ) used for Dashboard.
 	So, we need fields which are returned from database alone to be populated by struct and returned for API
 	Say for Example : If API returns DomainName alone, then only domainname field to be returned as API response, no other fields included
@@ -48,6 +43,15 @@ func (v ToolCountByDomain) GetQuery(queryConst string) string {
 	switch queryConst {
 	case "GET_TOP_DOMAINS_ORDER_BY_TOOLS":
 		return GET_TOP_DOMAINS_ORDER_BY_TOOLS
+	default:
+		return ""
+	}
+}
+
+func (v DeliveryStatsByDomain) GetQuery(queryConst string) string {
+	switch queryConst {
+	case "GET_DELIVERY_FORMAT_GROUP_BY_DOMAINS":
+		return GET_DELIVERY_FORMAT_GROUP_BY_DOMAINS
 	default:
 		return ""
 	}

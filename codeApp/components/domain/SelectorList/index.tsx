@@ -1,5 +1,5 @@
 "use client";
-import { DepartmentList } from "@/public/Sample/data";
+import { DomainSelectorListPayload } from "@/api/types/domain";
 import {
   KeyboardArrowLeftOutlined,
   KeyboardArrowRightOutlined
@@ -15,10 +15,15 @@ import {
 import { useState } from "react";
 import { styles } from "./useStyles";
 
-export default function DomainSelectorList() {
-  const departmentList = DepartmentList;
+
+type PropsType = {
+  domainSelectorList: DomainSelectorListPayload[]
+}
+
+export default function DomainSelectorList(props: PropsType) {
+  const { domainSelectorList } = props
   const [expandedRow, setExpandedRow] = useState(-1);
-  const handleClick = (index) => {
+  const handleClick = (index: number) => {
     expandedRow != -1 ? (index = -1) : null;
     setExpandedRow(index);
   };
@@ -47,7 +52,7 @@ export default function DomainSelectorList() {
                     sx={styles.dashboardTextTypographStyle}
                     paddingLeft={2}
                   >
-                    {DepartmentList[expandedRow].Domain}
+                    {domainSelectorList[expandedRow].domainName}
                   </Typography>
                   <Button
                     sx={{ marginRight: 4 }}
@@ -66,7 +71,7 @@ export default function DomainSelectorList() {
                   flexWrap={"wrap"}
                   sx={styles.departmentContainerListBoxBoxExpandedStyle}
                 >
-                  {DepartmentList[expandedRow].Topics.map((data, index) => {
+                  {domainSelectorList[expandedRow].subDomains.map((data, index) => {
                     return (
                       <Box
                         key={index}
@@ -102,7 +107,7 @@ export default function DomainSelectorList() {
             flexWrap={"wrap"}
             sx={styles.departmentContainerListBoxBoxExpandedStyle}
           >
-            {departmentList.map((data, index) => {
+            {domainSelectorList.map((data, index) => {
               return (
                 <Box sx={styles.departmentContainerListBoxStyle}>
                   <Stack
@@ -124,7 +129,7 @@ export default function DomainSelectorList() {
                         sx={styles.dashboardTextTypographStyle}
                         paddingLeft={2}
                       >
-                        {DepartmentList[index].Domain}
+                        {data.domainName}
                       </Typography>
                     </Box>
                     <Button

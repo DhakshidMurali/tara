@@ -3,6 +3,7 @@ import NavBar from "@/components/common/navBar/navBar";
 import CommunityBarChart from "@/components/community/BarChart";
 import CommmunityHeader from "@/components/community/Header";
 import CommunityList from "@/components/community/List";
+import { CommunitySelectorList } from "@/components/community/selectorList";
 import { Grid } from "@mui/material";
 
 export default function Community() {
@@ -18,6 +19,7 @@ export default function Community() {
           <CommmunityHeader></CommmunityHeader>
           <CommunityList></CommunityList>
           <CommunityBarChart></CommunityBarChart>
+          <CommunitySelectorList></CommunitySelectorList>
         </Grid>
       </Grid>
     </Grid>

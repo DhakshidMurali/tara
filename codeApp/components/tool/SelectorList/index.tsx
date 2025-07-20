@@ -1,12 +1,24 @@
-import { Close, CommentBank, EmojiEmotions, HighlightOff } from "@mui/icons-material";
-import { Avatar, Box, Button, Checkbox, Chip, Divider, Grid, IconButton, Stack, TextField, Tooltip, Typography } from "@mui/material";
+import { HighlightOff } from "@mui/icons-material";
+import { Avatar, Box, Button, Checkbox, Divider, Grid, Stack, TextField, Tooltip, Typography } from "@mui/material";
+import { styles } from './useStyles';
+import { ToolSelectorListPayload } from "@/api/types/tool";
+import { useState } from "react";
 
-export default function ToolBarChartAnalysis() {
+type Props = {
+    toolSelectorList: ToolSelectorListPayload[]
+}
+export default function SelectorList(props: Props) {
+    const { toolSelectorList } = props
+
+    const [selectedIndex, setSelectedIndex] = useState({
+        domainIndex: 0,
+        subDomainIndex: 0
+    });
     return (
         <Grid size={{ xs: 4 }} component="div">
             <Grid container spacing={1}>
                 <Grid size={{ xs: 12 }} component="div">
-                    <Stack direction={"row"} spacing={1} height={"100%"} sx={{
+                    <Stack direction={"row"} spacing={1} sx={{
                         "& .MuiFormControl-root .MuiTextField-root": { color: "white" }, "& .MuiButtonBase-root:hover": {
                             backgroundColor: "primary.light",
                             fontWeight: "bold",
@@ -45,48 +57,53 @@ export default function ToolBarChartAnalysis() {
                             </Tooltip>
                             <Divider sx={{ color: "rgb(239,241,255)" }} orientation="vertical" variant="middle" flexItem />
                         </>)
-
                         }
-
                     </Stack>
                 </Grid>
                 <Grid size={{ xs: 12 }} component="div">
-                    <Grid container sx={{ height: "100%", paddingRight: 1 }} paddingLeft={1}>
-                        <Grid size={{ xs: 5 }} component="div">
-                            {[1, 1, 1, 1, 1].map((data, index) => {
-                                return (
-                                    <Stack
-                                        direction={"row"}
-                                        sx={
-                                            {
-                                                height: "16%",
-                                                backgroundColor: "secondary.dark",
-                                                borderTopLeftRadius: "16px",
-                                            }
-                                        }
-                                        marginTop={0.5}
-                                    >
-                                        <Typography
-                                            variant="subtitle1"
+                    <Grid container sx={{ paddingRight: 1 }} paddingLeft={1} height={"28rem"}>
+                        <Grid size={{ xs: 5 }} component="div" sx={styles.toolsContainerBoxStyle}>
+                            {toolSelectorList.map((domain, domainIndex) => {
+                                return (domain.subDomain.map((subDomain, subDomainIndex) => {
+                                    return (
+                                        <Box
                                             sx={
                                                 {
-                                                    color: "primary.contrastText",
-                                                    margin: "auto"
-                                                }}
+                                                    backgroundColor: "secondary.dark", borderTopLeftRadius: "16px",
+                                                }
+                                            }
+                                            marginTop={0.5}
+                                            height={"4rem"}
                                         >
-                                            Cloud Computing and DevOps
-                                        </Typography>
-                                    </Stack>
-                                );
+                                            <Button onClick={() => {
+                                                setSelectedIndex({
+                                                    domainIndex: domainIndex,
+                                                    subDomainIndex: subDomainIndex
+                                                })
+                                            }}>
+                                                <Typography
+                                                    variant="subtitle1"
+                                                    sx={
+                                                        {
+                                                            color: "primary.contrastText",
+                                                            display: "flex"
+                                                        }}
+                                                >
+                                                    {subDomain.subDomainName}
+                                                </Typography>
+                                            </Button>
+                                        </Box>
+                                    );
+                                }))
                             })}
                         </Grid>
                         <Grid size={{ xs: 0.3 }} component="div">
-                            {[1, 1, 1, 1, 1].map((data, index) => {
+                            {toolSelectorList[selectedIndex.domainIndex].subDomain[selectedIndex.subDomainIndex].tool.map((data, index) => {
                                 if (index == 1) {
                                     return (
                                         <Box
                                             sx={{
-                                                height: "16%",
+                                                height: "4rem",
                                                 backgroundColor: "secondary.dark",
                                                 marginTop: "4px",
                                             }}
@@ -96,7 +113,6 @@ export default function ToolBarChartAnalysis() {
                                     return (
                                         <Box
                                             sx={{
-                                                height: "16%",
                                                 marginTop: "4px",
                                             }}
                                         ></Box>
@@ -105,40 +121,18 @@ export default function ToolBarChartAnalysis() {
                             })}
                         </Grid>
                         <Grid
-                            size={{ xs: 6.7 }} component="div">
-                            {/* sx={
-                                {
-                                    // backgroundColor: "secondary.dark",
-                                    overflowX: "auto",
-                                    borderRadius: 2,
-                                    height: "380px",
-                                    "&::-webkit-scrollbar": {
-                                        height: "8px",
-                                        width: "6px",
-                                    },
-                                    "&::-webkit-scrollbar-track": {
-                                        backgroundColor: "secondary.main",
-                                    },
-                                    "&::-webkit-scrollbar-thumb": {
-                                        backgroundColor: "secondary.light",
-                                        borderRadius: "8px",
-                                    },
-                                    "&::-webkit-scrollbar-thumb:hover": {
-                                        background: "#555",
-                                    },
-                                }
-                            } */}
-
-                            {[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map(
-                                (data, index) => {
+                            size={{ xs: 6.7 }} component="div"
+                            sx={styles.toolsContainerBoxStyle}>
+                            {toolSelectorList[selectedIndex.domainIndex].subDomain[selectedIndex.subDomainIndex].tool.map(
+                                (tool, index) => {
                                     return (
                                         <Stack
                                             direction={"row"}
                                             marginTop={1}
                                             sx={{
-                                                display: "flex",
-
-                                                alignmentBaseline: "baseline",
+                                                backgroundColor: "secondary.dark",
+                                                marginTop: "4px",
+                                                padding: 0.5
                                             }}
                                         >
                                             <Checkbox
@@ -155,11 +149,11 @@ export default function ToolBarChartAnalysis() {
                                                 sx={
                                                     {
                                                         color: "primary.contrastText",
-                                                        margin: "auto 0"
+                                                        margin: "auto"
                                                     }
                                                 }
                                             >
-                                                Cloud Computing and DevOps
+                                                {tool}
                                             </Typography>
                                         </Stack>
                                     );

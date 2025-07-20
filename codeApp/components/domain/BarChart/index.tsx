@@ -1,15 +1,59 @@
 "use client";
 
-import { Box, Stack, Typography, Tooltip, IconButton, Grid } from "@mui/material";
-import { styles } from "./useStyles";
-import { DashBoardPageEmployeeByDepartmentBoxLabelData } from "@/public/data/dashboard";
-import { DepartmentList } from "@/public/Sample/data.js";
+import { DeliveryStatsByDomain, DeliveryStatsFormatData } from "@/api/types/domain";
+import { DomainDeliveryFormatLegend } from "@/public/data/dashboard";
 import { RefreshOutlined } from "@mui/icons-material";
+import { Box, Grid, IconButton, Stack, Tooltip, Typography } from "@mui/material";
+import { styles } from "./useStyles";
 
-export default function DomainBarChart() {
-  const departmentList = DepartmentList.slice(0, 5);
-  const dashBoardPageEmployeeByDepartmentBoxLabelData =
-    DashBoardPageEmployeeByDepartmentBoxLabelData;
+type Props = {
+  deliveryStatsByDomain: DeliveryStatsByDomain[]
+}
+
+export default function DomainBarChart(props: Props) {
+  const { deliveryStatsByDomain } = props
+
+  const domainList = [];
+  let deliveryStatsFormatData: DeliveryStatsFormatData[] = []
+
+  deliveryStatsByDomain.map((i) => {
+    if (!domainList.includes(i.domainName)) {
+      domainList.push(i.domainName)
+      deliveryStatsFormatData.push({
+        domainName: i.domainName,
+        deliveryFormat:
+          [{
+            format: i.deliveryFormat,
+            count: i.toolsCount,
+            percent: 100
+          }]
+        ,
+        toolsCount: i.toolsCount
+      })
+    } else {
+      deliveryStatsFormatData.map((data) => {
+        if (i.domainName == data.domainName) {
+          data.toolsCount = data.toolsCount + i.toolsCount
+          data.deliveryFormat.push({
+            format: i.deliveryFormat,
+            count: i.toolsCount,
+            percent: 0
+          })
+          data.deliveryFormat.map((deliveryFormat) => {
+            deliveryFormat.percent = Math.round((deliveryFormat.count / data.toolsCount) * 100);
+          })
+        }
+      })
+    }
+  })
+
+
+  console.log('deliveryStatsFormatData', deliveryStatsFormatData)
+
+  const domainDeliveryFormatLegend =
+    DomainDeliveryFormatLegend;
+
+
   return (
     <Grid size={{ xs: 8 }} component="div">
       <Box sx={styles.employerByDepartmentBoxStyle} padding={4} height={"38rem"}>
@@ -35,9 +79,9 @@ export default function DomainBarChart() {
               {/* Creating List of Department Name */}
               <Grid size={{ xs: 3 }} component="div">
                 <Stack direction={"column"} spacing={5}>
-                  {departmentList.map((i, index) => (
+                  {domainList.map((i, index) => (
                     <Typography variant="h6" sx={styles.dashboardTextTypographStyle}>
-                      {i.Domain}
+                      {i}
                     </Typography>
                   ))}
                 </Stack>
@@ -51,104 +95,45 @@ export default function DomainBarChart() {
                 >
                   {/* Creating List of Department Employee Bar in a row */}
 
-                  {departmentList.map((i, index) => (
-                    <Stack
+                  {deliveryStatsFormatData.map((domainDeliveryStats, index) => {
+                    return ((<Stack
                       direction={"row"}
                       spacing={1}
                       padding={1.5}
                     >
-                      <Tooltip
-                        title="1000 [100000]"
-                        slotProps={{
-                          tooltip: {
-                            sx: {
-                              ...styles.employeeByDepartmentListBoxBarBoxToolTipStyle,
-                              backgroundColor: "rgb(141,100,200)",
+                      {domainDeliveryFormatLegend.map((deliveryFormat, index) => {
+                        const matchDeliveryFormat = domainDeliveryStats.deliveryFormat.filter((data) => data.format == deliveryFormat.LabelName)
+                        return (<Tooltip
+                          title={`${matchDeliveryFormat[0].count} [${domainDeliveryStats.toolsCount}]`}
+                          slotProps={{
+                            tooltip: {
+                              sx: {
+                                ...styles.employeeByDepartmentListBoxBarBoxToolTipStyle,
+                                backgroundColor: `${deliveryFormat.Color}`,
+                              },
                             },
-                          },
-                        }}
-                        placement="top-start"
-                        arrow
-                      >
-                        <Box
-                          sx={{
-                            ...styles.employeeByDepartmentListBoxBarStyle,
-                            backgroundColor: "rgb(141,100,200)",
                           }}
-                          width={"30%"}
-                        ></Box>
-                      </Tooltip>
-                      <Tooltip
-                        title="100 [100000]"
-                        slotProps={{
-                          tooltip: {
-                            sx: {
-                              ...styles.employeeByDepartmentListBoxBarBoxToolTipStyle,
-                              backgroundColor: "rgb(228,172,99)",
-                            },
-                          },
-                        }}
-                        placement="top"
-                        arrow
-                      >
-                        <Box
-                          sx={{
-                            ...styles.employeeByDepartmentListBoxBarStyle,
-                            backgroundColor: "rgb(228,172,99)",
-                          }}
-                          width={"20%"}
-                        ></Box>
-                      </Tooltip>
-                      <Tooltip
-                        title="1000 [100000]"
-                        slotProps={{
-                          tooltip: {
-                            sx: {
-                              ...styles.employeeByDepartmentListBoxBarBoxToolTipStyle,
-                              backgroundColor: "rgb(54,157,63)",
-                            },
-                          },
-                        }}
-                        placement="top"
-                        arrow
-                      >
-                        <Box
-                          sx={{
-                            ...styles.employeeByDepartmentListBoxBarStyle,
-                            backgroundColor: "rgb(54,157,63)",
-                          }}
-                          width={"35%"}
-                        ></Box>
-                      </Tooltip>
-                      <Tooltip
-                        title="1000 [100000]"
-                        slotProps={{
-                          tooltip: {
-                            sx: {
-                              ...styles.employeeByDepartmentListBoxBarBoxToolTipStyle,
-                              backgroundColor: "rgb(174,199,243)",
-                            },
-                          },
-                        }}
-                        placement="top-end"
-                        arrow
-                      >
-                        <Box
-                          sx={{
-                            ...styles.employeeByDepartmentListBoxBarStyle,
-                            backgroundColor: "rgb(174,199,243)",
-                          }}
-                          width={"15%"}
-                        ></Box>
-                      </Tooltip>
-                    </Stack>
-                  ))}
+                          placement="top-start"
+                          arrow
+                        >
+                          <Box
+                            sx={{
+                              ...styles.employeeByDepartmentListBoxBarStyle,
+                              backgroundColor: `${deliveryFormat.Color}`,
+                            }}
+                            width={`${matchDeliveryFormat[0].percent}%`}
+                          ></Box>
+                        </Tooltip>)
+                      })}
+                    </Stack>))
+                  }
+                  )}
                 </Stack>
               </Grid>
             </Grid>
           </Grid>
           <Stack direction={"row"} spacing={4} sx={{ width: "100%" }}>
-            {dashBoardPageEmployeeByDepartmentBoxLabelData.map((i, index) => (
+            {domainDeliveryFormatLegend.map((i, index) => (
               <Stack
                 direction={"row"}
                 alignItems={"baseline"}
@@ -170,7 +155,7 @@ export default function DomainBarChart() {
             ))}
           </Stack>
         </Grid>
-      </Box>
-    </Grid>
+      </Box >
+    </Grid >
   );
 }
