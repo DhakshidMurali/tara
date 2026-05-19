@@ -1,0 +1,150 @@
+"use client";
+
+import { lightPurple } from "@/utils/constants";
+import {
+  AccountCircleOutlined,
+  BuildCircle,
+  DashboardRounded,
+  Groups2,
+  TimelineOutlined,
+} from "@mui/icons-material";
+import { Avatar, Button, Stack, Toolbar, Typography } from "@mui/material";
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
+import { styled } from "@mui/material/styles";
+import { useRouter } from "next/navigation";
+import { styles } from "./useStyles";
+import { SpacerBox, AvatarBox, ListBox } from "./boxComponent/avatarBox";
+const Sidebar = styled(Paper)(({ theme }) => ({
+  height: "100vh",
+  backgroundColor: theme.palette.primary.main,
+  display: "flex",
+  flexDirection: "column",
+}));
+
+export default function NavBar(props) {
+  const { selected } = props;
+  const route = useRouter();
+  const handleNavigation = (currentPage) => {
+    currentPage == "domain"
+      ? route.push("/domain")
+      : currentPage == "tool"
+        ? route.push("/tool")
+        : currentPage == "community"
+          ? route.push("/community")
+          : currentPage == "profile"
+            ? route.push("/profile")
+            : null;
+  };
+  return (
+    <Sidebar>
+      <Stack spacing={1}>
+        <SpacerBox height={8}></SpacerBox>
+        <Stack direction="row" alignItems="baseline" justifyContent="center">
+          <Box
+            component="img"
+            src="/images/logo.jpg"
+            sx={styles.imageLogo}
+          ></Box>
+          <Typography variant="h3" sx={styles.titleTextStyle}>
+            Tara
+          </Typography>
+        </Stack>
+        <SpacerBox height={16}></SpacerBox>
+        <AvatarBox>
+          <Avatar
+            variant="rounded"
+            sx={{ bgcolor: lightPurple, width: 112, height: 112 }}
+          >
+            AV
+          </Avatar>
+        </AvatarBox>
+        <Typography variant="body1" sx={styles.userNameTextStyle}>
+          Arjun Vijay
+        </Typography>
+        <Typography variant="h3" sx={styles.userEmailAddressTextStyle}>
+          arjun.vijay@gmail.com
+        </Typography>
+        <SpacerBox height={24}></SpacerBox>
+        <Button
+          onClick={() => {
+            handleNavigation("domain");
+          }}
+        >
+          <ListBox selected={selected == "domain"}>
+            <Groups2
+              color={selected == "domain" ? "primary" : "secondary"}
+            ></Groups2>
+            <Typography
+              variant="body1"
+              sx={
+                selected == "domain"
+                  ? styles.navbarSelectedMenuTextStyle
+                  : styles.navbarMenuTextStyle
+              }
+            >
+              Domain
+            </Typography>
+          </ListBox>
+        </Button>
+        <Button
+          onClick={() => {
+            handleNavigation("tool");
+          }}
+        >
+          {" "}
+          <ListBox selected={selected == "tool"}>
+            <BuildCircle
+              color={selected == "tool" ? "primary" : "secondary"}
+            ></BuildCircle>
+            <Typography
+              variant="body1"
+              sx={
+                selected == "tool"
+                  ? styles.navbarSelectedMenuTextStyle
+                  : styles.navbarMenuTextStyle
+              }
+            >
+              Tool
+            </Typography>
+          </ListBox>
+        </Button>
+        <Button
+          onClick={() => {
+            handleNavigation("community");
+          }}
+        >
+          <ListBox selected={selected == "community"}>
+            <DashboardRounded
+              color={selected == "community" ? "primary" : "secondary"}
+            ></DashboardRounded>
+            <Typography
+              variant="body1"
+              sx={
+                selected == "community"
+                  ? styles.navbarSelectedMenuTextStyle
+                  : styles.navbarMenuTextStyle
+              }
+            >
+              Community
+            </Typography>
+          </ListBox>
+        </Button>
+        <Button
+          onClick={() => {
+            handleNavigation("profile");
+          }}
+        >
+          <ListBox selected={selected == "profile"}>
+            <AccountCircleOutlined
+              color={selected == "profile" ? "primary" : "secondary"}
+            ></AccountCircleOutlined>
+            <Typography variant="body1" sx={styles.navbarMenuTextStyle}>
+              Profile
+            </Typography>
+          </ListBox>
+        </Button>
+      </Stack>
+    </Sidebar>
+  );
+}

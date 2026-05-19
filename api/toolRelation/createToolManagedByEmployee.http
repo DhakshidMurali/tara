@@ -1,0 +1,20 @@
+POST http://localhost:8080/create/relation/toolManagedByEmployee
+content-type: application/json
+
+{
+    "Tool":{
+        "Name":"New A",
+        "DeliveryFormat":"Open Source",
+    },
+    "Employee":{
+        "Name":"New B",
+        "MailAddress":"@gmail.com",
+        "Domain":"TO",
+        "Password":"12345678",
+        "PhoneNumber":"12345678",
+        "Role":"Developer",
+        "Location":"Pune"
+    }
+}
+
+# verified

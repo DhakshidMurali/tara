@@ -1,0 +1,21 @@
+POST http://localhost:8080/create/relation/communiationPostedByUser
+content-type: application/json
+
+{
+    "Communication":{
+        "Link":"https://mui.com/material-ui/react-typography/",
+        "Content":"New post 2"
+    },
+    "PostedBy":{
+        "PostedByDate":"22-03-2025"
+    },
+    "User":{
+        "Name":"A",
+        "MailAddress":"1@gmail.com",
+        "Domain":"TO1",
+        "Password":"12345678",
+        "PhoneNumber":"12345678",
+        "Role":"Developer",
+        "Location":"Pune"
+    }
+}
